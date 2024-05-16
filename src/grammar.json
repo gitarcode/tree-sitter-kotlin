@@ -3002,7 +3002,7 @@
     },
     "prefix_expression": {
       "type": "PREC_RIGHT",
-      "value": 0,
+      "value": 15,
       "content": {
         "type": "SEQ",
         "members": [
@@ -3024,8 +3024,17 @@
             ]
           },
           {
-            "type": "SYMBOL",
-            "name": "_expression"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_unary_expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_primary_expression"
+              }
+            ]
           }
         ]
       }
@@ -6341,3 +6350,4 @@
   "inline": [],
   "supertypes": []
 }
+

@@ -6203,10 +6203,6 @@
       "required": false,
       "types": [
         {
-          "type": "additive_expression",
-          "named": true
-        },
-        {
           "type": "annotation",
           "named": true
         },
@@ -6239,31 +6235,7 @@
           "named": true
         },
         {
-          "type": "check_expression",
-          "named": true
-        },
-        {
           "type": "collection_literal",
-          "named": true
-        },
-        {
-          "type": "comparison_expression",
-          "named": true
-        },
-        {
-          "type": "conjunction_expression",
-          "named": true
-        },
-        {
-          "type": "disjunction_expression",
-          "named": true
-        },
-        {
-          "type": "elvis_expression",
-          "named": true
-        },
-        {
-          "type": "equality_expression",
           "named": true
         },
         {
@@ -6276,10 +6248,6 @@
         },
         {
           "type": "indexing_expression",
-          "named": true
-        },
-        {
-          "type": "infix_expression",
           "named": true
         },
         {
@@ -6303,10 +6271,6 @@
           "named": true
         },
         {
-          "type": "multiplicative_expression",
-          "named": true
-        },
-        {
           "type": "navigation_expression",
           "named": true
         },
@@ -6324,10 +6288,6 @@
         },
         {
           "type": "prefix_expression",
-          "named": true
-        },
-        {
-          "type": "range_expression",
           "named": true
         },
         {
