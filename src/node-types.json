@@ -6200,7 +6200,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "additive_expression",
@@ -6327,6 +6327,10 @@
           "named": true
         },
         {
+          "type": "prefix_unary_operator",
+          "named": true
+        },
+        {
           "type": "range_expression",
           "named": true
         },
@@ -6368,6 +6372,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "prefix_unary_operator",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "primary_constructor",

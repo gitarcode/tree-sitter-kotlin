@@ -3019,7 +3019,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "_prefix_unary_operator"
+                "name": "prefix_unary_operator"
               }
             ]
           },
@@ -4836,7 +4836,7 @@
         }
       ]
     },
-    "_prefix_unary_operator": {
+    "prefix_unary_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6341,3 +6341,4 @@
   "inline": [],
   "supertypes": []
 }
+
