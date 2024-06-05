@@ -2720,6 +2720,21 @@
     }
   },
   {
+    "type": "else",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "control_structure_body",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "elvis_expression",
     "named": true,
     "fields": {},
@@ -4167,6 +4182,10 @@
         },
         {
           "type": "disjunction_expression",
+          "named": true
+        },
+        {
+          "type": "else",
           "named": true
         },
         {
