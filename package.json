@@ -4,6 +4,7 @@
   "description": "Tree-sitter grammar for Kotlin",
   "main": "bindings/node",
   "scripts": {
+    "build": "tree-sitter generate --no-bindings",
     "test": "tree-sitter test",
     "install": "node-gyp rebuild",
     "generate": "tree-sitter generate",
