@@ -562,7 +562,8 @@ if (cond1) {
           (call_suffix
             (value_arguments
               (value_argument
-                (string_literal)))))))
+                (string_literal
+                  (string_content))))))))
     (else
       (control_structure_body
         (if_expression
@@ -574,7 +575,8 @@ if (cond1) {
                 (call_suffix
                   (value_arguments
                     (value_argument
-                      (string_literal)))))))
+                      (string_literal
+                        (string_content))))))))
           (else
             (control_structure_body
               (statements
@@ -583,4 +585,5 @@ if (cond1) {
                   (call_suffix
                     (value_arguments
                       (value_argument
-                        (string_literal)))))))))))))
+                        (string_literal
+                          (string_content))))))))))))))
