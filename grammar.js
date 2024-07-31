@@ -112,7 +112,6 @@ module.exports = grammar({
   ],
 
   externals: $ => [
-    $._automatic_semicolon,
     $._import_list_delimiter,
     $.safe_nav,
     $.multiline_comment,
@@ -150,15 +149,15 @@ module.exports = grammar({
     shebang_line: $ => seq("#!", /[^\r\n]*/),
 
     file_annotation: $ => seq(
-      "@", "file", ":",
+      "@", "file", repeat($._nl), ":", repeat($._nl),
       choice(
         seq("[", repeat1($._unescaped_annotation), "]"),
         $._unescaped_annotation
       ),
-      $._semi
+      repeat($._nl)
     ),
 
-    package_header: $ => seq("package", $.identifier, $._semi),
+    package_header: $ => seq("package", $.identifier, optional($._semi)),
 
     import_list: $ => seq(
       repeat1($.import_header),
@@ -181,9 +180,12 @@ module.exports = grammar({
     type_alias: $ => seq(
       optional($.modifiers),
       "typealias",
+      repeat($._nl),
       alias($.simple_identifier, $.type_identifier),
-      optional($.type_parameters),
+      seq(repeat($._nl), optional($.type_parameters)),
+      repeat($._nl),
       "=",
+      repeat($._nl),
       $._type
     ),
 
@@ -211,11 +213,12 @@ module.exports = grammar({
     class_declaration: $ => prec.right(choice(
       seq(
         optional($.modifiers),
-        choice("class", "interface"),
+        choice("class", optional(seq("interface"))),
+        repeat($._nl),
         alias($.simple_identifier, $.type_identifier),
-        optional($.type_parameters),
-        optional($.primary_constructor),
-        optional(seq(":", $._delegation_specifiers)),
+        optional(seq(repeat($._nl), $.type_parameters)),
+        optional(seq(repeat($._nl), $.primary_constructor)),
+        optional(seq(repeat($._nl), ":", repeat($._nl), $._delegation_specifiers)),
         optional($.type_constraints),
         optional($.class_body)
       ),
@@ -232,11 +235,11 @@ module.exports = grammar({
     )),
 
     primary_constructor: $ => seq(
-      optional(seq(optional($.modifiers), "constructor")),
+      optional(seq(optional($.modifiers), "constructor", repeat($._nl))),
       $._class_parameters
     ),
 
-    class_body: $ => seq("{", optional($._class_member_declarations), "}"),
+    class_body: $ => seq("{", repeat($._nl), optional($._class_member_declarations), repeat($._nl), "}"),
 
     _class_parameters: $ => seq(
       "(",
@@ -249,11 +252,13 @@ module.exports = grammar({
 
     class_parameter: $ => seq(
       optional($.modifiers),
-      optional($.binding_pattern_kind),
+      optional(choice("val", "var")),
+      repeat($._nl),
       $.simple_identifier,
       ":",
+      repeat($._nl),
       $._type,
-      optional(seq("=", $._expression))
+      optional(seq(repeat($._nl), "=", $._expression, repeat($._nl)))
     ),
 
     _delegation_specifiers: $ => prec.left(sep1(
@@ -600,7 +605,14 @@ module.exports = grammar({
 
     // See also https://github.com/tree-sitter/tree-sitter/issues/160
     // generic EOF/newline token
-    _semi: $ => $._automatic_semicolon,
+    _semi: $ => seq(
+      choice(";", $._nl),
+      repeat($._nl)
+    ),
+
+    _semis: $ => repeat1(
+      choice(";", $._nl)
+    ),
 
     assignment: $ => choice(
       prec.left(PREC.ASSIGNMENT, seq($.directly_assignable_expression, $._assignment_and_operator, $._expression)),
@@ -1205,6 +1217,17 @@ module.exports = grammar({
     character_escape_seq: $ => choice(
       $._uni_character_literal,
       $._escaped_identifier
+    ),
+
+    null_literal: $ => seq(
+      "null"
+    ),
+
+    _nls: $ => repeat($._nl),
+
+    _nl: $ => choice(
+      "\r",
+      seq("\r\n")
     ),
 
     // ==========
