@@ -264,6 +264,7 @@ module.exports = grammar({
     _delegation_specifiers: $ => prec.left(sep1(
       $.delegation_specifier,
       // $._annotated_delegation_specifier, // TODO: Annotations cause ambiguities with type modifiers
+      repeat($._nl),
       ","
     )),
 
@@ -274,7 +275,7 @@ module.exports = grammar({
       $.function_type
     )),
 
-    constructor_invocation: $ => seq($.user_type, $.value_arguments),
+    constructor_invocation: $ => seq($.user_type, repeat($._nl), $.value_arguments),
 
     _annotated_delegation_specifier: $ => seq(repeat($.annotation), $.delegation_specifier),
 
@@ -1222,8 +1223,6 @@ module.exports = grammar({
     null_literal: $ => seq(
       "null"
     ),
-
-    _nls: $ => repeat($._nl),
 
     _nl: $ => choice(
       "\r",
