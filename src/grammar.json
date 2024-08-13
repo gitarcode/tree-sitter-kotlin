@@ -1038,8 +1038,22 @@
           ]
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_nl"
+          }
+        },
+        {
           "type": "STRING",
           "value": "by"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_nl"
+          }
         },
         {
           "type": "SYMBOL",
@@ -1055,6 +1069,13 @@
           "value": "<"
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_nl"
+          }
+        },
+        {
           "type": "SEQ",
           "members": [
             {
@@ -1067,6 +1088,13 @@
                 "type": "SEQ",
                 "members": [
                   {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_nl"
+                    }
+                  },
+                  {
                     "type": "STRING",
                     "value": ","
                   },
@@ -1078,6 +1106,13 @@
               }
             }
           ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_nl"
+          }
         },
         {
           "type": "STRING",
@@ -1101,6 +1136,13 @@
           ]
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_nl"
+          }
+        },
+        {
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
@@ -1116,8 +1158,22 @@
               "type": "SEQ",
               "members": [
                 {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_nl"
+                  }
+                },
+                {
                   "type": "STRING",
                   "value": ":"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_nl"
+                  }
                 },
                 {
                   "type": "SYMBOL",
@@ -1143,6 +1199,13 @@
             "value": "where"
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_nl"
+            }
+          },
+          {
             "type": "SEQ",
             "members": [
               {
@@ -1154,6 +1217,13 @@
                 "content": {
                   "type": "SEQ",
                   "members": [
+                    {
+                      "type": "REPEAT",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "_nl"
+                      }
+                    },
                     {
                       "type": "STRING",
                       "value": ","

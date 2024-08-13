@@ -284,19 +284,22 @@ module.exports = grammar({
         $.user_type,
         $.function_type
       ),
+      repeat($._nl),
       "by",
+      repeat($._nl),
       $._expression
     ),
 
-    type_parameters: $ => seq("<", sep1($.type_parameter, ","), ">"),
+    type_parameters: $ => seq("<", repeat($._nl), sep2($.type_parameter, repeat($._nl), ","), repeat($._nl),">"),
 
     type_parameter: $ => seq(
       optional($.type_parameter_modifiers),
+      repeat($._nl),
       alias($.simple_identifier, $.type_identifier),
-      optional(seq(":", $._type))
+      optional(seq(repeat($._nl), ":", repeat($._nl), $._type))
     ),
 
-    type_constraints: $ => prec.right(seq("where", sep1($.type_constraint, ","))),
+    type_constraints: $ => prec.right(seq("where", repeat($._nl), sep2($.type_constraint, repeat($._nl), ","))),
 
     type_constraint: $ => seq(
       repeat($.annotation),
@@ -1254,4 +1257,8 @@ module.exports = grammar({
 
 function sep1(rule, separator) {
   return seq(rule, repeat(seq(separator, rule)));
+}
+
+function sep2(rule, separator1, separator2) {
+  return seq(rule, repeat(seq(separator1, separator2, rule)));
 }
