@@ -546,8 +546,20 @@
                 "type": "CHOICE",
                 "members": [
                   {
-                    "type": "SYMBOL",
-                    "name": "type_constraints"
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "REPEAT",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "_nl"
+                        }
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "type_constraints"
+                      }
+                    ]
                   },
                   {
                     "type": "BLANK"
@@ -6648,6 +6660,10 @@
     ],
     [
       "not_nullable_type"
+    ],
+    [
+      "class_declaration",
+      "_primary_expression"
     ]
   ],
   "precedences": [],

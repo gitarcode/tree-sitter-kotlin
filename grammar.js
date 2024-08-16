@@ -109,6 +109,8 @@ module.exports = grammar({
     [$.type_modifiers],
     // ambiguity between associating type modifiers
     [$.not_nullable_type],
+
+    [$.class_declaration, $._primary_expression]
   ],
 
   externals: $ => [
@@ -219,7 +221,7 @@ module.exports = grammar({
         optional(seq(repeat($._nl), $.type_parameters)),
         optional(seq(repeat($._nl), $.primary_constructor)),
         optional(seq(repeat($._nl), ":", repeat($._nl), $._delegation_specifiers)),
-        optional($.type_constraints),
+        optional(seq(repeat($._nl), $.type_constraints)),
         optional($.class_body)
       ),
       seq(
