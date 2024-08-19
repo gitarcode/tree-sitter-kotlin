@@ -370,12 +370,12 @@ module.exports = grammar({
       $.binding_pattern_kind,
       optional(field('type_parameters', $.type_parameters)),
       optional(seq($._receiver_type, optional('.'))),
-      choice(field('single_var_decl', $.variable_declaration), field('multi_var_decl', $.multi_variable_declaration)),
+      choice(field('var_decl', $.variable_declaration), field('var_decl', $.multi_variable_declaration)),
       optional(field('type_constraints', $.type_constraints)),
-      optional(field('initializer', choice(
-        field('value', seq("=", $._expression)),
+      optional(choice(
+        seq("=", field('initializer', $._expression)),
         $.property_delegate
-      ))),
+      )),
       optional(';'),
       choice(
         // TODO: Getter-setter combinations
