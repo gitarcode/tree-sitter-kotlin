@@ -3761,6 +3761,16 @@
     "type": "function_declaration",
     "named": true,
     "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "function_body",
+            "named": true
+          }
+        ]
+      },
       "modifiers": {
         "multiple": false,
         "required": false,
@@ -3830,10 +3840,6 @@
       "multiple": true,
       "required": false,
       "types": [
-        {
-          "type": "function_body",
-          "named": true
-        },
         {
           "type": "nullable_type",
           "named": true

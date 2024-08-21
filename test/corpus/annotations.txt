@@ -116,7 +116,7 @@ fun foo() = bar {}
           (type_identifier))))
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    (function_body
+    body: (function_body
       (call_expression
         (simple_identifier)
         (call_suffix

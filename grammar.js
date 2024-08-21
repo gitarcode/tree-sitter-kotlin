@@ -354,7 +354,7 @@ module.exports = grammar({
       field('parameters', $.function_value_parameters),
       optional(seq(":", field('type', $._type))),
       optional($.type_constraints),
-      optional($.function_body)
+      optional(field('body', $.function_body))
     )),
 
     function_body: $ => choice($.block, seq("=", $._expression)),

@@ -8,8 +8,9 @@ fun main() {}
 
 (source_file
   (function_declaration
-    (simple_identifier) (function_value_parameters)
-    (function_body
+    name: (simple_identifier) 
+    parameters: (function_value_parameters)
+    body: (function_body
       (block))))
 
 ==================
@@ -23,8 +24,9 @@ fun <T> test() {}
 (source_file
   (function_declaration
     (type_parameters (type_parameter (type_identifier)))
-    (simple_identifier) (function_value_parameters)
-    (function_body
+    name: (simple_identifier) 
+    parameters: (function_value_parameters)
+    body: (function_body
       (block))))
 
 ==================
@@ -148,7 +150,7 @@ override fun boo() = foo()
       (member_modifier))
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    (function_body
+    body: (function_body
       (call_expression
         (simple_identifier)
         (call_suffix

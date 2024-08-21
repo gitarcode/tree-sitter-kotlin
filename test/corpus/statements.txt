@@ -30,7 +30,7 @@ override fun isDisposed(): Boolean { expectUnreached();  return false }
     parameters: (function_value_parameters)
     type: (user_type
       (type_identifier))
-    (function_body
+    body: (function_body
       (block
         (statements
           (call_expression
@@ -81,7 +81,7 @@ fun foo() {
   (function_declaration
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    (function_body
+    body: (function_body
       (block
         (statements
           (property_declaration

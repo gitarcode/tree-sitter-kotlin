@@ -518,7 +518,7 @@ class Square() : Rectangle(), Polygon {
               (member_modifier))
             name: (simple_identifier)
             parameters: (function_value_parameters)
-            (function_body
+            body: (function_body
               (block
                 (statements
                   (call_expression

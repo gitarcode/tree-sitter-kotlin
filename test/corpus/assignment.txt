@@ -48,16 +48,16 @@ fun main(){
 
 (source_file
   (function_declaration
-    (simple_identifier)
-    (function_value_parameters)
-    (function_body
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
       (block
         (statements
           (property_declaration
             (binding_pattern_kind)
-            (variable_declaration
-              (simple_identifier)
-              (user_type
+            var_decl: (variable_declaration
+              id: (simple_identifier)
+              type: (user_type
                 (type_identifier)
                 (type_arguments
                   (type_projection
