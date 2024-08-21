@@ -91,7 +91,7 @@ class X {
         modifiers: (modifiers
           (annotation (user_type (type_identifier)))
           (annotation (user_type (type_identifier))))
-        (simple_identifier)
+        name: (simple_identifier)
         parameters: (function_value_parameters)
         type: (user_type (type_identifier))
       )
@@ -114,7 +114,7 @@ fun foo() = bar {}
       (annotation
         (user_type
           (type_identifier))))
-    (simple_identifier)
+    name: (simple_identifier)
     parameters: (function_value_parameters)
     (function_body
       (call_expression

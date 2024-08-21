@@ -350,7 +350,7 @@ module.exports = grammar({
       "fun",
       optional($.type_parameters),
       optional(seq($._receiver_type, optional('.'))),
-      $.simple_identifier,
+      field('name', $.simple_identifier),
       field('parameters', $.function_value_parameters),
       optional(seq(":", field('type', $._type))),
       optional($.type_constraints),

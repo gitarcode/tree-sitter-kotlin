@@ -3771,6 +3771,16 @@
           }
         ]
       },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "simple_identifier",
+            "named": true
+          }
+        ]
+      },
       "parameters": {
         "multiple": false,
         "required": true,
@@ -3818,7 +3828,7 @@
     },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "function_body",
@@ -3830,10 +3840,6 @@
         },
         {
           "type": "parenthesized_type",
-          "named": true
-        },
-        {
-          "type": "simple_identifier",
           "named": true
         },
         {
