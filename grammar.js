@@ -416,7 +416,7 @@ module.exports = grammar({
       optional(seq(":", $._type))
     ),
 
-    parameter: $ => seq($.simple_identifier, ":", $._type),
+    parameter: $ => seq(field('name', $.simple_identifier), ":", field('type', $._type)),
 
     object_declaration: $ => prec.right(seq(
       optional($.modifiers),
