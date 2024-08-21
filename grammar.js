@@ -351,8 +351,8 @@ module.exports = grammar({
       optional($.type_parameters),
       optional(seq($._receiver_type, optional('.'))),
       $.simple_identifier,
-      $.function_value_parameters,
-      optional(seq(":", $._type)),
+      field('parameters', $.function_value_parameters),
+      optional(seq(":", field('type', $._type))),
       optional($.type_constraints),
       optional($.function_body)
     )),
