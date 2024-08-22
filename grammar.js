@@ -240,7 +240,7 @@ module.exports = grammar({
 
     _class_parameters: $ => seq(
       "(",
-      optional(sep1($.class_parameter, ",")),
+      optional(sep1(field('parameter', $.class_parameter), ",")),
       optional(","),
       ")"
     ),

@@ -6667,15 +6667,22 @@
   {
     "type": "primary_constructor",
     "named": true,
-    "fields": {},
+    "fields": {
+      "parameter": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "class_parameter",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
-        {
-          "type": "class_parameter",
-          "named": true
-        },
         {
           "type": "modifiers",
           "named": true
