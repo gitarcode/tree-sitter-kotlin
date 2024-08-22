@@ -273,13 +273,14 @@ class Test(x: Int, y: Int) {
         type: (user_type
           (type_identifier))))
     (class_body
-      (secondary_constructor (function_value_parameters)
-        (constructor_delegation_call
-          (value_arguments
-            (value_argument
-              (integer_literal))
-            (value_argument
-              (integer_literal))))))))
+      (secondary_constructor 
+        parameters: (function_value_parameters)
+          (constructor_delegation_call
+            (value_arguments
+              (value_argument
+                (integer_literal))
+              (value_argument
+                (integer_literal))))))))
 
 ================================================================================
 Enum classes

@@ -7460,25 +7460,44 @@
   {
     "type": "secondary_constructor",
     "named": true,
-    "fields": {},
+    "fields": {
+      "block": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "modifiers": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "modifiers",
+            "named": true
+          }
+        ]
+      },
+      "parameters": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "function_value_parameters",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
-          "type": "block",
-          "named": true
-        },
-        {
           "type": "constructor_delegation_call",
-          "named": true
-        },
-        {
-          "type": "function_value_parameters",
-          "named": true
-        },
-        {
-          "type": "modifiers",
           "named": true
         }
       ]

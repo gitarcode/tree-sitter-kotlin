@@ -427,11 +427,11 @@ module.exports = grammar({
     )),
 
     secondary_constructor: $ => seq(
-      optional($.modifiers),
+      optional(field('modifiers', $.modifiers)),
       "constructor",
-      $.function_value_parameters,
+      field('parameters', $.function_value_parameters),
       optional(seq(":", $.constructor_delegation_call)),
-      optional($.block)
+      optional(field('block', $.block))
     ),
 
     constructor_delegation_call: $ => seq(choice("this", "super"), $.value_arguments),
