@@ -248,7 +248,7 @@ module.exports = grammar({
     binding_pattern_kind: $ => choice("val", "var"),
 
     class_parameter: $ => seq(
-      optional(field('modifies', $.modifiers)),
+      optional(field('modifiers', $.modifiers)),
       optional(field('binding_pattern', $.binding_pattern_kind)),
       field('name', $.simple_identifier),
       ":",

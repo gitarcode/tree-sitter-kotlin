@@ -399,7 +399,7 @@ value class Password(private val s: String)
     (type_identifier)
     (primary_constructor
       parameter: (class_parameter
-        modifies: (modifiers
+        modifiers: (modifiers
           (visibility_modifier))
         binding_pattern: (binding_pattern_kind)
         name: (simple_identifier)

@@ -1435,7 +1435,7 @@
           }
         ]
       },
-      "modifies": {
+      "modifiers": {
         "multiple": false,
         "required": false,
         "types": [
