@@ -248,12 +248,12 @@ module.exports = grammar({
     binding_pattern_kind: $ => choice("val", "var"),
 
     class_parameter: $ => seq(
-      optional($.modifiers),
-      optional($.binding_pattern_kind),
-      $.simple_identifier,
+      optional(field('modifies', $.modifiers)),
+      optional(field('binding_pattern', $.binding_pattern_kind)),
+      field('name', $.simple_identifier),
       ":",
-      $._type,
-      optional(seq("=", $._expression))
+      field('type', $._type),
+      optional(seq("=", field('initializer', $._expression)))
     ),
 
     _delegation_specifiers: $ => prec.left(sep1(
