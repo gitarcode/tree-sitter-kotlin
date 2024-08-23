@@ -2229,12 +2229,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "FIELD",
-              "name": "mosifiers",
-              "content": {
-                "type": "SYMBOL",
-                "name": "modifiers"
-              }
+              "type": "SYMBOL",
+              "name": "modifiers"
             },
             {
               "type": "BLANK"
