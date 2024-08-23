@@ -3041,6 +3041,16 @@
           }
         ]
       },
+      "modifiers": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "modifiers",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -3051,16 +3061,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "modifiers",
-          "named": true
-        }
-      ]
     }
   },
   {
