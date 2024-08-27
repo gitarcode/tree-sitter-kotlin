@@ -23,11 +23,11 @@ class Empty(@field:Test val x: Boolean)
 (source_file
   (class_declaration
         (type_identifier)
-        (primary_constructor (class_parameter
+        (primary_constructor (class_parameters (class_parameter
             (modifiers (annotation (use_site_target) (user_type (type_identifier))))
             (binding_pattern_kind)
             (simple_identifier)
-            (user_type (type_identifier))))))
+            (user_type (type_identifier)))))))
 
 ==================
 Multi-annotations

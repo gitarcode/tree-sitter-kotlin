@@ -148,16 +148,17 @@ data class Vector2D(
       (class_modifier))
     (type_identifier)
     (primary_constructor
-      parameter: (class_parameter
-        binding_pattern: (binding_pattern_kind)
-        name: (simple_identifier)
-        type: (user_type
-          (type_identifier)))
-      parameter: (class_parameter
-        binding_pattern: (binding_pattern_kind)
-        name: (simple_identifier)
-        type: (user_type
-          (type_identifier))))))
+      (class_parameters
+        parameter: (class_parameter
+          binding_pattern: (binding_pattern_kind)
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))
+        parameter: (class_parameter
+          binding_pattern: (binding_pattern_kind)
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))))
 
 ================================================================================
 Inheritance
@@ -183,10 +184,11 @@ class D : SomeInterface
   (class_declaration
     (type_identifier)
     (primary_constructor
-      parameter: (class_parameter
-        name: (simple_identifier)
-        type: (user_type
-          (type_identifier))))
+      (class_parameters
+        parameter: (class_parameter
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
     (delegation_specifier
       (constructor_invocation
         (user_type
@@ -264,14 +266,15 @@ class Test(x: Int, y: Int) {
   (class_declaration
     (type_identifier)
     (primary_constructor
-      parameter: (class_parameter
-        name: (simple_identifier)
-        type: (user_type
-          (type_identifier)))
-      parameter: (class_parameter
-        name: (simple_identifier)
-        type: (user_type
-          (type_identifier))))
+      (class_parameters
+        parameter: (class_parameter
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))
+        parameter: (class_parameter
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
     (class_body
       (secondary_constructor 
         parameters: (function_value_parameters)
@@ -330,11 +333,12 @@ enum class Enum {
   (class_declaration
     (type_identifier)
     (primary_constructor
-      parameter: (class_parameter
-        binding_pattern: (binding_pattern_kind)
-        name: (simple_identifier)
-        type: (user_type
-          (type_identifier))))
+      (class_parameters
+        parameter: (class_parameter
+          binding_pattern: (binding_pattern_kind)
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
     (enum_class_body
       (enum_entry
         name: (simple_identifier)
@@ -428,16 +432,17 @@ data class JwtConfiguration(
       (class_modifier))
     (type_identifier)
     (primary_constructor
-      parameter: (class_parameter
-        binding_pattern: (binding_pattern_kind)
-        name: (simple_identifier)
-        type: (user_type
-          (type_identifier)))
-      parameter: (class_parameter
-        binding_pattern: (binding_pattern_kind)
-        name: (simple_identifier)
-        type: (user_type
-          (type_identifier))))))
+      (class_parameters
+        parameter: (class_parameter
+          binding_pattern: (binding_pattern_kind)
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))
+        parameter: (class_parameter
+          binding_pattern: (binding_pattern_kind)
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))))
 
 ================================================================================
 Value class: https://kotlinlang.org/docs/inline-classes.html
@@ -457,10 +462,11 @@ value class Password(private val s: String)
       (class_modifier))
     (type_identifier)
     (primary_constructor
-      parameter: (class_parameter
-        modifiers: (modifiers
-          (visibility_modifier))
-        binding_pattern: (binding_pattern_kind)
-        name: (simple_identifier)
-        type: (user_type
-          (type_identifier))))))
+      (class_parameters
+        parameter: (class_parameter
+          modifiers: (modifiers
+            (visibility_modifier))
+          binding_pattern: (binding_pattern_kind)
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))))

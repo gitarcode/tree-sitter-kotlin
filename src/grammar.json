@@ -592,7 +592,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_class_parameters"
+          "name": "class_parameters"
         }
       ]
     },
@@ -621,7 +621,7 @@
         }
       ]
     },
-    "_class_parameters": {
+    "class_parameters": {
       "type": "SEQ",
       "members": [
         {

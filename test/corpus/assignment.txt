@@ -14,7 +14,8 @@ class Foo(){
 (source_file
   (class_declaration
     (type_identifier)
-    (primary_constructor)
+    (primary_constructor
+      (class_parameters))
     (class_body
       (property_declaration
         (binding_pattern_kind)

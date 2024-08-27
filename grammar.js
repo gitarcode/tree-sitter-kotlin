@@ -233,12 +233,12 @@ module.exports = grammar({
 
     primary_constructor: $ => seq(
       optional(seq(optional($.modifiers), "constructor")),
-      $._class_parameters
+      $.class_parameters
     ),
 
     class_body: $ => seq("{", optional($._class_member_declarations), "}"),
 
-    _class_parameters: $ => seq(
+    class_parameters: $ => seq(
       "(",
       optional(sep1(field('parameter', $.class_parameter), ",")),
       optional(","),

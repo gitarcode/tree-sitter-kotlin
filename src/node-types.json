@@ -1492,6 +1492,22 @@
     }
   },
   {
+    "type": "class_parameters",
+    "named": true,
+    "fields": {
+      "parameter": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "class_parameter",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "collection_literal",
     "named": true,
     "fields": {},
@@ -6686,22 +6702,15 @@
   {
     "type": "primary_constructor",
     "named": true,
-    "fields": {
-      "parameter": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "class_parameter",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
+        {
+          "type": "class_parameters",
+          "named": true
+        },
         {
           "type": "modifiers",
           "named": true

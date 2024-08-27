@@ -503,7 +503,8 @@ class Square() : Rectangle(), Polygon {
 (source_file
       (class_declaration
         (type_identifier)
-        (primary_constructor)
+        (primary_constructor
+          (class_parameters))
         (delegation_specifier
           (constructor_invocation
             (user_type
