@@ -212,7 +212,7 @@ module.exports = grammar({
       seq(
         optional($.modifiers),
         choice("class", "interface"),
-        alias($.simple_identifier, $.type_identifier),
+        field('name', $.simple_identifier),
         optional($.type_parameters),
         optional($.primary_constructor),
         optional(seq(":", $._delegation_specifiers)),
@@ -222,7 +222,7 @@ module.exports = grammar({
       seq(
         optional($.modifiers),
         "enum", "class",
-        alias($.simple_identifier, $.type_identifier),
+        field('name', $.simple_identifier),
         optional($.type_parameters),
         optional($.primary_constructor),
         optional(seq(":", $._delegation_specifiers)),
@@ -240,7 +240,7 @@ module.exports = grammar({
 
     class_parameters: $ => seq(
       "(",
-      optional(sep1(field('parameter', $.class_parameter), ",")),
+      optional(sep1($.class_parameter, ",")),
       optional(","),
       ")"
     ),
@@ -318,7 +318,7 @@ module.exports = grammar({
       optional($.modifiers),
       "companion",
       "object",
-      optional(alias($.simple_identifier, $.type_identifier)),
+      field('name', $.simple_identifier),
       optional(seq(":", $._delegation_specifiers)),
       optional($.class_body)
     ),
@@ -332,7 +332,7 @@ module.exports = grammar({
 
 		function_value_parameter: $ => seq(
 			optional(field('modifiers', $.parameter_modifiers)),
-			field('parameter', $.parameter),
+			$.parameter,
 			optional(seq("=", field('initializer', $._expression)))
 		),
 
@@ -421,7 +421,7 @@ module.exports = grammar({
     object_declaration: $ => prec.right(seq(
       optional($.modifiers),
       "object",
-      alias($.simple_identifier, $.type_identifier),
+      field('name', $.simple_identifier),
       optional(seq(":", $._delegation_specifiers)),
       optional($.class_body)
     )),

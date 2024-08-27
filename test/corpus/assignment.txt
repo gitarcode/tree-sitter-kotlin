@@ -13,7 +13,7 @@ class Foo(){
 
 (source_file
   (class_declaration
-    (type_identifier)
+    name: (simple_identifier)
     (primary_constructor
       (class_parameters))
     (class_body
@@ -25,10 +25,10 @@ class Foo(){
       (secondary_constructor
         parameters: (function_value_parameters
           (function_value_parameter
-            parameter: (parameter
-                        name: (simple_identifier)
-                        type: (user_type
-                          (type_identifier)))))
+            (parameter
+              name: (simple_identifier)
+              type: (user_type
+                (type_identifier)))))
         block: (block
           (statements
             (assignment

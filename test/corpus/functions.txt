@@ -46,7 +46,7 @@ fun <T: Int> bar(foo: Int): T {}
     name: (simple_identifier)
     parameters: (function_value_parameters
       (function_value_parameter
-        parameter: (parameter
+        (parameter
           name: (simple_identifier)
           type: (user_type
             (type_identifier)))))
@@ -70,7 +70,7 @@ fun sum(a: Int, b: Int) = a + b
     name: (simple_identifier)
     parameters: (function_value_parameters
       (function_value_parameter
-        parameter: (parameter
+        (parameter
           name: (simple_identifier)
           type: (user_type
             (type_identifier)
@@ -81,11 +81,11 @@ fun sum(a: Int, b: Int) = a + b
     name: (simple_identifier)
     parameters: (function_value_parameters
       (function_value_parameter
-        parameter: (parameter
+        (parameter
           name: (simple_identifier)
           type: (user_type (type_identifier))))
       (function_value_parameter    
-        parameter: (parameter
+        (parameter
           name: (simple_identifier)
           type: (user_type (type_identifier)))))
     body: (function_body
@@ -123,7 +123,7 @@ fun foo(p0: Int): Long {
     name: (simple_identifier)
     parameters: (function_value_parameters
       (function_value_parameter
-        parameter: (parameter
+        (parameter
           name: (simple_identifier)
           type: (user_type
                   (type_identifier)))))
@@ -223,7 +223,7 @@ val anon = fun(x: Int)
   (anonymous_function
   (function_value_parameters
     (function_value_parameter
-      parameter: (parameter
+      (parameter
         name: (simple_identifier)
         type: (user_type
           (type_identifier))))))
@@ -234,7 +234,7 @@ val anon = fun(x: Int)
     initializer: (anonymous_function
     (function_value_parameters
       (function_value_parameter
-        parameter: (parameter
+        (parameter
           name: (simple_identifier)
           type: (user_type
             (type_identifier))))))))
@@ -355,7 +355,7 @@ fun f(x: Int = 1) {
     name: (simple_identifier)
     parameters: (function_value_parameters
       (function_value_parameter
-        parameter: (parameter
+        (parameter
           name: (simple_identifier)
           type: (user_type
             (type_identifier)))
