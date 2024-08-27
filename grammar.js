@@ -332,7 +332,7 @@ module.exports = grammar({
 
 		function_value_parameter: $ => seq(
 			optional(field('modifiers', $.parameter_modifiers)),
-			$.parameter,
+			field('parameter', $.parameter),
 			optional(seq("=", field('initializer', $._expression)))
 		),
 

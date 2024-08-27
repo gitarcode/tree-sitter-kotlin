@@ -46,10 +46,10 @@ fun <T: Int> bar(foo: Int): T {}
     name: (simple_identifier)
     parameters: (function_value_parameters
       (function_value_parameter
-        (parameter
-          name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
+        parameter: (parameter
+                      name: (simple_identifier)
+                      type: (user_type
+                        (type_identifier)))))
     type: (user_type
       (type_identifier))
     body: (function_body
@@ -70,24 +70,24 @@ fun sum(a: Int, b: Int) = a + b
     name: (simple_identifier)
     parameters: (function_value_parameters
       (function_value_parameter
-        (parameter
+        parameter: (parameter
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)
-            (type_arguments (type_projection (user_type (type_identifier))))))))
+                  type: (user_type
+                          (type_identifier)
+                          (type_arguments (type_projection (user_type (type_identifier))))))))
     body: (function_body
       (block)))
   (function_declaration
     name: (simple_identifier)
     parameters: (function_value_parameters
       (function_value_parameter
-        (parameter
-          name: (simple_identifier)
-          type: (user_type (type_identifier))))
+        parameter: (parameter
+                     name: (simple_identifier)
+                     type: (user_type (type_identifier))))
       (function_value_parameter    
-        (parameter
-          name: (simple_identifier)
-          type: (user_type (type_identifier)))))
+        parameter: (parameter
+                     name: (simple_identifier)
+                     type: (user_type (type_identifier)))))
     body: (function_body
       (additive_expression
         (simple_identifier)
@@ -123,10 +123,10 @@ fun foo(p0: Int): Long {
     name: (simple_identifier)
     parameters: (function_value_parameters
       (function_value_parameter
-        (parameter
-          name: (simple_identifier)
-          type: (user_type
-                  (type_identifier)))))
+        parameter: (parameter
+                     name: (simple_identifier)
+                     type: (user_type
+                            (type_identifier)))))
     type: (user_type
       (type_identifier))
     body: (function_body
@@ -223,10 +223,10 @@ val anon = fun(x: Int)
   (anonymous_function
   (function_value_parameters
     (function_value_parameter
-      (parameter
-        name: (simple_identifier)
-        type: (user_type
-          (type_identifier))))))
+      parameter: (parameter
+                   name: (simple_identifier)
+                   type: (user_type
+                           (type_identifier))))))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration
@@ -234,10 +234,10 @@ val anon = fun(x: Int)
     initializer: (anonymous_function
     (function_value_parameters
       (function_value_parameter
-        (parameter
-          name: (simple_identifier)
-          type: (user_type
-            (type_identifier))))))))
+        parameter: (parameter
+                     name: (simple_identifier)
+                     type: (user_type
+                             (type_identifier))))))))
 
 ==================
 Anonymous function with return type
@@ -355,10 +355,10 @@ fun f(x: Int = 1) {
     name: (simple_identifier)
     parameters: (function_value_parameters
       (function_value_parameter
-        (parameter
-          name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))
+        parameter: (parameter
+                     name: (simple_identifier)
+                     type: (user_type
+                             (type_identifier)))
         initializer: (integer_literal)))
     body: (function_body
       (block))))

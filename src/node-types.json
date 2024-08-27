@@ -4218,17 +4218,17 @@
             "named": true
           }
         ]
+      },
+      "parameter": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "parameter",
+            "named": true
+          }
+        ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "parameter",
-          "named": true
-        }
-      ]
     }
   },
   {

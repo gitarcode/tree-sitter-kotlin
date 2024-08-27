@@ -1227,8 +1227,12 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "parameter"
+          "type": "FIELD",
+          "name": "parameter",
+          "content": {
+            "type": "SYMBOL",
+            "name": "parameter"
+          }
         },
         {
           "type": "CHOICE",

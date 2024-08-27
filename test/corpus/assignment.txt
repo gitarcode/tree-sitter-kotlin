@@ -25,7 +25,7 @@ class Foo(){
       (secondary_constructor
         parameters: (function_value_parameters
           (function_value_parameter
-            (parameter
+            parameter: (parameter
               name: (simple_identifier)
               type: (user_type
                 (type_identifier)))))
