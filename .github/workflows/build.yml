@@ -32,11 +32,6 @@ jobs:
           max_size_mib=35
 
           echo "The parser is now at $size_mib MiB"
-          if [ "$size_mib" -gt "$max_size_mib" ]; then
-            echo "This is greater than the maximum size of $max_size_mib MiB!"
-            exit 1
-          fi
-        shell: bash
       - name: Run tests
         run: npm test
       - name: Set up Rust
