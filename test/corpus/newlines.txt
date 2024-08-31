@@ -210,16 +210,24 @@ else boo()
 
 (source_file
   (if_expression
-    (prefix_expression
+    condition: (prefix_expression
       (simple_identifier))
-    (control_structure_body
+    consequence: (control_structure_body
       (integer_literal))
+<<<<<<< HEAD
     (else
+=======
+    alternative:
+>>>>>>> upstream/main
       (control_structure_body
         (call_expression
           (simple_identifier)
           (call_suffix
+<<<<<<< HEAD
             (value_arguments)))))))
+=======
+            (value_arguments))))))
+>>>>>>> upstream/main
 
 ================================================================================
 Else on the same line
@@ -231,13 +239,21 @@ if (!foo) 3 else boo()
 
 (source_file
   (if_expression
-    (prefix_expression
+    condition: (prefix_expression
       (simple_identifier))
-    (control_structure_body
+    consequence: (control_structure_body
       (integer_literal))
+<<<<<<< HEAD
     (else 
+=======
+    alternative:
+>>>>>>> upstream/main
       (control_structure_body
         (call_expression
           (simple_identifier)
           (call_suffix
+<<<<<<< HEAD
             (value_arguments)))))))
+=======
+            (value_arguments))))))
+>>>>>>> upstream/main

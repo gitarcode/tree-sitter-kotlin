@@ -44,6 +44,7 @@ const PREC = {
   SIMPLE_USER_TYPE: 2,
   ASSIGNMENT: 1,
   BLOCK: 1,
+  ARGUMENTS: 1,
   LAMBDA_LITERAL: 0,
   RETURN_OR_THROW: 0,
   COMMENT: 0
@@ -700,7 +701,7 @@ module.exports = grammar({
       // this introduces ambiguities with 'less than' for comparisons
       optional($.type_arguments),
       choice(
-        seq(optional($.value_arguments), $.annotated_lambda),
+        prec(PREC.ARGUMENTS, seq(optional($.value_arguments), $.annotated_lambda)),
         $.value_arguments
       )
     )),
@@ -829,13 +830,14 @@ module.exports = grammar({
 
     if_expression: $ => prec.right(seq(
       "if",
-      "(", $._expression, ")",
+      "(", field('condition', $._expression), ")",
       choice(
-        $.control_structure_body,
+        field('consequence', $.control_structure_body),
         seq(
-          optional($.control_structure_body),
+          optional(field('consequence', $.control_structure_body)),
           optional(";"),
-          $.else
+          "else", 
+          choice(field('alternative', $.control_structure_body), ";")
         ),
         ";"
       )

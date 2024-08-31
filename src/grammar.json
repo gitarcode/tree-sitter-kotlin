@@ -3559,25 +3559,29 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "value_arguments"
-                      },
-                      {
-                        "type": "BLANK"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "annotated_lambda"
-                  }
-                ]
+                "type": "PREC",
+                "value": 1,
+                "content": {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "value_arguments"
+                        },
+                        {
+                          "type": "BLANK"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "annotated_lambda"
+                    }
+                  ]
+                }
               },
               {
                 "type": "SYMBOL",
@@ -4353,8 +4357,12 @@
             "value": "("
           },
           {
-            "type": "SYMBOL",
-            "name": "_expression"
+            "type": "FIELD",
+            "name": "condition",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
           },
           {
             "type": "STRING",
@@ -4364,8 +4372,17 @@
             "type": "CHOICE",
             "members": [
               {
+<<<<<<< HEAD
                 "type": "SYMBOL",
                 "name": "control_structure_body"
+=======
+                "type": "FIELD",
+                "name": "consequence",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "control_structure_body"
+                }
+>>>>>>> upstream/main
               },
               {
                 "type": "SEQ",
@@ -4374,8 +4391,12 @@
                     "type": "CHOICE",
                     "members": [
                       {
-                        "type": "SYMBOL",
-                        "name": "control_structure_body"
+                        "type": "FIELD",
+                        "name": "consequence",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "control_structure_body"
+                        }
                       },
                       {
                         "type": "BLANK"
@@ -4395,8 +4416,30 @@
                     ]
                   },
                   {
+<<<<<<< HEAD
                     "type": "SYMBOL",
                     "name": "else"
+=======
+                    "type": "STRING",
+                    "value": "else"
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "FIELD",
+                        "name": "alternative",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "control_structure_body"
+                        }
+                      },
+                      {
+                        "type": "STRING",
+                        "value": ";"
+                      }
+                    ]
+>>>>>>> upstream/main
                   }
                 ]
               },
