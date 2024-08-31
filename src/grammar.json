@@ -4372,17 +4372,12 @@
             "type": "CHOICE",
             "members": [
               {
-<<<<<<< HEAD
-                "type": "SYMBOL",
-                "name": "control_structure_body"
-=======
                 "type": "FIELD",
                 "name": "consequence",
                 "content": {
                   "type": "SYMBOL",
                   "name": "control_structure_body"
                 }
->>>>>>> upstream/main
               },
               {
                 "type": "SEQ",
@@ -4416,10 +4411,6 @@
                     ]
                   },
                   {
-<<<<<<< HEAD
-                    "type": "SYMBOL",
-                    "name": "else"
-=======
                     "type": "STRING",
                     "value": "else"
                   },
@@ -4439,7 +4430,6 @@
                         "value": ";"
                       }
                     ]
->>>>>>> upstream/main
                   }
                 ]
               },

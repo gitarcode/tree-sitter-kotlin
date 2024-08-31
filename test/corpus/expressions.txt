@@ -592,79 +592,11 @@ if (cond1) {
 
 --------------------------------------------------------------------------------
 
-(source_file
+    (source_file
       (if_expression
         (simple_identifier)
-        (function_value_parameters)
-        (function_body
-          (statements
-            (call_expression
-              (navigation_expression
-                (this_expression
-                  (type_identifier))
-                (navigation_suffix
-                  (simple_identifier)))
-              (call_suffix
-                (value_arguments)))
-            (call_expression
-              (navigation_expression
-                (super_expression
-                  (type_identifier))
-                (navigation_suffix
-                  (simple_identifier)))
-              (call_suffix
-                (value_arguments)))
-            (call_expression
-              (navigation_expression
-                (super_expression
-                  (user_type
-                    (type_identifier)))
-                (navigation_suffix
-                  (simple_identifier)))
-              (call_suffix
-                (value_arguments)))
-            (call_expression
-              (navigation_expression
-                (super_expression
-                  (user_type
-                    (type_identifier))
-                  (type_identifier))
-                (navigation_suffix
-                  (simple_identifier)))
-              (call_suffix
-                (value_arguments)))))))
-
-================================================================================
-If else-if else expression
-================================================================================
-
-if (cond1) {
-	println("cond1")
-} else if (cond2) {
-	println("cond2")
-} else {
-	println("cond3")
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (if_expression
-    condition: (simple_identifier)
-    consequence: (control_structure_body
-      (statements
-        (call_expression
-          (simple_identifier)
-          (call_suffix
-            (value_arguments
-              (value_argument
-                (string_literal
-                  (string_content))))))))
-    alternative:
-      (control_structure_body
-        (if_expression
-          condition: (simple_identifier)
-          consequence: (control_structure_body
+        (control_structure_body
+          (block
             (statements
               (call_expression
                 (simple_identifier)
@@ -672,14 +604,27 @@ if (cond1) {
                   (value_arguments
                     (value_argument
                       (string_literal
-                        (string_content))))))))
-          alternative:
+                        (string_content)))))))))
+        (control_structure_body
+          (if_expression
+            (simple_identifier)
             (control_structure_body
-              (statements
-                (call_expression
-                  (simple_identifier)
-                  (call_suffix
-                    (value_arguments
-                      (value_argument
-                        (string_literal
-                          (string_content))))))))))))
+              (block
+                (statements
+                  (call_expression
+                    (simple_identifier)
+                    (call_suffix
+                      (value_arguments
+                        (value_argument
+                          (string_literal
+                            (string_content)))))))))
+            (control_structure_body
+              (block
+                (statements
+                  (call_expression
+                    (simple_identifier)
+                    (call_suffix
+                      (value_arguments
+                        (value_argument
+                          (string_literal
+                            (string_content)))))))))))))
