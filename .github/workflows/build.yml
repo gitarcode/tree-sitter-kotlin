@@ -33,7 +33,7 @@ jobs:
 
           echo "The parser is now at $size_mib MiB"
       - name: Run tests
-        run: npm test
+        run: tree-sitter test --show-fields
       - name: Set up Rust
         uses: dtolnay/rust-toolchain@stable
       - name: Build and test crate
