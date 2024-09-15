@@ -842,11 +842,6 @@ module.exports = grammar({
       )
     )),
 
-    else: $ => seq(
-      "else",
-      choice($.control_structure_body, ";")
-    ),
-
     when_subject: $ => seq(
       "(",
       optional(seq(
