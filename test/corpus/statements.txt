@@ -8,10 +8,10 @@ for (value in values) {}
 
 (source_file
   (for_statement
-    (variable_declaration
-      id: (simple_identifier))
-    (simple_identifier)
-    (control_structure_body
+    var_decl: (variable_declaration
+               id: (simple_identifier))
+    expression: (simple_identifier)
+    body: (control_structure_body
       (block))))
 
 ================================================================================
