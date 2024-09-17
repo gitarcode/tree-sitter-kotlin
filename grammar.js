@@ -900,7 +900,7 @@ module.exports = grammar({
       ":",
       field('type', $._type),
       ")",
-      $.block,
+      field('body', $.block),
     ),
 
     finally_block: $ => seq("finally", $.block),
