@@ -95,3 +95,37 @@ fun foo() {
               (simple_identifier)
               (call_suffix
                 (value_arguments)))))))))
+
+
+================================================================================
+Try catch
+================================================================================
+
+try {
+  doSomething()
+} catch (e: Exception) {
+  println(e)
+}
+
+--------------------------------------------------------------------------------
+
+ (source_file
+  (try_expression
+    (block
+      (statements
+        (call_expression
+          (simple_identifier)
+          (call_suffix
+            (value_arguments)))))
+    (catch_block
+      name: (simple_identifier)
+      type: (user_type
+        (type_identifier))
+      body: (block
+        (statements
+          (call_expression
+            (simple_identifier)
+            (call_suffix
+              (value_arguments
+                (value_argument
+                  (simple_identifier))))))))))
