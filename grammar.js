@@ -575,11 +575,11 @@ module.exports = grammar({
       "for",
       "(",
       repeat($.annotation),
-      choice($.variable_declaration, $.multi_variable_declaration),
+      field('var_decl', choice($.variable_declaration, $.multi_variable_declaration)),
       "in",
-      $._expression,
+      field('expression', $._expression),
       ")",
-      optional($.control_structure_body)
+      optional(field('body', $.control_structure_body))
     )),
 
     while_statement: $ => seq(
@@ -896,9 +896,9 @@ module.exports = grammar({
       "catch",
       "(",
       repeat($.annotation),
-      $.simple_identifier,
+      field('name', $.simple_identifier),
       ":",
-      $._type,
+      field('type', $._type),
       ")",
       $.block,
     ),
