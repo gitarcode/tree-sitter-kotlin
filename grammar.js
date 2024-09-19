@@ -606,7 +606,7 @@ module.exports = grammar({
     assignment: $ =>
       prec.left(PREC.ASSIGNMENT, seq(
         field('left', $.directly_assignable_expression), 
-        choice('=', $._assignment_and_operator), 
+        field('op', choice('=', $._assignment_and_operator)), 
         field('right', $._expression))),
 
     // ==========
