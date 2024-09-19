@@ -362,11 +362,11 @@ enum class Enum {
         parameters: (function_value_parameters)
         body: (function_body
           (call_expression
-            (navigation_expression
-              (simple_identifier)
-              (navigation_suffix
+            expression: (navigation_expression
+              expression: (simple_identifier)
+              suffix: (navigation_suffix
                 (simple_identifier)))
-            (call_suffix
+            suffix: (call_suffix
               (value_arguments
                 (value_argument
                   (integer_literal)))))))))

@@ -9,17 +9,17 @@ bar.foo()
 
 (source_file
   (call_expression
-    (navigation_expression
-      (call_expression
-        (navigation_expression
-          (simple_identifier)
-          (navigation_suffix
+    expression: (navigation_expression
+      expression: (call_expression
+        expression: (navigation_expression
+          expression: (simple_identifier)
+          suffix: (navigation_suffix
             (simple_identifier)))
-        (call_suffix
+        suffix: (call_suffix
           (value_arguments)))
-      (navigation_suffix
+      suffix: (navigation_suffix
         (simple_identifier)))
-    (call_suffix
+    suffix: (call_suffix
       (value_arguments))))
 
 ================================================================================
@@ -131,20 +131,20 @@ fun foo() {
             initializer: (elvis_expression
               (elvis_expression
                 (call_expression
-                  (navigation_expression
-                    (simple_identifier)
-                    (navigation_suffix
+                  expression: (navigation_expression
+                    expression: (simple_identifier)
+                    suffix: (navigation_suffix
                       (simple_identifier)))
-                  (call_suffix
+                  suffix: (call_suffix
                     (value_arguments
                       (value_argument
                         (boolean_literal)))))
                 (call_expression
-                  (navigation_expression
-                    (simple_identifier)
-                    (navigation_suffix
+                  expression: (navigation_expression
+                    expression: (simple_identifier)
+                    suffix: (navigation_suffix
                       (simple_identifier)))
-                  (call_suffix
+                  suffix: (call_suffix
                     (value_arguments))))
               (jump_expression))))))))
 
@@ -172,8 +172,8 @@ class Foo {
         (function_body
           (multiplicative_expression
             (call_expression
-              (simple_identifier)
-              (call_suffix
+              expression: (simple_identifier)
+              suffix: (call_suffix
                 (value_arguments)))
             (integer_literal)))))))
 
@@ -193,8 +193,8 @@ foo(1,
   (line_comment)
   (line_comment)
   (call_expression
-    (simple_identifier)
-    (call_suffix
+    expression: (simple_identifier)
+    suffix: (call_suffix
       (value_arguments
         (value_argument
           (integer_literal))
@@ -219,8 +219,8 @@ else boo()
     alternative:
       (control_structure_body
         (call_expression
-          (simple_identifier)
-          (call_suffix
+          expression: (simple_identifier)
+          suffix: (call_suffix
             (value_arguments))))))
 
 ================================================================================
@@ -240,6 +240,6 @@ if (!foo) 3 else boo()
     alternative:
       (control_structure_body
         (call_expression
-          (simple_identifier)
-          (call_suffix
+          expression: (simple_identifier)
+          suffix: (call_suffix
             (value_arguments))))))

@@ -32,11 +32,11 @@ class Foo(){
         block: (block
           (statements
             (assignment
-              (directly_assignable_expression
+              left: (directly_assignable_expression
                 (this_expression)
                 (navigation_suffix
                   (simple_identifier)))
-              (simple_identifier))))))))
+              right: (simple_identifier))))))))
 ================================================================================
 Index Assignment
 ================================================================================
@@ -66,9 +66,9 @@ fun main(){
                     (user_type
                       (type_identifier)))))))
           (assignment
-            (directly_assignable_expression
+            left: (directly_assignable_expression
               (simple_identifier)
               (indexing_suffix
                 (integer_literal)))
-            (string_literal
+            right: (string_literal
               (string_content))))))))
