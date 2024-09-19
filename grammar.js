@@ -603,11 +603,11 @@ module.exports = grammar({
     // generic EOF/newline token
     _semi: $ => $._automatic_semicolon,
 
-    assignment: $ => choice(
-      prec.left(PREC.ASSIGNMENT, seq($.directly_assignable_expression, $._assignment_and_operator, $._expression)),
-      prec.left(PREC.ASSIGNMENT, seq(field('left', $.directly_assignable_expression), "=", field('right', $._expression))),
-      // TODO
-    ),
+    assignment: $ =>
+      prec.left(PREC.ASSIGNMENT, seq(
+        field('left', $.directly_assignable_expression), 
+        choice('=', $._assignment_and_operator), 
+        field('right', $._expression))),
 
     // ==========
     // Expressions
