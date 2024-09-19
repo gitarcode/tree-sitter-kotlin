@@ -5140,7 +5140,7 @@
         }
       ]
     },
-    "_postfix_unary_expression": {
+    "postfix_unary_expression": {
       "type": "SEQ",
       "members": [
         {
@@ -5164,7 +5164,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "_postfix_unary_expression"
+            "name": "postfix_unary_expression"
           },
           {
             "type": "SYMBOL",
@@ -6415,7 +6415,7 @@
       "simple_identifier"
     ],
     [
-      "_postfix_unary_expression",
+      "postfix_unary_expression",
       "_expression"
     ],
     [

@@ -74,7 +74,7 @@ module.exports = grammar({
     [$.class_modifier, $.simple_identifier],
 
     // "<x>.<y> = z assignment conflicts with <x>.<y>() function call"
-    [$._postfix_unary_expression, $._expression],
+    [$.postfix_unary_expression, $._expression],
 
     // ambiguity between generics and comparison operations (foo < b > c)
     [$.call_expression, $.range_expression, $.comparison_expression],
@@ -956,12 +956,12 @@ module.exports = grammar({
       $.indexing_suffix
     ),
 
-    _postfix_unary_expression: $ => seq($._primary_expression, repeat($._postfix_unary_suffix)),
+    postfix_unary_expression: $ => seq($._primary_expression, repeat($._postfix_unary_suffix)),
 
     directly_assignable_expression: $ => prec(
       PREC.ASSIGNMENT,
       choice(
-        $._postfix_unary_expression,
+        $.postfix_unary_expression,
         $.simple_identifier
         // TODO
       )
