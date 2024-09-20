@@ -218,7 +218,7 @@ module.exports = grammar({
         optional($.primary_constructor),
         optional(seq(":", $._delegation_specifiers)),
         optional($.type_constraints),
-        optional($.class_body)
+        optional(field('body', $.class_body))
       ),
       seq(
         optional($.modifiers),
