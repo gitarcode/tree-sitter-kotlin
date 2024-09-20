@@ -1278,6 +1278,16 @@
     "type": "class_declaration",
     "named": true,
     "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "class_body",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -1293,10 +1303,6 @@
       "multiple": true,
       "required": false,
       "types": [
-        {
-          "type": "class_body",
-          "named": true
-        },
         {
           "type": "delegation_specifier",
           "named": true
