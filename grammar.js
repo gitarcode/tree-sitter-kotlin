@@ -321,7 +321,7 @@ module.exports = grammar({
       "object",
       field('name', $.simple_identifier),
       optional(seq(":", $._delegation_specifiers)),
-      optional($.class_body)
+      optional(field('body', $.class_body))
     ),
 
     function_value_parameters: $ => seq(
