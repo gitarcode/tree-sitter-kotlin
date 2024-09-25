@@ -371,7 +371,7 @@ module.exports = grammar({
       $.binding_pattern_kind,
       optional(field('type_parameters', $.type_parameters)),
       optional(seq($._receiver_type, optional('.'))),
-      choice(field('var_decl', $.variable_declaration), field('var_decl', $.multi_variable_declaration)),
+      field('var_decl', choice($.variable_declaration, $.multi_variable_declaration)),
       optional(field('type_constraints', $.type_constraints)),
       optional(choice(
         seq("=", field('initializer', $._expression)),
@@ -424,7 +424,7 @@ module.exports = grammar({
       "object",
       field('name', $.simple_identifier),
       optional(seq(":", $._delegation_specifiers)),
-      optional($.class_body)
+      optional(field('body', $.class_body))
     )),
 
     secondary_constructor: $ => seq(

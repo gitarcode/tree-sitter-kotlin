@@ -373,68 +373,73 @@ when (dir) {
   1 -> { val temp = b.y; b.y = b.z; b.z = temp }
 }
 --------------------------------------------------------------------------------
+
 (source_file
-  (function_declaration
-    name: (simple_identifier)
-    parameters: (function_value_parameters)
-    body: (function_body
-      (block
-        (statements
-          (property_declaration
-            (binding_pattern_kind)
-            var_decl: (variable_declaration
-              id: (simple_identifier))
-            initializer: (navigation_expression
-              expression: (simple_identifier)
-              suffix: (navigation_suffix
-                (simple_identifier))))
-          (assignment
-            left: (directly_assignable_expression
-              (simple_identifier)
-              (navigation_suffix
-                (simple_identifier)))
-            right: (navigation_expression
-              expression: (simple_identifier)
-              suffix: (navigation_suffix
-                (simple_identifier))))
-          (assignment
-            left: (directly_assignable_expression
-              (simple_identifier)
-              (navigation_suffix
-                (simple_identifier)))
-            right: (simple_identifier))))))
-  (when_expression
-    (when_subject
-      (simple_identifier))
-    (when_entry
-      (when_condition
-        (integer_literal))
-      (control_structure_body
-        (block
-          (statements
-            (property_declaration
-              (binding_pattern_kind)
-              var_decl: (variable_declaration
-                id: (simple_identifier))
-              initializer: (navigation_expression
-                expression: (simple_identifier)
-                suffix: (navigation_suffix
-                  (simple_identifier))))
-            (assignment
-              left: (directly_assignable_expression
-                (simple_identifier)
-                (navigation_suffix
-                  (simple_identifier)))
-              right: (navigation_expression
-                expression: (simple_identifier)
-                suffix: (navigation_suffix
-                  (simple_identifier))))
-            (assignment
-              left: (directly_assignable_expression
-                (simple_identifier)
-                (navigation_suffix
-                  (simple_identifier)))
-              right: (simple_identifier))))))))
+      (function_declaration
+        name: (simple_identifier)
+        parameters: (function_value_parameters)
+        body: (function_body
+          (block
+            (statements
+              (property_declaration
+                (binding_pattern_kind)
+                var_decl: (variable_declaration
+                  id: (simple_identifier))
+                initializer: (navigation_expression
+                  expression: (simple_identifier)
+                  suffix: (navigation_suffix
+                    (simple_identifier))))
+              (assignment
+                left: (directly_assignable_expression
+                  (postfix_unary_expression
+                    (simple_identifier)
+                    (navigation_suffix
+                      (simple_identifier))))
+                right: (navigation_expression
+                  expression: (simple_identifier)
+                  suffix: (navigation_suffix
+                    (simple_identifier))))
+              (assignment
+                left: (directly_assignable_expression
+                  (postfix_unary_expression
+                    (simple_identifier)
+                    (navigation_suffix
+                      (simple_identifier))))
+                right: (simple_identifier))))))
+      (when_expression
+        (when_subject
+          (simple_identifier))
+        (when_entry
+          (when_condition
+            (integer_literal))
+          (control_structure_body
+            (block
+              (statements
+                (property_declaration
+                  (binding_pattern_kind)
+                  var_decl: (variable_declaration
+                    id: (simple_identifier))
+                  initializer: (navigation_expression
+                    expression: (simple_identifier)
+                    suffix: (navigation_suffix
+                      (simple_identifier))))
+                (assignment
+                  left: (directly_assignable_expression
+                    (postfix_unary_expression
+                      (simple_identifier)
+                      (navigation_suffix
+                        (simple_identifier))))
+                  right: (navigation_expression
+                    expression: (simple_identifier)
+                    suffix: (navigation_suffix
+                      (simple_identifier))))
+                (assignment
+                  left: (directly_assignable_expression
+                    (postfix_unary_expression
+                      (simple_identifier)
+                      (navigation_suffix
+                        (simple_identifier))))
+                  right: (simple_identifier))))))))
 
 ================================================================================
 Comments in Strings
@@ -533,7 +538,7 @@ class Square() : Rectangle(), Polygon {
         (delegation_specifier
           (user_type
             (type_identifier)))
-        (class_body
+        body: (class_body
           (function_declaration
             modifiers: (modifiers
               (member_modifier))

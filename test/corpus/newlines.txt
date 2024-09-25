@@ -54,15 +54,15 @@ fun foo()  {
     name: (simple_identifier) 
     parameters: (function_value_parameters)
     body: (function_body
-            (block
-              (statements
-                (property_declaration
-                  (binding_pattern_kind)
-                  var_decl: (variable_declaration
-                    id: (simple_identifier))
-                  initializer: (conjunction_expression
-                    (simple_identifier)
-                    (simple_identifier))))))))
+      (block
+        (statements
+          (property_declaration
+            (binding_pattern_kind)
+            var_decl: (variable_declaration
+              id: (simple_identifier))
+            initializer: (conjunction_expression
+              (simple_identifier)
+              (simple_identifier))))))))
 
 ================================================================================
 Open brace after newline
@@ -102,7 +102,7 @@ class Foo
     (delegation_specifier
       (user_type
         (type_identifier)))
-    (class_body)))
+    body: (class_body)))
 
 ================================================================================
 Question mark after newline
@@ -161,7 +161,7 @@ class Foo {
 (source_file
   (class_declaration
     name: (simple_identifier)
-    (class_body
+    body: (class_body
       (property_declaration
         (binding_pattern_kind)
         var_decl: (variable_declaration
