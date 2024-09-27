@@ -165,8 +165,12 @@
           "value": "import"
         },
         {
-          "type": "SYMBOL",
-          "name": "identifier"
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
         },
         {
           "type": "CHOICE",
@@ -188,8 +192,12 @@
                   ]
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "import_alias"
+                  "type": "FIELD",
+                  "name": "alias",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "import_alias"
+                  }
                 }
               ]
             },

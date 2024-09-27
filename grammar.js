@@ -180,8 +180,8 @@ module.exports = grammar({
 
     import_header: $ => seq(
       "import",
-      $.identifier,
-      optional(choice(seq(".", $.wildcard_import), $.import_alias)),
+      field('name', $.identifier),
+      optional(choice(seq(".", $.wildcard_import), field('alias', $.import_alias))),
       $._semi
     ),
 
