@@ -4433,21 +4433,6 @@
     }
   },
   {
-    "type": "import_alias",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "type_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "import_header",
     "named": true,
     "fields": {
@@ -4456,7 +4441,7 @@
         "required": false,
         "types": [
           {
-            "type": "import_alias",
+            "type": "simple_identifier",
             "named": true
           }
         ]

@@ -181,13 +181,13 @@ module.exports = grammar({
     import_header: $ => seq(
       "import",
       field('name', $.identifier),
-      optional(choice(seq(".", $.wildcard_import), field('alias', $.import_alias))),
+      optional(choice(seq(".", $.wildcard_import), $._import_alias)),
       $._semi
     ),
 
     wildcard_import: _ => token.immediate("*"),
 
-    import_alias: $ => seq("as", alias($.simple_identifier, $.type_identifier)),
+    _import_alias: $ => seq("as", field('alias', $.simple_identifier)),
 
     top_level_object: $ => seq($._declaration, optional($._semi)),
 

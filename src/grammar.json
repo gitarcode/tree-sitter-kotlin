@@ -192,12 +192,8 @@
                   ]
                 },
                 {
-                  "type": "FIELD",
-                  "name": "alias",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "import_alias"
-                  }
+                  "type": "SYMBOL",
+                  "name": "_import_alias"
                 }
               ]
             },
@@ -219,7 +215,7 @@
         "value": "*"
       }
     },
-    "import_alias": {
+    "_import_alias": {
       "type": "SEQ",
       "members": [
         {
@@ -227,13 +223,12 @@
           "value": "as"
         },
         {
-          "type": "ALIAS",
+          "type": "FIELD",
+          "name": "alias",
           "content": {
             "type": "SYMBOL",
             "name": "simple_identifier"
-          },
-          "named": true,
-          "value": "type_identifier"
+          }
         }
       ]
     },
