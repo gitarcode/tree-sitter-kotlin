@@ -120,7 +120,8 @@ module.exports = grammar({
     [$._enum_entries],
     // Shift/reduce Ambiguity when parsing a class without body:
     // 'if'  '('  _expression  ')'  'class'  simple_identifier  •
-    [$.class_declaration]
+    [$.class_declaration],
+    [$.identifier]
   ],
 
   externals: $ => [
@@ -179,7 +180,7 @@ module.exports = grammar({
 
     import_header: $ => seq(
       "import",
-      alias($._import_identifier, $.identifier),
+      $.identifier,
       optional(choice(seq(".", $.wildcard_import), $.import_alias)),
       $._semi
     ),
@@ -1101,13 +1102,6 @@ module.exports = grammar({
     ),
 
     identifier: $ => sep1($.simple_identifier, "."),
-
-    // Adapted from tree-sitter-java, helps to avoid a conflic with
-    // wildcard_import node while being compatible with identifier
-    _import_identifier: $ => choice(
-      $.simple_identifier,
-      seq($._import_identifier, ".", $.simple_identifier),
-    ),
 
     // ====================
     // Lexical grammar
