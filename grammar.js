@@ -118,9 +118,14 @@ module.exports = grammar({
     // By defining a conflict here, we let the GLR parser explore both paths, 
     // the reduce one will die out soon if there is no enum_entry to match further.
     [$._enum_entries],
-    // Shift/reduce Ambiguity when parsing a class without body:
+    // shift/reduce conflict when parsing a class without body:
     // 'if'  '('  _expression  ')'  'class'  simple_identifier  •
     [$.class_declaration],
+    // shift/reduce conflicts when matching simple identifiers.
+    //   - 'import'  (identifier  simple_identifier  •  identifier_repeat1)
+    //   - 'import'  (identifier  simple_identifier)  •  '.'  …
+    // By defining a conflict here, we let the parser to continue. The second path
+    // eventually dies if there is no '.'
     [$.identifier]
   ],
 
