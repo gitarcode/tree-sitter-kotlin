@@ -9597,6 +9597,11 @@
     }
   },
   {
+    "type": "wildcard_import",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "!",
     "named": false
   },
@@ -10135,10 +10140,6 @@
   {
     "type": "while",
     "named": false
-  },
-  {
-    "type": "wildcard_import",
-    "named": true
   },
   {
     "type": "{",

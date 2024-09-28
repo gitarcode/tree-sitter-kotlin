@@ -131,3 +131,27 @@ import org.test.Message as TestMessage
             (simple_identifier)
             (simple_identifier))
           alias: (simple_identifier))))
+
+================================================================================
+Import with * after whitespace
+================================================================================
+
+import java.util.concurrent.
+
+* import java.util.    *
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_list
+    (import_header
+      name: (identifier
+        (simple_identifier)
+        (simple_identifier)
+        (simple_identifier))
+      (wildcard_import))
+    (import_header
+      name: (identifier
+        (simple_identifier)
+        (simple_identifier))
+      (wildcard_import))))

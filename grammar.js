@@ -185,7 +185,7 @@ module.exports = grammar({
       $._semi
     ),
 
-    wildcard_import: _ => token.immediate("*"),
+    wildcard_import: _ =>"*",
 
     _import_alias: $ => seq("as", field('alias', $.simple_identifier)),
 
