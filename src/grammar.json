@@ -791,7 +791,7 @@
     },
     "explicit_delegation": {
       "type": "PREC",
-      "value": 17,
+      "value": 18,
       "content": {
         "type": "SEQ",
         "members": [
@@ -2947,7 +2947,7 @@
       ]
     },
     "postfix_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC",
       "value": 16,
       "content": {
         "type": "SEQ",
@@ -2964,7 +2964,7 @@
       }
     },
     "call_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC",
       "value": 16,
       "content": {
         "type": "SEQ",
@@ -2989,7 +2989,7 @@
       }
     },
     "indexing_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC",
       "value": 16,
       "content": {
         "type": "SEQ",
@@ -3006,7 +3006,7 @@
       }
     },
     "navigation_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC",
       "value": 16,
       "content": {
         "type": "SEQ",
@@ -3031,37 +3031,33 @@
       }
     },
     "prefix_expression": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "annotation"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "label"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_prefix_unary_operator"
-              }
-            ]
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_expression"
-          }
-        ]
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "annotation"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "label"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_prefix_unary_operator"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_expression"
+        }
+      ]
     },
     "as_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC",
       "value": 13,
       "content": {
         "type": "SEQ",
@@ -3082,7 +3078,7 @@
       }
     },
     "spread_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC",
       "value": 2,
       "content": {
         "type": "SEQ",
@@ -3449,59 +3445,55 @@
       ]
     },
     "call_suffix": {
-      "type": "PREC_LEFT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "type_arguments"
-              },
-              {
-                "type": "BLANK"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "type_arguments"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PREC",
+              "value": 1,
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "value_arguments"
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "annotated_lambda"
+                  }
+                ]
               }
-            ]
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "PREC",
-                "value": 1,
-                "content": {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "SYMBOL",
-                          "name": "value_arguments"
-                        },
-                        {
-                          "type": "BLANK"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "SYMBOL",
-                      "name": "annotated_lambda"
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "SYMBOL",
-                "name": "value_arguments"
-              }
-            ]
-          }
-        ]
-      }
+            },
+            {
+              "type": "SYMBOL",
+              "name": "value_arguments"
+            }
+          ]
+        }
+      ]
     },
     "annotated_lambda": {
       "type": "SEQ",

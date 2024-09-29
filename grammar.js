@@ -25,7 +25,8 @@
 // Using an adapted version of https://kotlinlang.org/docs/reference/grammar.html
 
 const PREC = {
-  DELEGATE: 17,
+  DELEGATE: 18,
+  CALL: 17,
   POSTFIX: 16,
   PREFIX: 15,
   TYPE_RHS: 14,
@@ -635,19 +636,19 @@ module.exports = grammar({
       $.spread_expression
     ),
 
-    postfix_expression: $ => prec.left(PREC.POSTFIX, seq($._expression, $._postfix_unary_operator)),
+    postfix_expression: $ => prec(PREC.POSTFIX, seq($._expression, $._postfix_unary_operator)),
 
-    call_expression: $ => prec.left(PREC.POSTFIX, seq(field('expression', $._expression), field('suffix', $.call_suffix))),
+    call_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('suffix', $.call_suffix))),
 
-    indexing_expression: $ => prec.left(PREC.POSTFIX, seq($._expression, $.indexing_suffix)),
+    indexing_expression: $ => prec(PREC.POSTFIX, seq($._expression, $.indexing_suffix)),
 
-    navigation_expression: $ => prec.left(PREC.POSTFIX, seq(field('expression', $._expression), field('suffix', $.navigation_suffix))),
+    navigation_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('suffix', $.navigation_suffix))),
 
-    prefix_expression: $ => prec.right(seq(choice($.annotation, $.label, $._prefix_unary_operator), $._expression)),
+    prefix_expression: $ => seq(choice($.annotation, $.label, $._prefix_unary_operator), $._expression),
 
-    as_expression: $ => prec.left(PREC.AS, seq($._expression, $._as_operator, $._type)),
+    as_expression: $ => prec(PREC.AS, seq($._expression, $._as_operator, $._type)),
 
-    spread_expression: $ => prec.left(PREC.SPREAD, seq("*", $._expression)),
+    spread_expression: $ => prec(PREC.SPREAD, seq("*", $._expression)),
 
     // Binary expressions
 
@@ -701,14 +702,14 @@ module.exports = grammar({
       )
     ),
 
-    call_suffix: $ => prec.left(seq(
+    call_suffix: $ => seq(
       // this introduces ambiguities with 'less than' for comparisons
       optional($.type_arguments),
       choice(
         prec(PREC.ARGUMENTS, seq(optional($.value_arguments), $.annotated_lambda)),
         $.value_arguments
       )
-    )),
+    ),
 
     annotated_lambda: $ => seq(
       repeat($.annotation),
