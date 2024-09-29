@@ -790,30 +790,34 @@
       ]
     },
     "explicit_delegation": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "user_type"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "function_type"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "by"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_expression"
-        }
-      ]
+      "type": "PREC",
+      "value": 17,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "user_type"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "function_type"
+              }
+            ]
+          },
+          {
+            "type": "STRING",
+            "value": "by"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        ]
+      }
     },
     "type_parameters": {
       "type": "SEQ",

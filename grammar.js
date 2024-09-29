@@ -25,6 +25,7 @@
 // Using an adapted version of https://kotlinlang.org/docs/reference/grammar.html
 
 const PREC = {
+  DELEGATE: 17,
   POSTFIX: 16,
   PREFIX: 15,
   TYPE_RHS: 14,
@@ -284,14 +285,14 @@ module.exports = grammar({
 
     _annotated_delegation_specifier: $ => seq(repeat($.annotation), $.delegation_specifier),
 
-    explicit_delegation: $ => seq(
+    explicit_delegation: $ => prec(PREC.DELEGATE, seq(
       choice(
         $.user_type,
         $.function_type
       ),
       "by",
       $._expression
-    ),
+    )),
 
     type_parameters: $ => seq("<", sep1($.type_parameter, ","), ">"),
 

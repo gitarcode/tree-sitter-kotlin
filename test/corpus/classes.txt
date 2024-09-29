@@ -522,3 +522,31 @@ fun interface Authenticator {
             type: (nullable_type
               (user_type
                 (type_identifier)))))))
+
+================================================================================
+Delegation: https://kotlinlang.org/docs/delegation.html
+================================================================================
+
+class Derived(b: Base) : Base by b {
+}
+
+object MySingleton : MyInterface by MyImplementation()
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    name: (simple_identifier)
+    (primary_constructor
+      (class_parameters
+        (class_parameter
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
+    (delegation_specifier
+      (explicit_delegation
+        (user_type
+          (type_identifier))
+        (simple_identifier)))
+    body: (class_body)))
+
+
