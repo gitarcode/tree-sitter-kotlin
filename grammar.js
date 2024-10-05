@@ -634,7 +634,7 @@ module.exports = grammar({
       $.spread_expression
     ),
 
-    postfix_expression: $ => prec.left(PREC.POSTFIX, seq($._expression, $._postfix_unary_operator)),
+    postfix_expression: $ => prec.left(PREC.POSTFIX, seq(field('expression', $._expression), field('op', $.postfix_unary_operator))),
 
     call_expression: $ => prec.left(PREC.POSTFIX, seq(field('expression', $._expression), field('suffix', $.call_suffix))),
 
@@ -941,7 +941,7 @@ module.exports = grammar({
 
     _prefix_unary_operator: $ => choice("++", "--", "-", "+", "!"),
 
-    _postfix_unary_operator: $ => choice("++", "--", "!!"),
+    postfix_unary_operator: $ => choice("++", "--", "!!"),
 
     _member_access_operator: $ => choice(".", "::", alias($.safe_nav, '?.')),
 
@@ -954,7 +954,7 @@ module.exports = grammar({
     ),
 
     _postfix_unary_suffix: $ => choice(
-      $._postfix_unary_operator,
+      $.postfix_unary_operator,
       $.navigation_suffix,
       $.indexing_suffix
     ),
