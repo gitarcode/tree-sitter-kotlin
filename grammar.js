@@ -642,7 +642,7 @@ module.exports = grammar({
 
     navigation_expression: $ => prec.left(PREC.POSTFIX, seq(field('expression', $._expression), field('suffix', $.navigation_suffix))),
 
-    prefix_expression: $ => prec.right(seq(choice($.annotation, $.label, $._prefix_unary_operator), $._expression)),
+    prefix_expression: $ => prec.right(seq(choice($.annotation, $.label, field('op', $.prefix_unary_operator)), field('expression', $._expression))),
 
     as_expression: $ => prec.left(PREC.AS, seq($._expression, $._as_operator, $._type)),
 
@@ -939,7 +939,7 @@ module.exports = grammar({
 
     _as_operator: $ => choice("as", "as?"),
 
-    _prefix_unary_operator: $ => choice("++", "--", "-", "+", "!"),
+    prefix_unary_operator: $ => choice("++", "--", "-", "+", "!"),
 
     postfix_unary_operator: $ => choice("++", "--", "!!"),
 

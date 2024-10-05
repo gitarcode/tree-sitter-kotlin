@@ -3052,14 +3052,22 @@
                 "name": "label"
               },
               {
-                "type": "SYMBOL",
-                "name": "_prefix_unary_operator"
+                "type": "FIELD",
+                "name": "op",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "prefix_unary_operator"
+                }
               }
             ]
           },
           {
-            "type": "SYMBOL",
-            "name": "_expression"
+            "type": "FIELD",
+            "name": "expression",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
           }
         ]
       }
@@ -4910,7 +4918,7 @@
         }
       ]
     },
-    "_prefix_unary_operator": {
+    "prefix_unary_operator": {
       "type": "CHOICE",
       "members": [
         {

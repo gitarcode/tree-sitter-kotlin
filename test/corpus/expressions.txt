@@ -650,7 +650,8 @@ arr[0]++
     expression: (simple_identifier)
     op: (postfix_unary_operator))
   (prefix_expression
-    (simple_identifier))
+    op: (prefix_unary_operator)
+    expression: (simple_identifier))
   (postfix_expression
     expression: (indexing_expression
       (simple_identifier)
@@ -658,7 +659,8 @@ arr[0]++
         (integer_literal)))
     op: (postfix_unary_operator))
   (prefix_expression
-    (indexing_expression
+    op: (prefix_unary_operator)
+    expression: (indexing_expression
       (simple_identifier)
       (indexing_suffix
         (integer_literal)))))
