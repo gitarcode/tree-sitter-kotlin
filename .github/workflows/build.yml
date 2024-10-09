@@ -30,6 +30,8 @@ jobs:
           git clone https://github.com/square/leakcanary.git examples/leakcanary --single-branch --depth=1 --filter=blob:none   
           git clone https://github.com/JetBrains/compose-multiplatform.git examples/compose-multiplatform --single-branch --depth=1 --filter=blob:none   
           git clone https://github.com/Kotlin/kotlinx.coroutines.git examples/kotlinx.coroutines --single-branch --depth=1 --filter=blob:none   
+          git clone https://github.com/pinterest/ktlint examples/ktlint --single-branch --depth=1 --filter=blob:none   
+          git clone https://github.com/microsoft/thrifty examples/thrifty --single-branch --depth=1 --filter=blob:none 
       - name: Parse examples
         id: examples
         continue-on-error: true
