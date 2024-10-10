@@ -2972,7 +2972,7 @@
       ]
     },
     "postfix_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC",
       "value": 16,
       "content": {
         "type": "SEQ",
@@ -2997,7 +2997,7 @@
       }
     },
     "call_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC",
       "value": 16,
       "content": {
         "type": "SEQ",
@@ -3022,7 +3022,7 @@
       }
     },
     "indexing_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC",
       "value": 16,
       "content": {
         "type": "SEQ",
@@ -3039,7 +3039,7 @@
       }
     },
     "navigation_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC",
       "value": 16,
       "content": {
         "type": "SEQ",
@@ -3064,45 +3064,41 @@
       }
     },
     "prefix_expression": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "annotation"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "label"
-              },
-              {
-                "type": "FIELD",
-                "name": "op",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "prefix_unary_operator"
-                }
-              }
-            ]
-          },
-          {
-            "type": "FIELD",
-            "name": "expression",
-            "content": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
               "type": "SYMBOL",
-              "name": "_expression"
+              "name": "annotation"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "label"
+            },
+            {
+              "type": "FIELD",
+              "name": "op",
+              "content": {
+                "type": "SYMBOL",
+                "name": "prefix_unary_operator"
+              }
             }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "expression",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
           }
-        ]
-      }
+        }
+      ]
     },
     "as_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC",
       "value": 13,
       "content": {
         "type": "SEQ",
@@ -3123,7 +3119,7 @@
       }
     },
     "spread_expression": {
-      "type": "PREC_LEFT",
+      "type": "PREC",
       "value": 2,
       "content": {
         "type": "SEQ",

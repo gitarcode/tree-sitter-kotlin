@@ -634,19 +634,19 @@ module.exports = grammar({
       $.spread_expression
     ),
 
-    postfix_expression: $ => prec.left(PREC.POSTFIX, seq(field('expression', $._expression), field('op', $.postfix_unary_operator))),
+    postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('op', $.postfix_unary_operator))),
 
-    call_expression: $ => prec.left(PREC.POSTFIX, seq(field('expression', $._expression), field('suffix', $.call_suffix))),
+    call_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('suffix', $.call_suffix))),
 
-    indexing_expression: $ => prec.left(PREC.POSTFIX, seq($._expression, $.indexing_suffix)),
+    indexing_expression: $ => prec(PREC.POSTFIX, seq($._expression, $.indexing_suffix)),
 
-    navigation_expression: $ => prec.left(PREC.POSTFIX, seq(field('expression', $._expression), field('suffix', $.navigation_suffix))),
+    navigation_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('suffix', $.navigation_suffix))),
 
-    prefix_expression: $ => prec.right(seq(choice($.annotation, $.label, field('op', $.prefix_unary_operator)), field('expression', $._expression))),
+    prefix_expression: $ => seq(choice($.annotation, $.label, field('op', $.prefix_unary_operator)), field('expression', $._expression)),
 
-    as_expression: $ => prec.left(PREC.AS, seq($._expression, $._as_operator, $._type)),
+    as_expression: $ => prec(PREC.AS, seq($._expression, $._as_operator, $._type)),
 
-    spread_expression: $ => prec.left(PREC.SPREAD, seq("*", $._expression)),
+    spread_expression: $ => prec(PREC.SPREAD, seq("*", $._expression)),
 
     // Binary expressions
 
