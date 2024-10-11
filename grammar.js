@@ -629,30 +629,19 @@ module.exports = grammar({
 
     _unary_expression: $ => choice(
       $.postfix_unary_expression,
-      // $.postfix_expression,
-      // $.call_expression,
-      // $.indexing_expression,
-      // $.navigation_expression,
       $.prefix_expression,
       $.as_expression,
       $.spread_expression,
     ),
 
-    // postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('op', $.postfix_unary_operator))),
-
-    // call_expression: $ => prec(PREC.CALL, seq(field('expression', $._expression), field('suffix', $.call_suffix))),
-
-    indexing_expression: $ => prec(PREC.POSTFIX, seq($._expression, $.indexing_suffix)),
-
-    // navigation_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('suffix', $.navigation_suffix))),
-
+    postfix_unary_expression: $ => seq($._primary_expression, repeat($._postfix_unary_suffix)),
+    
     prefix_expression: $ => seq(choice($.annotation, $.label, field('op', $.prefix_unary_operator)), field('expression', $._expression)),
 
     as_expression: $ => prec(PREC.AS, seq($._expression, $._as_operator, $._type)),
 
     spread_expression: $ => prec(PREC.SPREAD, seq("*", $._expression)),
 
-    postfix_unary_expression: $ => seq($._primary_expression, repeat($._postfix_unary_suffix)),
 
     _postfix_unary_suffix: $ => choice(
       $.postfix_unary_operator,
