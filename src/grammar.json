@@ -2943,19 +2943,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "postfix_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "call_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "indexing_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "navigation_expression"
+          "name": "postfix_unary_expression"
         },
         {
           "type": "SYMBOL",
@@ -2971,56 +2959,6 @@
         }
       ]
     },
-    "postfix_expression": {
-      "type": "PREC",
-      "value": 16,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "expression",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
-            }
-          },
-          {
-            "type": "FIELD",
-            "name": "op",
-            "content": {
-              "type": "SYMBOL",
-              "name": "postfix_unary_operator"
-            }
-          }
-        ]
-      }
-    },
-    "call_expression": {
-      "type": "PREC",
-      "value": 17,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "expression",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
-            }
-          },
-          {
-            "type": "FIELD",
-            "name": "suffix",
-            "content": {
-              "type": "SYMBOL",
-              "name": "call_suffix"
-            }
-          }
-        ]
-      }
-    },
     "indexing_expression": {
       "type": "PREC",
       "value": 16,
@@ -3034,31 +2972,6 @@
           {
             "type": "SYMBOL",
             "name": "indexing_suffix"
-          }
-        ]
-      }
-    },
-    "navigation_expression": {
-      "type": "PREC",
-      "value": 16,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "expression",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_expression"
-            }
-          },
-          {
-            "type": "FIELD",
-            "name": "suffix",
-            "content": {
-              "type": "SYMBOL",
-              "name": "navigation_suffix"
-            }
           }
         ]
       }
@@ -3134,6 +3047,43 @@
           }
         ]
       }
+    },
+    "postfix_unary_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_primary_expression"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_postfix_unary_suffix"
+          }
+        }
+      ]
+    },
+    "_postfix_unary_suffix": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "postfix_unary_operator"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "navigation_suffix"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "indexing_suffix"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "call_suffix"
+        }
+      ]
     },
     "_binary_expression": {
       "type": "CHOICE",
@@ -5064,39 +5014,6 @@
         }
       ]
     },
-    "_postfix_unary_suffix": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "postfix_unary_operator"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "navigation_suffix"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "indexing_suffix"
-        }
-      ]
-    },
-    "postfix_unary_expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_primary_expression"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_postfix_unary_suffix"
-          }
-        }
-      ]
-    },
     "directly_assignable_expression": {
       "type": "PREC",
       "value": 1,
@@ -6338,36 +6255,6 @@
       "_expression"
     ],
     [
-      "call_expression",
-      "range_expression",
-      "comparison_expression"
-    ],
-    [
-      "call_expression",
-      "elvis_expression",
-      "comparison_expression"
-    ],
-    [
-      "call_expression",
-      "check_expression",
-      "comparison_expression"
-    ],
-    [
-      "call_expression",
-      "additive_expression",
-      "comparison_expression"
-    ],
-    [
-      "call_expression",
-      "infix_expression",
-      "comparison_expression"
-    ],
-    [
-      "call_expression",
-      "multiplicative_expression",
-      "comparison_expression"
-    ],
-    [
       "type_arguments",
       "_comparison_operator"
     ],
@@ -6429,6 +6316,9 @@
     ],
     [
       "identifier"
+    ],
+    [
+      "postfix_unary_expression"
     ]
   ],
   "precedences": [],

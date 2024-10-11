@@ -78,12 +78,12 @@ module.exports = grammar({
     [$.postfix_unary_expression, $._expression],
 
     // ambiguity between generics and comparison operations (foo < b > c)
-    [$.call_expression, $.range_expression, $.comparison_expression],
-    [$.call_expression, $.elvis_expression, $.comparison_expression],
-    [$.call_expression, $.check_expression, $.comparison_expression],
-    [$.call_expression, $.additive_expression, $.comparison_expression],
-    [$.call_expression, $.infix_expression, $.comparison_expression],
-    [$.call_expression, $.multiplicative_expression, $.comparison_expression],
+    // [$.call_expression, $.range_expression, $.comparison_expression],
+    // [$.call_expression, $.elvis_expression, $.comparison_expression],
+    // [$.call_expression, $.check_expression, $.comparison_expression],
+    // [$.call_expression, $.additive_expression, $.comparison_expression],
+    // [$.call_expression, $.infix_expression, $.comparison_expression],
+    // [$.call_expression, $.multiplicative_expression, $.comparison_expression],
     [$.type_arguments, $._comparison_operator],
 
     // ambiguity between prefix expressions and annotations before functions
@@ -127,7 +127,9 @@ module.exports = grammar({
     //   - 'import'  (identifier  simple_identifier)  •  '.'  …
     // By defining a conflict here, we let the parser to continue. The second path
     // eventually dies if there is no '.'
-    [$.identifier]
+    [$.identifier],
+
+    [$.postfix_unary_expression]
   ],
 
   externals: $ => [
@@ -626,28 +628,38 @@ module.exports = grammar({
     // Unary expressions
 
     _unary_expression: $ => choice(
-      $.postfix_expression,
-      $.call_expression,
-      $.indexing_expression,
-      $.navigation_expression,
+      $.postfix_unary_expression,
+      // $.postfix_expression,
+      // $.call_expression,
+      // $.indexing_expression,
+      // $.navigation_expression,
       $.prefix_expression,
       $.as_expression,
-      $.spread_expression
+      $.spread_expression,
     ),
 
-    postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('op', $.postfix_unary_operator))),
+    // postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('op', $.postfix_unary_operator))),
 
-    call_expression: $ => prec(PREC.CALL, seq(field('expression', $._expression), field('suffix', $.call_suffix))),
+    // call_expression: $ => prec(PREC.CALL, seq(field('expression', $._expression), field('suffix', $.call_suffix))),
 
     indexing_expression: $ => prec(PREC.POSTFIX, seq($._expression, $.indexing_suffix)),
 
-    navigation_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('suffix', $.navigation_suffix))),
+    // navigation_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('suffix', $.navigation_suffix))),
 
     prefix_expression: $ => seq(choice($.annotation, $.label, field('op', $.prefix_unary_operator)), field('expression', $._expression)),
 
     as_expression: $ => prec(PREC.AS, seq($._expression, $._as_operator, $._type)),
 
     spread_expression: $ => prec(PREC.SPREAD, seq("*", $._expression)),
+
+    postfix_unary_expression: $ => seq($._primary_expression, repeat($._postfix_unary_suffix)),
+
+    _postfix_unary_suffix: $ => choice(
+      $.postfix_unary_operator,
+      $.navigation_suffix,
+      $.indexing_suffix,
+      $.call_suffix
+    ),
 
     // Binary expressions
 
@@ -953,14 +965,6 @@ module.exports = grammar({
       optional(','),
       ']'
     ),
-
-    _postfix_unary_suffix: $ => choice(
-      $.postfix_unary_operator,
-      $.navigation_suffix,
-      $.indexing_suffix
-    ),
-
-    postfix_unary_expression: $ => seq($._primary_expression, repeat($._postfix_unary_suffix)),
 
     directly_assignable_expression: $ => prec(
       PREC.ASSIGNMENT,
