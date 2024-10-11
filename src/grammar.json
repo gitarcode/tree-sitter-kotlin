@@ -2998,7 +2998,7 @@
     },
     "call_expression": {
       "type": "PREC",
-      "value": 16,
+      "value": 17,
       "content": {
         "type": "SEQ",
         "members": [

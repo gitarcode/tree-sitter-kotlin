@@ -25,6 +25,7 @@
 // Using an adapted version of https://kotlinlang.org/docs/reference/grammar.html
 
 const PREC = {
+  CALL: 17,
   POSTFIX: 16,
   PREFIX: 15,
   TYPE_RHS: 14,
@@ -636,7 +637,7 @@ module.exports = grammar({
 
     postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('op', $.postfix_unary_operator))),
 
-    call_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('suffix', $.call_suffix))),
+    call_expression: $ => prec(PREC.CALL, seq(field('expression', $._expression), field('suffix', $.call_suffix))),
 
     indexing_expression: $ => prec(PREC.POSTFIX, seq($._expression, $.indexing_suffix)),
 
