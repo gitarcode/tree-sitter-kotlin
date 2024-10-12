@@ -134,13 +134,11 @@
 	. (simple_identifier) @function (call_suffix))
 
 ; object.function() or object.property.function()
-(call_expression
-	(navigation_expression
-		(navigation_suffix
-			(simple_identifier) @function) . ))
+(postfix_unary_expression 
+	(navigation_suffix (simple_identifier)@function) . (call_suffix))
 
-(call_expression
-	. (simple_identifier) @function.builtin
+(postfix_unary_expression
+	. (simple_identifier) @function.builtin (call_suffix)
     (#any-of? @function.builtin
 		"arrayOf"
 		"arrayOfNulls"
@@ -217,15 +215,12 @@
 
 ; There are 3 ways to define a regex
 ;    - "[abc]?".toRegex()
-(call_expression
-	(navigation_expression
-		((string_literal) @string.regex)
-		(navigation_suffix
-			((simple_identifier) @_function
-			(#eq? @_function "toRegex")))))
+(postfix_unary_expression 
+	expression: (string_literal) @string.regex
+	(navigation_suffix (simple_identifier)@function) . (call_suffix))
 
 ;    - Regex("[abc]?")
-(call_expression
+(postfix_unary_expression
 	((simple_identifier) @_function
 	(#eq? @_function "Regex"))
 	(call_suffix
@@ -234,17 +229,12 @@
 				(string_literal) @string.regex))))
 
 ;   - Regex.fromLiteral("[abc]?")
-(call_expression
-	(navigation_expression
-		((simple_identifier) @_class
-		(#eq? @_class "Regex"))
-		(navigation_suffix
-			((simple_identifier) @_function
-			(#eq? @_function "fromLiteral"))))
-	(call_suffix
-		(value_arguments
+(postfix_unary_expression 
+	(navigation_suffix (simple_identifier)@function) . 
+    (call_suffix
+    	((value_arguments
 			(value_argument
-				(string_literal) @string.regex))))
+				(string_literal) @string.regex)))))
 
 ;;; Keywords
 
