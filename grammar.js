@@ -77,15 +77,6 @@ module.exports = grammar({
     // "<x>.<y> = z assignment conflicts with <x>.<y>() function call"
     [$.postfix_unary_expression, $._expression],
 
-    // ambiguity between generics and comparison operations (foo < b > c)
-    // [$.call_expression, $.range_expression, $.comparison_expression],
-    // [$.call_expression, $.elvis_expression, $.comparison_expression],
-    // [$.call_expression, $.check_expression, $.comparison_expression],
-    // [$.call_expression, $.additive_expression, $.comparison_expression],
-    // [$.call_expression, $.infix_expression, $.comparison_expression],
-    // [$.call_expression, $.multiplicative_expression, $.comparison_expression],
-    [$.type_arguments, $._comparison_operator],
-
     // ambiguity between prefix expressions and annotations before functions
     [$._statement, $.prefix_expression],
     [$._statement, $.prefix_expression, $.modifiers],
@@ -96,9 +87,6 @@ module.exports = grammar({
     [$.user_type],
     [$.user_type, $.anonymous_function],
     [$.user_type, $.function_type],
-
-    // ambiguity between annotated_lambda with modifiers and modifiers from var declarations
-    [$.annotated_lambda, $.modifiers],
 
     // ambiguity between simple identifier 'set/get' with actual setter/getter functions.
     [$.setter, $.simple_identifier],
@@ -129,7 +117,8 @@ module.exports = grammar({
     // eventually dies if there is no '.'
     [$.identifier],
 
-    [$.postfix_unary_expression]
+    [$.postfix_unary_expression],
+    [$.call_suffix]
   ],
 
   externals: $ => [
@@ -634,7 +623,7 @@ module.exports = grammar({
       $.spread_expression,
     ),
 
-    postfix_unary_expression: $ => seq($._primary_expression, repeat($._postfix_unary_suffix)),
+    postfix_unary_expression: $ => seq(field('expression', $._primary_expression), repeat($._postfix_unary_suffix)),
     
     prefix_expression: $ => seq(choice($.annotation, $.label, field('op', $.prefix_unary_operator)), field('expression', $._expression)),
 
@@ -642,12 +631,11 @@ module.exports = grammar({
 
     spread_expression: $ => prec(PREC.SPREAD, seq("*", $._expression)),
 
-
     _postfix_unary_suffix: $ => choice(
-      $.postfix_unary_operator,
-      $.navigation_suffix,
-      $.indexing_suffix,
-      $.call_suffix
+      field('op', $.postfix_unary_operator),
+      field('navigation_suffix', $.navigation_suffix),
+      field('indexing_suffix', $.indexing_suffix),
+      field('call_suffix', $.call_suffix)
     ),
 
     // Binary expressions
@@ -702,14 +690,13 @@ module.exports = grammar({
       )
     ),
 
-    call_suffix: $ => prec.left(seq(
-      // this introduces ambiguities with 'less than' for comparisons
+    call_suffix: $ => seq(
       optional($.type_arguments),
       choice(
-        prec(PREC.ARGUMENTS, seq(optional(field('args', $.value_arguments)), field('lambda_arg', $.annotated_lambda))),
+        seq(optional(field('args', $.value_arguments)), field('lambda_arg', $.annotated_lambda)),
         field('args', $.value_arguments)
       )
-    )),
+    ),
 
     annotated_lambda: $ => seq(
       repeat($.annotation),

@@ -34,8 +34,8 @@ class Foo(){
             (assignment
               left: (directly_assignable_expression
                 (postfix_unary_expression
-                  (this_expression)
-                  (navigation_suffix
+                  expression: (this_expression)
+                  navigation_suffix: (navigation_suffix
                     (simple_identifier))))
               right: (simple_identifier))))))))
 ================================================================================
@@ -69,8 +69,8 @@ fun main(){
           (assignment
             left: (directly_assignable_expression
               (postfix_unary_expression
-                (simple_identifier)
-                (indexing_suffix
+                expression: (simple_identifier)
+                indexing_suffix: (indexing_suffix
                   (integer_literal))))
             right: (string_literal
               (string_content))))))))

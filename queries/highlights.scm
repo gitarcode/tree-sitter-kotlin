@@ -130,8 +130,8 @@
 ;;; Function calls
 
 ; function()
-(call_expression
-	. (simple_identifier) @function)
+(postfix_unary_expression 
+	. (simple_identifier) @function (call_suffix))
 
 ; object.function() or object.property.function()
 (call_expression

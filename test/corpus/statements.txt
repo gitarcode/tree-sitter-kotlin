@@ -33,9 +33,9 @@ override fun isDisposed(): Boolean { expectUnreached();  return false }
     body: (function_body
       (block
         (statements
-          (call_expression
+          (postfix_unary_expression
             expression: (simple_identifier)
-            suffix: (call_suffix
+            call_suffix: (call_suffix
               args: (value_arguments)))
           (jump_expression
             (boolean_literal)))))))
@@ -91,9 +91,9 @@ fun foo() {
                 id: (simple_identifier))
               (variable_declaration
                 id: (simple_identifier)))
-            initializer: (call_expression
+            initializer: (postfix_unary_expression
               expression: (simple_identifier)
-              suffix: (call_suffix
+              call_suffix: (call_suffix
                 args: (value_arguments)))))))))
 
 
@@ -113,9 +113,9 @@ try {
   (try_expression
     (block
       (statements
-        (call_expression
+        (postfix_unary_expression
           expression: (simple_identifier)
-          suffix: (call_suffix
+          call_suffix: (call_suffix
             args: (value_arguments)))))
     (catch_block
       name: (simple_identifier)
@@ -123,9 +123,9 @@ try {
         (type_identifier))
       body: (block
         (statements
-          (call_expression
+          (postfix_unary_expression
             expression: (simple_identifier)
-            suffix: (call_suffix
+            call_suffix: (call_suffix
               args: (value_arguments
                 (value_argument
                   (simple_identifier))))))))))

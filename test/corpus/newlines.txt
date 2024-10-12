@@ -8,18 +8,15 @@ bar.foo()
 --------------------------------------------------------------------------------
 
 (source_file
-  (call_expression
-    expression: (navigation_expression
-      expression: (call_expression
-        expression: (navigation_expression
-          expression: (simple_identifier)
-          suffix: (navigation_suffix
-            (simple_identifier)))
-        suffix: (call_suffix
-          args: (value_arguments)))
-      suffix: (navigation_suffix
-        (simple_identifier)))
-    suffix: (call_suffix
+  (postfix_unary_expression
+    expression: (simple_identifier)
+    navigation_suffix: (navigation_suffix
+      (simple_identifier))
+    call_suffix: (call_suffix
+      args: (value_arguments))
+    navigation_suffix: (navigation_suffix
+      (simple_identifier))
+    call_suffix: (call_suffix
       args: (value_arguments))))
 
 ================================================================================
@@ -130,23 +127,22 @@ fun foo() {
               id: (simple_identifier))
             initializer: (elvis_expression
               (elvis_expression
-                (call_expression
-                  expression: (navigation_expression
-                    expression: (simple_identifier)
-                    suffix: (navigation_suffix
-                      (simple_identifier)))
-                  suffix: (call_suffix
+                (postfix_unary_expression
+                  expression: (simple_identifier)
+                  navigation_suffix: (navigation_suffix
+                    (simple_identifier))
+                  call_suffix: (call_suffix
                     args: (value_arguments
                       (value_argument
                         (boolean_literal)))))
-                (call_expression
-                  expression: (navigation_expression
-                    expression: (simple_identifier)
-                    suffix: (navigation_suffix
-                      (simple_identifier)))
-                  suffix: (call_suffix
+                (postfix_unary_expression
+                  expression: (simple_identifier)
+                  navigation_suffix: (navigation_suffix
+                    (simple_identifier))
+                  call_suffix: (call_suffix
                     args: (value_arguments))))
               (jump_expression))))))))
+
 
 ================================================================================
 get after newline
@@ -171,9 +167,9 @@ class Foo {
       (getter
         (function_body
           (multiplicative_expression
-            (call_expression
+            (postfix_unary_expression
               expression: (simple_identifier)
-              suffix: (call_suffix
+              call_suffix: (call_suffix
                 args: (value_arguments)))
             (integer_literal)))))))
 
@@ -192,9 +188,9 @@ foo(1,
 (source_file
   (line_comment)
   (line_comment)
-  (call_expression
+  (postfix_unary_expression
     expression: (simple_identifier)
-    suffix: (call_suffix
+    call_suffix: (call_suffix
       args: (value_arguments
         (value_argument
           (integer_literal))
@@ -219,9 +215,9 @@ else boo()
       (integer_literal))
     alternative:
       (control_structure_body
-        (call_expression
+        (postfix_unary_expression
           expression: (simple_identifier)
-          suffix: (call_suffix
+          call_suffix: (call_suffix
             args: (value_arguments))))))
 
 ================================================================================
@@ -241,7 +237,7 @@ if (!foo) 3 else boo()
       (integer_literal))
     alternative:
       (control_structure_body
-        (call_expression
+        (postfix_unary_expression
           expression: (simple_identifier)
-          suffix: (call_suffix
+          call_suffix: (call_suffix
             args: (value_arguments))))))

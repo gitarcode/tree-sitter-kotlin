@@ -21,45 +21,33 @@ something as A
 Nested types
 ================================================================================
 
-// TODO the introduction of scanner.c changed the AST for nested types
 something as Some.NestedType
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (line_comment)
-  (navigation_expression
-    expression: (as_expression
-      (simple_identifier)
-      (user_type
-        (type_identifier)))
-    suffix: (navigation_suffix
-      (simple_identifier))))
+  (as_expression
+    (simple_identifier)
+    (user_type
+      (type_identifier)
+      (type_identifier))))
 
 ================================================================================
 Deeply nested types
 ================================================================================
 
-// TODO the introduction of scanner.c changed the AST for nested types
 somethingElse as A.Deeply.Nested.Type
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (line_comment)
-  (navigation_expression
-    expression: (navigation_expression
-      expression: (navigation_expression
-        expression: (as_expression
-          (simple_identifier)
-          (user_type
-            (type_identifier)))
-        suffix: (navigation_suffix
-          (simple_identifier)))
-      suffix: (navigation_suffix
-        (simple_identifier)))
-    suffix: (navigation_suffix
-      (simple_identifier))))
+  (as_expression
+    (simple_identifier)
+    (user_type
+      (type_identifier)
+      (type_identifier)
+      (type_identifier)
+      (type_identifier))))
 
 ================================================================================
 Generic wildcard types
@@ -219,19 +207,18 @@ Foo(x = "hi", y = "bar")
 --------------------------------------------------------------------------------
 
 (source_file
-  (call_expression
-    expression: (as_expression
-      (simple_identifier)
-      (user_type
-        (type_identifier)))
-    suffix: (call_suffix
+  (postfix_unary_expression
+    expression: (simple_identifier)
+    call_suffix: (call_suffix
       args: (value_arguments
         (value_argument
           (simple_identifier)
-          (string_literal (string_content)))
+          (string_literal
+            (string_content)))
         (value_argument
           (simple_identifier)
-          (string_literal (string_content)))))))
+          (string_literal
+            (string_content)))))))
 
 ================================================================================
 Type constructor with trailing comma
@@ -242,19 +229,18 @@ Foo(x = "hi", y = "bar",)
 --------------------------------------------------------------------------------
 
 (source_file
-  (call_expression
-    expression: (as_expression
-      (simple_identifier)
-      (user_type
-        (type_identifier)))
-    suffix: (call_suffix
+  (postfix_unary_expression
+    expression: (simple_identifier)
+    call_suffix: (call_suffix
       args: (value_arguments
         (value_argument
           (simple_identifier)
-          (string_literal (string_content)))
+          (string_literal
+            (string_content)))
         (value_argument
           (simple_identifier)
-          (string_literal (string_content)))))))
+          (string_literal
+            (string_content)))))))
 
 ================================================================================
 Type alias with type parameters
