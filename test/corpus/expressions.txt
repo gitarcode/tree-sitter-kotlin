@@ -654,3 +654,36 @@ arr[0]++
       indexing_suffix: (indexing_suffix
         (integer_literal)))))
 
+================================================================================
+Delegation
+================================================================================
+
+fun f(a: A): A {
+    return object : A by a {
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
+    type: (user_type
+      (type_identifier))
+    body: (function_body
+      (block
+        (statements
+          (jump_expression
+            (object_literal
+              (delegation_specifier
+                (explicit_delegation
+                  (user_type
+                    (type_identifier))
+                  (simple_identifier)))
+              (class_body))))))))
