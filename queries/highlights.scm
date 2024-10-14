@@ -36,8 +36,7 @@
 
 ; id_1.id_2.id_3: `id_2` and `id_3` are assumed as object properties
 (_
-	(navigation_suffix
-		(simple_identifier) @property))
+	selector: (simple_identifier) @property)
 
 (enum_entry
 	(simple_identifier) @constant)
@@ -130,15 +129,17 @@
 ;;; Function calls
 
 ; function()
-(postfix_unary_expression 
-	. (simple_identifier) @function (call_suffix))
+(call_expression
+	expression: (simple_identifier) @function)
 
 ; object.function() or object.property.function()
-(postfix_unary_expression 
-	(navigation_suffix (simple_identifier)@function) . (call_suffix))
+(dot_qualified_expression
+	receiver: (_)
+    selector: (call_expression
+    	expression: (simple_identifier)@function))
 
-(postfix_unary_expression
-	. (simple_identifier) @function.builtin (call_suffix)
+(call_expression
+	expression: (simple_identifier) @function.builtin
     (#any-of? @function.builtin
 		"arrayOf"
 		"arrayOfNulls"
@@ -215,26 +216,27 @@
 
 ; There are 3 ways to define a regex
 ;    - "[abc]?".toRegex()
-(postfix_unary_expression 
-	expression: (string_literal) @string.regex
-	(navigation_suffix (simple_identifier)@function) . (call_suffix))
+(dot_qualified_expression
+	receiver: (string_literal) @string.regex
+    selector: (call_expression
+    	expression: (simple_identifier)@function))
 
 ;    - Regex("[abc]?")
-(postfix_unary_expression
-	((simple_identifier) @_function
-	(#eq? @_function "Regex"))
-	(call_suffix
-		(value_arguments
+(call_expression
+	expression: (simple_identifier) @_function
+	(#eq? @_function "Regex")
+	args: (value_arguments
 			(value_argument
-				(string_literal) @string.regex))))
+				(string_literal) @string.regex)))
 
 ;   - Regex.fromLiteral("[abc]?")
-(postfix_unary_expression 
-	(navigation_suffix (simple_identifier)@function) . 
-    (call_suffix
-    	((value_arguments
+(dot_qualified_expression
+	receiver: (simple_identifier)
+    selector: (call_expression
+    	expression: (simple_identifier) @function
+		args: (value_arguments
 			(value_argument
-				(string_literal) @string.regex)))))
+				(string_literal) @string.regex))))
 
 ;;; Keywords
 

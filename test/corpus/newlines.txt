@@ -8,15 +8,14 @@ bar.foo()
 --------------------------------------------------------------------------------
 
 (source_file
-  (postfix_unary_expression
-    expression: (simple_identifier)
-    navigation_suffix: (navigation_suffix
-      (simple_identifier))
-    call_suffix: (call_suffix
-      args: (value_arguments))
-    navigation_suffix: (navigation_suffix
-      (simple_identifier))
-    call_suffix: (call_suffix
+  (dot_qualified_expression
+    receiver: (dot_qualified_expression
+      receiver: (simple_identifier)
+      selector: (call_expression
+        expression: (simple_identifier)
+        args: (value_arguments)))
+    selector: (call_expression
+      expression: (simple_identifier)
       args: (value_arguments))))
 
 ================================================================================
@@ -27,6 +26,7 @@ fun foo()
     = 1
 
 ---
+
 (source_file
    (function_declaration
     name: (simple_identifier)
@@ -127,22 +127,19 @@ fun foo() {
               id: (simple_identifier))
             initializer: (elvis_expression
               (elvis_expression
-                (postfix_unary_expression
-                  expression: (simple_identifier)
-                  navigation_suffix: (navigation_suffix
-                    (simple_identifier))
-                  call_suffix: (call_suffix
+                (dot_qualified_expression
+                  receiver: (simple_identifier)
+                  selector: (call_expression
+                    expression: (simple_identifier)
                     args: (value_arguments
                       (value_argument
                         (boolean_literal)))))
-                (postfix_unary_expression
-                  expression: (simple_identifier)
-                  navigation_suffix: (navigation_suffix
-                    (simple_identifier))
-                  call_suffix: (call_suffix
+                (dot_qualified_expression
+                  receiver: (simple_identifier)
+                  selector: (call_expression
+                    expression: (simple_identifier)
                     args: (value_arguments))))
               (jump_expression))))))))
-
 
 ================================================================================
 get after newline
@@ -167,10 +164,9 @@ class Foo {
       (getter
         (function_body
           (multiplicative_expression
-            (postfix_unary_expression
+            (call_expression
               expression: (simple_identifier)
-              call_suffix: (call_suffix
-                args: (value_arguments)))
+              args: (value_arguments))
             (integer_literal)))))))
 
 ================================================================================
@@ -188,14 +184,13 @@ foo(1,
 (source_file
   (line_comment)
   (line_comment)
-  (postfix_unary_expression
+  (call_expression
     expression: (simple_identifier)
-    call_suffix: (call_suffix
-      args: (value_arguments
-        (value_argument
-          (integer_literal))
-        (value_argument
-          (integer_literal))))))
+    args: (value_arguments
+      (value_argument
+        (integer_literal))
+      (value_argument
+        (integer_literal)))))
 
 ================================================================================
 Else after newline
@@ -213,12 +208,10 @@ else boo()
       expression: (simple_identifier))
     consequence: (control_structure_body
       (integer_literal))
-    alternative:
-      (control_structure_body
-        (postfix_unary_expression
-          expression: (simple_identifier)
-          call_suffix: (call_suffix
-            args: (value_arguments))))))
+    alternative: (control_structure_body
+      (call_expression
+        expression: (simple_identifier)
+        args: (value_arguments)))))
 
 ================================================================================
 Else on the same line
@@ -237,7 +230,6 @@ if (!foo) 3 else boo()
       (integer_literal))
     alternative:
       (control_structure_body
-        (postfix_unary_expression
+        (call_expression
           expression: (simple_identifier)
-          call_suffix: (call_suffix
-            args: (value_arguments))))))
+            args: (value_arguments)))))

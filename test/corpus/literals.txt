@@ -183,21 +183,19 @@ assertEquals("\u214E\uA7B5\u2CEF", "\u2132\uA7B4\u2CEF".lowercase())
 --------------------------------------------------------------------------------
 
 (source_file
-  (postfix_unary_expression
+  (call_expression
     expression: (simple_identifier)
-    call_suffix: (call_suffix
-      args: (value_arguments
-        (value_argument
-          (string_literal
-            (string_content)))
-        (value_argument
-          (postfix_unary_expression
-            expression: (string_literal
+    args: (value_arguments
+      (value_argument
+        (string_literal
+          (string_content)))
+      (value_argument
+        (dot_qualified_expression
+          receiver: (string_literal
               (string_content))
-            navigation_suffix: (navigation_suffix
-              (simple_identifier))
-            call_suffix: (call_suffix
-              args: (value_arguments))))))))
+          selector: (call_expression
+            expression: (simple_identifier)
+            args: (value_arguments)))))))
 
 ================================================================================
 Unsigned literal

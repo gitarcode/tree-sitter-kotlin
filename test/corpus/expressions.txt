@@ -25,35 +25,30 @@ a ? . bar()
 --------------------------------------------------------------------------------
 
 (source_file
-  (postfix_unary_expression
-    expression: (simple_identifier)
-    navigation_suffix: (navigation_suffix
-      (simple_identifier))
-    call_suffix: (call_suffix
+  (dot_qualified_expression
+    receiver: (simple_identifier)
+    selector: (call_expression
+      expression: (simple_identifier)
       args: (value_arguments)))
-  (postfix_unary_expression
-    expression: (simple_identifier)
-    navigation_suffix: (navigation_suffix
-      (simple_identifier))
-    call_suffix: (call_suffix
+  (dot_qualified_expression
+    receiver: (simple_identifier)
+    selector: (call_expression
+      expression: (simple_identifier)
       args: (value_arguments)))
-  (postfix_unary_expression
-    expression: (simple_identifier)
-    navigation_suffix: (navigation_suffix
-      (simple_identifier))
-    call_suffix: (call_suffix
+  (dot_qualified_expression
+    receiver: (simple_identifier)
+    selector: (call_expression
+      expression: (simple_identifier)
       args: (value_arguments)))
-  (postfix_unary_expression
-    expression: (simple_identifier)
-    navigation_suffix: (navigation_suffix
-      (simple_identifier))
-    call_suffix: (call_suffix
+  (dot_qualified_expression
+    receiver: (simple_identifier)
+    selector: (call_expression
+      expression: (simple_identifier)
       args: (value_arguments)))
-  (postfix_unary_expression
-    expression: (simple_identifier)
-    navigation_suffix: (navigation_suffix
-      (simple_identifier))
-    call_suffix: (call_suffix
+  (dot_qualified_expression
+    receiver: (simple_identifier)
+    selector: (call_expression
+      expression: (simple_identifier)
       args: (value_arguments))))
 
 ================================================================================
@@ -66,20 +61,19 @@ sum(1, 2)
 --------------------------------------------------------------------------------
 
 (source_file
-  (postfix_unary_expression
+  (call_expression
     expression: (simple_identifier)
-    call_suffix: (call_suffix
-      args: (value_arguments
-        (value_argument
-          (string_literal (string_content))))))
-  (postfix_unary_expression
+    args: (value_arguments
+      (value_argument
+        (string_literal
+          (string_content)))))
+  (call_expression
     expression: (simple_identifier)
-    call_suffix: (call_suffix
-      args: (value_arguments
-        (value_argument
-          (integer_literal))
-        (value_argument
-          (integer_literal))))))
+    args: (value_arguments
+      (value_argument
+        (integer_literal))
+      (value_argument
+        (integer_literal)))))
 
 ================================================================================
 When expression
@@ -176,12 +170,11 @@ val x = expect(1)
     (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (postfix_unary_expression
+    initializer: (call_expression
       expression: (simple_identifier)
-      call_suffix: (call_suffix
-        args: (value_arguments
-          (value_argument
-            (integer_literal)))))))
+      args: (value_arguments
+        (value_argument
+          (integer_literal))))))
 
 ================================================================================
 Expect as a top-level expression
@@ -192,12 +185,11 @@ expect(1)
 --------------------------------------------------------------------------------
 
 (source_file
-  (postfix_unary_expression
+  (call_expression
     expression: (simple_identifier)
-    call_suffix: (call_suffix
-      args: (value_arguments
-        (value_argument
-          (integer_literal))))))
+    args: (value_arguments
+      (value_argument
+        (integer_literal)))))
 
 ================================================================================
 Expect as a platform modifier
@@ -226,28 +218,26 @@ foo<Int>(1)
 --------------------------------------------------------------------------------
 
 (source_file
-  (postfix_unary_expression
+  (call_expression
     expression: (simple_identifier)
-    call_suffix: (call_suffix
-      (type_arguments
-        (type_projection
-          (user_type
-            (type_identifier))))
-      args: (value_arguments
-        (value_argument
-          (integer_literal))
-        (value_argument
-          (integer_literal)))))
-  (postfix_unary_expression
+    (type_arguments
+      (type_projection
+        (user_type
+          (type_identifier))))
+    args: (value_arguments
+      (value_argument
+        (integer_literal))
+      (value_argument
+        (integer_literal))))
+  (call_expression
     expression: (simple_identifier)
-    call_suffix: (call_suffix
-      (type_arguments
-        (type_projection
-          (user_type
-            (type_identifier))))
-      args: (value_arguments
-        (value_argument
-          (integer_literal))))))
+    (type_arguments
+      (type_projection
+        (user_type
+          (type_identifier))))
+    args: (value_arguments
+      (value_argument
+        (integer_literal)))))
 
 ================================================================================
 Less than for comparison
@@ -291,16 +281,15 @@ val a = a<2>(3)
     (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (postfix_unary_expression
+    initializer: (call_expression
       expression: (simple_identifier)
-      call_suffix: (call_suffix
-        (type_arguments
-          (type_projection
-            (user_type
-              (type_identifier))))
-        args: (value_arguments
-          (value_argument
-            (simple_identifier))))))
+      (type_arguments
+        (type_projection
+          (user_type
+            (type_identifier))))
+      args: (value_arguments
+        (value_argument
+          (simple_identifier)))))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration
@@ -321,11 +310,10 @@ foo.forEach { (index, value) -> 2 }
 --------------------------------------------------------------------------------
 
 (source_file
-  (postfix_unary_expression
-    expression: (simple_identifier)
-    navigation_suffix: (navigation_suffix
-      (simple_identifier))
-    call_suffix: (call_suffix
+  (dot_qualified_expression
+    receiver: (simple_identifier)
+    selector: (call_expression
+      expression: (simple_identifier)
       lambda_arg: (annotated_lambda
         (lambda_literal
           parameters: (lambda_parameters
@@ -346,16 +334,15 @@ with(s) { length }
 --------------------------------------------------------------------------------
 
 (source_file
-  (postfix_unary_expression
+  (call_expression
     expression: (simple_identifier)
-    call_suffix: (call_suffix
-      args: (value_arguments
-        (value_argument
-          (simple_identifier)))
-      lambda_arg: (annotated_lambda
-        (lambda_literal
-          body: (statements
-            (simple_identifier)))))))
+    args: (value_arguments
+      (value_argument
+        (simple_identifier)))
+    lambda_arg: (annotated_lambda
+      (lambda_literal
+        body: (statements
+          (simple_identifier))))))
 
 ================================================================================
 Multiple Statements on a Single Line
@@ -379,26 +366,22 @@ when (dir) {
             (binding_pattern_kind)
             var_decl: (variable_declaration
               id: (simple_identifier))
-            initializer: (postfix_unary_expression
-              expression: (simple_identifier)
-              navigation_suffix: (navigation_suffix
-                (simple_identifier))))
+            initializer: (dot_qualified_expression
+              receiver: (simple_identifier)
+              selector: (simple_identifier)))
           (assignment
             left: (directly_assignable_expression
-              (postfix_unary_expression
-                expression: (simple_identifier)
-                navigation_suffix: (navigation_suffix
-                  (simple_identifier))))
-            right: (postfix_unary_expression
-              expression: (simple_identifier)
-              navigation_suffix: (navigation_suffix
-                (simple_identifier))))
+              (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier)))
+            right: (dot_qualified_expression
+              receiver: (simple_identifier)
+              selector: (simple_identifier)))
           (assignment
             left: (directly_assignable_expression
-              (postfix_unary_expression
-                expression: (simple_identifier)
-                navigation_suffix: (navigation_suffix
-                  (simple_identifier))))
+              (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier)))
             right: (simple_identifier))))))
   (when_expression
     (when_subject
@@ -413,26 +396,22 @@ when (dir) {
               (binding_pattern_kind)
               var_decl: (variable_declaration
                 id: (simple_identifier))
-              initializer: (postfix_unary_expression
-                expression: (simple_identifier)
-                navigation_suffix: (navigation_suffix
-                  (simple_identifier))))
+              initializer: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier)))
             (assignment
               left: (directly_assignable_expression
-                (postfix_unary_expression
-                  expression: (simple_identifier)
-                  navigation_suffix: (navigation_suffix
-                    (simple_identifier))))
-              right: (postfix_unary_expression
-                expression: (simple_identifier)
-                navigation_suffix: (navigation_suffix
-                  (simple_identifier))))
+                (dot_qualified_expression
+                  receiver: (simple_identifier)
+                  selector: (simple_identifier)))
+              right: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier)))
             (assignment
               left: (directly_assignable_expression
-                (postfix_unary_expression
-                  expression: (simple_identifier)
-                  navigation_suffix: (navigation_suffix
-                    (simple_identifier))))
+                (dot_qualified_expression
+                  receiver: (simple_identifier)
+                  selector: (simple_identifier)))
               right: (simple_identifier))))))))
 
 ================================================================================
@@ -457,52 +436,54 @@ val comments = """ // and here """
     (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (postfix_unary_expression
+    initializer: (call_expression
       expression: (simple_identifier)
-      call_suffix: (call_suffix
-        args: (value_arguments
-          (value_argument
-            (string_literal (string_content)))))))
+      args: (value_arguments
+        (value_argument
+          (string_literal
+            (string_content))))))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (postfix_unary_expression
+    initializer: (call_expression
       expression: (simple_identifier)
-      call_suffix: (call_suffix
-        args: (value_arguments
-          (value_argument
-            (string_literal (string_content)))))))
+      args: (value_arguments
+        (value_argument
+          (string_literal
+            (string_content))))))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (postfix_unary_expression
+    initializer: (call_expression
       expression: (simple_identifier)
-      call_suffix: (call_suffix
-        args: (value_arguments
-          (value_argument
-            (string_literal (string_content)))))))
+      args: (value_arguments
+        (value_argument
+          (string_literal
+            (string_content))))))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (postfix_unary_expression
+    initializer: (call_expression
       expression: (simple_identifier)
-      call_suffix: (call_suffix
-        args: (value_arguments
-          (value_argument
-            (string_literal (string_content)))))))
+      args: (value_arguments
+        (value_argument
+          (string_literal
+            (string_content))))))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (string_literal (string_content)))
+    initializer: (string_literal
+      (string_content)))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (string_literal (string_content))))
+    initializer: (string_literal
+      (string_content))))
 
 ================================================================================
 Qualified this/super expressions
@@ -541,36 +522,32 @@ class Square() : Rectangle(), Polygon {
         body: (function_body
           (block
             (statements
-              (postfix_unary_expression
-                expression: (this_expression
-                  (type_identifier))
-                navigation_suffix: (navigation_suffix
-                  (simple_identifier))
-                call_suffix: (call_suffix
-                  args: (value_arguments)))
-              (postfix_unary_expression
-                expression: (super_expression
-                  (type_identifier))
-                navigation_suffix: (navigation_suffix
-                  (simple_identifier))
-                call_suffix: (call_suffix
-                  args: (value_arguments)))
-              (postfix_unary_expression
-                expression: (super_expression
-                  (user_type
-                    (type_identifier)))
-                navigation_suffix: (navigation_suffix
-                  (simple_identifier))
-                call_suffix: (call_suffix
-                  args: (value_arguments)))
-              (postfix_unary_expression
-                expression: (super_expression
-                  (user_type
+              (dot_qualified_expression
+                receiver: (this_expression
                     (type_identifier))
-                  (type_identifier))
-                navigation_suffix: (navigation_suffix
-                  (simple_identifier))
-                call_suffix: (call_suffix
+                selector: (call_expression
+                  expression: (simple_identifier)
+                  args: (value_arguments)))
+              (dot_qualified_expression
+                receiver: (super_expression
+                    (type_identifier))
+                selector: (call_expression
+                  expression: (simple_identifier)
+                  args: (value_arguments)))
+              (dot_qualified_expression
+                receiver: (super_expression
+                    (user_type
+                      (type_identifier)))
+                selector: (call_expression
+                  expression: (simple_identifier)
+                  args: (value_arguments)))
+              (dot_qualified_expression
+                receiver: (super_expression
+                    (user_type
+                      (type_identifier))
+                    (type_identifier))
+                selector: (call_expression
+                  expression: (simple_identifier)
                   args: (value_arguments))))))))))
 
 ================================================================================
@@ -593,37 +570,33 @@ if (cond1) {
     consequence: (control_structure_body
       (block
         (statements
-          (postfix_unary_expression
+          (call_expression
             expression: (simple_identifier)
-            call_suffix: (call_suffix
-              args: (value_arguments
-                (value_argument
-                  (string_literal
-                    (string_content)))))))))
+            args: (value_arguments
+              (value_argument
+                (string_literal
+                  (string_content))))))))
     alternative: (control_structure_body
       (if_expression
         condition: (simple_identifier)
         consequence: (control_structure_body
           (block
             (statements
-              (postfix_unary_expression
+              (call_expression
                 expression: (simple_identifier)
-                call_suffix: (call_suffix
-                  args: (value_arguments
-                    (value_argument
-                      (string_literal
-                        (string_content)))))))))
+                args: (value_arguments
+                  (value_argument
+                    (string_literal
+                      (string_content))))))))
         alternative: (control_structure_body
           (block
             (statements
-              (postfix_unary_expression
+              (call_expression
                 expression: (simple_identifier)
-                call_suffix: (call_suffix
-                  args: (value_arguments
-                    (value_argument
-                      (string_literal
-                        (string_content)))))))))))))
-
+                args: (value_arguments
+                  (value_argument
+                    (string_literal
+                      (string_content))))))))))))
 ================================================================================
 Increment/decrement expressions
 ================================================================================
@@ -636,23 +609,22 @@ arr[0]++
 --------------------------------------------------------------------------------
 
 (source_file
-  (postfix_unary_expression
+  (postfix_expression
     expression: (simple_identifier)
-    op: (postfix_unary_operator))
+    operator: (postfix_unary_operator))
   (prefix_expression
     op: (prefix_unary_operator)
     expression: (simple_identifier))
-  (postfix_unary_expression
-    expression: (simple_identifier)
-    indexing_suffix: (indexing_suffix
-      (integer_literal))
-    op: (postfix_unary_operator))
+  (postfix_expression
+    expression: (index_access_expression
+      expression: (simple_identifier)
+      index: (integer_literal))
+    operator: (postfix_unary_operator))
   (prefix_expression
     op: (prefix_unary_operator)
-    expression: (postfix_unary_expression
+    expression: (index_access_expression
       expression: (simple_identifier)
-      indexing_suffix: (indexing_suffix
-        (integer_literal)))))
+      index: (integer_literal))))
 
 ================================================================================
 Delegation

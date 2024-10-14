@@ -365,11 +365,10 @@ enum class Enum {
         name: (simple_identifier)
         parameters: (function_value_parameters)
         body: (function_body
-          (postfix_unary_expression
-            expression: (simple_identifier)
-            navigation_suffix: (navigation_suffix
-              (simple_identifier))
-            call_suffix: (call_suffix
+          (dot_qualified_expression
+            receiver: (simple_identifier)
+            selector: (call_expression
+              expression: (simple_identifier)  
               args: (value_arguments
                 (value_argument
                   (integer_literal)))))))))
