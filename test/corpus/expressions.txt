@@ -777,13 +777,13 @@ suppressions
                     (value_argument
                       (simple_identifier))))
                 selector: (simple_identifier))
-              (call_expression
-                expression: (jump_expression
-                  (simple_identifier))
-                args: (value_arguments
-                  (value_argument
-                    (string_literal
-                      (string_content)
-                      (interpolated_identifier)
-                      (string_content))))))))))
+              (jump_expression
+                (call_expression
+                  expression: (simple_identifier)
+                  args: (value_arguments
+                    (value_argument
+                      (string_literal
+                        (string_content)
+                        (interpolated_identifier)
+                        (string_content)))))))))))
     selector: (simple_identifier)))

@@ -132,12 +132,12 @@ fun foo(p0: Int): Long {
     body: (function_body
       (block
         (statements
-          (call_expression
-            expression: (jump_expression
-              (dot_qualified_expression
+          (jump_expression
+            (call_expression
+              expression: (dot_qualified_expression
                 receiver: (simple_identifier)
-                selector: (simple_identifier)))
-            args: (value_arguments)))))))
+                selector: (simple_identifier))
+              args: (value_arguments))))))))
 
 =====================
 Override functions

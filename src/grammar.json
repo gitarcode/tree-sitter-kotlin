@@ -2968,6 +2968,10 @@
         {
           "type": "SYMBOL",
           "name": "if_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "jump_expression"
         }
       ]
     },
@@ -3762,10 +3766,6 @@
         {
           "type": "SYMBOL",
           "name": "try_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "jump_expression"
         },
         {
           "type": "SYMBOL",
