@@ -617,8 +617,8 @@ module.exports = grammar({
 
     postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('operator', $.postfix_unary_operator))),
 
-    dot_qualified_expression: $ =>
-      prec(PREC.DOT, seq(field('receiver', $._primary_expression), 
+    dot_qualified_expression: $ => prec(PREC.DOT, 
+      seq(field('receiver', choice($._primary_expression, $.postfix_expression)), 
       $._member_access_operator,
       field('selector', choice(
         $.simple_identifier,

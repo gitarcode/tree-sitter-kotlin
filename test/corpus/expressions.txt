@@ -664,7 +664,7 @@ fun f(a: A): A {
 Array access call
 ================================================================================
 
- configurationElements[0].substringBefore("?")
+configurationElements[0].substringBefore("?")
 
 --------------------------------------------------------------------------------
 
@@ -679,3 +679,22 @@ Array access call
       (value_argument
         (string_literal
           (string_content))))))
+
+================================================================================
+Postfix expression call
+================================================================================
+
+input!!.copyTo(it)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (call_expression
+    expression: (dot_qualified_expression
+      receiver: (postfix_expression
+        expression: (simple_identifier)
+        operator: (postfix_unary_operator))
+      selector: (simple_identifier))
+    args: (value_arguments
+      (value_argument
+        (simple_identifier)))))

@@ -3006,8 +3006,17 @@
             "type": "FIELD",
             "name": "receiver",
             "content": {
-              "type": "SYMBOL",
-              "name": "_primary_expression"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_primary_expression"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "postfix_expression"
+                }
+              ]
             }
           },
           {
