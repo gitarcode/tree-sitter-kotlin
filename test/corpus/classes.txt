@@ -365,13 +365,13 @@ enum class Enum {
         name: (simple_identifier)
         parameters: (function_value_parameters)
         body: (function_body
-          (dot_qualified_expression
-            receiver: (simple_identifier)
-            selector: (call_expression
-              expression: (simple_identifier)  
-              args: (value_arguments
-                (value_argument
-                  (integer_literal)))))))))
+          (call_expression
+            expression: (dot_qualified_expression
+              receiver: (simple_identifier)
+              selector: (simple_identifier))
+            args: (value_arguments
+              (value_argument
+                (integer_literal))))))))
   (class_declaration
     modifiers: (modifiers
       (class_modifier))

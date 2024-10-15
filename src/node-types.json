@@ -761,11 +761,11 @@
             "named": true
           },
           {
-            "type": "hex_literal",
+            "type": "dot_qualified_expression",
             "named": true
           },
           {
-            "type": "index_access_expression",
+            "type": "hex_literal",
             "named": true
           },
           {
@@ -2786,10 +2786,6 @@
             "named": true
           },
           {
-            "type": "index_access_expression",
-            "named": true
-          },
-          {
             "type": "integer_literal",
             "named": true
           },
@@ -2855,10 +2851,6 @@
         "multiple": false,
         "required": true,
         "types": [
-          {
-            "type": "call_expression",
-            "named": true
-          },
           {
             "type": "class",
             "named": false

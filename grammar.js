@@ -608,21 +608,20 @@ module.exports = grammar({
     // Unary expressions
 
     _unary_expression: $ => choice(
-      $.dot_qualified_expression,
       $.prefix_expression,
       $.postfix_expression,
       $.as_expression,
       $.spread_expression,
       $.if_expression,
+      $.index_access_expression,
     ),
 
     postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('operator', $.postfix_unary_operator))),
 
     dot_qualified_expression: $ =>
-      prec(PREC.DOT, seq(field('receiver', choice($._primary_expression, $.dot_qualified_expression)), 
+      prec(PREC.DOT, seq(field('receiver', $._primary_expression), 
       $._member_access_operator,
       field('selector', choice(
-        $.call_expression,
         $.simple_identifier,
         $.parenthesized_expression,
         "class"
@@ -730,8 +729,8 @@ module.exports = grammar({
       $.when_expression,
       $.try_expression,
       $.jump_expression,
-      $.call_expression,
-      $.index_access_expression,
+      $.dot_qualified_expression,
+      $.call_expression
     ),
 
     parenthesized_expression: $ => seq("(", $._expression, ")"),

@@ -130,16 +130,15 @@
 
 ; function()
 (call_expression
-	expression: (simple_identifier) @function)
+	. (simple_identifier) @function)
 
 ; object.function() or object.property.function()
-(dot_qualified_expression
-	receiver: (_)
-    selector: (call_expression
-    	expression: (simple_identifier)@function))
+(call_expression
+	(dot_qualified_expression
+		selector: (simple_identifier) @function) . )
 
 (call_expression
-	expression: (simple_identifier) @function.builtin
+	. (simple_identifier) @function.builtin
     (#any-of? @function.builtin
 		"arrayOf"
 		"arrayOfNulls"
@@ -216,27 +215,30 @@
 
 ; There are 3 ways to define a regex
 ;    - "[abc]?".toRegex()
-(dot_qualified_expression
-	receiver: (string_literal) @string.regex
-    selector: (call_expression
-    	expression: (simple_identifier)@function))
+(call_expression
+	(dot_qualified_expression
+		receiver: ((string_literal) @string.regex)
+		selector: (simple_identifier) @_function
+			(#eq? @_function "toRegex")))
 
 ;    - Regex("[abc]?")
 (call_expression
-	expression: (simple_identifier) @_function
-	(#eq? @_function "Regex")
-	args: (value_arguments
-			(value_argument
-				(string_literal) @string.regex)))
+	((simple_identifier) @_function
+	(#eq? @_function "Regex"))
+	(value_arguments
+		(value_argument
+			(string_literal) @string.regex)))
 
 ;   - Regex.fromLiteral("[abc]?")
-(dot_qualified_expression
-	receiver: (simple_identifier)
-    selector: (call_expression
-    	expression: (simple_identifier) @function
-		args: (value_arguments
-			(value_argument
-				(string_literal) @string.regex))))
+(call_expression
+	(dot_qualified_expression
+		receiver: ((simple_identifier) @_class
+		(#eq? @_class "Regex"))
+		selector: (simple_identifier) @_function
+			(#eq? @_function "fromLiteral")))
+	(value_arguments
+		(value_argument
+			(string_literal) @string.regex))
 
 ;;; Keywords
 

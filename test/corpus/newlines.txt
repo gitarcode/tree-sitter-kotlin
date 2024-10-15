@@ -8,15 +8,15 @@ bar.foo()
 --------------------------------------------------------------------------------
 
 (source_file
-  (dot_qualified_expression
-    receiver: (dot_qualified_expression
-      receiver: (simple_identifier)
-      selector: (call_expression
-        expression: (simple_identifier)
-        args: (value_arguments)))
-    selector: (call_expression
-      expression: (simple_identifier)
-      args: (value_arguments))))
+  (call_expression
+    expression: (dot_qualified_expression
+      receiver: (call_expression
+        expression: (dot_qualified_expression
+          receiver: (simple_identifier)
+          selector: (simple_identifier))
+        args: (value_arguments))
+      selector: (simple_identifier))
+    args: (value_arguments)))
 
 ================================================================================
 Eq after newline
@@ -127,19 +127,20 @@ fun foo() {
               id: (simple_identifier))
             initializer: (elvis_expression
               (elvis_expression
-                (dot_qualified_expression
-                  receiver: (simple_identifier)
-                  selector: (call_expression
-                    expression: (simple_identifier)
-                    args: (value_arguments
-                      (value_argument
-                        (boolean_literal)))))
-                (dot_qualified_expression
-                  receiver: (simple_identifier)
-                  selector: (call_expression
-                    expression: (simple_identifier)
-                    args: (value_arguments))))
+                (call_expression
+                  expression: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))
+                  args: (value_arguments
+                    (value_argument
+                      (boolean_literal))))
+                (call_expression
+                  expression: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))
+                  args: (value_arguments)))
               (jump_expression))))))))
+
 
 ================================================================================
 get after newline

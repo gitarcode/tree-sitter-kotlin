@@ -25,31 +25,31 @@ a ? . bar()
 --------------------------------------------------------------------------------
 
 (source_file
-  (dot_qualified_expression
-    receiver: (simple_identifier)
-    selector: (call_expression
-      expression: (simple_identifier)
-      args: (value_arguments)))
-  (dot_qualified_expression
-    receiver: (simple_identifier)
-    selector: (call_expression
-      expression: (simple_identifier)
-      args: (value_arguments)))
-  (dot_qualified_expression
-    receiver: (simple_identifier)
-    selector: (call_expression
-      expression: (simple_identifier)
-      args: (value_arguments)))
-  (dot_qualified_expression
-    receiver: (simple_identifier)
-    selector: (call_expression
-      expression: (simple_identifier)
-      args: (value_arguments)))
-  (dot_qualified_expression
-    receiver: (simple_identifier)
-    selector: (call_expression
-      expression: (simple_identifier)
-      args: (value_arguments))))
+  (call_expression
+    expression: (dot_qualified_expression
+      receiver: (simple_identifier)
+      selector: (simple_identifier))
+    args: (value_arguments))
+  (call_expression
+    expression: (dot_qualified_expression
+      receiver: (simple_identifier)
+      selector: (simple_identifier))
+    args: (value_arguments))
+  (call_expression
+    expression: (dot_qualified_expression
+      receiver: (simple_identifier)
+      selector: (simple_identifier))
+    args: (value_arguments))
+  (call_expression
+    expression: (dot_qualified_expression
+      receiver: (simple_identifier)
+      selector: (simple_identifier))
+    args: (value_arguments))
+  (call_expression
+    expression: (dot_qualified_expression
+      receiver: (simple_identifier)
+      selector: (simple_identifier))
+    args: (value_arguments)))
 
 ================================================================================
 Function calls
@@ -310,20 +310,20 @@ foo.forEach { (index, value) -> 2 }
 --------------------------------------------------------------------------------
 
 (source_file
-  (dot_qualified_expression
-    receiver: (simple_identifier)
-    selector: (call_expression
-      expression: (simple_identifier)
-      lambda_arg: (annotated_lambda
-        (lambda_literal
-          parameters: (lambda_parameters
-            (multi_variable_declaration
-              (variable_declaration
-                id: (simple_identifier))
-              (variable_declaration
-                id: (simple_identifier))))
-          body: (statements
-            (integer_literal)))))))
+  (call_expression
+    expression: (dot_qualified_expression
+      receiver: (simple_identifier)
+      selector: (simple_identifier))
+    lambda_arg: (annotated_lambda
+      (lambda_literal
+        parameters: (lambda_parameters
+          (multi_variable_declaration
+            (variable_declaration
+              id: (simple_identifier))
+            (variable_declaration
+              id: (simple_identifier))))
+        body: (statements
+          (integer_literal))))))
 
 ================================================================================
 Function call with trailing lambda
@@ -522,33 +522,33 @@ class Square() : Rectangle(), Polygon {
         body: (function_body
           (block
             (statements
-              (dot_qualified_expression
-                receiver: (this_expression
+              (call_expression
+                expression: (dot_qualified_expression
+                  receiver: (this_expression
                     (type_identifier))
-                selector: (call_expression
-                  expression: (simple_identifier)
-                  args: (value_arguments)))
-              (dot_qualified_expression
-                receiver: (super_expression
+                  selector: (simple_identifier))
+                args: (value_arguments))
+              (call_expression
+                expression: (dot_qualified_expression
+                  receiver: (super_expression
                     (type_identifier))
-                selector: (call_expression
-                  expression: (simple_identifier)
-                  args: (value_arguments)))
-              (dot_qualified_expression
-                receiver: (super_expression
+                  selector: (simple_identifier))
+                args: (value_arguments))
+              (call_expression
+                expression: (dot_qualified_expression
+                  receiver: (super_expression
                     (user_type
                       (type_identifier)))
-                selector: (call_expression
-                  expression: (simple_identifier)
-                  args: (value_arguments)))
-              (dot_qualified_expression
-                receiver: (super_expression
+                  selector: (simple_identifier))
+                args: (value_arguments))
+              (call_expression
+                expression: (dot_qualified_expression
+                  receiver: (super_expression
                     (user_type
                       (type_identifier))
                     (type_identifier))
-                selector: (call_expression
-                  expression: (simple_identifier)
-                  args: (value_arguments))))))))))
+                  selector: (simple_identifier))
+                args: (value_arguments)))))))))
 
 ================================================================================
 If else-if else expression
