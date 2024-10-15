@@ -613,7 +613,6 @@ module.exports = grammar({
       $.as_expression,
       $.spread_expression,
       $.if_expression,
-      $.index_access_expression,
     ),
 
     postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('operator', $.postfix_unary_operator))),
@@ -730,7 +729,8 @@ module.exports = grammar({
       $.try_expression,
       $.jump_expression,
       $.dot_qualified_expression,
-      $.call_expression
+      $.call_expression,
+      $.index_access_expression
     ),
 
     parenthesized_expression: $ => seq("(", $._expression, ")"),

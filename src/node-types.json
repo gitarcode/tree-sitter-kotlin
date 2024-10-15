@@ -769,6 +769,10 @@
             "named": true
           },
           {
+            "type": "index_access_expression",
+            "named": true
+          },
+          {
             "type": "integer_literal",
             "named": true
           },
@@ -2783,6 +2787,10 @@
           },
           {
             "type": "hex_literal",
+            "named": true
+          },
+          {
+            "type": "index_access_expression",
             "named": true
           },
           {

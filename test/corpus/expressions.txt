@@ -659,3 +659,23 @@ fun f(a: A): A {
                     (type_identifier))
                   (simple_identifier)))
               (class_body))))))))
+
+================================================================================
+Array access call
+================================================================================
+
+ configurationElements[0].substringBefore("?")
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (call_expression
+    expression: (dot_qualified_expression
+      receiver: (index_access_expression
+        expression: (simple_identifier)
+        index: (integer_literal))
+      selector: (simple_identifier))
+    args: (value_arguments
+      (value_argument
+        (string_literal
+          (string_content))))))
