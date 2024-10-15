@@ -698,3 +698,92 @@ input!!.copyTo(it)
     args: (value_arguments
       (value_argument
         (simple_identifier)))))
+
+================================================================================
+Call expressions on lambdas
+================================================================================
+
+suppressions
+    .sorted()
+    .joinToString()
+    .let { sortedSuppressions -> "@file:${suppressType.annotationName}($sortedSuppressions)" }
+    .let { annotation ->
+        PsiFileFactory
+            .getInstance(psi.project)
+            .createFileFromText(KotlinLanguage.INSTANCE, annotation)
+            ?.firstChild
+            ?: throw IllegalStateException("Can not create annotation '$annotation'")
+    }.node
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (dot_qualified_expression
+    receiver: (call_expression
+      expression: (dot_qualified_expression
+        receiver: (call_expression
+          expression: (dot_qualified_expression
+            receiver: (call_expression
+              expression: (dot_qualified_expression
+                receiver: (call_expression
+                  expression: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))
+                  args: (value_arguments))
+                selector: (simple_identifier))
+              args: (value_arguments))
+            selector: (simple_identifier))
+          lambda_arg: (annotated_lambda
+            (lambda_literal
+              parameters: (lambda_parameters
+                (variable_declaration
+                  id: (simple_identifier)))
+              body: (statements
+                (string_literal
+                  (string_content)
+                  (interpolated_expression
+                    (dot_qualified_expression
+                      receiver: (simple_identifier)
+                      selector: (simple_identifier)))
+                  (string_content)
+                  (interpolated_identifier)
+                  (string_content))))))
+        selector: (simple_identifier))
+      lambda_arg: (annotated_lambda
+        (lambda_literal
+          parameters: (lambda_parameters
+            (variable_declaration
+              id: (simple_identifier)))
+          body: (statements
+            (elvis_expression
+              (dot_qualified_expression
+                receiver: (call_expression
+                  expression: (dot_qualified_expression
+                    receiver: (call_expression
+                      expression: (dot_qualified_expression
+                        receiver: (simple_identifier)
+                        selector: (simple_identifier))
+                      args: (value_arguments
+                        (value_argument
+                          (dot_qualified_expression
+                            receiver: (simple_identifier)
+                            selector: (simple_identifier)))))
+                    selector: (simple_identifier))
+                  args: (value_arguments
+                    (value_argument
+                      (dot_qualified_expression
+                        receiver: (simple_identifier)
+                        selector: (simple_identifier)))
+                    (value_argument
+                      (simple_identifier))))
+                selector: (simple_identifier))
+              (call_expression
+                expression: (jump_expression
+                  (simple_identifier))
+                args: (value_arguments
+                  (value_argument
+                    (string_literal
+                      (string_content)
+                      (interpolated_identifier)
+                      (string_content))))))))))
+    selector: (simple_identifier)))

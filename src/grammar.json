@@ -5469,6 +5469,10 @@
         {
           "type": "STRING",
           "value": "get"
+        },
+        {
+          "type": "STRING",
+          "value": "annotation"
         }
       ]
     },

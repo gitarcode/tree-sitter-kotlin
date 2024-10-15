@@ -1068,7 +1068,8 @@ module.exports = grammar({
       "value",
       "actual",
       "set",
-      "get"
+      "get",
+      "annotation"
       // TODO: More soft keywords
     ),
 
