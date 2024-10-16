@@ -801,3 +801,32 @@ SceneStateParameters::class.java
     receiver: (callable_reference
       (type_identifier))
     selector: (simple_identifier)))
+
+================================================================================
+Dangling else ambiguity
+================================================================================
+
+if (x == 1)
+	if (y == 2)
+      "a"
+	else
+      "b"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (if_expression
+    condition: (equality_expression
+      (simple_identifier)
+      (integer_literal))
+    consequence: (control_structure_body
+      (if_expression
+        condition: (equality_expression
+          (simple_identifier)
+          (integer_literal))
+        consequence: (control_structure_body
+          (string_literal
+            (string_content)))
+        alternative: (control_structure_body
+          (string_literal
+            (string_content)))))))

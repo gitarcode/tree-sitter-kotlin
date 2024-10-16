@@ -812,7 +812,7 @@ module.exports = grammar({
       $._super_at
     )),
 
-    if_expression: $ => prec.left(seq(
+    if_expression: $ => prec.right(seq(
       "if",
       "(", field('condition', $._expression), ")",
       choice(
