@@ -787,3 +787,17 @@ suppressions
                         (interpolated_identifier)
                         (string_content)))))))))))
     selector: (simple_identifier)))
+
+================================================================================
+Class literal access
+================================================================================
+
+SceneStateParameters::class.java
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (dot_qualified_expression
+    receiver: (callable_reference
+      (type_identifier))
+    selector: (simple_identifier)))

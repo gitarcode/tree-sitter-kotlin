@@ -4990,10 +4990,6 @@
           "value": "."
         },
         {
-          "type": "STRING",
-          "value": "::"
-        },
-        {
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",

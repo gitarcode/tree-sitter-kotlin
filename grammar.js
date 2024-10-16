@@ -924,7 +924,7 @@ module.exports = grammar({
 
     postfix_unary_operator: $ => choice("++", "--", "!!"),
 
-    _member_access_operator: $ => choice(".", "::", alias($.safe_nav, '?.')),
+    _member_access_operator: $ => choice(".", alias($.safe_nav, '?.')),
 
     directly_assignable_expression: $ => prec(
       PREC.ASSIGNMENT,
