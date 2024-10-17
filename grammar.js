@@ -899,7 +899,7 @@ module.exports = grammar({
     ),
 
     callable_reference: $ => seq(
-      optional(alias($.simple_identifier, $.type_identifier)), // TODO
+      optional(choice(alias($.simple_identifier, $.type_identifier), $.this_expression)),
       "::",
       choice($.simple_identifier, "class")
     ),

@@ -854,3 +854,23 @@ Lambda parameters with trailing comma
         (dot_qualified_expression
           receiver: (simple_identifier)
           selector: (simple_identifier))))))
+
+================================================================================
+Class literal with this
+================================================================================
+
+this::class.simpleName
+this@A::class.simpleName
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (dot_qualified_expression
+    receiver: (callable_reference
+      (this_expression))
+    selector: (simple_identifier))
+  (dot_qualified_expression
+    receiver: (callable_reference
+      (this_expression
+        (type_identifier)))
+    selector: (simple_identifier)))
