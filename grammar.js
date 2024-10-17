@@ -25,6 +25,9 @@
 // Using an adapted version of https://kotlinlang.org/docs/reference/grammar.html
 
 const PREC = {
+  INDEX: 18,
+  CALL: 17,
+  DOT: 16,
   POSTFIX: 16,
   PREFIX: 15,
   TYPE_RHS: 14,
@@ -74,16 +77,7 @@ module.exports = grammar({
     [$.class_modifier, $.simple_identifier],
 
     // "<x>.<y> = z assignment conflicts with <x>.<y>() function call"
-    [$.postfix_unary_expression, $._expression],
-
-    // ambiguity between generics and comparison operations (foo < b > c)
-    [$.call_expression, $.range_expression, $.comparison_expression],
-    [$.call_expression, $.elvis_expression, $.comparison_expression],
-    [$.call_expression, $.check_expression, $.comparison_expression],
-    [$.call_expression, $.additive_expression, $.comparison_expression],
-    [$.call_expression, $.infix_expression, $.comparison_expression],
-    [$.call_expression, $.multiplicative_expression, $.comparison_expression],
-    [$.type_arguments, $._comparison_operator],
+    // [$.postfix_unary_expression, $._expression],
 
     // ambiguity between prefix expressions and annotations before functions
     [$._statement, $.prefix_expression],
@@ -95,9 +89,6 @@ module.exports = grammar({
     [$.user_type],
     [$.user_type, $.anonymous_function],
     [$.user_type, $.function_type],
-
-    // ambiguity between annotated_lambda with modifiers and modifiers from var declarations
-    [$.annotated_lambda, $.modifiers],
 
     // ambiguity between simple identifier 'set/get' with actual setter/getter functions.
     [$.setter, $.simple_identifier],
@@ -111,22 +102,14 @@ module.exports = grammar({
     // ambiguity between associating type modifiers
     [$.not_nullable_type],
 
-    // Ambiguity in matching enum_entery elements in a list
-    // This is a shift-reduce conflict between:
-    //   - (_enum_entries  enum_entry  ',')  •
-    //   - (_enum_entries_repeat1  ','  •  enum_entry
-    // By defining a conflict here, we let the GLR parser explore both paths, 
-    // the reduce one will die out soon if there is no enum_entry to match further.
-    [$._enum_entries],
-    // shift/reduce conflict when parsing a class without body:
-    // 'if'  '('  _expression  ')'  'class'  simple_identifier  •
-    [$.class_declaration],
     // shift/reduce conflicts when matching simple identifiers.
     //   - 'import'  (identifier  simple_identifier  •  identifier_repeat1)
     //   - 'import'  (identifier  simple_identifier)  •  '.'  …
     // By defining a conflict here, we let the parser to continue. The second path
     // eventually dies if there is no '.'
-    [$.identifier]
+    [$.identifier],
+
+    [$._expression, $.call_expression],
   ],
 
   externals: $ => [
@@ -226,7 +209,7 @@ module.exports = grammar({
     // Classes
     // ==========
 
-    class_declaration: $ => seq(
+    class_declaration: $ => prec.left(seq(
       optional(field('modifiers', $.modifiers)),
       choice("class", seq(optional("fun"), "interface")),
       field('name', $.simple_identifier),
@@ -235,7 +218,7 @@ module.exports = grammar({
       optional(seq(":", $._delegation_specifiers)),
       optional($.type_constraints),
       optional(field('body', $.class_body))
-    ),
+    )),
 
     primary_constructor: $ => seq(
       optional(seq(optional(field('modifiers', $.modifiers)), "constructor")),
@@ -451,7 +434,7 @@ module.exports = grammar({
     // Enum classes
     // ==========
 
-    _enum_entries: $ => seq(sep1($.enum_entry, ","), optional(",")),
+    _enum_entries: $ => prec.left(seq(sep1($.enum_entry, ","), optional(","))),
 
     enum_entry: $ => seq(
       optional(field('modifiers', $.modifiers)),
@@ -625,28 +608,47 @@ module.exports = grammar({
     // Unary expressions
 
     _unary_expression: $ => choice(
-      $.postfix_expression,
-      $.call_expression,
-      $.indexing_expression,
-      $.navigation_expression,
       $.prefix_expression,
+      $.postfix_expression,
       $.as_expression,
-      $.spread_expression
+      $.spread_expression,
+      $.if_expression,
+      $.jump_expression,
     ),
 
-    postfix_expression: $ => prec.left(PREC.POSTFIX, seq(field('expression', $._expression), field('op', $.postfix_unary_operator))),
+    postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $._expression), field('operator', $.postfix_unary_operator))),
 
-    call_expression: $ => prec.left(PREC.POSTFIX, seq(field('expression', $._expression), field('suffix', $.call_suffix))),
+    dot_qualified_expression: $ => prec(PREC.DOT, 
+      seq(field('receiver', choice($._primary_expression, $.postfix_expression)), 
+      $._member_access_operator,
+      field('selector', choice(
+        $.simple_identifier,
+        $.parenthesized_expression,
+        "class"
+      ))
+    )),
 
-    indexing_expression: $ => prec.left(PREC.POSTFIX, seq($._expression, $.indexing_suffix)),
+    call_expression: $ => seq(field('expression', $._primary_expression), 
+      optional($.type_arguments),
+      choice(
+        prec(PREC.CALL, seq(optional(field('args', $.value_arguments)), field('lambda_arg', $.annotated_lambda))),
+        field('args', $.value_arguments)
+      )),
+    
+    index_access_expression: $ => prec(PREC.INDEX, seq(
+      field('expression', $._expression), 
+      '[',
+      field('index', $._expression),
+      repeat(seq(',', $._expression)),
+      optional(','),
+      ']')
+    ),
 
-    navigation_expression: $ => prec.left(PREC.POSTFIX, seq(field('expression', $._expression), field('suffix', $.navigation_suffix))),
+    prefix_expression: $ => seq(choice($.annotation, $.label, field('op', $.prefix_unary_operator)), field('expression', $._expression)),
 
-    prefix_expression: $ => prec.right(seq(choice($.annotation, $.label, field('op', $.prefix_unary_operator)), field('expression', $._expression))),
+    as_expression: $ => prec(PREC.AS, seq($._expression, $._as_operator, $._type)),
 
-    as_expression: $ => prec.left(PREC.AS, seq($._expression, $._as_operator, $._type)),
-
-    spread_expression: $ => prec.left(PREC.SPREAD, seq("*", $._expression)),
+    spread_expression: $ => prec(PREC.SPREAD, seq("*", $._expression)),
 
     // Binary expressions
 
@@ -657,8 +659,6 @@ module.exports = grammar({
       $.infix_expression,
       $.elvis_expression,
       $.check_expression,
-      $.comparison_expression,
-      $.equality_expression,
       $.comparison_expression,
       $.equality_expression,
       $.conjunction_expression,
@@ -688,26 +688,6 @@ module.exports = grammar({
     disjunction_expression: $ => prec.left(PREC.DISJUNCTION, seq($._expression, "||", $._expression)),
 
     // Suffixes
-
-    indexing_suffix: $ => seq("[", sep1($._expression, ","), "]"),
-
-    navigation_suffix: $ => seq(
-      $._member_access_operator,
-      choice(
-        $.simple_identifier,
-        $.parenthesized_expression,
-        "class"
-      )
-    ),
-
-    call_suffix: $ => prec.left(seq(
-      // this introduces ambiguities with 'less than' for comparisons
-      optional($.type_arguments),
-      choice(
-        prec(PREC.ARGUMENTS, seq(optional(field('args', $.value_arguments)), field('lambda_arg', $.annotated_lambda))),
-        field('args', $.value_arguments)
-      )
-    )),
 
     annotated_lambda: $ => seq(
       repeat($.annotation),
@@ -746,10 +726,11 @@ module.exports = grammar({
       $.collection_literal,
       $.this_expression,
       $.super_expression,
-      $.if_expression,
       $.when_expression,
       $.try_expression,
-      $.jump_expression
+      $.dot_qualified_expression,
+      $.call_expression,
+      $.index_access_expression
     ),
 
     parenthesized_expression: $ => seq("(", $._expression, ")"),
@@ -943,29 +924,14 @@ module.exports = grammar({
 
     postfix_unary_operator: $ => choice("++", "--", "!!"),
 
-    _member_access_operator: $ => choice(".", "::", alias($.safe_nav, '?.')),
-
-    _indexing_suffix: $ => seq(
-      '[',
-      $._expression,
-      repeat(seq(',', $._expression)),
-      optional(','),
-      ']'
-    ),
-
-    _postfix_unary_suffix: $ => choice(
-      $.postfix_unary_operator,
-      $.navigation_suffix,
-      $.indexing_suffix
-    ),
-
-    postfix_unary_expression: $ => seq($._primary_expression, repeat($._postfix_unary_suffix)),
+    _member_access_operator: $ => choice(".", alias($.safe_nav, '?.')),
 
     directly_assignable_expression: $ => prec(
       PREC.ASSIGNMENT,
       choice(
-        $.postfix_unary_expression,
-        $.simple_identifier
+        $.dot_qualified_expression,
+        $.index_access_expression,
+        $.simple_identifier,
         // TODO
       )
     ),
@@ -1102,7 +1068,8 @@ module.exports = grammar({
       "value",
       "actual",
       "set",
-      "get"
+      "get",
+      "annotation"
       // TODO: More soft keywords
     ),
 

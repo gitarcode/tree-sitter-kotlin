@@ -23,13 +23,11 @@ fun foo() {
               id: (simple_identifier))
             initializer: (call_expression
               expression: (simple_identifier)
-              suffix: (call_suffix
-                args: (value_arguments
-                  (value_argument
-                    (simple_identifier))))))
+              args: (value_arguments
+                (value_argument
+                  (simple_identifier)))))
           (postfix_expression
-            expression: (indexing_expression
-              (simple_identifier)
-              (indexing_suffix
-                (integer_literal)))
-            op: (postfix_unary_operator)))))))
+            expression: (index_access_expression
+              expression: (simple_identifier)
+              index: (integer_literal))
+            operator: (postfix_unary_operator)))))))

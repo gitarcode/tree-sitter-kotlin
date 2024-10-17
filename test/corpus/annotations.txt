@@ -123,8 +123,5 @@ fun foo() = bar {}
     body: (function_body
       (call_expression
         expression: (simple_identifier)
-        suffix: (call_suffix
-          lambda_arg: (annotated_lambda
-            (lambda_literal)))))))
-
-
+        lambda_arg: (annotated_lambda
+          (lambda_literal))))))

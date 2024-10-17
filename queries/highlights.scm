@@ -36,8 +36,7 @@
 
 ; id_1.id_2.id_3: `id_2` and `id_3` are assumed as object properties
 (_
-	(navigation_suffix
-		(simple_identifier) @property))
+	selector: (simple_identifier) @property)
 
 (enum_entry
 	(simple_identifier) @constant)
@@ -135,9 +134,8 @@
 
 ; object.function() or object.property.function()
 (call_expression
-	(navigation_expression
-		(navigation_suffix
-			(simple_identifier) @function) . ))
+	(dot_qualified_expression
+		selector: (simple_identifier) @function) . )
 
 (call_expression
 	. (simple_identifier) @function.builtin
@@ -218,33 +216,29 @@
 ; There are 3 ways to define a regex
 ;    - "[abc]?".toRegex()
 (call_expression
-	(navigation_expression
-		((string_literal) @string.regex)
-		(navigation_suffix
-			((simple_identifier) @_function
-			(#eq? @_function "toRegex")))))
+	(dot_qualified_expression
+		receiver: ((string_literal) @string.regex)
+		selector: (simple_identifier) @_function
+			(#eq? @_function "toRegex")))
 
 ;    - Regex("[abc]?")
 (call_expression
 	((simple_identifier) @_function
 	(#eq? @_function "Regex"))
-	(call_suffix
-		(value_arguments
-			(value_argument
-				(string_literal) @string.regex))))
+	(value_arguments
+		(value_argument
+			(string_literal) @string.regex)))
 
 ;   - Regex.fromLiteral("[abc]?")
 (call_expression
-	(navigation_expression
-		((simple_identifier) @_class
+	(dot_qualified_expression
+		receiver: ((simple_identifier) @_class
 		(#eq? @_class "Regex"))
-		(navigation_suffix
-			((simple_identifier) @_function
-			(#eq? @_function "fromLiteral"))))
-	(call_suffix
-		(value_arguments
-			(value_argument
-				(string_literal) @string.regex))))
+		selector: (simple_identifier) @_function
+			(#eq? @_function "fromLiteral")))
+	(value_arguments
+		(value_argument
+			(string_literal) @string.regex))
 
 ;;; Keywords
 

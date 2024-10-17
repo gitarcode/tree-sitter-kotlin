@@ -366,14 +366,12 @@ enum class Enum {
         parameters: (function_value_parameters)
         body: (function_body
           (call_expression
-            expression: (navigation_expression
-              expression: (simple_identifier)
-              suffix: (navigation_suffix
-                (simple_identifier)))
-            suffix: (call_suffix
-              args: (value_arguments
-                (value_argument
-                  (integer_literal)))))))))
+            expression: (dot_qualified_expression
+              receiver: (simple_identifier)
+              selector: (simple_identifier))
+            args: (value_arguments
+              (value_argument
+                (integer_literal))))))))
   (class_declaration
     modifiers: (modifiers
       (class_modifier))

@@ -26,40 +26,30 @@ a ? . bar()
 
 (source_file
   (call_expression
-    expression: (navigation_expression
-      expression: (simple_identifier)
-      suffix: (navigation_suffix
-        (simple_identifier)))
-    suffix: (call_suffix
-      args: (value_arguments)))
+    expression: (dot_qualified_expression
+      receiver: (simple_identifier)
+      selector: (simple_identifier))
+    args: (value_arguments))
   (call_expression
-    expression: (navigation_expression
-      expression: (simple_identifier)
-      suffix: (navigation_suffix
-        (simple_identifier)))
-    suffix: (call_suffix
-      args: (value_arguments)))
+    expression: (dot_qualified_expression
+      receiver: (simple_identifier)
+      selector: (simple_identifier))
+    args: (value_arguments))
   (call_expression
-    expression: (navigation_expression
-      expression: (simple_identifier)
-      suffix: (navigation_suffix
-        (simple_identifier)))
-    suffix: (call_suffix
-      args: (value_arguments)))
+    expression: (dot_qualified_expression
+      receiver: (simple_identifier)
+      selector: (simple_identifier))
+    args: (value_arguments))
   (call_expression
-    expression: (navigation_expression
-      expression: (simple_identifier)
-      suffix: (navigation_suffix
-        (simple_identifier)))
-    suffix: (call_suffix
-      args: (value_arguments)))
+    expression: (dot_qualified_expression
+      receiver: (simple_identifier)
+      selector: (simple_identifier))
+    args: (value_arguments))
   (call_expression
-    expression: (navigation_expression
-      expression: (simple_identifier)
-      suffix: (navigation_suffix
-        (simple_identifier)))
-    suffix: (call_suffix
-      args: (value_arguments))))
+    expression: (dot_qualified_expression
+      receiver: (simple_identifier)
+      selector: (simple_identifier))
+    args: (value_arguments)))
 
 ================================================================================
 Function calls
@@ -73,18 +63,17 @@ sum(1, 2)
 (source_file
   (call_expression
     expression: (simple_identifier)
-    suffix: (call_suffix
-      args: (value_arguments
-        (value_argument
-          (string_literal (string_content))))))
+    args: (value_arguments
+      (value_argument
+        (string_literal
+          (string_content)))))
   (call_expression
     expression: (simple_identifier)
-    suffix: (call_suffix
-      args: (value_arguments
-        (value_argument
-          (integer_literal))
-        (value_argument
-          (integer_literal))))))
+    args: (value_arguments
+      (value_argument
+        (integer_literal))
+      (value_argument
+        (integer_literal)))))
 
 ================================================================================
 When expression
@@ -183,10 +172,9 @@ val x = expect(1)
       id: (simple_identifier))
     initializer: (call_expression
       expression: (simple_identifier)
-      suffix: (call_suffix
-        args: (value_arguments
-          (value_argument
-            (integer_literal)))))))
+      args: (value_arguments
+        (value_argument
+          (integer_literal))))))
 
 ================================================================================
 Expect as a top-level expression
@@ -199,10 +187,9 @@ expect(1)
 (source_file
   (call_expression
     expression: (simple_identifier)
-    suffix: (call_suffix
-      args: (value_arguments
-        (value_argument
-          (integer_literal))))))
+    args: (value_arguments
+      (value_argument
+        (integer_literal)))))
 
 ================================================================================
 Expect as a platform modifier
@@ -233,26 +220,24 @@ foo<Int>(1)
 (source_file
   (call_expression
     expression: (simple_identifier)
-    suffix: (call_suffix
-      (type_arguments
-        (type_projection
-          (user_type
-            (type_identifier))))
-      args: (value_arguments
-        (value_argument
-          (integer_literal))
-        (value_argument
-          (integer_literal)))))
+    (type_arguments
+      (type_projection
+        (user_type
+          (type_identifier))))
+    args: (value_arguments
+      (value_argument
+        (integer_literal))
+      (value_argument
+        (integer_literal))))
   (call_expression
     expression: (simple_identifier)
-    suffix: (call_suffix
-      (type_arguments
-        (type_projection
-          (user_type
-            (type_identifier))))
-      args: (value_arguments
-        (value_argument
-          (integer_literal))))))
+    (type_arguments
+      (type_projection
+        (user_type
+          (type_identifier))))
+    args: (value_arguments
+      (value_argument
+        (integer_literal)))))
 
 ================================================================================
 Less than for comparison
@@ -298,14 +283,13 @@ val a = a<2>(3)
       id: (simple_identifier))
     initializer: (call_expression
       expression: (simple_identifier)
-      suffix: (call_suffix
-        (type_arguments
-          (type_projection
-            (user_type
-              (type_identifier))))
-        args: (value_arguments
-          (value_argument
-            (simple_identifier))))))
+      (type_arguments
+        (type_projection
+          (user_type
+            (type_identifier))))
+      args: (value_arguments
+        (value_argument
+          (simple_identifier)))))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration
@@ -327,21 +311,19 @@ foo.forEach { (index, value) -> 2 }
 
 (source_file
   (call_expression
-    expression: (navigation_expression
-      expression: (simple_identifier)
-      suffix: (navigation_suffix
-        (simple_identifier)))
-    suffix: (call_suffix
-      lambda_arg: (annotated_lambda
-        (lambda_literal
-          parameters: (lambda_parameters
-            (multi_variable_declaration
-              (variable_declaration
-                id: (simple_identifier))
-              (variable_declaration
-                id: (simple_identifier))))
-          body: (statements
-            (integer_literal)))))))
+    expression: (dot_qualified_expression
+      receiver: (simple_identifier)
+      selector: (simple_identifier))
+    lambda_arg: (annotated_lambda
+      (lambda_literal
+        parameters: (lambda_parameters
+          (multi_variable_declaration
+            (variable_declaration
+              id: (simple_identifier))
+            (variable_declaration
+              id: (simple_identifier))))
+        body: (statements
+          (integer_literal))))))
 
 ================================================================================
 Function call with trailing lambda
@@ -354,14 +336,13 @@ with(s) { length }
 (source_file
   (call_expression
     expression: (simple_identifier)
-    suffix: (call_suffix
-      args: (value_arguments
-        (value_argument
-          (simple_identifier)))
-      lambda_arg: (annotated_lambda
-        (lambda_literal
-          body: (statements
-            (simple_identifier)))))))
+    args: (value_arguments
+      (value_argument
+        (simple_identifier)))
+    lambda_arg: (annotated_lambda
+      (lambda_literal
+        body: (statements
+          (simple_identifier))))))
 
 ================================================================================
 Multiple Statements on a Single Line
@@ -375,71 +356,63 @@ when (dir) {
 --------------------------------------------------------------------------------
 
 (source_file
-      (function_declaration
-        name: (simple_identifier)
-        parameters: (function_value_parameters)
-        body: (function_body
-          (block
-            (statements
-              (property_declaration
-                (binding_pattern_kind)
-                var_decl: (variable_declaration
-                  id: (simple_identifier))
-                initializer: (navigation_expression
-                  expression: (simple_identifier)
-                  suffix: (navigation_suffix
-                    (simple_identifier))))
-              (assignment
-                left: (directly_assignable_expression
-                  (postfix_unary_expression
-                    (simple_identifier)
-                    (navigation_suffix
-                      (simple_identifier))))
-                right: (navigation_expression
-                  expression: (simple_identifier)
-                  suffix: (navigation_suffix
-                    (simple_identifier))))
-              (assignment
-                left: (directly_assignable_expression
-                  (postfix_unary_expression
-                    (simple_identifier)
-                    (navigation_suffix
-                      (simple_identifier))))
-                right: (simple_identifier))))))
-      (when_expression
-        (when_subject
-          (simple_identifier))
-        (when_entry
-          (when_condition
-            (integer_literal))
-          (control_structure_body
-            (block
-              (statements
-                (property_declaration
-                  (binding_pattern_kind)
-                  var_decl: (variable_declaration
-                    id: (simple_identifier))
-                  initializer: (navigation_expression
-                    expression: (simple_identifier)
-                    suffix: (navigation_suffix
-                      (simple_identifier))))
-                (assignment
-                  left: (directly_assignable_expression
-                    (postfix_unary_expression
-                      (simple_identifier)
-                      (navigation_suffix
-                        (simple_identifier))))
-                  right: (navigation_expression
-                    expression: (simple_identifier)
-                    suffix: (navigation_suffix
-                      (simple_identifier))))
-                (assignment
-                  left: (directly_assignable_expression
-                    (postfix_unary_expression
-                      (simple_identifier)
-                      (navigation_suffix
-                        (simple_identifier))))
-                  right: (simple_identifier))))))))
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block
+        (statements
+          (property_declaration
+            (binding_pattern_kind)
+            var_decl: (variable_declaration
+              id: (simple_identifier))
+            initializer: (dot_qualified_expression
+              receiver: (simple_identifier)
+              selector: (simple_identifier)))
+          (assignment
+            left: (directly_assignable_expression
+              (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier)))
+            right: (dot_qualified_expression
+              receiver: (simple_identifier)
+              selector: (simple_identifier)))
+          (assignment
+            left: (directly_assignable_expression
+              (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier)))
+            right: (simple_identifier))))))
+  (when_expression
+    (when_subject
+      (simple_identifier))
+    (when_entry
+      (when_condition
+        (integer_literal))
+      (control_structure_body
+        (block
+          (statements
+            (property_declaration
+              (binding_pattern_kind)
+              var_decl: (variable_declaration
+                id: (simple_identifier))
+              initializer: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier)))
+            (assignment
+              left: (directly_assignable_expression
+                (dot_qualified_expression
+                  receiver: (simple_identifier)
+                  selector: (simple_identifier)))
+              right: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier)))
+            (assignment
+              left: (directly_assignable_expression
+                (dot_qualified_expression
+                  receiver: (simple_identifier)
+                  selector: (simple_identifier)))
+              right: (simple_identifier))))))))
 
 ================================================================================
 Comments in Strings
@@ -465,50 +438,52 @@ val comments = """ // and here """
       id: (simple_identifier))
     initializer: (call_expression
       expression: (simple_identifier)
-      suffix: (call_suffix
-        args: (value_arguments
-          (value_argument
-            (string_literal (string_content)))))))
+      args: (value_arguments
+        (value_argument
+          (string_literal
+            (string_content))))))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (call_expression
       expression: (simple_identifier)
-      suffix: (call_suffix
-        args: (value_arguments
-          (value_argument
-            (string_literal (string_content)))))))
+      args: (value_arguments
+        (value_argument
+          (string_literal
+            (string_content))))))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (call_expression
       expression: (simple_identifier)
-      suffix: (call_suffix
-        args: (value_arguments
-          (value_argument
-            (string_literal (string_content)))))))
+      args: (value_arguments
+        (value_argument
+          (string_literal
+            (string_content))))))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (call_expression
       expression: (simple_identifier)
-      suffix: (call_suffix
-        args: (value_arguments
-          (value_argument
-            (string_literal (string_content)))))))
+      args: (value_arguments
+        (value_argument
+          (string_literal
+            (string_content))))))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (string_literal (string_content)))
+    initializer: (string_literal
+      (string_content)))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (string_literal (string_content))))
+    initializer: (string_literal
+      (string_content))))
 
 ================================================================================
 Qualified this/super expressions
@@ -526,62 +501,54 @@ class Square() : Rectangle(), Polygon {
 --------------------------------------------------------------------------------
 
 (source_file
-      (class_declaration
+  (class_declaration
+    name: (simple_identifier)
+    (primary_constructor
+      (class_parameters))
+    (delegation_specifier
+      (constructor_invocation
+        (user_type
+          (type_identifier))
+        (value_arguments)))
+    (delegation_specifier
+      (user_type
+        (type_identifier)))
+    body: (class_body
+      (function_declaration
+        modifiers: (modifiers
+          (member_modifier))
         name: (simple_identifier)
-        (primary_constructor
-          (class_parameters))
-        (delegation_specifier
-          (constructor_invocation
-            (user_type
-              (type_identifier))
-            (value_arguments)))
-        (delegation_specifier
-          (user_type
-            (type_identifier)))
-        body: (class_body
-          (function_declaration
-            modifiers: (modifiers
-              (member_modifier))
-            name: (simple_identifier)
-            parameters: (function_value_parameters)
-            body: (function_body
-              (block
-                (statements
-                  (call_expression
-                    expression: (navigation_expression
-                      expression: (this_expression
-                        (type_identifier))
-                      suffix: (navigation_suffix
-                        (simple_identifier)))
-                    suffix: (call_suffix
-                      args: (value_arguments)))
-                  (call_expression
-                    expression: (navigation_expression
-                      expression: (super_expression
-                        (type_identifier))
-                      suffix: (navigation_suffix
-                        (simple_identifier)))
-                    suffix: (call_suffix
-                      args: (value_arguments)))
-                  (call_expression
-                    expression: (navigation_expression
-                      expression: (super_expression
-                        (user_type
-                          (type_identifier)))
-                      suffix: (navigation_suffix
-                        (simple_identifier)))
-                    suffix: (call_suffix
-                      args: (value_arguments)))
-                  (call_expression
-                    expression: (navigation_expression
-                      expression: (super_expression
-                        (user_type
-                          (type_identifier))
-                        (type_identifier))
-                      suffix: (navigation_suffix
-                        (simple_identifier)))
-                    suffix: (call_suffix
-                      args: (value_arguments))))))))))
+        parameters: (function_value_parameters)
+        body: (function_body
+          (block
+            (statements
+              (call_expression
+                expression: (dot_qualified_expression
+                  receiver: (this_expression
+                    (type_identifier))
+                  selector: (simple_identifier))
+                args: (value_arguments))
+              (call_expression
+                expression: (dot_qualified_expression
+                  receiver: (super_expression
+                    (type_identifier))
+                  selector: (simple_identifier))
+                args: (value_arguments))
+              (call_expression
+                expression: (dot_qualified_expression
+                  receiver: (super_expression
+                    (user_type
+                      (type_identifier)))
+                  selector: (simple_identifier))
+                args: (value_arguments))
+              (call_expression
+                expression: (dot_qualified_expression
+                  receiver: (super_expression
+                    (user_type
+                      (type_identifier))
+                    (type_identifier))
+                  selector: (simple_identifier))
+                args: (value_arguments)))))))))
 
 ================================================================================
 If else-if else expression
@@ -605,11 +572,10 @@ if (cond1) {
         (statements
           (call_expression
             expression: (simple_identifier)
-            suffix: (call_suffix
-              args: (value_arguments
-                (value_argument
-                  (string_literal
-                    (string_content)))))))))
+            args: (value_arguments
+              (value_argument
+                (string_literal
+                  (string_content))))))))
     alternative: (control_structure_body
       (if_expression
         condition: (simple_identifier)
@@ -618,22 +584,19 @@ if (cond1) {
             (statements
               (call_expression
                 expression: (simple_identifier)
-                suffix: (call_suffix
-                  args: (value_arguments
-                    (value_argument
-                      (string_literal
-                        (string_content)))))))))
+                args: (value_arguments
+                  (value_argument
+                    (string_literal
+                      (string_content))))))))
         alternative: (control_structure_body
           (block
             (statements
               (call_expression
                 expression: (simple_identifier)
-                suffix: (call_suffix
-                  args: (value_arguments
-                    (value_argument
-                      (string_literal
-                        (string_content)))))))))))))
-
+                args: (value_arguments
+                  (value_argument
+                    (string_literal
+                      (string_content))))))))))))
 ================================================================================
 Increment/decrement expressions
 ================================================================================
@@ -648,19 +611,222 @@ arr[0]++
 (source_file
   (postfix_expression
     expression: (simple_identifier)
-    op: (postfix_unary_operator))
+    operator: (postfix_unary_operator))
   (prefix_expression
     op: (prefix_unary_operator)
     expression: (simple_identifier))
   (postfix_expression
-    expression: (indexing_expression
-      (simple_identifier)
-      (indexing_suffix
-        (integer_literal)))
-    op: (postfix_unary_operator))
+    expression: (index_access_expression
+      expression: (simple_identifier)
+      index: (integer_literal))
+    operator: (postfix_unary_operator))
   (prefix_expression
     op: (prefix_unary_operator)
-    expression: (indexing_expression
+    expression: (index_access_expression
+      expression: (simple_identifier)
+      index: (integer_literal))))
+
+================================================================================
+Delegation
+================================================================================
+
+fun f(a: A): A {
+    return object : A by a {
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
+    type: (user_type
+      (type_identifier))
+    body: (function_body
+      (block
+        (statements
+          (jump_expression
+            (object_literal
+              (delegation_specifier
+                (explicit_delegation
+                  (user_type
+                    (type_identifier))
+                  (simple_identifier)))
+              (class_body))))))))
+
+================================================================================
+Array access call
+================================================================================
+
+configurationElements[0].substringBefore("?")
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (call_expression
+    expression: (dot_qualified_expression
+      receiver: (index_access_expression
+        expression: (simple_identifier)
+        index: (integer_literal))
+      selector: (simple_identifier))
+    args: (value_arguments
+      (value_argument
+        (string_literal
+          (string_content))))))
+
+================================================================================
+Postfix expression call
+================================================================================
+
+input!!.copyTo(it)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (call_expression
+    expression: (dot_qualified_expression
+      receiver: (postfix_expression
+        expression: (simple_identifier)
+        operator: (postfix_unary_operator))
+      selector: (simple_identifier))
+    args: (value_arguments
+      (value_argument
+        (simple_identifier)))))
+
+================================================================================
+Call expressions on lambdas
+================================================================================
+
+suppressions
+    .sorted()
+    .joinToString()
+    .let { sortedSuppressions -> "@file:${suppressType.annotationName}($sortedSuppressions)" }
+    .let { annotation ->
+        PsiFileFactory
+            .getInstance(psi.project)
+            .createFileFromText(KotlinLanguage.INSTANCE, annotation)
+            ?.firstChild
+            ?: throw IllegalStateException("Can not create annotation '$annotation'")
+    }.node
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (dot_qualified_expression
+    receiver: (call_expression
+      expression: (dot_qualified_expression
+        receiver: (call_expression
+          expression: (dot_qualified_expression
+            receiver: (call_expression
+              expression: (dot_qualified_expression
+                receiver: (call_expression
+                  expression: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))
+                  args: (value_arguments))
+                selector: (simple_identifier))
+              args: (value_arguments))
+            selector: (simple_identifier))
+          lambda_arg: (annotated_lambda
+            (lambda_literal
+              parameters: (lambda_parameters
+                (variable_declaration
+                  id: (simple_identifier)))
+              body: (statements
+                (string_literal
+                  (string_content)
+                  (interpolated_expression
+                    (dot_qualified_expression
+                      receiver: (simple_identifier)
+                      selector: (simple_identifier)))
+                  (string_content)
+                  (interpolated_identifier)
+                  (string_content))))))
+        selector: (simple_identifier))
+      lambda_arg: (annotated_lambda
+        (lambda_literal
+          parameters: (lambda_parameters
+            (variable_declaration
+              id: (simple_identifier)))
+          body: (statements
+            (elvis_expression
+              (dot_qualified_expression
+                receiver: (call_expression
+                  expression: (dot_qualified_expression
+                    receiver: (call_expression
+                      expression: (dot_qualified_expression
+                        receiver: (simple_identifier)
+                        selector: (simple_identifier))
+                      args: (value_arguments
+                        (value_argument
+                          (dot_qualified_expression
+                            receiver: (simple_identifier)
+                            selector: (simple_identifier)))))
+                    selector: (simple_identifier))
+                  args: (value_arguments
+                    (value_argument
+                      (dot_qualified_expression
+                        receiver: (simple_identifier)
+                        selector: (simple_identifier)))
+                    (value_argument
+                      (simple_identifier))))
+                selector: (simple_identifier))
+              (jump_expression
+                (call_expression
+                  expression: (simple_identifier)
+                  args: (value_arguments
+                    (value_argument
+                      (string_literal
+                        (string_content)
+                        (interpolated_identifier)
+                        (string_content)))))))))))
+    selector: (simple_identifier)))
+
+================================================================================
+Class literal access
+================================================================================
+
+SceneStateParameters::class.java
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (dot_qualified_expression
+    receiver: (callable_reference
+      (type_identifier))
+    selector: (simple_identifier)))
+
+================================================================================
+Dangling else ambiguity
+================================================================================
+
+if (x == 1)
+	if (y == 2)
+      "a"
+	else
+      "b"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (if_expression
+    condition: (equality_expression
       (simple_identifier)
-      (indexing_suffix
-        (integer_literal)))))
+      (integer_literal))
+    consequence: (control_structure_body
+      (if_expression
+        condition: (equality_expression
+          (simple_identifier)
+          (integer_literal))
+        consequence: (control_structure_body
+          (string_literal
+            (string_content)))
+        alternative: (control_structure_body
+          (string_literal
+            (string_content)))))))

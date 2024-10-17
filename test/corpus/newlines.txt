@@ -9,18 +9,14 @@ bar.foo()
 
 (source_file
   (call_expression
-    expression: (navigation_expression
-      expression: (call_expression
-        expression: (navigation_expression
-          expression: (simple_identifier)
-          suffix: (navigation_suffix
-            (simple_identifier)))
-        suffix: (call_suffix
-          args: (value_arguments)))
-      suffix: (navigation_suffix
-        (simple_identifier)))
-    suffix: (call_suffix
-      args: (value_arguments))))
+    expression: (dot_qualified_expression
+      receiver: (call_expression
+        expression: (dot_qualified_expression
+          receiver: (simple_identifier)
+          selector: (simple_identifier))
+        args: (value_arguments))
+      selector: (simple_identifier))
+    args: (value_arguments)))
 
 ================================================================================
 Eq after newline
@@ -30,6 +26,7 @@ fun foo()
     = 1
 
 ---
+
 (source_file
    (function_declaration
     name: (simple_identifier)
@@ -131,22 +128,19 @@ fun foo() {
             initializer: (elvis_expression
               (elvis_expression
                 (call_expression
-                  expression: (navigation_expression
-                    expression: (simple_identifier)
-                    suffix: (navigation_suffix
-                      (simple_identifier)))
-                  suffix: (call_suffix
-                    args: (value_arguments
-                      (value_argument
-                        (boolean_literal)))))
+                  expression: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))
+                  args: (value_arguments
+                    (value_argument
+                      (boolean_literal))))
                 (call_expression
-                  expression: (navigation_expression
-                    expression: (simple_identifier)
-                    suffix: (navigation_suffix
-                      (simple_identifier)))
-                  suffix: (call_suffix
-                    args: (value_arguments))))
+                  expression: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))
+                  args: (value_arguments)))
               (jump_expression))))))))
+
 
 ================================================================================
 get after newline
@@ -173,8 +167,7 @@ class Foo {
           (multiplicative_expression
             (call_expression
               expression: (simple_identifier)
-              suffix: (call_suffix
-                args: (value_arguments)))
+              args: (value_arguments))
             (integer_literal)))))))
 
 ================================================================================
@@ -194,12 +187,11 @@ foo(1,
   (line_comment)
   (call_expression
     expression: (simple_identifier)
-    suffix: (call_suffix
-      args: (value_arguments
-        (value_argument
-          (integer_literal))
-        (value_argument
-          (integer_literal))))))
+    args: (value_arguments
+      (value_argument
+        (integer_literal))
+      (value_argument
+        (integer_literal)))))
 
 ================================================================================
 Else after newline
@@ -217,12 +209,10 @@ else boo()
       expression: (simple_identifier))
     consequence: (control_structure_body
       (integer_literal))
-    alternative:
-      (control_structure_body
-        (call_expression
-          expression: (simple_identifier)
-          suffix: (call_suffix
-            args: (value_arguments))))))
+    alternative: (control_structure_body
+      (call_expression
+        expression: (simple_identifier)
+        args: (value_arguments)))))
 
 ================================================================================
 Else on the same line
@@ -243,5 +233,4 @@ if (!foo) 3 else boo()
       (control_structure_body
         (call_expression
           expression: (simple_identifier)
-          suffix: (call_suffix
-            args: (value_arguments))))))
+            args: (value_arguments)))))

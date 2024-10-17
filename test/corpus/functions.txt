@@ -124,9 +124,9 @@ fun foo(p0: Int): Long {
     parameters: (function_value_parameters
       (function_value_parameter
         parameter: (parameter
-                     name: (simple_identifier)
-                     type: (user_type
-                            (type_identifier)))))
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
     type: (user_type
       (type_identifier))
     body: (function_body
@@ -134,12 +134,10 @@ fun foo(p0: Int): Long {
         (statements
           (jump_expression
             (call_expression
-              expression: (navigation_expression
-                expression: (simple_identifier)
-                suffix: (navigation_suffix
-                  (simple_identifier)))
-              suffix: (call_suffix
-                args: (value_arguments)))))))))
+              expression: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier))
+              args: (value_arguments))))))))
 
 =====================
 Override functions
@@ -158,8 +156,7 @@ override fun boo() = foo()
     body: (function_body
       (call_expression
         expression: (simple_identifier)
-        suffix: (call_suffix
-          args: (value_arguments))))))
+        args: (value_arguments)))))
 
 =====================
 Set function call
@@ -185,12 +182,11 @@ fun test() {
             right: (boolean_literal))
           (call_expression
             expression: (simple_identifier)
-            suffix: (call_suffix
-              args: (value_arguments
-                (value_argument
-                  (simple_identifier))
-                (value_argument
-                  (simple_identifier))))))))))
+            args: (value_arguments
+              (value_argument
+                (simple_identifier))
+              (value_argument
+                (simple_identifier)))))))))
 
 ==================
 Anonymous function
@@ -285,10 +281,9 @@ val anon = fun() { assert(true) }
         (statements
           (call_expression
             expression: (simple_identifier)
-            suffix: (call_suffix
-              args: (value_arguments
-                (value_argument
-                  (boolean_literal)))))))))
+            args: (value_arguments
+              (value_argument
+                (boolean_literal))))))))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration
@@ -308,10 +303,9 @@ val anon = fun() { assert(true) }
           (statements
             (call_expression
               expression: (simple_identifier)
-              suffix: (call_suffix
-                args: (value_arguments
-                  (value_argument
-                    (boolean_literal)))))))))))
+              args: (value_arguments
+                (value_argument
+                  (boolean_literal))))))))))
 
 ==================
 Function with backticked name

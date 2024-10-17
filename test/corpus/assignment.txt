@@ -33,10 +33,9 @@ class Foo(){
           (statements
             (assignment
               left: (directly_assignable_expression
-                (postfix_unary_expression
-                  (this_expression)
-                  (navigation_suffix
-                    (simple_identifier))))
+                (dot_qualified_expression
+                  receiver: (this_expression)
+                  selector: (simple_identifier)))
               right: (simple_identifier))))))))
 ================================================================================
 Index Assignment
@@ -68,9 +67,8 @@ fun main(){
                       (type_identifier)))))))
           (assignment
             left: (directly_assignable_expression
-              (postfix_unary_expression
-                (simple_identifier)
-                (indexing_suffix
-                  (integer_literal))))
+              (index_access_expression
+                expression: (simple_identifier)
+                index: (integer_literal)))
             right: (string_literal
               (string_content))))))))
