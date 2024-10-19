@@ -2438,7 +2438,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "_simple_user_type"
+                  "name": "user_type"
                 },
                 {
                   "type": "STRING",

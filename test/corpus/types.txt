@@ -193,10 +193,34 @@ a as T.() -> Unit
   (as_expression
     (simple_identifier)
     (function_type
-      (type_identifier)
+      (user_type
+        (type_identifier))
       (function_type_parameters)
       (user_type
         (type_identifier)))))
+
+================================================================================
+Function types with qualified type receiver
+================================================================================
+
+var customRequest: (RequestConfig.Builder.() -> RequestConfig.Builder)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    var_decl: (variable_declaration
+      id: (simple_identifier)
+      type: (parenthesized_type
+        (function_type
+          (user_type
+            (type_identifier)
+            (type_identifier))
+          (function_type_parameters)
+          (user_type
+            (type_identifier)
+            (type_identifier)))))))
 
 ================================================================================
 Type constructor
