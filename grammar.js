@@ -88,7 +88,6 @@ module.exports = grammar({
     // ambiguity between multiple user types and class property/function declarations
     [$.user_type],
     [$.user_type, $.anonymous_function],
-    [$.user_type, $.function_type],
 
     // ambiguity between simple identifier 'set/get' with actual setter/getter functions.
     [$.setter, $.simple_identifier],
