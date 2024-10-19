@@ -520,3 +520,22 @@ fun interface Authenticator {
             type: (nullable_type
               (user_type
                 (type_identifier)))))))
+
+================================================================================
+Companion object without body
+================================================================================
+
+class A {
+	compainon object A
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    name: (simple_identifier)
+    body: (class_body
+      (enum_entry
+        name: (simple_identifier))
+      (object_declaration
+        name: (simple_identifier)))))
