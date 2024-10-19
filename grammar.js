@@ -88,7 +88,6 @@ module.exports = grammar({
     // ambiguity between multiple user types and class property/function declarations
     [$.user_type],
     [$.user_type, $.anonymous_function],
-    [$.user_type, $.function_type],
 
     // ambiguity between simple identifier 'set/get' with actual setter/getter functions.
     [$.setter, $.simple_identifier],
@@ -110,6 +109,8 @@ module.exports = grammar({
     [$.identifier],
 
     [$._expression, $.call_expression],
+
+    [$.object_declaration]
   ],
 
   externals: $ => [
@@ -412,13 +413,13 @@ module.exports = grammar({
 
     parameter: $ => seq(field('name', $.simple_identifier), ":", field('type', $._type)),
 
-    object_declaration: $ => prec.right(seq(
+    object_declaration: $ => seq(
       optional(field('modifiers', $.modifiers)),
       "object",
       field('name', $.simple_identifier),
       optional(seq(":", $._delegation_specifiers)),
       optional(field('body', $.class_body))
-    )),
+    ),
 
     secondary_constructor: $ => seq(
       optional(field('modifiers', $.modifiers)),
@@ -499,7 +500,7 @@ module.exports = grammar({
     _type_projection_modifier: $ => $.variance_modifier,
 
     function_type: $ => seq(
-      optional(seq($._simple_user_type, ".")), // TODO: Support "real" types
+      optional(seq($.user_type, ".")), // TODO: Support "real" types
       $.function_type_parameters,
       "->",
       $._type
@@ -775,7 +776,7 @@ module.exports = grammar({
       ')'
     ),
 
-    lambda_parameters: $ => sep1($._lambda_parameter, ","),
+    lambda_parameters: $ => seq(sep1($._lambda_parameter, ","), optional(",")),
 
     _lambda_parameter: $ => choice(
       $.variable_declaration,
@@ -899,7 +900,7 @@ module.exports = grammar({
     ),
 
     callable_reference: $ => seq(
-      optional(alias($.simple_identifier, $.type_identifier)), // TODO
+      optional(choice(alias($.simple_identifier, $.type_identifier), $.this_expression)),
       "::",
       choice($.simple_identifier, "class")
     ),
