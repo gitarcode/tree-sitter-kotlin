@@ -109,6 +109,8 @@ module.exports = grammar({
     [$.identifier],
 
     [$._expression, $.call_expression],
+
+    [$.object_declaration]
   ],
 
   externals: $ => [
@@ -411,13 +413,13 @@ module.exports = grammar({
 
     parameter: $ => seq(field('name', $.simple_identifier), ":", field('type', $._type)),
 
-    object_declaration: $ => prec.right(seq(
+    object_declaration: $ => seq(
       optional(field('modifiers', $.modifiers)),
       "object",
       field('name', $.simple_identifier),
       optional(seq(":", $._delegation_specifiers)),
       optional(field('body', $.class_body))
-    )),
+    ),
 
     secondary_constructor: $ => seq(
       optional(field('modifiers', $.modifiers)),
