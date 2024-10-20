@@ -946,24 +946,9 @@
     }
   },
   {
-    "type": "character_escape_seq",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "character_literal",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "character_escape_seq",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "check_expression",
@@ -5471,51 +5456,9 @@
     }
   },
   {
-    "type": "line_str_escaped_char",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "escaped_identifier",
-          "named": true
-        },
-        {
-          "type": "uni_character_literal",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "line_str_ref",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "line_string_content",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "line_str_escaped_char",
-          "named": true
-        },
-        {
-          "type": "line_str_ref",
-          "named": true
-        },
-        {
-          "type": "line_str_text",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "line_string_expression",
@@ -5696,6 +5639,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "line_str_ref",
+          "named": true
+        },
         {
           "type": "line_string_content",
           "named": true
@@ -8772,21 +8719,6 @@
     }
   },
   {
-    "type": "uni_character_literal",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "hex_digit",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "unsigned_literal",
     "named": true,
     "fields": {},
@@ -9852,14 +9784,6 @@
     "named": false
   },
   {
-    "type": "\\",
-    "named": false
-  },
-  {
-    "type": "\\u",
-    "named": false
-  },
-  {
     "type": "]",
     "named": false
   },
@@ -9952,10 +9876,6 @@
     "named": false
   },
   {
-    "type": "escaped_identifier",
-    "named": true
-  },
-  {
     "type": "expect",
     "named": false
   },
@@ -9994,10 +9914,6 @@
   {
     "type": "get",
     "named": false
-  },
-  {
-    "type": "hex_digit",
-    "named": true
   },
   {
     "type": "hex_literal",
@@ -10056,7 +9972,7 @@
     "named": true
   },
   {
-    "type": "line_str_text",
+    "type": "line_string_content",
     "named": true
   },
   {
@@ -10189,10 +10105,6 @@
   },
   {
     "type": "typealias",
-    "named": false
-  },
-  {
-    "type": "u",
     "named": false
   },
   {

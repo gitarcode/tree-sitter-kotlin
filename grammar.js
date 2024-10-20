@@ -57,6 +57,20 @@ const HEX_DIGITS = token(sep1(/[0-9a-fA-F]+/, /_+/));
 const BIN_DIGITS = token(sep1(/[01]/, /_+/));
 const REAL_EXPONENT = token(seq(/[eE]/, optional(/[+-]/), DEC_DIGITS));
 
+const line_str_text = token(/[^\\"$]+/);
+
+const uni_character_literal = token(seq(
+  "\\u",
+  /[0-9a-fA-F]{4}/
+));
+
+const escaped_identifier = token(/\\[tbrn'"\\$]/);
+
+const escape_seq = token(choice(
+  uni_character_literal,
+  escaped_identifier
+));
+
 module.exports = grammar({
   name: "kotlin",
 
@@ -756,41 +770,18 @@ module.exports = grammar({
 
     line_string_literal: $ => seq(
       '"',
-      repeat(choice($.line_string_content, $.line_string_expression)),
+      repeat(choice($.line_string_content, $.line_string_expression, $.line_str_ref)),
       '"'
     ),
 
-    line_string_content: $ => choice(
-      $.line_str_text,
-      $.line_str_escaped_char,
-      $.line_str_ref
-    ),
-
-    line_str_text: $ => /[^\\"$]/,
-
-    line_str_escaped_char: $ => choice(
-      $.escaped_identifier,
-      $.uni_character_literal
-    ),
-
-    escaped_identifier: $ => token(seq(
-      '\\', 
-      choice('t', 'b', 'r', 'n', '\'', '"', '\\', '$'))),
+    line_string_content: $ => token(choice(
+      line_str_text,
+      escape_seq
+    )),
 
     line_str_ref: $ => seq('$', $._alpha_identifier),      
 
     line_string_expression: $ => seq("${", $._expression, "}"),
-
-    uni_character_literal: $ => seq(
-      '\\',
-      'u',
-      $.hex_digit,
-      $.hex_digit,
-      $.hex_digit,
-      $.hex_digit
-    ),
-
-    hex_digit: $ => /[0-9a-fA-F]/,
 
     _interpolation: $ => choice(
       seq("${", alias($._expression, $.interpolated_expression), "}"),
@@ -1196,13 +1187,8 @@ module.exports = grammar({
 
     character_literal: $ => seq(
       "'",
-      choice($.character_escape_seq, /[^\n\r'\\]/),
+      choice(escape_seq, /[^\n\r'\\]/),
       "'"
-    ),
-
-    character_escape_seq: $ => choice(
-      $._uni_character_literal,
-      $._escaped_identifier
     ),
 
     null_literal: $ => "null",
@@ -1219,14 +1205,6 @@ module.exports = grammar({
     _alpha_identifier: $ => /[\p{L}_][\p{L}_\p{Nd}]*/,
 
     _backtick_identifier: $ => /`[^\r\n`]+`/,
-
-    _uni_character_literal: $ => seq(
-      "\\u",
-      /[0-9a-fA-F]{4}/
-    ),
-
-    _escaped_identifier: $ => /\\[tbrn'"\\$]/,
-
   }
 });
 
