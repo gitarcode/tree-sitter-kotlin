@@ -750,13 +750,47 @@ module.exports = grammar({
       $.unsigned_literal
     ),
 
-    string_literal: $ => seq(
-      $._string_start,
-      repeat(choice($.string_content, $._interpolation)),
-      $._string_end,
+    string_literal: $ => choice(
+      $.line_string_literal,
     ),
 
+    line_string_literal: $ => seq(
+      '"',
+      repeat(choice($.line_string_content, $.line_string_expression)),
+      '"'
+    ),
+
+    line_string_content: $ => choice(
+      $.line_str_text,
+      $.line_str_escaped_char,
+      $.line_str_ref
+    ),
+
+    line_str_text: $ => /[^\\"$]/,
+
+    line_str_escaped_char: $ => choice(
+      $.escaped_identifier,
+      $.uni_character_literal
+    ),
+
+    escaped_identifier: $ => token(seq(
+      '\\', 
+      choice('t', 'b', 'r', 'n', '\'', '"', '\\', '$'))),
+
+    line_str_ref: $ => seq('$', $._alpha_identifier),      
+
     line_string_expression: $ => seq("${", $._expression, "}"),
+
+    uni_character_literal: $ => seq(
+      '\\',
+      'u',
+      $.hex_digit,
+      $.hex_digit,
+      $.hex_digit,
+      $.hex_digit
+    ),
+
+    hex_digit: $ => /[0-9a-fA-F]/,
 
     _interpolation: $ => choice(
       seq("${", alias($._expression, $.interpolated_expression), "}"),
