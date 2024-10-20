@@ -71,6 +71,8 @@ const escape_seq = token(choice(
   escaped_identifier
 ));
 
+const MULTI_LINE_STRING_TEXT = token(/([^"$]+|\$)/);
+
 module.exports = grammar({
   name: "kotlin",
 
@@ -132,9 +134,6 @@ module.exports = grammar({
     $._import_list_delimiter,
     $.safe_nav,
     $.multiline_comment,
-    $._string_start,
-    $._string_end,
-    $.string_content,
   ],
 
   extras: $ => [
@@ -765,12 +764,13 @@ module.exports = grammar({
     ),
 
     string_literal: $ => choice(
-      $.line_string_literal,
+      $._line_string_literal,
+      $._multi_line_string_literal
     ),
 
-    line_string_literal: $ => seq(
+    _line_string_literal: $ => seq(
       '"',
-      repeat(choice($.line_string_content, $.line_string_expression, $.line_str_ref)),
+      repeat(choice(alias($.line_string_content, $.string_content), $._interpolation)),
       '"'
     ),
 
@@ -781,7 +781,15 @@ module.exports = grammar({
 
     line_str_ref: $ => seq('$', $._alpha_identifier),      
 
-    line_string_expression: $ => seq("${", $._expression, "}"),
+    string_expression: $ => seq("${", $._expression, "}"),
+
+    _multi_line_string_literal: $ => seq(
+      '"""',
+      repeat(choice(alias($.multi_line_string_content, $.string_content), $._interpolation, '"')),
+      '"""'
+    ),
+
+    multi_line_string_content: $ => MULTI_LINE_STRING_TEXT,
 
     _interpolation: $ => choice(
       seq("${", alias($._expression, $.interpolated_expression), "}"),

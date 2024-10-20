@@ -3873,11 +3873,15 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "line_string_literal"
+          "name": "_line_string_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_multi_line_string_literal"
         }
       ]
     },
-    "line_string_literal": {
+    "_line_string_literal": {
       "type": "SEQ",
       "members": [
         {
@@ -3890,16 +3894,17 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "line_string_content"
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "line_string_content"
+                },
+                "named": true,
+                "value": "string_content"
               },
               {
                 "type": "SYMBOL",
-                "name": "line_string_expression"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "line_str_ref"
+                "name": "_interpolation"
               }
             ]
           }
@@ -3969,7 +3974,7 @@
         }
       ]
     },
-    "line_string_expression": {
+    "string_expression": {
       "type": "SEQ",
       "members": [
         {
@@ -3985,6 +3990,51 @@
           "value": "}"
         }
       ]
+    },
+    "_multi_line_string_literal": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\"\"\""
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "multi_line_string_content"
+                },
+                "named": true,
+                "value": "string_content"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_interpolation"
+              },
+              {
+                "type": "STRING",
+                "value": "\""
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "\"\"\""
+        }
+      ]
+    },
+    "multi_line_string_content": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "([^\"$]+|\\$)"
+      }
     },
     "_interpolation": {
       "type": "CHOICE",
@@ -6385,18 +6435,6 @@
     {
       "type": "SYMBOL",
       "name": "multiline_comment"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "_string_start"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "_string_end"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "string_content"
     }
   ],
   "inline": [],
