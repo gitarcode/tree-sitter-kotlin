@@ -818,14 +818,12 @@ module.exports = grammar({
       "(", field('condition', $._expression), ")",
       choice(
         field('consequence', $.control_structure_body),
-        seq(
-          optional(field('consequence', $.control_structure_body)),
-          optional(";"),
-          "else",
-          choice(field('alternative', $.control_structure_body), ";")
-        ),
         ";"
-      )
+      ),
+      optional(seq(
+        "else",
+        choice(field('alternative', $.control_structure_body), ";")
+      )),
     )),
 
     when_subject: $ => seq(
