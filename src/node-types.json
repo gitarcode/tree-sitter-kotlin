@@ -7216,7 +7216,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "additive_expression",
@@ -9712,6 +9712,10 @@
   },
   {
     "type": "..",
+    "named": false
+  },
+  {
+    "type": "..<",
     "named": false
   },
   {
