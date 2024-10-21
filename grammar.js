@@ -69,6 +69,8 @@ const escaped_identifier = token(/\\[tbrn'"\\$]/);
 // If it is, it should be matched as part of the _interpolation rule.
 const DOLLAR_IN_STRING_CONTENT = token(/\$[^\p{L}_{"]+/);
 
+const QUOTE_IN_MULTI_LINE_STRING_CONTENT = token(/"[^"]|""[^"]/);
+
 module.exports = grammar({
   name: "kotlin",
 
@@ -786,10 +788,10 @@ module.exports = grammar({
       repeat(choice(
         alias($.multi_line_string_content, $.string_content), 
         alias(DOLLAR_IN_STRING_CONTENT, $.string_content), 
-        $._interpolation, 
-        '"'
+        QUOTE_IN_MULTI_LINE_STRING_CONTENT,
+        $._interpolation,
       )),
-      /"?"""/
+      choice('""""', '"""')
     ),
 
     multi_line_string_content: $ => token(prec(PREC.STRING_CONTENT, /[^"$]+/)),

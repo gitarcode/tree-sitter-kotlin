@@ -4026,19 +4026,31 @@
                 "value": "string_content"
               },
               {
-                "type": "SYMBOL",
-                "name": "_interpolation"
+                "type": "TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "\"[^\"]|\"\"[^\"]"
+                }
               },
               {
-                "type": "STRING",
-                "value": "\""
+                "type": "SYMBOL",
+                "name": "_interpolation"
               }
             ]
           }
         },
         {
-          "type": "PATTERN",
-          "value": "\"?\"\"\""
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "\"\"\"\""
+            },
+            {
+              "type": "STRING",
+              "value": "\"\"\""
+            }
+          ]
         }
       ]
     },
