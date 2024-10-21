@@ -773,7 +773,7 @@ module.exports = grammar({
         alias(DOLLAR_IN_STRING_CONTENT, $.string_content),
         $._interpolation
       )),
-      // Need to eat the last '$' character here, and create a node in the tree
+      // Need to consume the last '$' character here, and create a node in the tree
       choice('"', seq(alias("$", $.string_content), '"'))
     ),
 
@@ -791,6 +791,8 @@ module.exports = grammar({
         QUOTE_IN_MULTI_LINE_STRING_CONTENT,
         $._interpolation,
       )),
+      // Need to consume the last '$' character here, and create a node in the tree
+      optional(alias("$", $.string_content)),
       choice('""""', '"""')
     ),
 
