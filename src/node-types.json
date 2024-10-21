@@ -946,11 +946,6 @@
     }
   },
   {
-    "type": "character_escape_seq",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "character_literal",
     "named": true,
     "fields": {},
@@ -9620,6 +9615,18 @@
     "named": false
   },
   {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "\"\"\"",
+    "named": false
+  },
+  {
+    "type": "\"\"\"\"",
+    "named": false
+  },
+  {
     "type": "#!",
     "named": false
   },
@@ -9780,10 +9787,6 @@
     "named": false
   },
   {
-    "type": "\\u",
-    "named": false
-  },
-  {
     "type": "]",
     "named": false
   },
@@ -9826,6 +9829,10 @@
   {
     "type": "catch",
     "named": false
+  },
+  {
+    "type": "character_escape_seq",
+    "named": true
   },
   {
     "type": "class",

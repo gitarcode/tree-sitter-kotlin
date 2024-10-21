@@ -48,6 +48,7 @@ const PREC = {
   ASSIGNMENT: 1,
   BLOCK: 1,
   ARGUMENTS: 1,
+  STRING_CONTENT: 1,
   LAMBDA_LITERAL: 0,
   RETURN_OR_THROW: 0,
   COMMENT: 0
@@ -56,6 +57,19 @@ const DEC_DIGITS = token(sep1(/[0-9]+/, /_+/));
 const HEX_DIGITS = token(sep1(/[0-9a-fA-F]+/, /_+/));
 const BIN_DIGITS = token(sep1(/[01]/, /_+/));
 const REAL_EXPONENT = token(seq(/[eE]/, optional(/[+-]/), DEC_DIGITS));
+
+const uni_character_literal = token(seq(
+  "\\u",
+  /[0-9a-fA-F]{4}/
+));
+
+const escaped_identifier = token(/\\[tbrn'"\\$]/);
+
+// Here, we should only match the '$' character if it's not followed by an alpha character
+// If it is, it should be matched as part of the _interpolation rule.
+const DOLLAR_IN_STRING_CONTENT = token(/\$[^\p{L}_{"]+/);
+
+const QUOTE_IN_MULTI_LINE_STRING_CONTENT = token(/"[^"]|""[^"]/);
 
 module.exports = grammar({
   name: "kotlin",
@@ -118,9 +132,6 @@ module.exports = grammar({
     $._import_list_delimiter,
     $.safe_nav,
     $.multiline_comment,
-    $._string_start,
-    $._string_end,
-    $.string_content,
   ],
 
   extras: $ => [
@@ -750,13 +761,42 @@ module.exports = grammar({
       $.unsigned_literal
     ),
 
-    string_literal: $ => seq(
-      $._string_start,
-      repeat(choice($.string_content, $._interpolation)),
-      $._string_end,
+    string_literal: $ => choice(
+      $._line_string_literal,
+      $._multi_line_string_literal
     ),
 
-    line_string_expression: $ => seq("${", $._expression, "}"),
+    _line_string_literal: $ => seq(
+      '"',
+      repeat(choice(
+        alias($.line_string_content, $.string_content), 
+        alias(DOLLAR_IN_STRING_CONTENT, $.string_content),
+        $._interpolation
+      )),
+      // Need to consume the last '$' character here, and create a node in the tree
+      choice('"', seq(alias("$", $.string_content), '"'))
+    ),
+
+    line_string_content: $ => token(prec(PREC.STRING_CONTENT, choice(
+      /[^\\"$]+/,
+      repeat1(uni_character_literal),
+      escaped_identifier
+    ))),
+
+    _multi_line_string_literal: $ => seq(
+      '"""',
+      repeat(choice(
+        alias($.multi_line_string_content, $.string_content), 
+        alias(DOLLAR_IN_STRING_CONTENT, $.string_content), 
+        QUOTE_IN_MULTI_LINE_STRING_CONTENT,
+        $._interpolation,
+      )),
+      // Need to consume the last '$' character here, and create a node in the tree
+      optional(alias("$", $.string_content)),
+      choice('""""', '"""')
+    ),
+
+    multi_line_string_content: $ => token(prec(PREC.STRING_CONTENT, /[^"$]+/)),
 
     _interpolation: $ => choice(
       seq("${", alias($._expression, $.interpolated_expression), "}"),
@@ -818,14 +858,12 @@ module.exports = grammar({
       "(", field('condition', $._expression), ")",
       choice(
         field('consequence', $.control_structure_body),
-        seq(
-          optional(field('consequence', $.control_structure_body)),
-          optional(";"),
-          "else",
-          choice(field('alternative', $.control_structure_body), ";")
-        ),
         ";"
-      )
+      ),
+      optional(seq(
+        "else",
+        choice(field('alternative', $.control_structure_body), ";")
+      )),
     )),
 
     when_subject: $ => seq(
@@ -1085,7 +1123,7 @@ module.exports = grammar({
     // General
     // ==========
 
-    line_comment: $ => token(seq('//', /.*/)),
+    line_comment: $ => token(prec(PREC.COMMENT, seq('//', /[^\r\n]*/))),
 
     // ==========
     // Separators and operations
@@ -1168,10 +1206,10 @@ module.exports = grammar({
       "'"
     ),
 
-    character_escape_seq: $ => choice(
-      $._uni_character_literal,
-      $._escaped_identifier
-    ),
+    character_escape_seq: $ => token(choice(
+      uni_character_literal,
+      escaped_identifier
+    )),    
 
     null_literal: $ => "null",
 
@@ -1187,14 +1225,6 @@ module.exports = grammar({
     _alpha_identifier: $ => /[\p{L}_][\p{L}_\p{Nd}]*/,
 
     _backtick_identifier: $ => /`[^\r\n`]+`/,
-
-    _uni_character_literal: $ => seq(
-      "\\u",
-      /[0-9a-fA-F]{4}/
-    ),
-
-    _escaped_identifier: $ => /\\[tbrn'"\\$]/,
-
   }
 });
 

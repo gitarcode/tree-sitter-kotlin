@@ -42,7 +42,7 @@ String literals
 This is a "multiline"
 string.
 """
-
+"""^1\.(?<version>\d+)(?:\.[^.].*)?$"""
 --------------------------------------------------------------------------------
 
 (source_file
@@ -50,6 +50,9 @@ string.
     (string_content))
   (string_literal
     (string_content)
+    (string_content)
+    (string_content))
+  (string_literal
     (string_content)
     (string_content)))
 
@@ -64,8 +67,6 @@ There's a lot of ""quotations"". Even at the "end""""
 
 (source_file
   (string_literal
-    (string_content)
-    (string_content)
     (string_content)
     (string_content)
     (string_content)
@@ -122,17 +123,14 @@ More string interpolation
   (string_literal
     (string_content))
   (string_literal
-    (string_content)
-    (string_content))
-  (string_literal
-    (string_content)
-    (string_content)
-    (string_content)
-    (string_content)
     (string_content))
   (string_literal
     (string_content))
-  (string_literal))
+  (string_literal
+    (string_content)
+    (string_content))
+  (string_literal
+    (string_content)))
 
 ================================================================================
 Integer literals

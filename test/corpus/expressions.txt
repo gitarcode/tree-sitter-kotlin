@@ -874,3 +874,31 @@ this@A::class.simpleName
       (this_expression
         (type_identifier)))
     selector: (simple_identifier)))
+
+================================================================================
+When expression with if else
+================================================================================
+
+when (this) {
+    else -> "$packageName.$WILDCARD_CHAR" + if (withSubpackages) WILDCARD_CHAR else ""
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (when_expression
+    (when_subject
+      (this_expression))
+    (when_entry
+      (control_structure_body
+        (additive_expression
+          (string_literal
+            (interpolated_identifier)
+            (string_content)
+            (interpolated_identifier))
+          (if_expression
+            condition: (simple_identifier)
+            consequence: (control_structure_body
+              (simple_identifier))
+            alternative: (control_structure_body
+              (string_literal))))))))
