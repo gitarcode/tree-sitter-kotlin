@@ -58,8 +58,6 @@ const HEX_DIGITS = token(sep1(/[0-9a-fA-F]+/, /_+/));
 const BIN_DIGITS = token(sep1(/[01]/, /_+/));
 const REAL_EXPONENT = token(seq(/[eE]/, optional(/[+-]/), DEC_DIGITS));
 
-const line_str_text = token(/[^\\"$]+/);
-
 const uni_character_literal = token(seq(
   "\\u",
   /[0-9a-fA-F]{4}/
@@ -774,7 +772,7 @@ module.exports = grammar({
     ),
 
     line_string_content: $ => token(prec(PREC.STRING_CONTENT, choice(
-      line_str_text,
+      /[^\\"$]+|\$/,
       escape_seq
     ))),
 
