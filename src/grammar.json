@@ -3925,7 +3925,14 @@
           "members": [
             {
               "type": "PATTERN",
-              "value": "[^\\\\\"$]+|\\$[^\\p{L}_{]+"
+              "value": "[^\\\\\"$]+"
+            },
+            {
+              "type": "TOKEN",
+              "content": {
+                "type": "PATTERN",
+                "value": "\\$[^\\p{L}_{]"
+              }
             },
             {
               "type": "TOKEN",
@@ -4006,8 +4013,20 @@
         "type": "PREC",
         "value": 1,
         "content": {
-          "type": "PATTERN",
-          "value": "([^\"$]+|\\$[^\\p{L}_{])"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "[^\"$]+"
+            },
+            {
+              "type": "TOKEN",
+              "content": {
+                "type": "PATTERN",
+                "value": "\\$[^\\p{L}_{]"
+              }
+            }
+          ]
         }
       }
     },

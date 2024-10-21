@@ -70,6 +70,10 @@ const escape_seq = token(choice(
   escaped_identifier
 ));
 
+// Here, we should only match the '$' character if it's not followed by an alpha character
+// If it is, it should be matched as part of the _interpolation rule.
+const DOLLAR_IN_STRING_CONENT = token(/\$[^\p{L}_{]/);
+
 module.exports = grammar({
   name: "kotlin",
 
@@ -772,9 +776,8 @@ module.exports = grammar({
     ),
 
     line_string_content: $ => token(prec(PREC.STRING_CONTENT, choice(
-      // Here, we should only match the '$' character if it's not followed by an alpha character
-      // If it is, it should be matched as part of the _interpolation rule.
-      /[^\\"$]+|\$[^\p{L}_{]+/,
+      /[^\\"$]+/,
+      DOLLAR_IN_STRING_CONENT,
       escape_seq
     ))),
 
@@ -784,7 +787,7 @@ module.exports = grammar({
       '"""'
     ),
 
-    multi_line_string_content: $ => token(prec(PREC.STRING_CONTENT, /([^"$]+|\$[^\p{L}_{])/)),
+    multi_line_string_content: $ => token(prec(PREC.STRING_CONTENT, choice(/[^"$]+/, DOLLAR_IN_STRING_CONENT))),
 
     _interpolation: $ => choice(
       seq("${", alias($._expression, $.interpolated_expression), "}"),
