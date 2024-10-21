@@ -48,6 +48,7 @@ const PREC = {
   ASSIGNMENT: 1,
   BLOCK: 1,
   ARGUMENTS: 1,
+  STRING_CONTENT: 1,
   LAMBDA_LITERAL: 0,
   RETURN_OR_THROW: 0,
   COMMENT: 0
@@ -70,8 +71,6 @@ const escape_seq = token(choice(
   uni_character_literal,
   escaped_identifier
 ));
-
-const MULTI_LINE_STRING_TEXT = token(/([^"$]+|\$)/);
 
 module.exports = grammar({
   name: "kotlin",
@@ -774,14 +773,10 @@ module.exports = grammar({
       '"'
     ),
 
-    line_string_content: $ => token(choice(
+    line_string_content: $ => token(prec(PREC.STRING_CONTENT, choice(
       line_str_text,
       escape_seq
-    )),
-
-    line_str_ref: $ => seq('$', $._alpha_identifier),      
-
-    string_expression: $ => seq("${", $._expression, "}"),
+    ))),
 
     _multi_line_string_literal: $ => seq(
       '"""',
@@ -789,7 +784,7 @@ module.exports = grammar({
       '"""'
     ),
 
-    multi_line_string_content: $ => MULTI_LINE_STRING_TEXT,
+    multi_line_string_content: $ => token(prec(PREC.STRING_CONTENT, /([^"$]+|\$)/)),
 
     _interpolation: $ => choice(
       seq("${", alias($._expression, $.interpolated_expression), "}"),
@@ -1116,7 +1111,7 @@ module.exports = grammar({
     // General
     // ==========
 
-    line_comment: $ => token(seq('//', /.*/)),
+    line_comment: $ => token(prec(PREC.COMMENT, seq('//', /[^\r\n]*/))),
 
     // ==========
     // Separators and operations
