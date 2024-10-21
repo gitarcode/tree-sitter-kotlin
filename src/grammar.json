@@ -4037,8 +4037,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "\"\"\""
+          "type": "PATTERN",
+          "value": "\"?\"\"\""
         }
       ]
     },
@@ -6287,35 +6287,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "TOKEN",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "TOKEN",
-                    "content": {
-                      "type": "SEQ",
-                      "members": [
-                        {
-                          "type": "STRING",
-                          "value": "\\u"
-                        },
-                        {
-                          "type": "PATTERN",
-                          "value": "[0-9a-fA-F]{4}"
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "type": "TOKEN",
-                    "content": {
-                      "type": "PATTERN",
-                      "value": "\\\\[tbrn'\"\\\\$]"
-                    }
-                  }
-                ]
-              }
+              "type": "SYMBOL",
+              "name": "character_escape_seq"
             },
             {
               "type": "PATTERN",
@@ -6328,6 +6301,37 @@
           "value": "'"
         }
       ]
+    },
+    "character_escape_seq": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "\\u"
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "[0-9a-fA-F]{4}"
+                }
+              ]
+            }
+          },
+          {
+            "type": "TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "\\\\[tbrn'\"\\\\$]"
+            }
+          }
+        ]
+      }
     },
     "null_literal": {
       "type": "STRING",

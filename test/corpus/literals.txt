@@ -70,7 +70,6 @@ There's a lot of ""quotations"". Even at the "end""""
     (string_content)
     (string_content)
     (string_content)
-    (string_content)
     (string_content)))
 
 ================================================================================
@@ -122,17 +121,14 @@ More string interpolation
   (string_literal
     (string_content))
   (string_literal
-    (string_content)
-    (string_content))
-  (string_literal
-    (string_content)
-    (string_content)
-    (string_content)
-    (string_content)
     (string_content))
   (string_literal
     (string_content))
-  (string_literal))
+  (string_literal
+    (string_content)
+    (string_content))
+  (string_literal
+    (string_content)))
 
 ================================================================================
 Integer literals

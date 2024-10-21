@@ -948,7 +948,17 @@
   {
     "type": "character_literal",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "character_escape_seq",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "check_expression",
@@ -9815,6 +9825,10 @@
   {
     "type": "catch",
     "named": false
+  },
+  {
+    "type": "character_escape_seq",
+    "named": true
   },
   {
     "type": "class",

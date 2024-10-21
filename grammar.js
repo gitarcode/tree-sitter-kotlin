@@ -65,11 +65,6 @@ const uni_character_literal = token(seq(
 
 const escaped_identifier = token(/\\[tbrn'"\\$]/);
 
-const escape_seq = token(choice(
-  uni_character_literal,
-  escaped_identifier
-));
-
 // Here, we should only match the '$' character if it's not followed by an alpha character
 // If it is, it should be matched as part of the _interpolation rule.
 const DOLLAR_IN_STRING_CONTENT = token(/\$[^\p{L}_{"]+/);
@@ -794,7 +789,7 @@ module.exports = grammar({
         $._interpolation, 
         '"'
       )),
-      '"""'
+      /"?"""/
     ),
 
     multi_line_string_content: $ => token(prec(PREC.STRING_CONTENT, /[^"$]+/)),
@@ -1203,9 +1198,14 @@ module.exports = grammar({
 
     character_literal: $ => seq(
       "'",
-      choice(escape_seq, /[^\n\r'\\]/),
+      choice($.character_escape_seq, /[^\n\r'\\]/),
       "'"
     ),
+
+    character_escape_seq: $ => token(choice(
+      uni_character_literal,
+      escaped_identifier
+    )),    
 
     null_literal: $ => "null",
 
