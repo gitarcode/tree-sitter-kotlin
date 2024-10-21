@@ -902,3 +902,28 @@ when (this) {
               (simple_identifier))
             alternative: (control_structure_body
               (string_literal))))))))
+
+================================================================================
+When expression with trailing comma
+================================================================================
+
+when (x) {
+	1, -> println("x")
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (when_expression
+    (when_subject
+      (simple_identifier))
+    (when_entry
+      (when_condition
+        (integer_literal))
+      (control_structure_body
+        (call_expression
+          expression: (simple_identifier)
+          args: (value_arguments
+            (value_argument
+              (string_literal
+                (string_content)))))))))
