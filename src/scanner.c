@@ -11,9 +11,6 @@ enum TokenType {
   IMPORT_LIST_DELIMITER,
   SAFE_NAV,
   MULTILINE_COMMENT,
-  STRING_START,
-  STRING_END,
-  STRING_CONTENT,
 };
 
 /* Pretty much all of this code is taken from the Julia tree-sitter
@@ -60,134 +57,6 @@ static inline void skip(TSLexer *lexer) { lexer->advance(lexer, true); }
 static inline void advance(TSLexer *lexer) { lexer->advance(lexer, false); }
 
 // Scanner functions
-
-static bool scan_string_start(TSLexer *lexer, Stack *stack) {
-  if (lexer->lookahead != '"') return false;
-  advance(lexer);
-  lexer->mark_end(lexer);
-  for (unsigned count = 1; count < DELIMITER_LENGTH; ++count) {
-    if (lexer->lookahead != '"') {
-      // It's not a triple quoted delimiter.
-      stack_push(stack, '"', false);
-      return true;
-    }
-    advance(lexer);
-  }
-  lexer->mark_end(lexer);
-  stack_push(stack, '"', true);
-  return true;
-}
-
-static bool scan_string_content(TSLexer *lexer, Stack *stack) {
-  if (stack->size == 0) return false;  // Stack is empty. We're not in a string.
-  Delimiter end_char = stack->contents[stack->size - 1];  // peek
-  bool is_triple = false;
-  bool has_content = false;
-  if (end_char & 1) {
-    is_triple = true;
-    end_char -= 1;
-  }
-  while (lexer->lookahead) {
-    if (lexer->lookahead == '$') {
-      // if we did not just start reading stuff, then we should stop
-      // lexing right here, so we can offer the opportunity to lex a
-      // interpolated identifier
-      if (has_content) {
-        lexer->result_symbol = STRING_CONTENT;
-        return has_content;
-      }
-      // otherwise, if this is the start, determine if it is an
-      // interpolated identifier.
-      // otherwise, it's just string content, so continue
-      advance(lexer);
-      if (iswalpha(lexer->lookahead) || lexer->lookahead == '{') {
-        // this must be a string interpolation, let's
-        // fail so we parse it as such
-        return false;
-      }
-      lexer->result_symbol = STRING_CONTENT;
-      lexer->mark_end(lexer);
-      return true;
-    }
-    if (lexer->lookahead == '\\') {
-      // if we see a \, then this might possibly escape a dollar sign
-      // in which case, we should not defer to the interpolation
-      advance(lexer);
-      // this dollar sign is escaped, so it must be content.
-      // we consume it here so we don't enter the dollar sign case above,
-      // which leaves the possibility that it is an interpolation 
-      if (lexer->lookahead == '$') {
-        advance(lexer);
-        // however this leaves an edgecase where an escaped dollar sign could
-        // appear at the end of a string (e.g "aa\$") which isn't handled
-        // correctly; if we were at the end of the string, terminate properly
-        if (lexer->lookahead == end_char) {
-          stack_pop(stack);
-          advance(lexer);
-          lexer->mark_end(lexer);
-          lexer->result_symbol = STRING_END;
-          return true;
-        }
-      }
-    } else if (lexer->lookahead == end_char) {
-      if (is_triple) {
-        lexer->mark_end(lexer);
-        for (unsigned count = 1; count < DELIMITER_LENGTH; ++count) {
-          advance(lexer);
-          if (lexer->lookahead != end_char) {
-            lexer->mark_end(lexer);
-            lexer->result_symbol = STRING_CONTENT;
-            return true;
-          }
-        }
-
-        /* This is so if we lex something like
-           """foo"""
-              ^
-           where we are at the `f`, we should quit after
-           reading `foo`, and ascribe it to STRING_CONTENT.
-
-           Then, we restart and try to read the end.
-           This is to prevent `foo` from being absorbed into
-           the STRING_END token.
-         */
-        if (has_content && lexer->lookahead == end_char) {
-          lexer->result_symbol = STRING_CONTENT;
-          return true;
-        }
-
-        /* Since the string internals are all hidden in the syntax
-           tree anyways, there's no point in going to the effort of
-           specifically separating the string end from string contents.
-           If we see a bunch of quotes in a row, then we just go until
-           they stop appearing, then stop lexing and call it the
-           string's end.
-         */
-        lexer->result_symbol = STRING_END;
-        lexer->mark_end(lexer);
-        while (lexer->lookahead == end_char) {
-          advance(lexer);
-          lexer->mark_end(lexer);
-        }
-        stack_pop(stack);
-        return true;
-      }
-      if (has_content) {
-        lexer->mark_end(lexer);
-        lexer->result_symbol = STRING_CONTENT;
-        return true;
-      }
-      stack_pop(stack);
-      advance(lexer);
-      lexer->mark_end(lexer);
-      lexer->result_symbol = STRING_END;
-      return true;
-    }
-    advance(lexer);
-    has_content = true;
-  }
-  return false;
-}
 
 static bool scan_multiline_comment(TSLexer *lexer) {
   if (lexer->lookahead != '/') return false;
@@ -474,19 +343,9 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
     return scan_import_list_delimiter(lexer);
   }
 
-  // content or end
-  if (valid_symbols[STRING_CONTENT] && scan_string_content(lexer, payload)) {
-    return true;
-  }
-
   // a string might follow after some whitespace, so we can't lookahead
   // until we get rid of it
   while (iswspace(lexer->lookahead)) skip(lexer);
-
-  if (valid_symbols[STRING_START] && scan_string_start(lexer, payload)) {
-    lexer->result_symbol = STRING_START;
-    return true;
-  }
 
   if (valid_symbols[MULTILINE_COMMENT] && scan_multiline_comment(lexer)) {
     return true;
