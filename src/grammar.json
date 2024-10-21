@@ -3910,8 +3910,22 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "\""
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "\""
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "PATTERN",
+                "value": "\\$\""
+              },
+              "named": true,
+              "value": "string_content"
+            }
+          ]
         }
       ]
     },
@@ -3931,7 +3945,7 @@
               "type": "TOKEN",
               "content": {
                 "type": "PATTERN",
-                "value": "\\$[^\\p{L}_{]"
+                "value": "\\$[^\\p{L}_{\"]+"
               }
             },
             {
@@ -4023,7 +4037,7 @@
               "type": "TOKEN",
               "content": {
                 "type": "PATTERN",
-                "value": "\\$[^\\p{L}_{]"
+                "value": "\\$[^\\p{L}_{\"]+"
               }
             }
           ]

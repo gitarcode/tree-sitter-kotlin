@@ -72,7 +72,7 @@ const escape_seq = token(choice(
 
 // Here, we should only match the '$' character if it's not followed by an alpha character
 // If it is, it should be matched as part of the _interpolation rule.
-const DOLLAR_IN_STRING_CONENT = token(/\$[^\p{L}_{]/);
+const DOLLAR_IN_STRING_CONTENT = token(/\$[^\p{L}_{"]+/);
 
 module.exports = grammar({
   name: "kotlin",
@@ -772,12 +772,13 @@ module.exports = grammar({
     _line_string_literal: $ => seq(
       '"',
       repeat(choice(alias($.line_string_content, $.string_content), $._interpolation)),
-      '"'
+      // Need to eat the last $ here, and create a node in the tree
+      choice('"', alias(/\$"/, $.string_content))
     ),
 
     line_string_content: $ => token(prec(PREC.STRING_CONTENT, choice(
       /[^\\"$]+/,
-      DOLLAR_IN_STRING_CONENT,
+      DOLLAR_IN_STRING_CONTENT,
       escape_seq
     ))),
 
@@ -787,7 +788,7 @@ module.exports = grammar({
       '"""'
     ),
 
-    multi_line_string_content: $ => token(prec(PREC.STRING_CONTENT, choice(/[^"$]+/, DOLLAR_IN_STRING_CONENT))),
+    multi_line_string_content: $ => token(prec(PREC.STRING_CONTENT, choice(/[^"$]+/, DOLLAR_IN_STRING_CONTENT))),
 
     _interpolation: $ => choice(
       seq("${", alias($._expression, $.interpolated_expression), "}"),
