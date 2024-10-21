@@ -771,24 +771,23 @@ module.exports = grammar({
 
     _line_string_literal: $ => seq(
       '"',
-      repeat(choice(alias($.line_string_content, $.string_content), $._interpolation)),
-      // Need to eat the last $ here, and create a node in the tree
+      repeat(choice(alias($.line_string_content, $.string_content), DOLLAR_IN_STRING_CONTENT, $._interpolation)),
+      // Need to eat the last '$' character here, and create a node in the tree
       choice('"', alias(/\$"/, $.string_content))
     ),
 
     line_string_content: $ => token(prec(PREC.STRING_CONTENT, choice(
       /[^\\"$]+/,
-      DOLLAR_IN_STRING_CONTENT,
       escape_seq
     ))),
 
     _multi_line_string_literal: $ => seq(
       '"""',
-      repeat(choice(alias($.multi_line_string_content, $.string_content), $._interpolation, '"')),
+      repeat(choice(alias($.multi_line_string_content, $.string_content), DOLLAR_IN_STRING_CONTENT, $._interpolation, '"')),
       '"""'
     ),
 
-    multi_line_string_content: $ => token(prec(PREC.STRING_CONTENT, choice(/[^"$]+/, DOLLAR_IN_STRING_CONTENT))),
+    multi_line_string_content: $ => token(prec(PREC.STRING_CONTENT, choice(/[^"$]+/))),
 
     _interpolation: $ => choice(
       seq("${", alias($._expression, $.interpolated_expression), "}"),
