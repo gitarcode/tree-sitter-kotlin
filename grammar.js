@@ -772,7 +772,9 @@ module.exports = grammar({
     ),
 
     line_string_content: $ => token(prec(PREC.STRING_CONTENT, choice(
-      /[^\\"$]+|\$/,
+      // Here, we should only match the '$' character if it's not followed by an alpha character
+      // If it is, it should be matched as part of the _interpolation rule.
+      /[^\\"$]+|\$[^\p{L}_{]+/,
       escape_seq
     ))),
 
@@ -782,7 +784,7 @@ module.exports = grammar({
       '"""'
     ),
 
-    multi_line_string_content: $ => token(prec(PREC.STRING_CONTENT, /([^"$]+|\$)/)),
+    multi_line_string_content: $ => token(prec(PREC.STRING_CONTENT, /([^"$]+|\$[^\p{L}_{])/)),
 
     _interpolation: $ => choice(
       seq("${", alias($._expression, $.interpolated_expression), "}"),

@@ -77,6 +77,8 @@ There's a lot of ""quotations"". Even at the "end""""
 String interpolation
 ================================================================================
 
+"$_"
+"$_xxx"
 "Sample $string.interpolation literal"
 "Sample ${"string.interpolation"} literal"
 """
