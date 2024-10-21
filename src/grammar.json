@@ -3349,8 +3349,8 @@
             "name": "_expression"
           },
           {
-            "type": "STRING",
-            "value": ".."
+            "type": "SYMBOL",
+            "name": "_range_opeartor"
           },
           {
             "type": "SYMBOL",
@@ -3358,6 +3358,19 @@
           }
         ]
       }
+    },
+    "_range_opeartor": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ".."
+        },
+        {
+          "type": "STRING",
+          "value": "..<"
+        }
+      ]
     },
     "infix_expression": {
       "type": "PREC_LEFT",

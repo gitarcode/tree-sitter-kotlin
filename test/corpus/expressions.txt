@@ -927,3 +927,34 @@ when (x) {
             (value_argument
               (string_literal
                 (string_content)))))))))
+
+================================================================================
+Range expression
+================================================================================
+
+println(4 in 1..4)
+it.sliceArray(1..<it.size)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (call_expression
+    expression: (simple_identifier)
+    args: (value_arguments
+      (value_argument
+        (check_expression
+          (integer_literal)
+          (range_expression
+            (integer_literal)
+            (integer_literal))))))
+  (call_expression
+    expression: (dot_qualified_expression
+      receiver: (simple_identifier)
+      selector: (simple_identifier))
+    args: (value_arguments
+      (value_argument
+        (range_expression
+          (integer_literal)
+          (dot_qualified_expression
+            receiver: (simple_identifier)
+            selector: (simple_identifier)))))))
