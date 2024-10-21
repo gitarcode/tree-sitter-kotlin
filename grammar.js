@@ -888,7 +888,7 @@ module.exports = grammar({
 
     when_entry: $ => seq(
       choice(
-        seq($.when_condition, repeat(seq(",", $.when_condition))),
+        seq($.when_condition, repeat(seq(",", $.when_condition)), optional(",")),
         "else"
       ),
       "->",
