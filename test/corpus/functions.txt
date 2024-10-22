@@ -177,8 +177,7 @@ fun test() {
       (block
         (statements
           (assignment
-            left: (directly_assignable_expression
-              (simple_identifier))
+            left: (simple_identifier)
             right: (boolean_literal))
           (call_expression
             expression: (simple_identifier)

@@ -370,18 +370,16 @@ when (dir) {
               receiver: (simple_identifier)
               selector: (simple_identifier)))
           (assignment
-            left: (directly_assignable_expression
-              (dot_qualified_expression
-                receiver: (simple_identifier)
-                selector: (simple_identifier)))
+            left: (dot_qualified_expression
+              receiver: (simple_identifier)
+              selector: (simple_identifier))
             right: (dot_qualified_expression
               receiver: (simple_identifier)
               selector: (simple_identifier)))
           (assignment
-            left: (directly_assignable_expression
-              (dot_qualified_expression
-                receiver: (simple_identifier)
-                selector: (simple_identifier)))
+            left: (dot_qualified_expression
+              receiver: (simple_identifier)
+              selector: (simple_identifier))
             right: (simple_identifier))))))
   (when_expression
     (when_subject
@@ -400,18 +398,16 @@ when (dir) {
                 receiver: (simple_identifier)
                 selector: (simple_identifier)))
             (assignment
-              left: (directly_assignable_expression
-                (dot_qualified_expression
-                  receiver: (simple_identifier)
-                  selector: (simple_identifier)))
+              left: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier))
               right: (dot_qualified_expression
                 receiver: (simple_identifier)
                 selector: (simple_identifier)))
             (assignment
-              left: (directly_assignable_expression
-                (dot_qualified_expression
-                  receiver: (simple_identifier)
-                  selector: (simple_identifier)))
+              left: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier))
               right: (simple_identifier))))))))
 
 ================================================================================

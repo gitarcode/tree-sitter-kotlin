@@ -603,7 +603,7 @@ module.exports = grammar({
 
     assignment: $ =>
       prec.left(PREC.ASSIGNMENT, seq(
-        field('left', $.directly_assignable_expression),
+        field('left', $._directly_assignable_expression),
         field('op', choice('=', $._assignment_and_operator)),
         field('right', $._expression))),
 
@@ -968,7 +968,7 @@ module.exports = grammar({
 
     _member_access_operator: $ => choice(".", alias($.safe_nav, '?.')),
 
-    directly_assignable_expression: $ => prec(
+    _directly_assignable_expression: $ => prec(
       PREC.ASSIGNMENT,
       choice(
         $.dot_qualified_expression,

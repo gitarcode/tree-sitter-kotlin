@@ -486,7 +486,15 @@
         "required": true,
         "types": [
           {
-            "type": "directly_assignable_expression",
+            "type": "dot_qualified_expression",
+            "named": true
+          },
+          {
+            "type": "index_access_expression",
+            "named": true
+          },
+          {
+            "type": "simple_identifier",
             "named": true
           }
         ]
@@ -2366,29 +2374,6 @@
         },
         {
           "type": "user_type",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "directly_assignable_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "dot_qualified_expression",
-          "named": true
-        },
-        {
-          "type": "index_access_expression",
-          "named": true
-        },
-        {
-          "type": "simple_identifier",
           "named": true
         }
       ]

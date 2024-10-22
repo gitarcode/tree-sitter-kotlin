@@ -2902,7 +2902,7 @@
             "name": "left",
             "content": {
               "type": "SYMBOL",
-              "name": "directly_assignable_expression"
+              "name": "_directly_assignable_expression"
             }
           },
           {
@@ -5205,7 +5205,7 @@
         }
       ]
     },
-    "directly_assignable_expression": {
+    "_directly_assignable_expression": {
       "type": "PREC",
       "value": 1,
       "content": {
