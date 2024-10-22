@@ -539,3 +539,21 @@ class A {
         name: (simple_identifier))
       (object_declaration
         name: (simple_identifier)))))
+
+================================================================================
+Companion object without name
+================================================================================
+
+class A {
+	public companion object
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    name: (simple_identifier)
+    body: (class_body
+      (companion_object
+        modifiers: (modifiers
+          (visibility_modifier))))))
