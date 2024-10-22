@@ -43,6 +43,8 @@ This is a "multiline"
 string.
 """
 """^1\.(?<version>\d+)(?:\.[^.].*)?$"""
+"""Content-Disposition: form-data; name=file; file; name=""; filename="""""
+
 --------------------------------------------------------------------------------
 
 (source_file
@@ -50,6 +52,9 @@ string.
     (string_content))
   (string_literal
     (string_content)
+    (string_content)
+    (string_content))
+  (string_literal
     (string_content)
     (string_content))
   (string_literal

@@ -785,7 +785,7 @@ module.exports = grammar({
       escaped_identifier
     ))),
 
-    _multi_line_string_literal: $ => seq(
+    _multi_line_string_literal: $ => prec.right(seq(
       '"""',
       repeat(choice(
         alias($.multi_line_string_content, $.string_content), 
@@ -795,8 +795,9 @@ module.exports = grammar({
       )),
       // Need to consume the last '$' character here, and create a node in the tree
       optional(alias("$", $.string_content)),
-      choice('""""', '"""')
-    ),
+      '"""',
+      repeat('"')
+    )),
 
     multi_line_string_content: $ => token(prec(PREC.STRING_CONTENT, /[^"$]+/)),
 
