@@ -324,7 +324,7 @@ module.exports = grammar({
       optional(field('modifiers', $.modifiers)),
       "companion",
       "object",
-      field('name', $.simple_identifier),
+      optional(field('name', $.simple_identifier)),
       optional(seq(":", $._delegation_specifiers)),
       optional(field('body', $.class_body))
     ),
