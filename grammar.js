@@ -697,9 +697,17 @@ module.exports = grammar({
 
     equality_expression: $ => prec.left(PREC.EQUALITY, seq($._expression, $._equality_operator, $._expression)),
 
-    conjunction_expression: $ => prec.left(PREC.CONJUNCTION, seq($._expression, "&&", $._expression)),
+    conjunction_expression: $ => prec.left(PREC.CONJUNCTION, seq(
+      field('left', $._expression), 
+      "&&", 
+      field('right', $._expression))
+    ),
 
-    disjunction_expression: $ => prec.left(PREC.DISJUNCTION, seq($._expression, "||", $._expression)),
+    disjunction_expression: $ => prec.left(PREC.DISJUNCTION, seq(
+      field('left', $._expression), 
+      "||", 
+      field('right', $._expression))
+    ),
 
     // Suffixes
 

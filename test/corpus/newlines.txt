@@ -58,8 +58,8 @@ fun foo()  {
             var_decl: (variable_declaration
               id: (simple_identifier))
             initializer: (conjunction_expression
-              (simple_identifier)
-              (simple_identifier))))))))
+              left: (simple_identifier)
+              right: (simple_identifier))))))))
 
 ================================================================================
 Open brace after newline
