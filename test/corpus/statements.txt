@@ -56,7 +56,7 @@ val ty x get () = 3
       id: (simple_identifier))
     (getter
       (function_body
-        (integer_literal))))
+        expression: (integer_literal))))
   (property_declaration
     (binding_pattern_kind)
     (user_type
@@ -65,7 +65,7 @@ val ty x get () = 3
       id: (simple_identifier))
     (getter
       (function_body
-        (integer_literal)))))
+        expression: (integer_literal)))))
 
 ================================================================================
 Multi variable declarations

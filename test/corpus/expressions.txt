@@ -155,7 +155,7 @@ val MyDate.s: String get() = "hello"
         (type_identifier)))
     (getter
       (function_body
-        (string_literal (string_content))))))
+        expression: (string_literal (string_content))))))
 
 ================================================================================
 Expect as an expression

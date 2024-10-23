@@ -363,7 +363,7 @@ module.exports = grammar({
       optional(field('body', $.function_body))
     )),
 
-    function_body: $ => choice($.block, seq("=", $._expression)),
+    function_body: $ => choice($.block, seq("=", field('expression', $._expression))),
 
     variable_declaration: $ => prec.left(PREC.VAR_DECL, seq(
       // repeat($.annotation), TODO

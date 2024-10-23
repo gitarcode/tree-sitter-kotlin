@@ -32,7 +32,7 @@ fun foo()
     name: (simple_identifier)
     parameters: (function_value_parameters)
     body: (function_body 
-    (integer_literal))))
+      expression: (integer_literal))))
 
 ================================================================================
 Binary operator after newline
@@ -164,7 +164,7 @@ class Foo {
             (type_identifier))))
       (getter
         (function_body
-          (multiplicative_expression
+          expression: (multiplicative_expression
             (call_expression
               expression: (simple_identifier)
               args: (value_arguments))

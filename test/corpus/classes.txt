@@ -77,12 +77,13 @@ class Strings {
        name: (simple_identifier)
        parameters: (function_value_parameters)
        body: (function_body
-        (string_literal (string_content))))
+        expression: (string_literal 
+          (string_content))))
       (function_declaration
        name: (simple_identifier)
        parameters: (function_value_parameters)
        body: (function_body
-        (additive_expression
+        expression: (additive_expression
           (additive_expression
               (string_literal (string_content))
               (string_literal (string_content)))
@@ -244,13 +245,13 @@ class Something {
             (type_identifier)))
         (getter
           (function_body
-            (simple_identifier))))
+            expression: (simple_identifier))))
       (property_declaration
-            (binding_pattern_kind)
-            var_decl: (variable_declaration
-              id: (simple_identifier))
-            initializer: (string_literal
-              (string_content))))))    
+        (binding_pattern_kind)
+        var_decl: (variable_declaration
+          id: (simple_identifier))
+        initializer: (string_literal
+          (string_content))))))    
 
 ================================================================================
 Constructor delegation calls
@@ -365,7 +366,7 @@ enum class Enum {
         name: (simple_identifier)
         parameters: (function_value_parameters)
         body: (function_body
-          (call_expression
+          expression: (call_expression
             expression: (dot_qualified_expression
               receiver: (simple_identifier)
               selector: (simple_identifier))
@@ -386,7 +387,7 @@ enum class Enum {
             name: (simple_identifier)
             parameters: (function_value_parameters)
             body: (function_body
-              (simple_identifier)))))
+              expression: (simple_identifier)))))
       (enum_entry
         name: (simple_identifier)
         body: (class_body
@@ -396,7 +397,7 @@ enum class Enum {
             name: (simple_identifier)
             parameters: (function_value_parameters)
             body: (function_body
-              (simple_identifier)))))
+              expression: (simple_identifier)))))
       (function_declaration
         modifiers: (modifiers
           (inheritance_modifier))
