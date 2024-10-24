@@ -3192,35 +3192,57 @@
       }
     },
     "prefix_expression": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "annotation"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "label"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "annotation"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "label"
+                }
+              ]
             },
             {
               "type": "FIELD",
-              "name": "op",
+              "name": "expression",
               "content": {
                 "type": "SYMBOL",
-                "name": "prefix_unary_operator"
+                "name": "expression"
               }
             }
           ]
         },
         {
-          "type": "FIELD",
-          "name": "expression",
+          "type": "PREC",
+          "value": 15,
           "content": {
-            "type": "SYMBOL",
-            "name": "expression"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "op",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "prefix_unary_operator"
+                }
+              },
+              {
+                "type": "FIELD",
+                "name": "expression",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "expression"
+                }
+              }
+            ]
           }
         }
       ]
