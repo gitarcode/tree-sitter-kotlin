@@ -954,3 +954,28 @@ it.sliceArray(1..<it.size)
           (dot_qualified_expression
             receiver: (simple_identifier)
             selector: (simple_identifier)))))))
+
+================================================================================
+Disjunction and negation expression
+================================================================================
+
+!x||y
+!x&&!y||y
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (disjunction_expression
+    left: (prefix_expression
+      op: (prefix_unary_operator)
+      expression: (simple_identifier))
+    right: (simple_identifier))
+  (disjunction_expression
+    left: (conjunction_expression
+      left: (prefix_expression
+        op: (prefix_unary_operator)
+        expression: (simple_identifier))
+      right: (prefix_expression
+        op: (prefix_unary_operator)
+        expression: (simple_identifier)))
+    right: (simple_identifier)))

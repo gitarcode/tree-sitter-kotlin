@@ -657,7 +657,9 @@ module.exports = grammar({
       ']')
     ),
 
-    prefix_expression: $ => seq(choice($.annotation, $.label, field('op', $.prefix_unary_operator)), field('expression', $.expression)),
+    prefix_expression: $ => choice(
+      seq(choice($.annotation, $.label), field('expression', $.expression)),
+      prec(PREC.PREFIX, seq(field('op', $.prefix_unary_operator), field('expression', $.expression)))),
 
     as_expression: $ => prec(PREC.AS, seq($.expression, $._as_operator, $._type)),
 
