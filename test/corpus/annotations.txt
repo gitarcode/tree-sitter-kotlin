@@ -197,3 +197,32 @@ const val BAZ = "baz"
       id: (simple_identifier))
     initializer: (string_literal
       (string_content))))      
+
+======================
+Annotation with soft-keyword argument
+======================
+
+@Fork(value = 1)
+class SaneFlowPlaysScrabble : ShakespearePlaysScrabble() {
+}
+
+---
+
+(source_file
+  (class_declaration
+    modifiers: (modifiers
+      (annotation
+        (constructor_invocation
+          (user_type
+            (type_identifier))
+          (value_arguments
+            (value_argument
+              (simple_identifier)
+              (integer_literal))))))
+    name: (simple_identifier)
+    (delegation_specifier
+      (constructor_invocation
+        (user_type
+          (type_identifier))
+        (value_arguments)))
+    body: (class_body)))

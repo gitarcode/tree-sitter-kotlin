@@ -778,7 +778,7 @@
           "named": true
         },
         {
-          "type": "enum_entry",
+          "type": "enum_class_declaration",
           "named": true
         },
         {
@@ -1337,6 +1337,123 @@
       "types": [
         {
           "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum_class_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anonymous_initializer",
+          "named": true
+        },
+        {
+          "type": "class_declaration",
+          "named": true
+        },
+        {
+          "type": "companion_object",
+          "named": true
+        },
+        {
+          "type": "enum_class_declaration",
+          "named": true
+        },
+        {
+          "type": "enum_entry",
+          "named": true
+        },
+        {
+          "type": "function_declaration",
+          "named": true
+        },
+        {
+          "type": "getter",
+          "named": true
+        },
+        {
+          "type": "object_declaration",
+          "named": true
+        },
+        {
+          "type": "property_declaration",
+          "named": true
+        },
+        {
+          "type": "secondary_constructor",
+          "named": true
+        },
+        {
+          "type": "setter",
+          "named": true
+        },
+        {
+          "type": "type_alias",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enum_class_declaration",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "enum_class_body",
+            "named": true
+          }
+        ]
+      },
+      "modifiers": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "modifiers",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "simple_identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "delegation_specifier",
+          "named": true
+        },
+        {
+          "type": "primary_constructor",
+          "named": true
+        },
+        {
+          "type": "type_constraints",
+          "named": true
+        },
+        {
+          "type": "type_parameters",
           "named": true
         }
       ]
@@ -2750,6 +2867,11 @@
     }
   },
   {
+    "type": "property_modifier",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "range_expression",
     "named": true,
     "fields": {},
@@ -2818,6 +2940,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "reification_modifier",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "secondary_constructor",
@@ -2949,6 +3076,10 @@
           "named": true
         },
         {
+          "type": "enum_class_declaration",
+          "named": true
+        },
+        {
           "type": "file_annotation",
           "named": true
         },
@@ -3028,6 +3159,10 @@
         },
         {
           "type": "do_while_statement",
+          "named": true
+        },
+        {
+          "type": "enum_class_declaration",
           "named": true
         },
         {
@@ -4048,6 +4183,10 @@
     "named": false
   },
   {
+    "type": "const",
+    "named": false
+  },
+  {
     "type": "constructor",
     "named": false
   },
@@ -4184,10 +4323,6 @@
     "named": true
   },
   {
-    "type": "multiline_comment",
-    "named": true
-  },
-  {
     "type": "noinline",
     "named": false
   },
@@ -4232,10 +4367,6 @@
     "named": false
   },
   {
-    "type": "property_modifier",
-    "named": true
-  },
-  {
     "type": "protected",
     "named": false
   },
@@ -4252,8 +4383,8 @@
     "named": false
   },
   {
-    "type": "reification_modifier",
-    "named": true
+    "type": "reified",
+    "named": false
   },
   {
     "type": "return",

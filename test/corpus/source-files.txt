@@ -82,8 +82,7 @@ import java.io.Files
       name: (identifier
         (simple_identifier)
         (simple_identifier)
-        (simple_identifier))))
-  (import_list
+        (simple_identifier)))
     (import_header
       name: (identifier
         (simple_identifier)

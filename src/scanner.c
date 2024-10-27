@@ -7,7 +7,6 @@
 // Mostly a copy paste of tree-sitter-javascript/src/scanner.c
 
 enum TokenType {
-  AUTOMATIC_SEMICOLON,
   IMPORT_LIST_DELIMITER,
   SAFE_NAV,
   MULTILINE_COMMENT,
@@ -114,120 +113,6 @@ static bool scan_for_word(TSLexer *lexer, const char* word, unsigned len) {
     return true;
 }
 
-static bool scan_automatic_semicolon(TSLexer *lexer) {
-  lexer->result_symbol = AUTOMATIC_SEMICOLON;
-  lexer->mark_end(lexer);
-
-  bool sameline = true;
-  for (;;) {
-    if (lexer->eof(lexer)) return true;
-
-    if (lexer->lookahead == ';') {
-      advance(lexer);
-      lexer->mark_end(lexer);
-      return true;
-    }
-
-    if (!iswspace(lexer->lookahead)) break;
-
-    if (lexer->lookahead == '\n') {
-      skip(lexer);
-      sameline = false;
-      break;
-    }
-
-    if (lexer->lookahead == '\r') {
-      skip(lexer);
-
-      if (lexer->lookahead == '\n') skip(lexer);
-
-      sameline = false;
-      break;
-    }
-
-    skip(lexer);
-  }
-
-  // Skip whitespace and comments
-  if (!scan_whitespace_and_comments(lexer))
-    return false;
-
-  if (sameline) {
-    switch (lexer->lookahead) {
-      // Don't insert a semicolon before an else
-      case 'e':
-        return !scan_for_word(lexer, "lse", 3);
-
-      case 'i':
-        return scan_for_word(lexer, "mport", 5);
-
-      case ';':
-        advance(lexer);
-        lexer->mark_end(lexer);
-        return true;
-
-      default:
-        return false;
-    }
-  }
-
-  switch (lexer->lookahead) {
-    case ',':
-    case '.':
-    case ':':
-    case '*':
-    case '%':
-    case '>':
-    case '<':
-    case '=':
-    case '{':
-    case '[':
-    case '?':
-    case '|':
-    case '&':
-    case '/':
-      return false;
-
-    // Insert a semicolon before `--` and `++`, but not before binary `+` or `-`.
-    // Insert before +/-Float
-    case '+':
-      skip(lexer);
-      if (lexer->lookahead == '+') return true;
-      return iswdigit(lexer->lookahead);
-
-    case '-':
-      skip(lexer);
-      if (lexer->lookahead == '-') return true;
-      return iswdigit(lexer->lookahead);
-
-    // Don't insert a semicolon before `!=`, but do insert one before a unary `!`.
-    case '!':
-      skip(lexer);
-      return lexer->lookahead != '=';
-
-    // Don't insert a semicolon before an else
-    case 'e':
-      return !scan_for_word(lexer, "lse", 3);
-
-    // Don't insert a semicolon before `in` or `instanceof`, but do insert one
-    // before an identifier or an import.
-    case 'i':
-      skip(lexer);
-      if (lexer->lookahead != 'n') return true;
-      skip(lexer);
-      if (!iswalpha(lexer->lookahead)) return false;
-      return !scan_for_word(lexer, "stanceof", 8);
-
-    case ';':
-      advance(lexer);
-      lexer->mark_end(lexer);
-      return true;
-
-    default:
-      return true;
-  }
-}
-
 static bool scan_safe_nav(TSLexer *lexer) {
   lexer->result_symbol = SAFE_NAV;
   lexer->mark_end(lexer);
@@ -327,17 +212,6 @@ static bool scan_import_list_delimiter(TSLexer *lexer) {
 }
 
 bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
-  if (valid_symbols[AUTOMATIC_SEMICOLON]) {
-    bool ret = scan_automatic_semicolon(lexer);
-    if (!ret && valid_symbols[SAFE_NAV] && lexer->lookahead == '?') {
-      return scan_safe_nav(lexer);
-    }
-
-    // if we fail to find an automatic semicolon, it's still possible that we may
-    // want to lex a string or comment later
-    if (ret) return ret;
-  }
-
   if (valid_symbols[IMPORT_LIST_DELIMITER]) {
     return scan_import_list_delimiter(lexer);
   }

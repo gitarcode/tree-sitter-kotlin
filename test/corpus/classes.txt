@@ -320,11 +320,9 @@ enum class Enum {
 --------------------------------------------------------------------------------
 
 (source_file
-  (class_declaration
-    modifiers: (modifiers
-      (class_modifier))
+  (enum_class_declaration
     name: (simple_identifier)
-    body: (class_body
+    body: (enum_class_body
       (enum_entry
         name: (simple_identifier))
       (enum_entry
@@ -333,9 +331,7 @@ enum class Enum {
         name: (simple_identifier))
       (enum_entry
         name: (simple_identifier))))
-  (class_declaration
-    modifiers: (modifiers
-      (class_modifier))
+  (enum_class_declaration
     name: (simple_identifier)
     (primary_constructor
       (class_parameters
@@ -344,7 +340,7 @@ enum class Enum {
           name: (simple_identifier)
           type: (user_type
             (type_identifier)))))
-    body: (class_body
+    body: (enum_class_body
       (enum_entry
         name: (simple_identifier)
         arguments: (value_arguments
@@ -373,11 +369,9 @@ enum class Enum {
             args: (value_arguments
               (value_argument
                 (integer_literal))))))))
-  (class_declaration
-    modifiers: (modifiers
-      (class_modifier))
+  (enum_class_declaration
     name: (simple_identifier)
-    body: (class_body
+    body: (enum_class_body
       (enum_entry
         name: (simple_identifier)
         body: (class_body
@@ -405,11 +399,9 @@ enum class Enum {
         parameters: (function_value_parameters)
         type: (user_type
           (type_identifier)))))
-  (class_declaration
-    modifiers: (modifiers
-      (class_modifier))
+  (enum_class_declaration
     name: (simple_identifier)
-    body: (class_body
+    body: (enum_class_body
       (enum_entry
         modifiers: (modifiers
           (annotation
@@ -528,7 +520,7 @@ Companion object without body
 ================================================================================
 
 class A {
-	compainon object A
+	companion object A
 }
 
 --------------------------------------------------------------------------------
@@ -537,9 +529,7 @@ class A {
   (class_declaration
     name: (simple_identifier)
     body: (class_body
-      (enum_entry
-        name: (simple_identifier))
-      (object_declaration
+      (companion_object
         name: (simple_identifier)))))
 
 ================================================================================
