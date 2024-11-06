@@ -157,7 +157,7 @@ module.exports = grammar({
       // In principle, we either parse a Kotlin file (.kt) or a Kotlin script (.kts).
       // Statements cannot appear as top-level constructs in Kotlin files, only in scripts.
       // However, here, we're allowing parsing of both statements and declarations as top level.
-      repeat(choice($._top_level_object, $._top_level_statement))
+      repeat(choice($._top_level_object, alias($._top_level_statement, $.statement)))
     ),
 
     shebang_line: $ => seq("#!", /[^\r\n]*/),
@@ -192,11 +192,11 @@ module.exports = grammar({
     _top_level_object: $ => seq($._declaration, optional($._semi)),
 
     _top_level_statement: $ => seq(
-      alias(choice(
+      choice(
         $.assignment,
         $._loop_statement,
         $.expression
-      ), $.statement), 
+      ), 
       $._semi,
     ),
 
