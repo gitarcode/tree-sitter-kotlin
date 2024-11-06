@@ -130,7 +130,8 @@ module.exports = grammar({
     [$.class_parameters],
     [$.class_parameter],
     [$.function_value_parameters],
-    [$.parameter, $._simple_user_type]
+    [$.parameter, $._simple_user_type],
+    [$.collection_literal]
   ],
 
   externals: $ => [
@@ -852,11 +853,13 @@ module.exports = grammar({
 
     collection_literal: $ => seq(
       "[", 
+      repeat($._NL),
       optional(seq(
-        $.expression, 
-        repeat(seq(",", $.expression)),
+        sep1($.expression, repeat($._NL), ",", repeat($._NL)),
+        repeat($._NL),
         optional(","),
       )),
+      repeat($._NL),
       "]"
     ),
 
