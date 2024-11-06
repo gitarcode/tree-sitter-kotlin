@@ -543,11 +543,11 @@ module.exports = grammar({
     // ==========
 
     statements: $ => seq(
-      sep1($.statement, $._semi),
+      sep1(alias($._statement, $.statement), $._semi),
       optional($._semi),
     ),
 
-    statement: $ => choice(
+    _statement: $ => choice(
       $._declaration,
       $.assignment,
       $._loop_statement,
@@ -559,7 +559,7 @@ module.exports = grammar({
       "@"
     )),
 
-    control_structure_body: $ => choice($.block, $.statement),
+    control_structure_body: $ => choice($.block, $._statement),
 
     block: $ => prec(PREC.BLOCK, seq("{", optional($.statements), "}")),
 

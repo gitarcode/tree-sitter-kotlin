@@ -112,14 +112,12 @@ val y = when(x) {
         (when_condition
           (integer_literal))
         (control_structure_body
-          (statement
-            (boolean_literal))))
+          (boolean_literal)))
       (when_entry
         (when_condition
           (integer_literal))
         (control_structure_body
-          (statement
-            (boolean_literal)))))))
+          (boolean_literal))))))
 
 ================================================================================
 When expression with type arguments
@@ -144,9 +142,8 @@ when (this) {
               (type_arguments
                 (type_projection)))))
         (control_structure_body
-          (statement
-            (jump_expression
-              (null_literal))))))))
+          (jump_expression
+            (null_literal)))))))
 
 ================================================================================
 Value declaration with receiver type
@@ -956,16 +953,15 @@ when (this) {
         (this_expression))
       (when_entry
         (control_structure_body
-          (statement
-            (additive_expression
-              (string_literal
-                (interpolated_identifier)
-                (string_content)
-                (interpolated_identifier))
-              (if_expression
-                condition: (simple_identifier)
-                consequence: (simple_identifier)
-                alternative: (string_literal)))))))))
+          (additive_expression
+            (string_literal
+              (interpolated_identifier)
+              (string_content)
+              (interpolated_identifier))
+            (if_expression
+              condition: (simple_identifier)
+              consequence: (simple_identifier)
+              alternative: (string_literal))))))))
 
 ================================================================================
 When expression with trailing comma
@@ -986,13 +982,12 @@ when (x) {
         (when_condition
           (integer_literal))
         (control_structure_body
-          (statement
-            (call_expression
-              expression: (simple_identifier)
-              args: (value_arguments
-                (value_argument
-                  (string_literal
-                    (string_content)))))))))))
+          (call_expression
+            expression: (simple_identifier)
+            args: (value_arguments
+              (value_argument
+                (string_literal
+                  (string_content))))))))))
 
 ================================================================================
 Range expression

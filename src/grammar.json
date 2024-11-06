@@ -2634,8 +2634,13 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "statement"
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_statement"
+              },
+              "named": true,
+              "value": "statement"
             },
             {
               "type": "REPEAT",
@@ -2647,8 +2652,13 @@
                     "name": "_semi"
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "statement"
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_statement"
+                    },
+                    "named": true,
+                    "value": "statement"
                   }
                 ]
               }
@@ -2669,7 +2679,7 @@
         }
       ]
     },
-    "statement": {
+    "_statement": {
       "type": "CHOICE",
       "members": [
         {
@@ -2715,7 +2725,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "statement"
+          "name": "_statement"
         }
       ]
     },
