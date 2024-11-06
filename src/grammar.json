@@ -4323,6 +4323,13 @@
           ]
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
@@ -4342,8 +4349,22 @@
                   ]
                 },
                 {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
+                  }
+                },
+                {
                   "type": "STRING",
                   "value": "="
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
+                  }
                 }
               ]
             },
@@ -4363,6 +4384,13 @@
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
         },
         {
           "type": "SYMBOL",
@@ -7598,6 +7626,18 @@
     ],
     [
       "collection_literal"
+    ],
+    [
+      "_simple_user_type",
+      "value_argument",
+      "_primary_expression"
+    ],
+    [
+      "value_argument",
+      "_primary_expression"
+    ],
+    [
+      "value_argument"
     ]
   ],
   "precedences": [],

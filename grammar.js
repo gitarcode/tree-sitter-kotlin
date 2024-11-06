@@ -131,7 +131,11 @@ module.exports = grammar({
     [$.class_parameter],
     [$.function_value_parameters],
     [$.parameter, $._simple_user_type],
-    [$.collection_literal]
+    [$.collection_literal],
+    // becuase of $._NL after simple_identifier, all can reduce
+    [$._simple_user_type, $.value_argument, $._primary_expression],
+    [$.value_argument, $._primary_expression],
+    [$.value_argument]
   ],
 
   externals: $ => [
@@ -825,8 +829,10 @@ module.exports = grammar({
 
     value_argument: $ => seq(
       optional($.annotation),
-      optional(seq(choice($.simple_identifier, $._soft_keywords), "=")),
+      repeat($._NL),
+      optional(seq(choice($.simple_identifier, $._soft_keywords), repeat($._NL), "=", repeat($._NL))),
       optional("*"),
+      repeat($._NL),
       $.expression
     ),
 
