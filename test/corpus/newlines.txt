@@ -53,14 +53,15 @@ fun foo()  {
     parameters: (function_value_parameters)
     body: (function_body
       (block
-        (statement
-          (property_declaration
-            (binding_pattern_kind)
-            var_decl: (variable_declaration
-              id: (simple_identifier))
-            initializer: (conjunction_expression
-              left: (simple_identifier)
-              right: (simple_identifier))))))))
+        (statements
+          (statement
+            (property_declaration
+              (binding_pattern_kind)
+              var_decl: (variable_declaration
+                id: (simple_identifier))
+              initializer: (conjunction_expression
+                left: (simple_identifier)
+                right: (simple_identifier)))))))))
 
 ================================================================================
 Open brace after newline
@@ -79,10 +80,11 @@ fun foo():String
       (type_identifier))
     body: (function_body
       (block
-        (statement
-          (jump_expression
-            (string_literal
-              (string_content))))))))
+        (statements
+          (statement
+            (jump_expression
+              (string_literal
+                (string_content)))))))))
 
 ================================================================================
 Colon after newline
@@ -121,27 +123,27 @@ fun foo() {
     parameters: (function_value_parameters)
     body: (function_body
       (block
-        (statement
-          (property_declaration
-            (binding_pattern_kind)
-            var_decl: (variable_declaration
-              id: (simple_identifier))
-            initializer: (elvis_expression
-              (elvis_expression
-                (call_expression
-                  expression: (dot_qualified_expression
-                    receiver: (simple_identifier)
-                    selector: (simple_identifier))
-                  args: (value_arguments
-                    (value_argument
-                      (boolean_literal))))
-                (call_expression
-                  expression: (dot_qualified_expression
-                    receiver: (simple_identifier)
-                    selector: (simple_identifier))
-                  args: (value_arguments)))
-              (jump_expression))))))))
-
+        (statements
+          (statement
+            (property_declaration
+              (binding_pattern_kind)
+              var_decl: (variable_declaration
+                id: (simple_identifier))
+              initializer: (elvis_expression
+                (elvis_expression
+                  (call_expression
+                    expression: (dot_qualified_expression
+                      receiver: (simple_identifier)
+                      selector: (simple_identifier))
+                    args: (value_arguments
+                      (value_argument
+                        (boolean_literal))))
+                  (call_expression
+                    expression: (dot_qualified_expression
+                      receiver: (simple_identifier)
+                      selector: (simple_identifier))
+                    args: (value_arguments)))
+                (jump_expression)))))))))
 
 ================================================================================
 get after newline

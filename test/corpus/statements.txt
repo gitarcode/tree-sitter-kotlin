@@ -33,13 +33,14 @@ override fun isDisposed(): Boolean { expectUnreached();  return false }
       (type_identifier))
     body: (function_body
       (block
-        (statement
-          (call_expression
-            expression: (simple_identifier)
-              args: (value_arguments)))
+        (statements
           (statement
-            (jump_expression
-              (boolean_literal)))))))
+            (call_expression
+              expression: (simple_identifier)
+                args: (value_arguments)))
+            (statement
+              (jump_expression
+                (boolean_literal))))))))
 
 ================================================================================
 Getters
@@ -85,17 +86,18 @@ fun foo() {
     parameters: (function_value_parameters)
     body: (function_body
       (block
-        (statement 
-          (property_declaration
-            (binding_pattern_kind)
-            var_decl: (multi_variable_declaration
-              (variable_declaration
-                id: (simple_identifier))
-              (variable_declaration
-                id: (simple_identifier)))
-            initializer: (call_expression
-              expression: (simple_identifier)
-                args: (value_arguments))))))))
+        (statements
+          (statement 
+            (property_declaration
+              (binding_pattern_kind)
+              var_decl: (multi_variable_declaration
+                (variable_declaration
+                  id: (simple_identifier))
+                (variable_declaration
+                  id: (simple_identifier)))
+              initializer: (call_expression
+                expression: (simple_identifier)
+                  args: (value_arguments)))))))))
 
 
 ================================================================================
@@ -114,21 +116,23 @@ try {
   (statement
     (try_expression
       (block
-        (statement
-          (call_expression
-            expression: (simple_identifier)
-              args: (value_arguments))))
+        (statements
+          (statement
+            (call_expression
+              expression: (simple_identifier)
+                args: (value_arguments)))))
       (catch_block
         name: (simple_identifier)
         type: (user_type
           (type_identifier))
         body: (block
-          (statement
-            (call_expression
-              expression: (simple_identifier)
-                args: (value_arguments
-                  (value_argument
-                    (simple_identifier))))))))))
+          (statements
+            (statement
+              (call_expression
+                expression: (simple_identifier)
+                  args: (value_arguments
+                    (value_argument
+                      (simple_identifier)))))))))))
 
 ================================================================================
 Parenthesized expression after function call
@@ -158,7 +162,7 @@ val foo = Foo()
         selector: (simple_identifier))
       lambda_arg: (annotated_lambda
         (lambda_literal
-          body: (lambda_body
+          body: (statements
             (statement
               (call_expression
                 expression: (simple_identifier)

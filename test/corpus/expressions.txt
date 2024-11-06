@@ -339,7 +339,7 @@ foo.forEach { (index, value) -> 2 }
                 id: (simple_identifier))
               (variable_declaration
                 id: (simple_identifier))))
-          body: (lambda_body
+          body: (statements
             (statement
               (integer_literal))))))))
 
@@ -360,7 +360,7 @@ with(s) { length }
           (simple_identifier)))
       lambda_arg: (annotated_lambda
         (lambda_literal
-          body: (lambda_body
+          body: (statements
             (statement
               (simple_identifier))))))))
 
@@ -381,28 +381,29 @@ when (dir) {
     parameters: (function_value_parameters)
     body: (function_body
       (block
-        (statement
-          (property_declaration
-            (binding_pattern_kind)
-            var_decl: (variable_declaration
-              id: (simple_identifier))
-            initializer: (dot_qualified_expression
-              receiver: (simple_identifier)
-              selector: (simple_identifier))))
-        (statement
-          (assignment
-            left: (dot_qualified_expression
-              receiver: (simple_identifier)
-              selector: (simple_identifier))
-            right: (dot_qualified_expression
-              receiver: (simple_identifier)
-              selector: (simple_identifier))))
-        (statement
-          (assignment
-            left: (dot_qualified_expression
-              receiver: (simple_identifier)
-              selector: (simple_identifier))
-            right: (simple_identifier))))))
+        (statements
+          (statement
+            (property_declaration
+              (binding_pattern_kind)
+              var_decl: (variable_declaration
+                id: (simple_identifier))
+              initializer: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier))))
+          (statement
+            (assignment
+              left: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier))
+              right: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier))))
+          (statement
+            (assignment
+              left: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier))
+              right: (simple_identifier)))))))
   (statement
     (when_expression
       (when_subject
@@ -412,28 +413,29 @@ when (dir) {
           (integer_literal))
         (control_structure_body
           (block
-            (statement
-              (property_declaration
-                (binding_pattern_kind)
-                var_decl: (variable_declaration
-                  id: (simple_identifier))
-                initializer: (dot_qualified_expression
-                  receiver: (simple_identifier)
-                  selector: (simple_identifier))))
-            (statement
-              (assignment
-                left: (dot_qualified_expression
-                  receiver: (simple_identifier)
-                  selector: (simple_identifier))
-                right: (dot_qualified_expression
-                  receiver: (simple_identifier)
-                  selector: (simple_identifier))))
-            (statement
-              (assignment
-                left: (dot_qualified_expression
-                  receiver: (simple_identifier)
-                  selector: (simple_identifier))
-                right: (simple_identifier)))))))))
+            (statements
+              (statement
+                (property_declaration
+                  (binding_pattern_kind)
+                  var_decl: (variable_declaration
+                    id: (simple_identifier))
+                  initializer: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))))
+              (statement
+                (assignment
+                  left: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))
+                  right: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))))
+              (statement
+                (assignment
+                  left: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))
+                  right: (simple_identifier))))))))))
 
 ================================================================================
 Comments in Strings
@@ -542,13 +544,14 @@ class Square() : Rectangle(), Polygon {
         parameters: (function_value_parameters)
         body: (function_body
           (block
-            (statement
-              (call_expression
-                expression: (dot_qualified_expression
-                  receiver: (this_expression
-                    (type_identifier))
-                  selector: (simple_identifier))
-                args: (value_arguments)))
+            (statements
+              (statement
+                (call_expression
+                  expression: (dot_qualified_expression
+                    receiver: (this_expression
+                      (type_identifier))
+                    selector: (simple_identifier))
+                  args: (value_arguments)))
               (statement
                 (call_expression
                   expression: (dot_qualified_expression
@@ -556,7 +559,7 @@ class Square() : Rectangle(), Polygon {
                       (type_identifier))
                     selector: (simple_identifier))
                   args: (value_arguments)))
-              (statement    
+              (statement
                 (call_expression
                   expression: (dot_qualified_expression
                     receiver: (super_expression
@@ -564,7 +567,7 @@ class Square() : Rectangle(), Polygon {
                         (type_identifier)))
                     selector: (simple_identifier))
                   args: (value_arguments)))
-              (statement    
+              (statement
                 (call_expression
                   expression: (dot_qualified_expression
                     receiver: (super_expression
@@ -572,7 +575,7 @@ class Square() : Rectangle(), Polygon {
                         (type_identifier))
                       (type_identifier))
                     selector: (simple_identifier))
-                  args: (value_arguments)))))))))
+                  args: (value_arguments))))))))))
 
 ================================================================================
 If else-if else expression
@@ -593,31 +596,34 @@ if (cond1) {
     (if_expression
       condition: (simple_identifier)
       consequence: (block
-        (statement
-          (call_expression
-            expression: (simple_identifier)
-            args: (value_arguments
-              (value_argument
-                (string_literal
-                  (string_content)))))))
+        (statements
+          (statement
+            (call_expression
+              expression: (simple_identifier)
+              args: (value_arguments
+                (value_argument
+                  (string_literal
+                    (string_content))))))))
       alternative: (if_expression
         condition: (simple_identifier)
         consequence: (block
-          (statement
-            (call_expression
-              expression: (simple_identifier)
-              args: (value_arguments
-                (value_argument
-                  (string_literal
-                    (string_content)))))))
+          (statements
+            (statement
+              (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments
+                  (value_argument
+                    (string_literal
+                      (string_content))))))))
         alternative: (block
-          (statement
-            (call_expression
-              expression: (simple_identifier)
-              args: (value_arguments
-                (value_argument
-                  (string_literal
-                    (string_content)))))))))))
+          (statements
+            (statement
+              (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments
+                  (value_argument
+                    (string_literal
+                      (string_content))))))))))))
 
 ================================================================================
 If else expression with assignment
@@ -698,15 +704,16 @@ fun f(a: A): A {
       (type_identifier))
     body: (function_body
       (block
-        (statement
-          (jump_expression
-            (object_literal
-              (delegation_specifier
-                (explicit_delegation
-                  (user_type
-                    (type_identifier))
-                  (simple_identifier)))
-              (class_body))))))))
+        (statements
+          (statement
+            (jump_expression
+              (object_literal
+                (delegation_specifier
+                  (explicit_delegation
+                    (user_type
+                      (type_identifier))
+                    (simple_identifier)))
+                (class_body)))))))))
 
 ================================================================================
 Array access call
@@ -789,7 +796,7 @@ suppressions
                 parameters: (lambda_parameters
                   (variable_declaration
                     id: (simple_identifier)))
-                body: (lambda_body
+                body: (statements
                   (statement
                     (string_literal
                       (string_content)
@@ -806,7 +813,7 @@ suppressions
             parameters: (lambda_parameters
               (variable_declaration
                 id: (simple_identifier)))
-            body: (lambda_body
+            body: (statements
               (statement
                 (elvis_expression
                   (dot_qualified_expression
@@ -900,7 +907,7 @@ Lambda parameters with trailing comma
           id: (simple_identifier))
         (variable_declaration
           id: (simple_identifier)))
-      body: (lambda_body
+      body: (statements
         (statement
           (comparison_expression
             (dot_qualified_expression
@@ -1073,12 +1080,13 @@ fun f(l: MutableList<Int>?) {
                     (type_identifier)))))))))
     body: (function_body
       (block
-        (statement
-          (assignment
-            left: (postfix_expression
-              expression: (simple_identifier)
-              operator: (postfix_unary_operator))
-            right: (integer_literal)))))))
+        (statements
+          (statement
+            (assignment
+              left: (postfix_expression
+                expression: (simple_identifier)
+                operator: (postfix_unary_operator))
+              right: (integer_literal))))))))
 
 ================================================================================
 Generic callable expression

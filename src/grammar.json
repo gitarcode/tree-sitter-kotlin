@@ -2627,7 +2627,7 @@
         }
       ]
     },
-    "_statements": {
+    "statements": {
       "type": "SEQ",
       "members": [
         {
@@ -2734,7 +2734,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_statements"
+                "name": "statements"
               },
               {
                 "type": "BLANK"
@@ -4297,13 +4297,8 @@
               "type": "FIELD",
               "name": "body",
               "content": {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_statements"
-                },
-                "named": true,
-                "value": "lambda_body"
+                "type": "SYMBOL",
+                "name": "statements"
               }
             },
             {

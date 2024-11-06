@@ -542,7 +542,7 @@ module.exports = grammar({
     // Statements
     // ==========
 
-    _statements: $ => seq(
+    statements: $ => seq(
       sep1($.statement, $._semi),
       optional($._semi),
     ),
@@ -561,7 +561,7 @@ module.exports = grammar({
 
     control_structure_body: $ => choice($.block, $.statement),
 
-    block: $ => prec(PREC.BLOCK, seq("{", optional($._statements), "}")),
+    block: $ => prec(PREC.BLOCK, seq("{", optional($.statements), "}")),
 
     _loop_statement: $ => choice(
       $.for_statement,
@@ -841,7 +841,7 @@ module.exports = grammar({
     lambda_literal: $ => seq(
       "{",
       optional(seq(optional(field('parameters', $.lambda_parameters)), "->")),
-      optional(field('body', alias($._statements, $.lambda_body))),
+      optional(field('body', $.statements)),
       "}"
     ),
 

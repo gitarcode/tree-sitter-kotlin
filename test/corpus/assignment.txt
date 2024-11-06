@@ -30,12 +30,13 @@ class Foo(){
               type: (user_type
                 (type_identifier)))))
         block: (block
-          (statement
-            (assignment
-              left: (dot_qualified_expression
-                receiver: (this_expression)
-                selector: (simple_identifier))
-              right: (simple_identifier))))))))
+          (statements
+            (statement
+              (assignment
+                left: (dot_qualified_expression
+                  receiver: (this_expression)
+                  selector: (simple_identifier))
+                right: (simple_identifier)))))))))
 
 ================================================================================
 Index Assignment
@@ -54,21 +55,22 @@ fun main(){
     parameters: (function_value_parameters)
     body: (function_body
       (block
-        (statement
-          (property_declaration
-            (binding_pattern_kind)
-            var_decl: (variable_declaration
-              id: (simple_identifier)
-              type: (user_type
-                (type_identifier)
-                (type_arguments
-                  (type_projection
-                    type: (user_type
-                      (type_identifier))))))))
-        (statement
-          (assignment
-            left: (index_access_expression
-              expression: (simple_identifier)
-              index: (integer_literal))
-            right: (string_literal
-              (string_content))))))))
+        (statements
+          (statement
+            (property_declaration
+              (binding_pattern_kind)
+              var_decl: (variable_declaration
+                id: (simple_identifier)
+                type: (user_type
+                  (type_identifier)
+                  (type_arguments
+                    (type_projection
+                      type: (user_type
+                        (type_identifier))))))))
+          (statement
+            (assignment
+              left: (index_access_expression
+                expression: (simple_identifier)
+                index: (integer_literal))
+              right: (string_literal
+                (string_content)))))))))

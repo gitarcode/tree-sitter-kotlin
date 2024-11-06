@@ -450,11 +450,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
-          "type": "statement",
+          "type": "statements",
           "named": true
         }
       ]
@@ -2071,21 +2071,6 @@
     }
   },
   {
-    "type": "lambda_body",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "statement",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "lambda_literal",
     "named": true,
     "fields": {
@@ -2094,7 +2079,7 @@
         "required": false,
         "types": [
           {
-            "type": "lambda_body",
+            "type": "statements",
             "named": true
           }
         ]
@@ -3142,6 +3127,21 @@
         },
         {
           "type": "while_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "statements",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "statement",
           "named": true
         }
       ]
