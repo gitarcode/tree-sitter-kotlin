@@ -16,12 +16,14 @@ Multiplication expression
 Safe Navigation
 ================================================================================
 
-a?.bar()
-a? .bar()
-a? . bar()
-a?
-  .bar()
-a ? . bar()
+a?.b()
+a
+?.b()
+a?.
+b()
+a
+?.
+b()
 
 --------------------------------------------------------------------------------
 
@@ -32,25 +34,19 @@ a ? . bar()
         receiver: (simple_identifier)
         selector: (simple_identifier))
       args: (value_arguments)))
-  (statement    
+  (statement
     (call_expression
       expression: (dot_qualified_expression
         receiver: (simple_identifier)
         selector: (simple_identifier))
       args: (value_arguments)))
-  (statement    
+  (statement
     (call_expression
       expression: (dot_qualified_expression
         receiver: (simple_identifier)
         selector: (simple_identifier))
       args: (value_arguments)))
-  (statement    
-    (call_expression
-      expression: (dot_qualified_expression
-        receiver: (simple_identifier)
-        selector: (simple_identifier))
-      args: (value_arguments)))
-  (statement      
+  (statement
     (call_expression
       expression: (dot_qualified_expression
         receiver: (simple_identifier)

@@ -576,7 +576,7 @@ module.exports = grammar({
     _quest: $ => "?",
 
     user_type: $ => seq(
-      $._simple_user_type, repeat(seq(repeat($._NL), ".", repeat($._NL), $._simple_user_type))
+      $._simple_user_type, repeat(seq($._DOT, repeat($._NL), $._simple_user_type))
     ),
 
     _simple_user_type: $ => seq(
@@ -710,9 +710,9 @@ module.exports = grammar({
 
     postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $.expression), field('operator', $.postfix_unary_operator))),
 
-    dot_qualified_expression: $ => prec(PREC.DOT, 
-      seq(field('receiver', choice($._primary_expression, $.postfix_expression)),
-      $._member_access_operator,
+    dot_qualified_expression: $ => prec(PREC.DOT, seq(
+      field('receiver', choice($._primary_expression, $.postfix_expression)),
+      choice($._DOT, $._SAFE_DOT),
       repeat($._NL),
       field('selector', choice(
         $.simple_identifier,
@@ -1095,7 +1095,9 @@ module.exports = grammar({
 
     postfix_unary_operator: $ => choice("++", "--", "!!"),
 
-    _member_access_operator: $ => choice(".", "?."),
+    _DOT: $ => /(\r?\n)*\./,
+
+    _SAFE_DOT: $ => /(\r?\n)*\?\./,
 
     _directly_assignable_expression: $ => prec(
       PREC.ASSIGNMENT,
