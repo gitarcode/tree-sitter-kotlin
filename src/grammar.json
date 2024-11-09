@@ -3500,6 +3500,10 @@
         {
           "type": "SYMBOL",
           "name": "labeled_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "if_expression"
         }
       ]
     },
@@ -4421,10 +4425,6 @@
         {
           "type": "SYMBOL",
           "name": "_function_literal"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "if_expression"
         },
         {
           "type": "SYMBOL",

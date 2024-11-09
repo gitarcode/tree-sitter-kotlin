@@ -691,7 +691,8 @@ module.exports = grammar({
       $.spread_expression,
       $.jump_expression,
       $.annotated_expression,
-      $.labeled_expression
+      $.labeled_expression,
+      $.if_expression
     ),
 
     postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $.expression), field('operator', $.postfix_unary_operator))),
@@ -830,7 +831,6 @@ module.exports = grammar({
       $.string_literal,
       $.callable_reference,
       $._function_literal,
-      $.if_expression,
       $.object_literal,
       $.collection_literal,
       $.this_expression,

@@ -520,10 +520,6 @@
             "named": true
           },
           {
-            "type": "if_expression",
-            "named": true
-          },
-          {
             "type": "index_access_expression",
             "named": true
           },
@@ -1235,10 +1231,6 @@
           },
           {
             "type": "hex_literal",
-            "named": true
-          },
-          {
-            "type": "if_expression",
             "named": true
           },
           {
