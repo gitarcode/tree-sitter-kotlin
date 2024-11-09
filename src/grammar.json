@@ -4005,8 +4005,15 @@
             "name": "expression"
           },
           {
-            "type": "STRING",
-            "value": "?:"
+            "type": "SYMBOL",
+            "name": "_ELVIS"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           },
           {
             "type": "SYMBOL",
@@ -6096,14 +6103,6 @@
         }
       ]
     },
-    "_DOT": {
-      "type": "PATTERN",
-      "value": "\\s*\\."
-    },
-    "_SAFE_DOT": {
-      "type": "PATTERN",
-      "value": "\\s*\\?\\."
-    },
     "_directly_assignable_expression": {
       "type": "PREC",
       "value": 1,
@@ -7484,6 +7483,18 @@
     "_backtick_identifier": {
       "type": "PATTERN",
       "value": "`[^\\r\\n`]+`"
+    },
+    "_DOT": {
+      "type": "PATTERN",
+      "value": "\\s*\\."
+    },
+    "_SAFE_DOT": {
+      "type": "PATTERN",
+      "value": "\\s*\\?\\."
+    },
+    "_ELVIS": {
+      "type": "PATTERN",
+      "value": "\\s*\\?:"
     },
     "_NL": {
       "type": "PATTERN",

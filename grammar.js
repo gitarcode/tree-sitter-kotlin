@@ -765,7 +765,7 @@ module.exports = grammar({
 
     infix_expression: $ => prec.left(PREC.INFIX, seq($.expression, $.simple_identifier, $.expression)),
 
-    elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, "?:", $.expression)),
+    elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, $._ELVIS, repeat($._NL), $.expression)),
 
     check_expression: $ => prec.left(PREC.CHECK, seq($.expression, choice(
       seq($._in_operator, $.expression),
@@ -1092,10 +1092,6 @@ module.exports = grammar({
 
     postfix_unary_operator: $ => choice("++", "--", "!!"),
 
-    _DOT: $ => /\s*\./,
-
-    _SAFE_DOT: $ => /\s*\?\./,
-
     _directly_assignable_expression: $ => prec(
       PREC.ASSIGNMENT,
       choice(
@@ -1394,6 +1390,9 @@ module.exports = grammar({
 
     _backtick_identifier: $ => /`[^\r\n`]+`/,
 
+    _DOT: $ => /\s*\./,
+    _SAFE_DOT: $ => /\s*\?\./,
+    _ELVIS: $=> /\s*\?:/,
     _NL: $ => /\r?\n/,
     _semi: $ => prec.right(seq(choice(";", $._NL), repeat($._NL))),
     _semis: $ => prec.right(repeat1(choice(";", $._NL))),
