@@ -1092,9 +1092,9 @@ module.exports = grammar({
 
     postfix_unary_operator: $ => choice("++", "--", "!!"),
 
-    _DOT: $ => /(\r?\n)*\./,
+    _DOT: $ => /\s*\./,
 
-    _SAFE_DOT: $ => /(\r?\n)*\?\./,
+    _SAFE_DOT: $ => /\s*\?\./,
 
     _directly_assignable_expression: $ => prec(
       PREC.ASSIGNMENT,

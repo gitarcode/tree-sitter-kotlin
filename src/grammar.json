@@ -6098,11 +6098,11 @@
     },
     "_DOT": {
       "type": "PATTERN",
-      "value": "(\\r?\\n)*\\."
+      "value": "\\s*\\."
     },
     "_SAFE_DOT": {
       "type": "PATTERN",
-      "value": "(\\r?\\n)*\\?\\."
+      "value": "\\s*\\?\\."
     },
     "_directly_assignable_expression": {
       "type": "PREC",
