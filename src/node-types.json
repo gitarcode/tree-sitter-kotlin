@@ -786,10 +786,6 @@
           "named": true
         },
         {
-          "type": "getter",
-          "named": true
-        },
-        {
           "type": "object_declaration",
           "named": true
         },
@@ -799,10 +795,6 @@
         },
         {
           "type": "secondary_constructor",
-          "named": true
-        },
-        {
-          "type": "setter",
           "named": true
         },
         {
@@ -1375,10 +1367,6 @@
           "named": true
         },
         {
-          "type": "getter",
-          "named": true
-        },
-        {
           "type": "object_declaration",
           "named": true
         },
@@ -1388,10 +1376,6 @@
         },
         {
           "type": "secondary_constructor",
-          "named": true
-        },
-        {
-          "type": "setter",
           "named": true
         },
         {
@@ -3088,10 +3072,6 @@
           "named": true
         },
         {
-          "type": "getter",
-          "named": true
-        },
-        {
           "type": "import_list",
           "named": true
         },
@@ -3105,10 +3085,6 @@
         },
         {
           "type": "property_declaration",
-          "named": true
-        },
-        {
-          "type": "setter",
           "named": true
         },
         {
@@ -3178,19 +3154,11 @@
           "named": true
         },
         {
-          "type": "getter",
-          "named": true
-        },
-        {
           "type": "object_declaration",
           "named": true
         },
         {
           "type": "property_declaration",
-          "named": true
-        },
-        {
-          "type": "setter",
           "named": true
         },
         {

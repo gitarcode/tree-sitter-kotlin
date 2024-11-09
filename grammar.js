@@ -89,8 +89,6 @@ module.exports = grammar({
     [$.inheritance_modifier, $._soft_keywords],
     [$.parameter_modifier, $._soft_keywords],
     [$.class_modifier, $._soft_keywords],
-    [$.setter, $._soft_keywords],
-    [$.getter, $._soft_keywords],
 
     // ambiguity between multiple user types and class property/function declarations
     [$.user_type],
@@ -131,7 +129,8 @@ module.exports = grammar({
     [$.collection_literal],
     // becuase of $._NL after simple_identifier, all can reduce
     [$.value_argument, $._primary_expression],
-    [$.value_argument]
+    [$.value_argument],
+    [$.property_declaration]
   ],
 
   externals: $ => [
@@ -228,15 +227,6 @@ module.exports = grammar({
       $.object_declaration,
       $.function_declaration,
       $.property_declaration,
-      // TODO: it would be better to have getter/setter only in
-      // property_declaration but it's difficult to get ASI
-      // (Automatic Semicolon Insertion) working in the lexer for
-      // getter/setter. Indeed, they can also have modifiers in
-      // front, which means it's not enough to lookahead for 'get' or 'set' in
-      // the lexer, you also need to handle modifier keywords. It is thus
-      // simpler to accept them here.
-      $.getter,
-      $.setter,
       $.type_alias
     ),
 
@@ -441,7 +431,7 @@ module.exports = grammar({
       optional(field('type', seq(repeat($._NL), ":", repeat($._NL), $._type)))
     )),
 
-    property_declaration: $ => prec.right(seq(
+    property_declaration: $ => seq(
       optional(field('modifiers', $.modifiers)),
       $.binding_pattern_kind,
       optional(field('type_parameters', $.type_parameters)),
@@ -452,13 +442,14 @@ module.exports = grammar({
         seq("=", field('initializer', $.expression)),
         $.property_delegate
       )),
+      repeat($._NL),
       optional(';'),
       choice(
         // TODO: Getter-setter combinations
         optional($.getter),
         optional($.setter)
       )
-    )),
+    ),
 
     property_delegate: $ => seq("by", $.expression),
 
