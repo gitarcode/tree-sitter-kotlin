@@ -36,13 +36,39 @@ fun foo()
       expression: (integer_literal))))
 
 ================================================================================
-Binary operator after newline
+Conjunction operator after newline
 ================================================================================
-
 
 fun foo()  {
   val bar = x
          && y
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration 
+    name: (simple_identifier) 
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block
+        (statements
+          (statement
+            (property_declaration
+              (binding_pattern_kind)
+              var_decl: (variable_declaration
+                id: (simple_identifier))
+              initializer: (conjunction_expression
+                left: (simple_identifier)
+                right: (simple_identifier)))))))))
+
+================================================================================
+newline after conjuncton operator
+================================================================================
+
+fun foo()  {
+  val bar = x && 
+    y
 }
 
 --------------------------------------------------------------------------------
@@ -262,3 +288,59 @@ f(
         (value_argument
           (simple_identifier)
           (integer_literal))))))
+
+================================================================================
+Newline before additive expression
+================================================================================
+
+fun foo() {
+   val foo = a 
+   + b
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block
+        (statements
+          (statement
+            (property_declaration
+              (binding_pattern_kind)
+              var_decl: (variable_declaration
+                id: (simple_identifier))
+              initializer: (simple_identifier)))
+          (statement
+            (prefix_expression
+              op: (prefix_unary_operator)
+              expression: (simple_identifier))))))))
+
+================================================================================
+Newline after additive expression
+================================================================================
+
+fun foo() {
+   val foo = a + 
+    b
+}
+
+--------------------------------------------------------------------------------
+    
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block
+        (statements
+          (statement
+            (property_declaration
+              (binding_pattern_kind)
+              var_decl: (variable_declaration
+                id: (simple_identifier))
+              initializer: (additive_expression
+                (simple_identifier)
+                (simple_identifier)))))))))

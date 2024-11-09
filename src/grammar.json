@@ -3933,6 +3933,13 @@
             "name": "_additive_operator"
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
             "type": "SYMBOL",
             "name": "expression"
           }
