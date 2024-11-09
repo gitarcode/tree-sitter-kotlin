@@ -25,3 +25,32 @@ Comments
     (multiline_comment)
     (line_comment)
     (multiline_comment)))
+
+================================================================================
+Comment after imports
+================================================================================
+
+import a.b.c
+import x.y.z
+
+// this is a comment
+class Foo {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_list
+    (import_header
+      name: (identifier
+        (simple_identifier)
+        (simple_identifier)
+        (simple_identifier)))
+    (import_header
+      name: (identifier
+        (simple_identifier)
+        (simple_identifier)
+        (simple_identifier))))
+  (line_comment)
+  (class_declaration
+    name: (simple_identifier)
+    body: (class_body)))
