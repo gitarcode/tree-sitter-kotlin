@@ -190,14 +190,14 @@ class Foo {
         var_decl: (variable_declaration
           id: (simple_identifier)
           type: (user_type
-            (type_identifier))))
-      (getter
-        (function_body
-          expression: (multiplicative_expression
-            (call_expression
-              expression: (simple_identifier)
-              args: (value_arguments))
-            (integer_literal)))))))
+            (type_identifier)))
+        (getter
+          (function_body
+            expression: (multiplicative_expression
+              (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments))
+              (integer_literal))))))))
 
 ================================================================================
 Newline in function call
