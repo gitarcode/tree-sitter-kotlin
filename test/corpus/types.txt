@@ -332,11 +332,11 @@ a as @Foo T & F
   (statement
     (as_expression
       (simple_identifier)
-      (type_modifiers
-        (annotation
-          (user_type
-            (type_identifier))))
       (not_nullable_type
+        (type_modifiers
+          (annotation
+            (user_type
+              (type_identifier))))
         (user_type
           (type_identifier))
         (user_type
