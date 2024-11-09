@@ -51,7 +51,6 @@ const PREC = {
   ARGUMENTS: 1,
   STRING_CONTENT: 1,
   RETURN_OR_THROW: 0,
-  COMMENT: 0
 };
 const DEC_DIGITS = token(sep1(/[0-9]+/, /_+/));
 const HEX_DIGITS = token(sep1(/[0-9a-fA-F]+/, /_+/));
@@ -1291,7 +1290,7 @@ module.exports = grammar({
     // General
     // ==========
 
-    line_comment: $ => token(prec(PREC.COMMENT, seq('//', /[^\r\n]*/))),
+    line_comment: $ => token(seq('//', /[^\r\n]*[\r\n]/)),
 
     // ==========
     // Separators and operations
