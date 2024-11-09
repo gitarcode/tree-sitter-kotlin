@@ -166,7 +166,7 @@ module.exports = grammar({
       optional($.shebang_line),
       repeat($.file_annotation),
       optional($.package_header),
-      repeat($.import_list),
+      optional($.import_list),
       // In principle, we either parse a Kotlin file (.kt) or a Kotlin script (.kts).
       // Statements cannot appear as top-level constructs in Kotlin files, only in scripts.
       // However, here, we're allowing parsing of both statements and declarations as top level.
@@ -195,7 +195,7 @@ module.exports = grammar({
       optional($._semi)
     ),
 
-    wildcard_import: _ =>"*",
+    wildcard_import: $ => seq(repeat($._NL), "*"),
 
     _import_alias: $ => seq("as", field('alias', $.simple_identifier)),
 
