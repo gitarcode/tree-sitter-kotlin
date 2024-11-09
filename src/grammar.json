@@ -4123,8 +4123,15 @@
             }
           },
           {
-            "type": "STRING",
-            "value": "&&"
+            "type": "SYMBOL",
+            "name": "_CONJ"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           },
           {
             "type": "FIELD",
@@ -4152,8 +4159,15 @@
             }
           },
           {
-            "type": "STRING",
-            "value": "||"
+            "type": "SYMBOL",
+            "name": "_DISJ"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           },
           {
             "type": "FIELD",
@@ -7495,6 +7509,14 @@
     "_ELVIS": {
       "type": "PATTERN",
       "value": "\\s*\\?:"
+    },
+    "_CONJ": {
+      "type": "PATTERN",
+      "value": "\\s*&&"
+    },
+    "_DISJ": {
+      "type": "PATTERN",
+      "value": "\\s*\\|\\|"
     },
     "_NL": {
       "type": "PATTERN",

@@ -777,13 +777,15 @@ module.exports = grammar({
 
     conjunction_expression: $ => prec.left(PREC.CONJUNCTION, seq(
       field('left', $.expression), 
-      "&&", 
+      $._CONJ,
+      repeat($._NL),
       field('right', $.expression))
     ),
 
     disjunction_expression: $ => prec.left(PREC.DISJUNCTION, seq(
       field('left', $.expression), 
-      "||", 
+      $._DISJ,
+      repeat($._NL),
       field('right', $.expression))
     ),
 
@@ -1392,7 +1394,9 @@ module.exports = grammar({
 
     _DOT: $ => /\s*\./,
     _SAFE_DOT: $ => /\s*\?\./,
-    _ELVIS: $=> /\s*\?:/,
+    _ELVIS: $ => /\s*\?:/,
+    _CONJ: $ => /\s*&&/,
+    _DISJ: $ => /\s*\|\|/,
     _NL: $ => /\r?\n/,
     _semi: $ => prec.right(seq(choice(";", $._NL), repeat($._NL))),
     _semis: $ => prec.right(repeat1(choice(";", $._NL))),
