@@ -130,7 +130,7 @@ module.exports = grammar({
     // becuase of $._NL after simple_identifier, all can reduce
     [$.value_argument, $._primary_expression],
     [$.value_argument],
-    [$.property_declaration]
+    [$.property_declaration],
   ],
 
   externals: $ => [
@@ -689,7 +689,6 @@ module.exports = grammar({
       $.postfix_expression,
       $.as_expression,
       $.spread_expression,
-      $.if_expression,
       $.jump_expression,
       $.annotated_expression,
       $.labeled_expression
@@ -831,6 +830,7 @@ module.exports = grammar({
       $.string_literal,
       $.callable_reference,
       $._function_literal,
+      $.if_expression,
       $.object_literal,
       $.collection_literal,
       $.this_expression,
@@ -965,17 +965,28 @@ module.exports = grammar({
       $._super_at
     )),
 
-    if_expression: $ => prec.right(seq(
+    if_expression: $ => seq(
       "if",
-      "(", field('condition', $.expression), ")",
-      choice(
-        field('consequence', choice($.expression, $.assignment, $.block)),
-        ";"
-      ),
-      optional(seq(
+      repeat($._NL),
+      "(", 
+      repeat($._NL),
+      field('condition', $.expression), 
+      repeat($._NL),
+      ")",
+      repeat($._NL),
+      seq(
+        optional(field('consequence', seq($._if_block, repeat($._NL)))),
         "else",
-        choice(field('alternative', choice($.expression, $.assignment, $.block), ";"))
-      )),
+        repeat($._NL),
+        field('alternative', $._if_block)
+      )
+    ),
+
+    _if_block: $ => prec.right(choice(
+      $.expression, 
+      $.assignment, 
+      $.block,
+      ";"
     )),
 
     when_subject: $ => seq(

@@ -520,6 +520,10 @@
             "named": true
           },
           {
+            "type": "if_expression",
+            "named": true
+          },
+          {
             "type": "index_access_expression",
             "named": true
           },
@@ -1231,6 +1235,10 @@
           },
           {
             "type": "hex_literal",
+            "named": true
+          },
+          {
+            "type": "if_expression",
             "named": true
           },
           {
@@ -1970,8 +1978,12 @@
     "fields": {
       "alternative": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
+          {
+            "type": ";",
+            "named": false
+          },
           {
             "type": "assignment",
             "named": true
@@ -1997,9 +2009,13 @@
         ]
       },
       "consequence": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": ";",
+            "named": false
+          },
           {
             "type": "assignment",
             "named": true
