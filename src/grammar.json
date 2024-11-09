@@ -7598,10 +7598,6 @@
       "annotation"
     ],
     [
-      "variable_declaration",
-      "_simple_user_type"
-    ],
-    [
       "variable_declaration"
     ],
     [
@@ -7618,16 +7614,7 @@
       "function_value_parameters"
     ],
     [
-      "parameter",
-      "_simple_user_type"
-    ],
-    [
       "collection_literal"
-    ],
-    [
-      "_simple_user_type",
-      "value_argument",
-      "_primary_expression"
     ],
     [
       "value_argument",

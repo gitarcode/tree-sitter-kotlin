@@ -124,16 +124,13 @@ module.exports = grammar({
     [$.annotated_expression, $.when_subject],
     [$.annotated_expression, $.value_argument],
     [$.annotation],
-    [$.variable_declaration, $._simple_user_type],
     [$.variable_declaration],
     [$.import_header, $._soft_keywords],
     [$.class_parameters],
     [$.class_parameter],
     [$.function_value_parameters],
-    [$.parameter, $._simple_user_type],
     [$.collection_literal],
     // becuase of $._NL after simple_identifier, all can reduce
-    [$._simple_user_type, $.value_argument, $._primary_expression],
     [$.value_argument, $._primary_expression],
     [$.value_argument]
   ],
