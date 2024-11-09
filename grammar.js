@@ -240,7 +240,7 @@ module.exports = grammar({
       field('name', $.simple_identifier),
       optional($.type_parameters),
       optional($.primary_constructor),
-      optional(seq(":", $._delegation_specifiers)),
+      optional(seq(repeat($._NL), ":", repeat($._NL),  $._delegation_specifiers)),
       repeat($._NL),
       optional($.type_constraints),
       optional(field('body', $.class_body)),
@@ -252,7 +252,7 @@ module.exports = grammar({
       field('name', $.simple_identifier),
       optional($.type_parameters),
       optional($.primary_constructor),
-      optional(seq(":", $._delegation_specifiers)),
+      optional(seq(":", repeat($._NL), $._delegation_specifiers)),
       optional($.type_constraints),
       optional(field('body', $.enum_class_body))
     )),
@@ -299,7 +299,6 @@ module.exports = grammar({
     binding_pattern_kind: $ => choice("val", "var"),
 
     _delegation_specifiers: $ => seq(
-      repeat($._NL),
       sep1(
         $.delegation_specifier, 
         ",",
@@ -378,7 +377,7 @@ module.exports = grammar({
       "companion",
       "object",
       optional(field('name', $.simple_identifier)),
-      optional(seq(":", $._delegation_specifiers)),
+      optional(seq(":", repeat($._NL), $._delegation_specifiers)),
       optional(field('body', $.class_body)),
       repeat($._NL)
     )),
@@ -495,7 +494,7 @@ module.exports = grammar({
       optional(field('modifiers', $.modifiers)),
       "object",
       field('name', $.simple_identifier),
-      optional(seq(":", $._delegation_specifiers)),
+      optional(seq(":", repeat($._NL), $._delegation_specifiers)),
       optional(field('body', $.class_body))
     )),
 
@@ -950,7 +949,7 @@ module.exports = grammar({
 
     object_literal: $ => seq(
       "object",
-      optional(seq(":", $._delegation_specifiers)),
+      optional(seq(":", repeat($._NL), $._delegation_specifiers)),
       $.class_body
     ),
 
