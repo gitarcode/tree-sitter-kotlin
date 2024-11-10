@@ -262,15 +262,13 @@ module.exports = grammar({
     ),
 
     class_body: $ => seq(
-      "{",
-      repeat($._NL),
+      $._LCUR,
       optional($._class_member_declarations),
       "}"
     ),
 
     enum_class_body: $ => seq(
-      "{",
-      repeat($._NL),
+      $._LCUR,
       optional($._enum_entries),
       optional(seq(";", repeat($._NL), $._class_member_declarations)),
       "}"
@@ -623,8 +621,7 @@ module.exports = grammar({
     control_structure_body: $ => choice($.block, $.statement),
 
     block: $ => prec(PREC.BLOCK, seq(
-      "{", 
-      repeat($._NL),
+      $._LCUR,
       optional($.statements),
       "}")
     ),
@@ -909,7 +906,7 @@ module.exports = grammar({
     ),
 
     lambda_literal: $ => seq(
-      "{",
+      $._LCUR,
       optional(seq(optional(field('parameters', $.lambda_parameters)), $._ARROW)),
       optional(field('body', $.statements)),
       "}"
@@ -1004,8 +1001,7 @@ module.exports = grammar({
       "when",
       repeat($._NL),
       optional($.when_subject),
-      "{",
-      repeat($._NL),
+      $._LCUR,
       repeat($.when_entry),
       "}"
     ),
@@ -1398,6 +1394,7 @@ module.exports = grammar({
     _NL: $ => /\r?\n/,
     _ELSE: $ => token(prec(1, /\s*else\s*/)),
     _ARROW: $ => /\s*->\s*/,
+    _LCUR: $ => /\{\s*/,
     _semi: $ => prec.right(seq(choice(";", $._NL), repeat($._NL))),
     _semis: $ => prec.right(repeat1(choice(";", $._NL))),
   }
