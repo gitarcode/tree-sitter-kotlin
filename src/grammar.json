@@ -836,15 +836,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_NL"
-          }
+          "type": "SYMBOL",
+          "name": "_LPAR"
         },
         {
           "type": "CHOICE",
@@ -1496,15 +1489,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_NL"
-          }
+          "type": "SYMBOL",
+          "name": "_LPAR"
         },
         {
           "type": "CHOICE",
@@ -2166,8 +2152,8 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "STRING",
-                    "value": "("
+                    "type": "SYMBOL",
+                    "name": "_LPAR"
                   },
                   {
                     "type": "STRING",
@@ -2241,8 +2227,8 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "STRING",
-                    "value": "("
+                    "type": "SYMBOL",
+                    "name": "_LPAR"
                   },
                   {
                     "type": "SYMBOL",
@@ -2291,8 +2277,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "("
+          "type": "SYMBOL",
+          "name": "_LPAR"
         },
         {
           "type": "SEQ",
@@ -3038,8 +3024,8 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
-            "value": "("
+            "type": "SYMBOL",
+            "name": "_LPAR"
           },
           {
             "type": "CHOICE",
@@ -3103,8 +3089,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "("
+          "type": "SYMBOL",
+          "name": "_LPAR"
         },
         {
           "type": "SYMBOL",
@@ -3120,8 +3106,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "("
+          "type": "SYMBOL",
+          "name": "_LPAR"
         },
         {
           "type": "CHOICE",
@@ -3295,8 +3281,8 @@
             "value": "for"
           },
           {
-            "type": "STRING",
-            "value": "("
+            "type": "SYMBOL",
+            "name": "_LPAR"
           },
           {
             "type": "REPEAT",
@@ -3365,8 +3351,8 @@
           "value": "while"
         },
         {
-          "type": "STRING",
-          "value": "("
+          "type": "SYMBOL",
+          "name": "_LPAR"
         },
         {
           "type": "SYMBOL",
@@ -3418,8 +3404,8 @@
             "value": "while"
           },
           {
-            "type": "STRING",
-            "value": "("
+            "type": "SYMBOL",
+            "name": "_LPAR"
           },
           {
             "type": "SYMBOL",
@@ -4249,15 +4235,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "("
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_NL"
-          }
+          "type": "SYMBOL",
+          "name": "_LPAR"
         },
         {
           "type": "CHOICE",
@@ -4505,8 +4484,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "("
+          "type": "SYMBOL",
+          "name": "_LPAR"
         },
         {
           "type": "SYMBOL",
@@ -5335,15 +5314,8 @@
             }
           },
           {
-            "type": "STRING",
-            "value": "("
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_NL"
-            }
+            "type": "SYMBOL",
+            "name": "_LPAR"
           },
           {
             "type": "FIELD",
@@ -5445,8 +5417,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "("
+          "type": "SYMBOL",
+          "name": "_LPAR"
         },
         {
           "type": "CHOICE",
@@ -5738,8 +5710,8 @@
           "value": "catch"
         },
         {
-          "type": "STRING",
-          "value": "("
+          "type": "SYMBOL",
+          "name": "_LPAR"
         },
         {
           "type": "REPEAT",
@@ -7516,6 +7488,10 @@
       "type": "PATTERN",
       "value": "\\{\\s*"
     },
+    "_LPAR": {
+      "type": "PATTERN",
+      "value": "\\(\\s*"
+    },
     "_ASSIGNMENT": {
       "type": "PATTERN",
       "value": "=\\s*"
@@ -7686,13 +7662,7 @@
       "_soft_keywords"
     ],
     [
-      "class_parameters"
-    ],
-    [
       "class_parameter"
-    ],
-    [
-      "function_value_parameters"
     ],
     [
       "collection_literal"

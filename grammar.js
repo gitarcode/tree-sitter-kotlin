@@ -123,9 +123,7 @@ module.exports = grammar({
     [$.annotation],
     [$.variable_declaration],
     [$.import_header, $._soft_keywords],
-    [$.class_parameters],
     [$.class_parameter],
-    [$.function_value_parameters],
     [$.collection_literal],
     // becuase of $._NL after simple_identifier, all can reduce
     [$.value_argument, $._primary_expression],
@@ -274,8 +272,7 @@ module.exports = grammar({
     ),
 
     class_parameters: $ => seq(
-      "(",
-      repeat($._NL),
+      $._LPAR,
       optional(sep1($.class_parameter, repeat($._NL), ",", repeat($._NL))),
       optional(","),
       repeat($._NL),
@@ -378,8 +375,7 @@ module.exports = grammar({
     )),
 
     function_value_parameters: $ => seq(
-      "(",
-      repeat($._NL),
+      $._LPAR,
       optional(sep1($.function_value_parameter, repeat($._NL), ",", repeat($._NL))),
       optional(","),
       repeat($._NL),
@@ -451,7 +447,8 @@ module.exports = grammar({
       optional(field('modifiers', $.modifiers)),
       "get",
       optional(seq(
-        "(", ")",
+        $._LPAR,
+        ")",
         optional(seq(":", $._type)),
         $.function_body
       ))
@@ -461,7 +458,7 @@ module.exports = grammar({
       optional(field('modifiers', $.modifiers)),
       "set",
       optional(seq(
-        "(",
+        $._LPAR,
         $.parameter_with_optional_type,
         ")",
         optional(seq(":", $._type)),
@@ -469,7 +466,11 @@ module.exports = grammar({
       ))
     )),
 
-    parameters_with_optional_type: $ => seq("(", sep1($.parameter_with_optional_type, ","), ")"),
+    parameters_with_optional_type: $ => seq(
+      $._LPAR,
+      sep1($.parameter_with_optional_type, ","), 
+      ")"
+    ),
 
     parameter_with_optional_type: $ => seq(
       optional($.parameter_modifiers),
@@ -583,15 +584,15 @@ module.exports = grammar({
 
     // A higher-than-default precedence resolves the ambiguity with 'parenthesized_type'
     function_type_parameters: $ => prec.left(1, seq(
-      "(",
+      $._LPAR,
       optional(sep1(choice($.parameter, $._type), ",")),
       ")"
     )),
 
-    parenthesized_type: $ => seq("(", $._type, ")"),
+    parenthesized_type: $ => seq($._LPAR, $._type, ")"),
 
     parenthesized_user_type: $ => seq(
-      "(",
+      $._LPAR,
       choice($.user_type, $.parenthesized_user_type),
       ")"
     ),
@@ -633,7 +634,7 @@ module.exports = grammar({
 
     for_statement: $ => prec.right(seq(
       "for",
-      "(",
+      $._LPAR,
       repeat($.annotation),
       field('var_decl', choice($.variable_declaration, $.multi_variable_declaration)),
       "in",
@@ -644,7 +645,7 @@ module.exports = grammar({
 
     while_statement: $ => seq(
       "while",
-      "(",
+      $._LPAR,
       $.expression,
       ")",
       choice(";", $.control_structure_body)
@@ -654,7 +655,7 @@ module.exports = grammar({
       "do",
       optional($.control_structure_body),
       "while",
-      "(",
+      $._LPAR,
       $.expression,
       ")",
     )),
@@ -795,8 +796,7 @@ module.exports = grammar({
     type_arguments: $ => prec.dynamic(PREC.GENERIC, seq("<", sep1($.type_projection, ","), ">")),
 
     value_arguments: $ => seq(
-      "(",
-      repeat($._NL),
+      $._LPAR,
       optional(
         seq(
           sep1($.value_argument, repeat($._NL), ",", repeat($._NL)),
@@ -835,7 +835,7 @@ module.exports = grammar({
       $.index_access_expression
     ),
 
-    parenthesized_expression: $ => seq("(", $.expression, ")"),
+    parenthesized_expression: $ => seq($._LPAR, $.expression, ")"),
 
     collection_literal: $ => seq(
       "[", 
@@ -961,8 +961,7 @@ module.exports = grammar({
     if_expression: $ => prec.right(seq(
       "if",
       repeat($._NL),
-      "(", 
-      repeat($._NL),
+      $._LPAR,
       field('condition', $.expression), 
       repeat($._NL),
       ")",
@@ -985,7 +984,7 @@ module.exports = grammar({
     ),
 
     when_subject: $ => seq(
-      "(",
+      $._LPAR,
       optional(seq(
         repeat($.annotation),
         "val",
@@ -1041,7 +1040,7 @@ module.exports = grammar({
 
     catch_block: $ => seq(
       "catch",
-      "(",
+      $._LPAR,
       repeat($.annotation),
       field('name', $.simple_identifier),
       ":",
@@ -1394,6 +1393,7 @@ module.exports = grammar({
     _ELSE: $ => token(prec(1, /\s*else\s*/)),
     _ARROW: $ => /\s*->\s*/,
     _LCUR: $ => /\{\s*/,
+    _LPAR: $ => /\(\s*/,
     _ASSIGNMENT: $ => /=\s*/,
     _semi: $ => prec.right(seq(choice(";", $._NL), repeat($._NL))),
     _semis: $ => prec.right(repeat1(choice(";", $._NL))),
