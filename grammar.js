@@ -78,6 +78,7 @@ module.exports = grammar({
   conflicts: $ => [
     [$.class_declaration],
     [$.class_declaration, $.primary_constructor],
+    [$.import_list],
     
     // @Type(... could either be an annotation constructor invocation or an annotated expression
     [$.constructor_invocation, $._unescaped_annotation],
@@ -181,12 +182,13 @@ module.exports = grammar({
 
     package_header: $ => seq("package", $.identifier, $._semi),
 
-    import_list: $ => prec.right(repeat1(seq($.import_header, optional($._semi)))),
+    import_list: $ => repeat1($.import_header),
 
     import_header: $ => seq(
       "import",
       field('name', $.identifier),
       optional(choice(seq(".", $.wildcard_import), $._import_alias)),
+      optional($._semi)
     ),
 
     wildcard_import: $ => seq(repeat($._NL), "*"),
@@ -1386,15 +1388,17 @@ module.exports = grammar({
     _ARROW: $ => /\s*->\s*/,
     _LPAR: $ => /\(\s*/,
     _ASSIGNMENT: $ => /=\s*/,
-    _semi: $ => prec.right(seq(choice(";", $._NL), repeat($._NL))),
-    _semis: $ => prec.right(repeat1(choice(";", $._NL))),
+    _semi: $ => seq(choice(";", $._NL), repeat($._NL)),
 
     line_comment: $ => token(seq('//', /[^\r\n]*[\r\n]/)),
 
+    // We need to consume all the newlines after the commend, otherwise, the comments
+    // may be inserted in unwanted places. Comments (and other extra) nodes are inserted
+    // after tokens.
     multiline_comment: $ => seq(
       token("/*"), 
       repeat(choice($._NL, /./)), 
-      token("*/"),
+      /\*\/(\r?\n)*/,
     )
   }
 });

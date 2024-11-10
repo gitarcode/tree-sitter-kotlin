@@ -20,13 +20,13 @@ Comments
   (statement
     (additive_expression
       (integer_literal)
-      (integer_literal))
-    (line_comment)
+      (integer_literal)))
+  (line_comment)
+  (multiline_comment
     (multiline_comment
-      (multiline_comment
-        (multiline_comment)))
-    (line_comment)
-    (multiline_comment)))
+      (multiline_comment)))
+  (line_comment)
+  (multiline_comment))
 
 ================================================================================
 Comment after imports
@@ -80,12 +80,42 @@ class Foo {}
       name: (identifier
         (simple_identifier)
         (simple_identifier)
-        (simple_identifier)))
-    (multiline_comment))
+        (simple_identifier))))
+  (multiline_comment)
   (class_declaration
     name: (simple_identifier)
     body: (class_body)))
 
+================================================================================
+Block Comment after imports with newline
+================================================================================
+
+import a.b.c
+import x.y.z
+
+/* this is a comment */
+
+
+class Foo {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_list
+    (import_header
+      name: (identifier
+        (simple_identifier)
+        (simple_identifier)
+        (simple_identifier)))
+    (import_header
+      name: (identifier
+        (simple_identifier)
+        (simple_identifier)
+        (simple_identifier))))
+  (multiline_comment)
+  (class_declaration
+    name: (simple_identifier)
+    body: (class_body)))
 
 ================================================================================
 Comment before class member
