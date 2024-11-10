@@ -663,7 +663,7 @@ module.exports = grammar({
     assignment: $ =>
       prec.left(PREC.ASSIGNMENT, seq(
         field('left', $._directly_assignable_expression),
-        field('op', choice('=', $._assignment_and_operator)),
+        field('op', choice($._ASSIGNMENT, $._assignment_and_operator)),
         field('right', $.expression))),
 
     // ==========
@@ -912,7 +912,7 @@ module.exports = grammar({
     ),
 
     multi_variable_declaration: $ => seq(
-      '(',
+      $._LPAR,
       repeat($._NL),
       $.variable_declaration, 
       repeat(seq(repeat($._NL), ',', repeat($._NL), $.variable_declaration)),
