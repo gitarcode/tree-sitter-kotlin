@@ -369,6 +369,7 @@ fun main() { val temp = b.y; b.y = b.z; b.z = temp }
 when (dir) {
   1 -> { val temp = b.y; b.y = b.z; b.z = temp }
 }
+
 --------------------------------------------------------------------------------
 
 (source_file
