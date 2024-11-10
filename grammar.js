@@ -562,7 +562,7 @@ module.exports = grammar({
     _quest: $ => "?",
 
     user_type: $ => seq(
-      $._simple_user_type, repeat(seq($._DOT, repeat($._NL), $._simple_user_type))
+      $._simple_user_type, repeat(seq(choice($._DOT, "."), repeat($._NL), $._simple_user_type))
     ),
 
     _simple_user_type: $ => seq(
@@ -580,7 +580,7 @@ module.exports = grammar({
     _type_projection_modifier: $ => $.variance_modifier,
 
     function_type: $ => seq(
-      optional(seq($.user_type, ".")), // TODO: Support "real" types
+      optional(seq($.user_type, choice($._DOT, "."))), // TODO: Support "real" types
       $.function_type_parameters,
       "->",
       $._type
@@ -698,7 +698,7 @@ module.exports = grammar({
 
     dot_qualified_expression: $ => prec(PREC.DOT, seq(
       field('receiver', choice($._primary_expression, $.postfix_expression)),
-      choice($._DOT, $._SAFE_DOT),
+      choice(choice($._DOT, "."), $._SAFE_DOT),
       repeat($._NL),
       field('selector', choice(
         $.simple_identifier,
@@ -1392,7 +1392,7 @@ module.exports = grammar({
 
     _backtick_identifier: $ => /`[^\r\n`]+`/,
 
-    _DOT: $ => /\s*\./,
+    _DOT: $ => /\s+\./,
     _SAFE_DOT: $ => /\s*\?\./,
     _ELVIS: $ => /\s*\?:/,
     _CONJ: $ => /\s*&&/,
