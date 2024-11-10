@@ -1163,3 +1163,27 @@ else if (y == 1)
           (integer_literal))
         consequence: (simple_identifier)))))
 
+================================================================================
+if-else with single expression in else branch
+================================================================================
+
+if (x == 1) 
+else if (y == 1)
+	y
+else 
+ z  
+
+--------------------------------------------------------------------------------
+    
+(source_file
+  (statement
+    (if_expression
+      condition: (equality_expression
+        (simple_identifier)
+        (integer_literal))
+      alternative: (if_expression
+        condition: (equality_expression
+          (simple_identifier)
+          (integer_literal))
+        consequence: (simple_identifier)
+        alternative: (simple_identifier)))))
