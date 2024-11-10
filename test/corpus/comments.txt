@@ -72,16 +72,16 @@ class Foo {}
 (source_file
   (import_list
     (import_header
-      (identifier
+      name: (identifier
         (simple_identifier)
         (simple_identifier)
         (simple_identifier)))
     (import_header
-      (identifier
+      name: (identifier
         (simple_identifier)
         (simple_identifier)
         (simple_identifier)))
     (multiline_comment))
   (class_declaration
-    (simple_identifier)
-    (class_body)))
+    name: (simple_identifier)
+    body: (class_body)))
