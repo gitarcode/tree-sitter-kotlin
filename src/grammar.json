@@ -4178,13 +4178,6 @@
             "name": "_CONJ"
           },
           {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_NL"
-            }
-          },
-          {
             "type": "FIELD",
             "name": "right",
             "content": {
@@ -4212,13 +4205,6 @@
           {
             "type": "SYMBOL",
             "name": "_DISJ"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_NL"
-            }
           },
           {
             "type": "FIELD",
@@ -7557,11 +7543,11 @@
     },
     "_CONJ": {
       "type": "PATTERN",
-      "value": "\\s*&&"
+      "value": "\\s*&&\\s*"
     },
     "_DISJ": {
       "type": "PATTERN",
-      "value": "\\s*\\|\\|"
+      "value": "\\s*\\|\\|\\s*"
     },
     "_NL": {
       "type": "PATTERN",
