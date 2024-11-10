@@ -178,13 +178,12 @@ module.exports = grammar({
 
     package_header: $ => seq("package", $.identifier, $._semi),
 
-    import_list: $ => prec.right(repeat1($.import_header)),
+    import_list: $ => prec.right(repeat1(seq($.import_header, optional($._semi)))),
 
     import_header: $ => seq(
       "import",
       field('name', $.identifier),
       optional(choice(seq(".", $.wildcard_import), $._import_alias)),
-      optional($._semi)
     ),
 
     wildcard_import: $ => seq(repeat($._NL), "*"),
@@ -1272,18 +1271,6 @@ module.exports = grammar({
     // Lexical grammar
     // ====================
 
-
-    // ==========
-    // General
-    // ==========
-
-    line_comment: $ => token(seq('//', /[^\r\n]*[\r\n]/)),
-
-    // ==========
-    // Separators and operations
-    // ==========
-
-
     // ==========
     // Keywords
     // ==========
@@ -1393,6 +1380,8 @@ module.exports = grammar({
     _ASSIGNMENT: $ => /=\s*/,
     _semi: $ => prec.right(seq(choice(";", $._NL), repeat($._NL))),
     _semis: $ => prec.right(repeat1(choice(";", $._NL))),
+
+    line_comment: $ => token(seq('//', /[^\r\n]*[\r\n]/)),
 
     multiline_comment: $ => seq(
       token("/*"), 

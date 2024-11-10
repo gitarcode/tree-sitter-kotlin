@@ -56,3 +56,32 @@ class Foo {}
   (class_declaration
     name: (simple_identifier)
     body: (class_body)))
+
+================================================================================
+Block Comment after imports
+================================================================================
+
+import a.b.c
+import x.y.z
+
+/* this is a comment */
+class Foo {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_list
+    (import_header
+      (identifier
+        (simple_identifier)
+        (simple_identifier)
+        (simple_identifier)))
+    (import_header
+      (identifier
+        (simple_identifier)
+        (simple_identifier)
+        (simple_identifier)))
+    (multiline_comment))
+  (class_declaration
+    (simple_identifier)
+    (class_body)))
