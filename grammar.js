@@ -978,7 +978,6 @@ module.exports = grammar({
         seq(
           optional(field('consequence', $._if_block)),
           $._ELSE,
-          repeat($._NL),
           field('alternative', $._if_block)
         )
       )
@@ -1399,7 +1398,7 @@ module.exports = grammar({
     _CONJ: $ => /\s*&&/,
     _DISJ: $ => /\s*\|\|/,
     _NL: $ => /\r?\n/,
-    _ELSE: $ => token(prec(1, /\s*else/)),
+    _ELSE: $ => token(prec(1, /\s*else\s*/)),
     _semi: $ => prec.right(seq(choice(";", $._NL), repeat($._NL))),
     _semis: $ => prec.right(repeat1(choice(";", $._NL))),
   }
