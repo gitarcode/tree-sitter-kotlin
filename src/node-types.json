@@ -1970,7 +1970,7 @@
     "fields": {
       "alternative": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": ";",
@@ -2001,8 +2001,8 @@
         ]
       },
       "consequence": {
-        "multiple": true,
-        "required": false,
+        "multiple": false,
+        "required": true,
         "types": [
           {
             "type": ";",
@@ -4180,10 +4180,6 @@
   },
   {
     "type": "dynamic",
-    "named": false
-  },
-  {
-    "type": "else",
     "named": false
   },
   {

@@ -964,7 +964,7 @@ module.exports = grammar({
       $._super_at
     )),
 
-    if_expression: $ => seq(
+    if_expression: $ => prec.right(seq(
       "if",
       repeat($._NL),
       "(", 
@@ -973,20 +973,20 @@ module.exports = grammar({
       repeat($._NL),
       ")",
       repeat($._NL),
-      seq(
-        optional(field('consequence', seq($._if_block, repeat($._NL)))),
-        "else",
+      field('consequence', $._if_block),
+      optional(seq(
+        $._ELSE,
         repeat($._NL),
         field('alternative', $._if_block)
-      )
-    ),
+      ))
+    )),
 
-    _if_block: $ => prec.right(choice(
+    _if_block: $ => choice(
       $.expression, 
       $.assignment, 
       $.block,
       ";"
-    )),
+    ),
 
     when_subject: $ => seq(
       "(",
@@ -1017,7 +1017,7 @@ module.exports = grammar({
           repeat($._NL),
           optional(","),
         ),
-        "else"
+        $._ELSE
       ),
       "->",
       repeat($._NL),
@@ -1396,6 +1396,7 @@ module.exports = grammar({
     _CONJ: $ => /\s*&&/,
     _DISJ: $ => /\s*\|\|/,
     _NL: $ => /\r?\n/,
+    _ELSE: $ => token(prec(1, /\s*else/)),
     _semi: $ => prec.right(seq(choice(";", $._NL), repeat($._NL))),
     _semis: $ => prec.right(repeat1(choice(";", $._NL))),
   }

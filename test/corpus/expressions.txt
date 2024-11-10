@@ -861,33 +861,6 @@ SceneStateParameters::class.java
       selector: (simple_identifier))))
 
 ================================================================================
-Dangling else ambiguity
-================================================================================
-
-if (x == 1)
-	if (y == 2)
-      "a"
-	else
-      "b"
-
---------------------------------------------------------------------------------
-
-(source_file
-  (statement
-    (if_expression
-      condition: (equality_expression
-        (simple_identifier)
-        (integer_literal))
-      consequence: (if_expression
-        condition: (equality_expression
-          (simple_identifier)
-          (integer_literal))
-        consequence: (string_literal
-          (string_content))
-        alternative: (string_literal
-          (string_content))))))
-
-================================================================================
 Lambda parameters with trailing comma
 ================================================================================
 
@@ -1103,3 +1076,67 @@ BufferedChannel<*>::registerSelectForSend as RegistrationFunction
         (simple_identifier))
       type: (user_type
         (type_identifier)))))
+
+================================================================================
+if with single expression
+================================================================================
+
+if (x == 1)
+	x
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (if_expression
+      condition: (equality_expression
+        (simple_identifier)
+        (integer_literal))
+      consequence: (simple_identifier))))
+
+================================================================================
+if-else with single expression
+================================================================================
+
+if (x == 1)
+	x
+else 
+  y  
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (if_expression
+      condition: (equality_expression
+        (simple_identifier)
+        (integer_literal))
+      consequence: (simple_identifier)
+      alternative: (simple_identifier))))
+
+================================================================================
+Dangling if-else
+================================================================================
+
+if (x == 1)
+	if (y == 2)
+      "a"
+	else
+      "b"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (if_expression
+      condition: (equality_expression
+        (simple_identifier)
+        (integer_literal))
+      consequence: (if_expression
+        condition: (equality_expression
+          (simple_identifier)
+          (integer_literal))
+        consequence: (string_literal
+          (string_content))
+        alternative: (string_literal
+          (string_content))))))
