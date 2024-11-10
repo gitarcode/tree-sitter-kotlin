@@ -5435,19 +5435,35 @@
             }
           },
           {
-            "type": "FIELD",
-            "name": "consequence",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_if_block"
-            }
-          },
-          {
             "type": "CHOICE",
             "members": [
               {
+                "type": "FIELD",
+                "name": "consequence",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_if_block"
+                }
+              },
+              {
                 "type": "SEQ",
                 "members": [
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "FIELD",
+                        "name": "consequence",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "_if_block"
+                        }
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  },
                   {
                     "type": "SYMBOL",
                     "name": "_ELSE"
@@ -5468,9 +5484,6 @@
                     }
                   }
                 ]
-              },
-              {
-                "type": "BLANK"
               }
             ]
           }

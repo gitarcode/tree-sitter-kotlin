@@ -973,12 +973,15 @@ module.exports = grammar({
       repeat($._NL),
       ")",
       repeat($._NL),
-      field('consequence', $._if_block),
-      optional(seq(
-        $._ELSE,
-        repeat($._NL),
-        field('alternative', $._if_block)
-      ))
+      choice(
+        field('consequence', $._if_block),
+        seq(
+          optional(field('consequence', $._if_block)),
+          $._ELSE,
+          repeat($._NL),
+          field('alternative', $._if_block)
+        )
+      )
     )),
 
     _if_block: $ => choice(
