@@ -255,12 +255,14 @@ module.exports = grammar({
 
     class_body: $ => seq(
       $._LCUR,
+      repeat($._NL),
       optional($._class_member_declarations),
       "}"
     ),
 
     enum_class_body: $ => seq(
       $._LCUR,
+      repeat($._NL),
       optional($._enum_entries),
       optional(seq(";", repeat($._NL), $._class_member_declarations)),
       "}"
@@ -347,7 +349,7 @@ module.exports = grammar({
 
     _class_member_declarations: $ => repeat1(seq(
       $._class_member_declaration, 
-      optional($._semis)
+      optional($._semi)
     )),
 
     _class_member_declaration: $ => choice(
@@ -1385,8 +1387,8 @@ module.exports = grammar({
 
     multiline_comment: $ => seq(
       token("/*"), 
-      repeat(choice($._NL,/./)), 
-      token("*/")
+      repeat(choice($._NL, /./)), 
+      token("*/"),
     )
   }
 });

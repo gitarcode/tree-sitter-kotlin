@@ -767,6 +767,13 @@
           "name": "_LCUR"
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
@@ -1346,7 +1353,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_semis"
+                "name": "_semi"
               },
               {
                 "type": "BLANK"
