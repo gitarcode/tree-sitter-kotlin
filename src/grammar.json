@@ -7629,6 +7629,10 @@
       "name": "line_comment"
     },
     {
+      "type": "SYMBOL",
+      "name": "multiline_comment"
+    },
+    {
       "type": "PATTERN",
       "value": "[\\t\\v\\f \\u00a0\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u200b\\u2028\\u2029\\u3000]+"
     }
@@ -7758,7 +7762,12 @@
     ]
   ],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "multiline_comment"
+    }
+  ],
   "inline": [],
   "supertypes": [
     "expression"

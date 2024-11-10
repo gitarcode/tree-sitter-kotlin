@@ -4,52 +4,10 @@
 #include <string.h>
 #include <wctype.h>
 
-// Mostly a copy paste of tree-sitter-javascript/src/scanner.c
-
 enum TokenType {
-  IMPORT_LIST_DELIMITER,
-  SAFE_NAV,
   MULTILINE_COMMENT,
 };
 
-/* Pretty much all of this code is taken from the Julia tree-sitter
-   parser.
-
-   Julia has similar problems with multiline comments that can be nested,
-   line comments, as well as line and multiline strings.
-
-   The most heavily edited section is `scan_string_content`,
-   particularly with respect to interpolation.
- */
-
-// Block comments are easy to parse, but strings require extra-attention.
-
-// The main problems that arise when parsing strings are:
-// 1. Triple quoted strings allow single quotes inside. e.g. """ "foo" """.
-// 2. Non-standard string literals don't allow interpolations or escape
-//    sequences, but you can always write \" and \`.
-
-// To efficiently store a delimiter, we take advantage of the fact that:
-// (int)'"' == 34 && (34 & 1) == 0
-// i.e. " has an even numeric representation, so we can store a triple
-// quoted delimiter as (delimiter + 1).
-
-#define DELIMITER_LENGTH 3
-
-typedef char Delimiter;
-
-// We use a stack to keep track of the string delimiters.
-typedef Array(Delimiter) Stack;
-
-static inline void stack_push(Stack *stack, char chr, bool triple) {
-  if (stack->size >= TREE_SITTER_SERIALIZATION_BUFFER_SIZE) abort();
-  array_push(stack, (Delimiter)(triple ? (chr + 1) : chr));
-}
-
-static inline Delimiter stack_pop(Stack *stack) {
-  if (stack->size == 0) abort();
-  return array_pop(stack);
-}
 
 static inline void skip(TSLexer *lexer) { lexer->advance(lexer, true); }
 
@@ -113,29 +71,6 @@ static bool scan_for_word(TSLexer *lexer, const char* word, unsigned len) {
     return true;
 }
 
-static bool scan_safe_nav(TSLexer *lexer) {
-  lexer->result_symbol = SAFE_NAV;
-  lexer->mark_end(lexer);
-
-  // skip white space
-  if (!scan_whitespace_and_comments(lexer))
-    return false;
-
-  if (lexer->lookahead != '?')
-    return false;
-
-  advance(lexer);
-
-  if (!scan_whitespace_and_comments(lexer))
-    return false;
-
-  if (lexer->lookahead != '.')
-    return false;
-
-  advance(lexer);
-  lexer->mark_end(lexer);
-  return true;
-}
 
 static bool scan_line_sep(TSLexer *lexer) {
   // Line Seps: [ CR, LF, CRLF ]
@@ -171,92 +106,24 @@ static bool scan_line_sep(TSLexer *lexer) {
   }
 }
 
-static bool scan_import_list_delimiter(TSLexer *lexer) {
-  // Import lists are terminated either by an empty line or a non import statement
-  lexer->result_symbol = IMPORT_LIST_DELIMITER;
-  lexer->mark_end(lexer);
-
-  // if eof; return true
-  if (lexer->eof(lexer))
-    return true;
-
-  // Scan for the first line seperator
-  if (!scan_line_sep(lexer))
-    return false;
-
-  // if line.sep line.sep; return true
-  if (scan_line_sep(lexer)) {
-    lexer->mark_end(lexer);
-    return true;
-  }
-
-  // if line.sep [^import]; return true
-  while (true) {
-    switch (lexer->lookahead) {
-      case  ' ':
-      case '\t':
-      case '\v':
-        // Skip whitespace
-        advance(lexer);
-        break;
-
-      case 'i':
-        return !scan_for_word(lexer, "mport", 5);
-
-      default:
-        return true;
-    }
-
-    return false;
-  }
-}
-
 bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
-  if (valid_symbols[IMPORT_LIST_DELIMITER]) {
-    return scan_import_list_delimiter(lexer);
-  }
-
-  // a string might follow after some whitespace, so we can't lookahead
-  // until we get rid of it
-  while (iswspace(lexer->lookahead)) skip(lexer);
-
-  if (valid_symbols[MULTILINE_COMMENT] && scan_multiline_comment(lexer)) {
-    return true;
-  }
-
-  if (valid_symbols[SAFE_NAV]) {
-    return scan_safe_nav(lexer);
+  if (valid_symbols[MULTILINE_COMMENT]) {
+    return scan_multiline_comment(lexer);
   }
 
   return false;
 }
 
 void *tree_sitter_kotlin_external_scanner_create() {
-  Stack *stack = ts_calloc(1, sizeof(Stack));
-  if (stack == NULL) abort();
-  array_init(stack);
-  return stack;
+  return NULL;
 }
 
 void tree_sitter_kotlin_external_scanner_destroy(void *payload) {
-  Stack *stack = (Stack *)payload;
-  array_delete(stack);
-  ts_free(stack);
 }
 
 unsigned tree_sitter_kotlin_external_scanner_serialize(void *payload, char *buffer) {
-  Stack *stack = (Stack *)payload;
-  memcpy(buffer, stack->contents, stack->size);
-  return stack->size;
+  return 0;
 }
 
 void tree_sitter_kotlin_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
-  Stack *stack = (Stack *)payload;
-  if (length > 0) {
-    array_reserve(stack, length);
-    memcpy(stack->contents, buffer, length);
-    stack->size = length;
-  } else {
-    array_clear(stack);
-  }
 }

@@ -134,14 +134,12 @@ module.exports = grammar({
   ],
 
   externals: $ => [
-    // $._import_list_delimiter,
-    // $.safe_nav,
-    // $.multiline_comment,
+    $.multiline_comment,
   ],
 
   extras: $ => [
     $.line_comment,
-    // $.multiline_comment,
+    $.multiline_comment,
     NON_NL_WHITESPACE
   ],
 

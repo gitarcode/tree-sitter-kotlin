@@ -4287,6 +4287,10 @@
     "named": true
   },
   {
+    "type": "multiline_comment",
+    "named": true
+  },
+  {
     "type": "noinline",
     "named": false
   },
