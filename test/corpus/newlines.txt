@@ -413,4 +413,52 @@ toolWindows.forEach {
                                   receiver: (simple_identifier)
                                   selector: (simple_identifier))
                                 args: (value_arguments)))))))))))))))))
-                                
+
+
+================================================================================
+Newline after assignment operator
+================================================================================
+
+val current =
+        Measure(
+            averageMemory = ((previous.averageMemory * previous.count) + memory) / (previous.count + 1),
+            count = previous.count + 1
+        )
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    var_decl: (variable_declaration
+      id: (simple_identifier))
+    initializer: (call_expression
+      expression: (simple_identifier)
+      args: (value_arguments
+        (value_argument
+          (simple_identifier)
+          (multiplicative_expression
+            (parenthesized_expression
+              (additive_expression
+                (parenthesized_expression
+                  (multiplicative_expression
+                    (dot_qualified_expression
+                      receiver: (simple_identifier)
+                      selector: (simple_identifier))
+                    (dot_qualified_expression
+                      receiver: (simple_identifier)
+                      selector: (simple_identifier))))
+                (simple_identifier)))
+            (parenthesized_expression
+              (additive_expression
+                (dot_qualified_expression
+                  receiver: (simple_identifier)
+                  selector: (simple_identifier))
+                (integer_literal)))))
+        (value_argument
+          (simple_identifier)
+          (additive_expression
+            (dot_qualified_expression
+              receiver: (simple_identifier)
+              selector: (simple_identifier))
+            (integer_literal)))))))

@@ -214,8 +214,7 @@ module.exports = grammar({
       alias($.simple_identifier, $.type_identifier),
       optional($.type_parameters),
       repeat($._NL),
-      "=",
-      repeat($._NL),
+      $._ASSIGNMENT,
       $._type
     )),
 
@@ -289,7 +288,7 @@ module.exports = grammar({
       field('name', $.simple_identifier),
       ":",
       field('type', $._type),
-      optional(seq(repeat($._NL), "=", repeat($._NL), field('initializer', $.expression)))
+      optional(seq(repeat($._NL), $._ASSIGNMENT, field('initializer', $.expression)))
     ),
 
     binding_pattern_kind: $ => choice("val", "var"),
@@ -390,7 +389,7 @@ module.exports = grammar({
     function_value_parameter: $ => seq(
       optional(field('modifiers', $.parameter_modifiers)),
       field('parameter', $.parameter),
-      optional(seq("=", field('initializer', $.expression)))
+      optional(seq($._ASSIGNMENT, field('initializer', $.expression)))
     ),
 
     receiver_type: $ => seq(
@@ -417,7 +416,7 @@ module.exports = grammar({
 
     function_body: $ => choice(
       $.block, 
-      seq("=", repeat($._NL), field('expression', $.expression))
+      seq($._ASSIGNMENT, field('expression', $.expression))
     ),
 
     variable_declaration: $ => prec(PREC.VAR_DECL, seq(
@@ -434,7 +433,7 @@ module.exports = grammar({
       field('var_decl', choice($.variable_declaration, $.multi_variable_declaration)),
       optional(field('type_constraints', $.type_constraints)),
       optional(choice(
-        seq("=", field('initializer', $.expression)),
+        seq($._ASSIGNMENT, field('initializer', $.expression)),
         $.property_delegate
       )),
       repeat($._NL),
@@ -811,7 +810,7 @@ module.exports = grammar({
     value_argument: $ => seq(
       optional($.annotation),
       repeat($._NL),
-      optional(seq(choice($.simple_identifier, $._soft_keywords), repeat($._NL), "=", repeat($._NL))),
+      optional(seq(choice($.simple_identifier, $._soft_keywords), repeat($._NL), $._ASSIGNMENT)),
       optional("*"),
       repeat($._NL),
       $.expression
@@ -991,7 +990,7 @@ module.exports = grammar({
         repeat($.annotation),
         "val",
         $.variable_declaration,
-        "="
+        $._ASSIGNMENT
       )),
       $.expression,
       ")",
@@ -1395,6 +1394,7 @@ module.exports = grammar({
     _ELSE: $ => token(prec(1, /\s*else\s*/)),
     _ARROW: $ => /\s*->\s*/,
     _LCUR: $ => /\{\s*/,
+    _ASSIGNMENT: $ => /=\s*/,
     _semi: $ => prec.right(seq(choice(";", $._NL), repeat($._NL))),
     _semis: $ => prec.right(repeat1(choice(";", $._NL))),
   }
