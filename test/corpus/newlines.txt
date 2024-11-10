@@ -462,3 +462,19 @@ val current =
               receiver: (simple_identifier)
               selector: (simple_identifier))
             (integer_literal)))))))
+
+================================================================================
+Class name on new line
+================================================================================
+
+
+class 
+A {
+}     
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    name: (simple_identifier)
+    body: (class_body)))
