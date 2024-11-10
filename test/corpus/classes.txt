@@ -572,3 +572,31 @@ class Foo private constructor(a: Int) {
           type: (user_type
             (type_identifier)))))
     body: (class_body)))
+
+================================================================================
+Class without body followed by function modifiers
+================================================================================
+
+expect class AnimatedImage
+
+expect fun loadAnimatedImage(path: String): AnimatedImage
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    modifiers: (modifiers
+      (platform_modifier))
+    name: (simple_identifier))
+  (function_declaration
+    modifiers: (modifiers
+      (platform_modifier))
+    name: (simple_identifier)
+    parameters: (function_value_parameters
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
+    type: (user_type
+      (type_identifier))))
