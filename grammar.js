@@ -580,7 +580,7 @@ module.exports = grammar({
     function_type: $ => seq(
       optional(seq($.user_type, choice($._DOT, "."))), // TODO: Support "real" types
       $.function_type_parameters,
-      "->",
+      $._ARROW,
       $._type
     ),
 
@@ -912,7 +912,7 @@ module.exports = grammar({
 
     lambda_literal: $ => seq(
       "{",
-      optional(seq(optional(field('parameters', $.lambda_parameters)), "->")),
+      optional(seq(optional(field('parameters', $.lambda_parameters)), $._ARROW)),
       optional(field('body', $.statements)),
       "}"
     ),
@@ -1021,7 +1021,7 @@ module.exports = grammar({
         ),
         $._ELSE
       ),
-      "->",
+      $._ARROW,
       repeat($._NL),
       $.control_structure_body,
       optional($._semi)
@@ -1399,6 +1399,7 @@ module.exports = grammar({
     _DISJ: $ => /\s*\|\|/,
     _NL: $ => /\r?\n/,
     _ELSE: $ => token(prec(1, /\s*else\s*/)),
+    _ARROW: $ => /\s*->\s*/,
     _semi: $ => prec.right(seq(choice(";", $._NL), repeat($._NL))),
     _semis: $ => prec.right(repeat1(choice(";", $._NL))),
   }

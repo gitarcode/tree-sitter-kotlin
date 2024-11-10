@@ -3057,8 +3057,8 @@
           "name": "function_type_parameters"
         },
         {
-          "type": "STRING",
-          "value": "->"
+          "type": "SYMBOL",
+          "name": "_ARROW"
         },
         {
           "type": "SYMBOL",
@@ -5011,8 +5011,8 @@
                   ]
                 },
                 {
-                  "type": "STRING",
-                  "value": "->"
+                  "type": "SYMBOL",
+                  "name": "_ARROW"
                 }
               ]
             },
@@ -5679,8 +5679,8 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "->"
+          "type": "SYMBOL",
+          "name": "_ARROW"
         },
         {
           "type": "REPEAT",
@@ -7577,6 +7577,10 @@
           "value": "\\s*else\\s*"
         }
       }
+    },
+    "_ARROW": {
+      "type": "PATTERN",
+      "value": "\\s*->\\s*"
     },
     "_semi": {
       "type": "PREC_RIGHT",
