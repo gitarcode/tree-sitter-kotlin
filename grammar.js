@@ -131,10 +131,6 @@ module.exports = grammar({
     [$.property_declaration],
   ],
 
-  externals: $ => [
-    $.multiline_comment,
-  ],
-
   extras: $ => [
     $.line_comment,
     $.multiline_comment,
@@ -1397,6 +1393,12 @@ module.exports = grammar({
     _ASSIGNMENT: $ => /=\s*/,
     _semi: $ => prec.right(seq(choice(";", $._NL), repeat($._NL))),
     _semis: $ => prec.right(repeat1(choice(";", $._NL))),
+
+    multiline_comment: $ => seq(
+      token("/*"), 
+      repeat(choice($._NL,/./)), 
+      token("*/")
+    )
   }
 });
 
