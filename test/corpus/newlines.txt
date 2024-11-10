@@ -344,3 +344,73 @@ fun foo() {
               initializer: (additive_expression
                 (simple_identifier)
                 (simple_identifier)))))))))
+
+================================================================================
+Lambda Expressions with body on newline
+================================================================================
+
+toolWindows.forEach {
+    if (Random.nextBoolean()) {
+        if (it.isVisible.not()) {
+            it.show()
+        }
+    } else {
+        if (it.isVisible) {
+            it.hide()
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (call_expression
+      expression: (dot_qualified_expression
+        receiver: (simple_identifier)
+        selector: (simple_identifier))
+      lambda_arg: (annotated_lambda
+        (lambda_literal
+          body: (statements
+            (statement
+              (if_expression
+                condition: (call_expression
+                  expression: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))
+                  args: (value_arguments))
+                consequence: (block
+                  (statements
+                    (statement
+                      (if_expression
+                        condition: (call_expression
+                          expression: (dot_qualified_expression
+                            receiver: (dot_qualified_expression
+                              receiver: (simple_identifier)
+                              selector: (simple_identifier))
+                            selector: (simple_identifier))
+                          args: (value_arguments))
+                        consequence: (block
+                          (statements
+                            (statement
+                              (call_expression
+                                expression: (dot_qualified_expression
+                                  receiver: (simple_identifier)
+                                  selector: (simple_identifier))
+                                args: (value_arguments)))))))))
+                alternative: (block
+                  (statements
+                    (statement
+                      (if_expression
+                        condition: (dot_qualified_expression
+                          receiver: (simple_identifier)
+                          selector: (simple_identifier))
+                        consequence: (block
+                          (statements
+                            (statement
+                              (call_expression
+                                expression: (dot_qualified_expression
+                                  receiver: (simple_identifier)
+                                  selector: (simple_identifier))
+                                args: (value_arguments)))))))))))))))))
+                                
