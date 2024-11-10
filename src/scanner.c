@@ -57,55 +57,6 @@ static bool scan_multiline_comment(TSLexer *lexer) {
   }
 }
 
-static bool scan_whitespace_and_comments(TSLexer *lexer) {
-  while (iswspace(lexer->lookahead)) skip(lexer);
-  return lexer->lookahead != '/';
-}
-
-static bool scan_for_word(TSLexer *lexer, const char* word, unsigned len) {
-    skip(lexer);
-    for (unsigned i = 0; i < len; ++i) {
-      if (lexer->lookahead != word[i]) return false;
-      skip(lexer);
-    }
-    return true;
-}
-
-
-static bool scan_line_sep(TSLexer *lexer) {
-  // Line Seps: [ CR, LF, CRLF ]
-  int state = 0;
-  while (true) {
-    switch(lexer->lookahead) {
-      case  ' ':
-      case '\t':
-      case '\v':
-        // Skip whitespace
-        advance(lexer);
-        break;
-
-      case '\n':
-        advance(lexer);
-        return true;
-
-      case '\r':
-        if (state == 1)
-          return true;
-
-        state = 1;
-        advance(lexer);
-        break;
-
-      default:
-        // We read a CR
-        if (state == 1)
-          return true;
-
-        return false;
-    }
-  }
-}
-
 bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
   if (valid_symbols[MULTILINE_COMMENT]) {
     return scan_multiline_comment(lexer);
