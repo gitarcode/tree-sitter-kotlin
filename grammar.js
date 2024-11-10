@@ -76,6 +76,9 @@ module.exports = grammar({
   name: "kotlin",
 
   conflicts: $ => [
+    [$.class_declaration],
+    [$.class_declaration, $.primary_constructor],
+    
     // @Type(... could either be an annotation constructor invocation or an annotated expression
     [$.constructor_invocation, $._unescaped_annotation],
 
@@ -224,7 +227,7 @@ module.exports = grammar({
     // Classes
     // ==========
 
-    class_declaration: $ => prec.right(seq(
+    class_declaration: $ =>seq(
       optional(field('modifiers', $.modifiers)),
       choice("class", seq(optional(seq("fun", repeat($._NL))), "interface")),
       repeat($._NL),
@@ -235,7 +238,7 @@ module.exports = grammar({
       repeat($._NL),
       optional($.type_constraints),
       optional(field('body', $.class_body)),
-    )),
+    ),
 
     enum_class_declaration: $ => prec.right(seq(
       optional(field('modifiers', $.modifiers)),
