@@ -226,3 +226,102 @@ class SaneFlowPlaysScrabble : ShakespearePlaysScrabble() {
           (type_identifier))
         (value_arguments)))
     body: (class_body)))
+
+
+======================
+Annotated expression
+======================
+
+internal fun parse(xml: String): Element {
+    val parser = DomXmlParser()
+    @Suppress("CAST_NEVER_SUCCEEDS")
+    NSXMLParser((xml as NSString).dataUsingEncoding(NSUTF8StringEncoding)!!).apply {
+        shouldReportNamespacePrefixes = true
+        shouldProcessNamespaces = true
+        delegate = parser
+    }.parse()
+    return parser.root!!
+}
+
+---
+
+(source_file
+  (function_declaration
+    modifiers: (modifiers
+      (visibility_modifier))
+    name: (simple_identifier)
+    parameters: (function_value_parameters
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
+    type: (user_type
+      (type_identifier))
+    body: (function_body
+      (block
+        (statements
+          (statement
+            (property_declaration
+              (binding_pattern_kind)
+              var_decl: (variable_declaration
+                id: (simple_identifier))
+              initializer: (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments))))
+          (statement
+            (annotated_expression
+              (annotation
+                (constructor_invocation
+                  (user_type
+                    (type_identifier))
+                  (value_arguments
+                    (value_argument
+                      (string_literal
+                        (string_content))))))
+              (call_expression
+                expression: (dot_qualified_expression
+                  receiver: (call_expression
+                    expression: (dot_qualified_expression
+                      receiver: (call_expression
+                        expression: (simple_identifier)
+                        args: (value_arguments
+                          (value_argument
+                            (postfix_expression
+                              expression: (call_expression
+                                expression: (dot_qualified_expression
+                                  receiver: (parenthesized_expression
+                                    (as_expression
+                                      (simple_identifier)
+                                      type: (user_type
+                                        (type_identifier))))
+                                  selector: (simple_identifier))
+                                args: (value_arguments
+                                  (value_argument
+                                    (simple_identifier))))
+                              operator: (postfix_unary_operator)))))
+                      selector: (simple_identifier))
+                    lambda_arg: (annotated_lambda
+                      (lambda_literal
+                        body: (statements
+                          (statement
+                            (assignment
+                              left: (simple_identifier)
+                              right: (boolean_literal)))
+                          (statement
+                            (assignment
+                              left: (simple_identifier)
+                              right: (boolean_literal)))
+                          (statement
+                            (assignment
+                              left: (simple_identifier)
+                              right: (simple_identifier)))))))
+                  selector: (simple_identifier))
+                args: (value_arguments))))
+          (statement
+            (jump_expression
+              (postfix_expression
+                expression: (dot_qualified_expression
+                  receiver: (simple_identifier)
+                  selector: (simple_identifier))
+                operator: (postfix_unary_operator)))))))))
