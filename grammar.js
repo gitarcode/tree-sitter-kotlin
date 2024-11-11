@@ -81,7 +81,7 @@ module.exports = grammar({
     [$.import_list],
     
     // @Type(... could either be an annotation constructor invocation or an annotated expression
-    [$.constructor_invocation, $._unescaped_annotation],
+    // [$.constructor_invocation, $._unescaped_annotation],
 
     [$.platform_modifier, $._soft_keywords],
     [$._type_modifier, $._soft_keywords],
@@ -312,10 +312,10 @@ module.exports = grammar({
       $.function_type
     )),
 
-    constructor_invocation: $ => seq(
+    constructor_invocation: $ => prec(1, seq(
       $.user_type,
       $.value_arguments
-    ),
+    )),
 
     _annotated_delegation_specifier: $ => seq(repeat($.annotation), repeat($._NL), $.delegation_specifier),
 
@@ -1101,7 +1101,7 @@ module.exports = grammar({
       choice(
         $.dot_qualified_expression,
         $.index_access_expression,
-        $.simple_identifier,
+        choice($.simple_identifier, $._soft_keywords),
         $.postfix_expression,
       )
     ),

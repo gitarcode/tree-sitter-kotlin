@@ -1082,17 +1082,21 @@
       }
     },
     "constructor_invocation": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "user_type"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "value_arguments"
-        }
-      ]
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "user_type"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "value_arguments"
+          }
+        ]
+      }
     },
     "_annotated_delegation_specifier": {
       "type": "SEQ",
@@ -6163,8 +6167,17 @@
             "name": "index_access_expression"
           },
           {
-            "type": "SYMBOL",
-            "name": "simple_identifier"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "simple_identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_soft_keywords"
+              }
+            ]
           },
           {
             "type": "SYMBOL",
@@ -7674,10 +7687,6 @@
     ],
     [
       "import_list"
-    ],
-    [
-      "constructor_invocation",
-      "_unescaped_annotation"
     ],
     [
       "platform_modifier",

@@ -32,3 +32,18 @@ fun foo() {
                 expression: (simple_identifier)
                 index: (integer_literal))
               operator: (postfix_unary_operator))))))))
+
+
+================================================================================
+delegate as an identifier in assignment
+================================================================================
+
+delegate = parser
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (assignment
+      left: (simple_identifier)
+      right: (simple_identifier))))
