@@ -312,11 +312,9 @@ fun foo() {
               (binding_pattern_kind)
               var_decl: (variable_declaration
                 id: (simple_identifier))
-              initializer: (simple_identifier)))
-          (statement
-            (prefix_expression
-              op: (prefix_unary_operator)
-              expression: (simple_identifier))))))))
+              initializer: (additive_expression
+                (simple_identifier)
+                (simple_identifier)))))))))
 
 ================================================================================
 Newline after additive expression

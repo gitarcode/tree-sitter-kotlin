@@ -141,6 +141,11 @@ module.exports = grammar({
     NON_NL_WHITESPACE
   ],
 
+  externals: $ => [
+    $._bin_min,
+    $._bin_plus
+  ],
+
   supertypes: $ => [
     $.expression
   ],
@@ -1082,7 +1087,7 @@ module.exports = grammar({
 
     _is_operator: $ => choice("is", "!is"),
 
-    _additive_operator: $ => choice("+", "-"),
+    _additive_operator: $ => choice($._bin_plus, $._bin_min),
 
     _multiplicative_operator: $ => choice("*", "/", "%"),
 

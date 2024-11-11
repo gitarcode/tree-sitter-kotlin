@@ -6017,12 +6017,12 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "+"
+          "type": "SYMBOL",
+          "name": "_bin_plus"
         },
         {
-          "type": "STRING",
-          "value": "-"
+          "type": "SYMBOL",
+          "name": "_bin_min"
         }
       ]
     },
@@ -7727,7 +7727,16 @@
     ]
   ],
   "precedences": [],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "_bin_min"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_bin_plus"
+    }
+  ],
   "inline": [],
   "supertypes": [
     "expression"
