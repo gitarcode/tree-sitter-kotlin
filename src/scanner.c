@@ -33,14 +33,16 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
         skip_whitespace(lexer);
         if (lexer->lookahead == '-') {
             advance(lexer);
-            // do not recognize -- and -> as binary minus
-            if (lexer -> lookahead != '-' && lexer -> lookahead != '>') {
+            // do not recognize --, ->, -=
+            if (lexer -> lookahead != '-' 
+                && lexer -> lookahead != '>' 
+                && lexer -> lookahead != '=') {
                 return true;
             }
         }
         else if (lexer->lookahead == '+') {
             advance(lexer);
-            // do not recognize ++  and +=
+            // do not recognize ++, +=
             if (lexer -> lookahead != '+' && lexer -> lookahead != '=') {
                 return true;
             }
