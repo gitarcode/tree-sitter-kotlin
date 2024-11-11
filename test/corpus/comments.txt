@@ -139,3 +139,25 @@ class A {
         parameters: (function_value_parameters)
         body: (function_body
           (block))))))
+
+================================================================================
+Comments in function call
+================================================================================
+
+f(1 //line comment
+/* comment 1*/ + /* comment 2*/ 2)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (call_expression
+      expression: (simple_identifier)
+      args: (value_arguments
+        (value_argument
+          (additive_expression
+            (integer_literal)
+            (line_comment)
+            (multiline_comment)
+            (multiline_comment)
+            (integer_literal)))))))
