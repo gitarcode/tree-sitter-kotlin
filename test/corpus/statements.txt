@@ -198,3 +198,42 @@ fun f() {
             (simple_identifier))
           (statement
             (simple_identifier)))))))
+
+================================================================================
+Getter/setter
+================================================================================
+
+var positionPercentage: Float
+    get() = _positionPercentage
+    set(value) { _positionPercentage = value.coerceIn(0f, 1f) }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    var_decl: (variable_declaration
+      id: (simple_identifier)
+      type: (user_type
+        (type_identifier)))
+    (getter
+      (function_body
+        expression: (simple_identifier)))
+    (setter
+      (parameter_with_optional_type
+        (simple_identifier))
+      (function_body
+        (block
+          (statements
+            (statement
+              (assignment
+                left: (simple_identifier)
+                right: (call_expression
+                  expression: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))
+                  args: (value_arguments
+                    (value_argument
+                      (real_literal))
+                    (value_argument
+                      (real_literal))))))))))))

@@ -443,9 +443,8 @@ module.exports = grammar({
       repeat($._NL),
       optional(';'),
       choice(
-        // TODO: Getter-setter combinations
-        optional($.getter),
-        optional($.setter)
+        seq(optional($.getter), optional(seq(repeat($._NL), $.setter))),
+        seq(optional($.setter), optional(seq(repeat($._NL), $.setter)))
       )
     ),
 
