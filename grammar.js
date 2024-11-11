@@ -119,8 +119,6 @@ module.exports = grammar({
 
     [$._simple_user_type],
 
-    [$.comparison_expression],
-
     [$.annotated_expression, $.modifiers],
     [$.annotated_expression, $.when_subject],
     [$.annotated_expression, $.value_argument],
@@ -775,7 +773,7 @@ module.exports = grammar({
       seq($._in_operator, $.expression),
       seq($._is_operator, $._type)))),
 
-    comparison_expression: $ => prec(PREC.COMPARISON, seq($.expression, $._comparison_operator, $.expression)),
+    comparison_expression: $ => prec.left(PREC.COMPARISON, seq($.expression, $._comparison_operator, $.expression)),
 
     equality_expression: $ => prec.left(PREC.EQUALITY, seq($.expression, $._equality_operator, $.expression)),
 

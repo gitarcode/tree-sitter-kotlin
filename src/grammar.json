@@ -4078,7 +4078,7 @@
       }
     },
     "comparison_expression": {
-      "type": "PREC",
+      "type": "PREC_LEFT",
       "value": 6,
       "content": {
         "type": "SEQ",
@@ -7695,9 +7695,6 @@
     ],
     [
       "_simple_user_type"
-    ],
-    [
-      "comparison_expression"
     ],
     [
       "annotated_expression",
