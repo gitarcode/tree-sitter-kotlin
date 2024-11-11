@@ -1188,3 +1188,36 @@ else
           (integer_literal))
         consequence: (simple_identifier)
         alternative: (simple_identifier)))))
+
+================================================================================
+When expression with one expression in entries
+================================================================================
+
+when {
+    a -> {
+        x
+    }
+    else -> {
+      y
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (when_expression
+      (when_entry
+        (when_condition
+          (simple_identifier))
+        (control_structure_body
+          (block
+            (statements
+              (statement
+                (simple_identifier))))))
+      (when_entry
+        (control_structure_body
+          (block
+            (statements
+              (statement
+                (simple_identifier)))))))))

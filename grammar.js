@@ -129,6 +129,8 @@ module.exports = grammar({
     [$.collection_literal],
     // becuase of $._NL after simple_identifier, all can reduce
     [$.value_argument, $._primary_expression],
+    [$.variable_declaration, $._primary_expression],
+    [$.variable_declaration, $._simple_user_type],
     [$.value_argument],
     [$.property_declaration],
   ],
@@ -421,11 +423,11 @@ module.exports = grammar({
       seq($._ASSIGNMENT, field('expression', $.expression))
     ),
 
-    variable_declaration: $ => prec(PREC.VAR_DECL, seq(
+    variable_declaration: $ => seq(
       // repeat($.annotation), TODO
       field('id', choice($.simple_identifier, $._soft_keywords)),
       optional(field('type', seq(repeat($._NL), ":", repeat($._NL), $._type)))
-    )),
+    ),
 
     property_declaration: $ => seq(
       optional(field('modifiers', $.modifiers)),
