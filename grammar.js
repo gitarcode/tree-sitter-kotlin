@@ -609,10 +609,10 @@ module.exports = grammar({
     // Statements
     // ==========
 
-    statements: $ => prec.right(seq(
+    statements: $ => seq(
       sep1($.statement, $._semi),
       optional($._semi),
-    )),
+    ),
 
     statement: $ => choice(
       $._declaration,
