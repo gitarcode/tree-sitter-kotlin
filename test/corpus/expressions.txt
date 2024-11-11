@@ -1221,3 +1221,22 @@ when {
             (statements
               (statement
                 (simple_identifier)))))))))
+
+================================================================================
+Increment/decrement assignments
+================================================================================
+
+x -= 1
+y += 1
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (assignment
+      left: (simple_identifier)
+      right: (integer_literal)))
+  (statement
+    (assignment
+      left: (simple_identifier)
+      right: (integer_literal))))
