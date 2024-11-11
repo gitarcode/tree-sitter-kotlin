@@ -610,8 +610,8 @@ module.exports = grammar({
     // ==========
 
     statements: $ => seq(
-      sep1($.statement, $._semi),
-      optional($._semi),
+      sep1($.statement, $._semis),
+      optional($._semis)
     ),
 
     statement: $ => choice(
@@ -1394,6 +1394,7 @@ module.exports = grammar({
     _LPAR: $ => /\(\s*/,
     _ASSIGNMENT: $ => /=\s*/,
     _semi: $ => seq(choice(";", $._NL), repeat($._NL)),
+    _semis: $ => repeat1(choice(";", $._NL)),
 
     line_comment: $ => token(seq('//', /[^\r\n]*[\r\n]/)),
 

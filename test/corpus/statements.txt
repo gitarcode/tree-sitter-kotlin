@@ -169,3 +169,32 @@ val foo = Foo()
                 args: (value_arguments
                   (value_argument
                     (simple_identifier)))))))))))
+
+================================================================================
+empty statements
+================================================================================
+
+fun f() {
+    x
+    ;
+    ;
+    ;
+    y
+    ;
+    ;
+    ;
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block
+        (statements
+          (statement
+            (simple_identifier))
+          (statement
+            (simple_identifier)))))))
