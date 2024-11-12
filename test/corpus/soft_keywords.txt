@@ -47,3 +47,33 @@ delegate = parser
     (assignment
       left: (simple_identifier)
       right: (simple_identifier))))
+
+================================================================================
+data as an identifier
+================================================================================
+
+class  A {
+    final override var mainClass: String? by data::mainClass
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    name: (simple_identifier)
+    body: (class_body
+      (property_declaration
+        modifiers: (modifiers
+          (inheritance_modifier)
+          (member_modifier))
+        (binding_pattern_kind)
+        var_decl: (variable_declaration
+          id: (simple_identifier)
+          type: (nullable_type
+            type: (user_type
+              (type_identifier))))
+        (property_delegate
+          (callable_reference
+            (user_type
+              (type_identifier))
+            (simple_identifier)))))))
