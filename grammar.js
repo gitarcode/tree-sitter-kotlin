@@ -271,14 +271,6 @@ module.exports = grammar({
       "}"
     ),
 
-    enum_class_body: $ => seq(
-      "{",
-      repeat($._NL),
-      optional($._enum_entries),
-      optional(seq(";", repeat($._NL), $._class_member_declarations)),
-      "}"
-    ),
-
     class_parameters: $ => seq(
       $._LPAR,
       optional(sep1($.class_parameter, repeat($._NL), ",", repeat($._NL))),
@@ -515,11 +507,19 @@ module.exports = grammar({
     // Enum classes
     // ==========
 
-    _enum_entries: $ => prec.left(seq(
+    enum_class_body: $ => seq(
+      "{",
+      repeat($._NL),
+      optional($._enum_entries),
+      optional(seq(";", repeat($._NL), optional($._class_member_declarations))),
+      "}"
+    ),
+
+    _enum_entries: $ => seq(
       sep1($.enum_entry, repeat($._NL), ",", repeat($._NL)), 
+      repeat($._NL),
       optional(","),
-      repeat($._NL)
-    )),
+    ),
 
     enum_entry: $ => seq(
       optional(field('modifiers', $.modifiers)),
