@@ -1082,21 +1082,17 @@
       }
     },
     "constructor_invocation": {
-      "type": "PREC",
-      "value": 1,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "user_type"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "value_arguments"
-          }
-        ]
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "user_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "value_arguments"
+        }
+      ]
     },
     "_annotated_delegation_specifier": {
       "type": "SEQ",
@@ -7687,6 +7683,10 @@
     ],
     [
       "import_list"
+    ],
+    [
+      "constructor_invocation",
+      "_unescaped_annotation"
     ],
     [
       "platform_modifier",

@@ -272,52 +272,51 @@ internal fun parse(xml: String): Element {
           (statement
             (annotated_expression
               (annotation
-                (constructor_invocation
-                  (user_type
-                    (type_identifier))
-                  (value_arguments
-                    (value_argument
-                      (string_literal
-                        (string_content))))))
-              (call_expression
-                expression: (dot_qualified_expression
-                  receiver: (call_expression
-                    expression: (dot_qualified_expression
-                      receiver: (call_expression
-                        expression: (simple_identifier)
-                        args: (value_arguments
-                          (value_argument
-                            (postfix_expression
-                              expression: (call_expression
-                                expression: (dot_qualified_expression
-                                  receiver: (parenthesized_expression
-                                    (as_expression
-                                      (simple_identifier)
-                                      type: (user_type
-                                        (type_identifier))))
-                                  selector: (simple_identifier))
-                                args: (value_arguments
-                                  (value_argument
-                                    (simple_identifier))))
-                              operator: (postfix_unary_operator)))))
-                      selector: (simple_identifier))
-                    lambda_arg: (annotated_lambda
-                      (lambda_literal
-                        body: (statements
-                          (statement
-                            (assignment
-                              left: (simple_identifier)
-                              right: (boolean_literal)))
-                          (statement
-                            (assignment
-                              left: (simple_identifier)
-                              right: (boolean_literal)))
-                          (statement
-                            (assignment
-                              left: (simple_identifier)
-                              right: (simple_identifier)))))))
-                  selector: (simple_identifier))
-                args: (value_arguments))))
+                (user_type
+                  (type_identifier)))
+              (parenthesized_expression
+                (string_literal
+                  (string_content)))))
+          (statement
+            (call_expression
+              expression: (dot_qualified_expression
+                receiver: (call_expression
+                  expression: (dot_qualified_expression
+                    receiver: (call_expression
+                      expression: (simple_identifier)
+                      args: (value_arguments
+                        (value_argument
+                          (postfix_expression
+                            expression: (call_expression
+                              expression: (dot_qualified_expression
+                                receiver: (parenthesized_expression
+                                  (as_expression
+                                    (simple_identifier)
+                                    type: (user_type
+                                      (type_identifier))))
+                                selector: (simple_identifier))
+                              args: (value_arguments
+                                (value_argument
+                                  (simple_identifier))))
+                            operator: (postfix_unary_operator)))))
+                    selector: (simple_identifier))
+                  lambda_arg: (annotated_lambda
+                    (lambda_literal
+                      body: (statements
+                        (statement
+                          (assignment
+                            left: (simple_identifier)
+                            right: (boolean_literal)))
+                        (statement
+                          (assignment
+                            left: (simple_identifier)
+                            right: (boolean_literal)))
+                        (statement
+                          (assignment
+                            left: (simple_identifier)
+                            right: (simple_identifier)))))))
+                selector: (simple_identifier))
+              args: (value_arguments)))
           (statement
             (jump_expression
               (postfix_expression
@@ -325,3 +324,40 @@ internal fun parse(xml: String): Element {
                   receiver: (simple_identifier)
                   selector: (simple_identifier))
                 operator: (postfix_unary_operator)))))))))
+
+
+======================
+Annotated function type
+======================
+
+fun runBenchmark(name: String, frameCount: Int, content: @Composable () -> Unit) {}
+
+---
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier))))
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier))))
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (type_modifiers
+            (annotation
+              (user_type
+                (type_identifier))))
+          type: (function_type
+            (function_type_parameters)
+            type: (user_type
+              (type_identifier))))))
+    body: (function_body
+      (block))))
