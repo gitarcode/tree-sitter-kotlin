@@ -145,7 +145,8 @@ module.exports = grammar({
     [$._enum_entries],
     [$.type_constraints],
     [$.class_declaration, $.type_constraints],
-    [$.type_constraints, $.property_declaration]
+    [$.type_constraints, $.property_declaration],
+    [$.do_while_statement]
   ],
 
   extras: $ => [
@@ -664,6 +665,7 @@ module.exports = grammar({
       "in",
       field('expression', $.expression),
       ")",
+      repeat($._NL),
       optional(field('body', $.control_structure_body))
     )),
 
@@ -672,12 +674,15 @@ module.exports = grammar({
       $._LPAR,
       $.expression,
       ")",
+      repeat($._NL),
       choice(";", $.control_structure_body)
     ),
 
     do_while_statement: $ => prec.right(seq(
       "do",
+      repeat($._NL),
       optional($.control_structure_body),
+      repeat($._NL),
       "while",
       $._LPAR,
       $.expression,

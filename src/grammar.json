@@ -3416,6 +3416,13 @@
             "value": ")"
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
             "type": "CHOICE",
             "members": [
               {
@@ -3454,6 +3461,13 @@
           "value": ")"
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
@@ -3479,6 +3493,13 @@
             "value": "do"
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
             "type": "CHOICE",
             "members": [
               {
@@ -3489,6 +3510,13 @@
                 "type": "BLANK"
               }
             ]
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           },
           {
             "type": "STRING",
@@ -7928,6 +7956,9 @@
     [
       "type_constraints",
       "property_declaration"
+    ],
+    [
+      "do_while_statement"
     ]
   ],
   "precedences": [],

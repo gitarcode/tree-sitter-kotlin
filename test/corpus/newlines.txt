@@ -692,3 +692,30 @@ catch (e: UnsupportedOperationException) { null }
           (statements
             (statement
               (null_literal))))))))
+
+================================================================================
+Newline after while
+================================================================================
+
+while (iterator.hasNext())
+  last = iterator.next()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (while_statement
+      (call_expression
+        expression: (dot_qualified_expression
+          receiver: (simple_identifier)
+          selector: (simple_identifier))
+        args: (value_arguments))
+      (control_structure_body
+        (statement
+          (assignment
+            left: (simple_identifier)
+            right: (call_expression
+              expression: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier))
+              args: (value_arguments))))))))
