@@ -450,7 +450,7 @@ module.exports = grammar({
       )
     ),
 
-    property_delegate: $ => seq("by", $.expression),
+    property_delegate: $ => seq("by", repeat($._NL), $.expression),
 
     getter: $ => prec.right(seq(
       optional(field('modifiers', $.modifiers)),

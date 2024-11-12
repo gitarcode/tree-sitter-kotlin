@@ -523,3 +523,39 @@ val previewClasspathString =
               args: (value_arguments))))
         selector: (simple_identifier))
       args: (value_arguments))))
+
+================================================================================
+Newline after by in properties
+================================================================================
+
+private object Object {
+  public val android_str: StringResource by 
+      lazy { init_android_str() }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (object_declaration
+    modifiers: (modifiers
+      (visibility_modifier))
+    name: (simple_identifier)
+    body: (class_body
+      (property_declaration
+        modifiers: (modifiers
+          (visibility_modifier))
+        (binding_pattern_kind)
+        var_decl: (variable_declaration
+          id: (simple_identifier)
+          type: (user_type
+            (type_identifier)))
+        (property_delegate
+          (call_expression
+            expression: (simple_identifier)
+            lambda_arg: (annotated_lambda
+              (lambda_literal
+                body: (statements
+                  (statement
+                    (call_expression
+                      expression: (simple_identifier)
+                      args: (value_arguments))))))))))))
