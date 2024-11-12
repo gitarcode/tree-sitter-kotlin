@@ -626,3 +626,42 @@ fun <TValue> CSSStyleVariable<TValue>.value(fallback: TValue? = null)
                   (simple_identifier))
                 (value_argument
                   (simple_identifier))))))))))
+
+================================================================================
+Newline in interpolated expression
+================================================================================
+
+error("Found references to atomicfu in jar file $name in the following class files: ${
+    foundClasses.joinToString("") { "\n\t\t" + it }
+}")
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (call_expression
+      expression: (simple_identifier)
+      args: (value_arguments
+        (value_argument
+          (string_literal
+            (string_content)
+            (interpolated_identifier)
+            (string_content)
+            (interpolated_expression
+              (call_expression
+                expression: (dot_qualified_expression
+                  receiver: (simple_identifier)
+                  selector: (simple_identifier))
+                args: (value_arguments
+                  (value_argument
+                    (string_literal)))
+                lambda_arg: (annotated_lambda
+                  (lambda_literal
+                    body: (statements
+                      (statement
+                        (additive_expression
+                          (string_literal
+                            (string_content)
+                            (string_content)
+                            (string_content))
+                          (simple_identifier))))))))))))))

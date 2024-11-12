@@ -925,7 +925,7 @@ module.exports = grammar({
     multi_line_string_content: $ => token(prec(PREC.STRING_CONTENT, /[^"$]+/)),
 
     _interpolation: $ => choice(
-      seq("${", alias($.expression, $.interpolated_expression), "}"),
+      seq("${", repeat($._NL), alias($.expression, $.interpolated_expression), repeat($._NL), "}"),
       seq("$", alias($.simple_identifier, $.interpolated_identifier))
     ),
 
