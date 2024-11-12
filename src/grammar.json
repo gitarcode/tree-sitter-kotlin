@@ -3085,6 +3085,13 @@
           "name": "_ARROW"
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "SYMBOL",
           "name": "_type"
         }
@@ -5019,6 +5026,13 @@
                 {
                   "type": "SYMBOL",
                   "name": "_ARROW"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
+                  }
                 }
               ]
             },
@@ -7572,7 +7586,7 @@
     },
     "_ARROW": {
       "type": "PATTERN",
-      "value": "\\s*->\\s*"
+      "value": "\\s*->"
     },
     "_LPAR": {
       "type": "PATTERN",
