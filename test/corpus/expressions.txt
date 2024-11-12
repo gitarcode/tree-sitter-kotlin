@@ -1240,3 +1240,45 @@ y += 1
     (assignment
       left: (simple_identifier)
       right: (integer_literal))))
+
+================================================================================
+Infix expression with newline after operator
+================================================================================
+
+slideInHorizontally { w -> multiplier * w } with
+                    slideOutHorizontally { w -> multiplier * -1 * w }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (infix_expression
+      (call_expression
+        expression: (simple_identifier)
+        lambda_arg: (annotated_lambda
+          (lambda_literal
+            parameters: (lambda_parameters
+              (variable_declaration
+                id: (simple_identifier)))
+            body: (statements
+              (statement
+                (multiplicative_expression
+                  (simple_identifier)
+                  (simple_identifier)))))))
+      (simple_identifier)
+      (call_expression
+        expression: (simple_identifier)
+        lambda_arg: (annotated_lambda
+          (lambda_literal
+            parameters: (lambda_parameters
+              (variable_declaration
+                id: (simple_identifier)))
+            body: (statements
+              (statement
+                (multiplicative_expression
+                  (multiplicative_expression
+                    (simple_identifier)
+                    (prefix_expression
+                      op: (prefix_unary_operator)
+                      expression: (integer_literal)))
+                  (simple_identifier))))))))))
