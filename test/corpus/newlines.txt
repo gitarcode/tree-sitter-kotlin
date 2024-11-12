@@ -476,3 +476,50 @@ A {
   (class_declaration
     name: (simple_identifier)
     body: (class_body)))
+
+
+================================================================================
+Newline before closing parenthesis
+================================================================================
+
+val previewClasspathString =
+    (previewClasspath.files.asSequence() +
+            uiTooling.files.asSequence() +
+            skikoRuntimeFiles.files.asSequence()
+    ).pathString()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    var_decl: (variable_declaration
+      id: (simple_identifier))
+    initializer: (call_expression
+      expression: (dot_qualified_expression
+        receiver: (parenthesized_expression
+          (additive_expression
+            (additive_expression
+              (call_expression
+                expression: (dot_qualified_expression
+                  receiver: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))
+                  selector: (simple_identifier))
+                args: (value_arguments))
+              (call_expression
+                expression: (dot_qualified_expression
+                  receiver: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))
+                  selector: (simple_identifier))
+                args: (value_arguments)))
+            (call_expression
+              expression: (dot_qualified_expression
+                receiver: (dot_qualified_expression
+                  receiver: (simple_identifier)
+                  selector: (simple_identifier))
+                selector: (simple_identifier))
+              args: (value_arguments))))
+        selector: (simple_identifier))
+      args: (value_arguments))))

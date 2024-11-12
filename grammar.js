@@ -857,7 +857,7 @@ module.exports = grammar({
       $.index_access_expression
     ),
 
-    parenthesized_expression: $ => seq($._LPAR, $.expression, ")"),
+    parenthesized_expression: $ => seq($._LPAR, $.expression, repeat($._NL), ")"),
 
     collection_literal: $ => seq(
       "[", 
