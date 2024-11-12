@@ -4053,6 +4053,13 @@
             "name": "simple_identifier"
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
             "type": "SYMBOL",
             "name": "expression"
           }

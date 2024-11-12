@@ -766,7 +766,7 @@ module.exports = grammar({
 
     _range_opeartor: $ => choice("..", "..<"),
 
-    infix_expression: $ => prec.left(PREC.INFIX, seq($.expression, $.simple_identifier, $.expression)),
+    infix_expression: $ => prec.left(PREC.INFIX, seq($.expression, $.simple_identifier, repeat($._NL), $.expression)),
 
     elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, $._ELVIS, repeat($._NL), $.expression)),
 
