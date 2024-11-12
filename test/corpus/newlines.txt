@@ -559,3 +559,70 @@ private object Object {
                     (call_expression
                       expression: (simple_identifier)
                       args: (value_arguments))))))))))))
+
+================================================================================
+Newline after where
+================================================================================
+
+fun <TValue> CSSStyleVariable<TValue>.value(fallback: TValue? = null)
+        where TValue : CSSVariableValueAs<TValue>,
+              TValue : StylePropertyValue =
+    CSSVariableValue<TValue>(
+        variableValue(
+            name,
+            fallback
+        )
+    )
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (type_parameters
+      (type_parameter
+        (type_identifier)))
+    receiver_type: (receiver_type
+      type: (user_type
+        (type_identifier)
+        (type_arguments
+          (type_projection
+            type: (user_type
+              (type_identifier))))))
+    name: (simple_identifier)
+    parameters: (function_value_parameters
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (nullable_type
+            type: (user_type
+              (type_identifier))))
+        initializer: (null_literal)))
+    (type_constraints
+      (type_constraint
+        (type_identifier)
+        type: (user_type
+          (type_identifier)
+          (type_arguments
+            (type_projection
+              type: (user_type
+                (type_identifier))))))
+      (type_constraint
+        (type_identifier)
+        type: (user_type
+          (type_identifier))))
+    body: (function_body
+      expression: (call_expression
+        expression: (simple_identifier)
+        (type_arguments
+          (type_projection
+            type: (user_type
+              (type_identifier))))
+        args: (value_arguments
+          (value_argument
+            (call_expression
+              expression: (simple_identifier)
+              args: (value_arguments
+                (value_argument
+                  (simple_identifier))
+                (value_argument
+                  (simple_identifier))))))))))

@@ -142,7 +142,10 @@ module.exports = grammar({
     [$.variable_declaration, $._simple_user_type],
     [$.value_argument],
     [$.property_declaration],
-    [$._enum_entries]
+    [$._enum_entries],
+    [$.type_constraints],
+    [$.class_declaration, $.type_constraints],
+    [$.type_constraints, $.property_declaration]
   ],
 
   extras: $ => [
@@ -345,7 +348,7 @@ module.exports = grammar({
       optional(seq(repeat($._NL), ":", repeat($._NL), $._type))
     ),
 
-    type_constraints: $ => seq("where", sep1($.type_constraint, ",")),
+    type_constraints: $ => seq(repeat($._NL), "where", repeat($._NL), sep1($.type_constraint, repeat($._NL), ",", repeat($._NL))),
 
     type_constraint: $ => seq(
       repeat($.annotation),

@@ -1207,8 +1207,22 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "STRING",
           "value": "where"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
         },
         {
           "type": "SEQ",
@@ -1223,8 +1237,22 @@
                 "type": "SEQ",
                 "members": [
                   {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_NL"
+                    }
+                  },
+                  {
                     "type": "STRING",
                     "value": ","
+                  },
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_NL"
+                    }
                   },
                   {
                     "type": "SYMBOL",
@@ -7849,6 +7877,17 @@
     ],
     [
       "_enum_entries"
+    ],
+    [
+      "type_constraints"
+    ],
+    [
+      "class_declaration",
+      "type_constraints"
+    ],
+    [
+      "type_constraints",
+      "property_declaration"
     ]
   ],
   "precedences": [],
