@@ -620,3 +620,29 @@ enum class AvailableLanguages {
         name: (simple_identifier))
       (enum_entry
         name: (simple_identifier)))))
+
+================================================================================
+Enum entries with comma at the end of last element
+================================================================================
+
+enum class Screens {
+    Images,
+    Strings,
+    Font,
+    File,
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (enum_class_declaration
+    name: (simple_identifier)
+    body: (enum_class_body
+      (enum_entry
+        name: (simple_identifier))
+      (enum_entry
+        name: (simple_identifier))
+      (enum_entry
+        name: (simple_identifier))
+      (enum_entry
+        name: (simple_identifier)))))

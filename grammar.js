@@ -133,6 +133,7 @@ module.exports = grammar({
     [$.variable_declaration, $._simple_user_type],
     [$.value_argument],
     [$.property_declaration],
+    [$._enum_entries]
   ],
 
   extras: $ => [
@@ -516,9 +517,11 @@ module.exports = grammar({
     ),
 
     _enum_entries: $ => seq(
-      sep1($.enum_entry, repeat($._NL), ",", repeat($._NL)), 
+      $.enum_entry,
+      repeat(seq(repeat($._NL), ",", repeat($._NL), $.enum_entry)),
       repeat($._NL),
       optional(","),
+      repeat($._NL),
     ),
 
     enum_entry: $ => seq(
