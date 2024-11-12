@@ -287,8 +287,8 @@ val a = a<2>(3)
       (comparison_expression
         (simple_identifier)
         (simple_identifier))
-      (simple_identifier)))
-  (line_comment)
+      (simple_identifier))
+    (line_comment))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration

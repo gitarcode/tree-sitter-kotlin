@@ -1395,7 +1395,7 @@ module.exports = grammar({
     _semi: $ => seq(choice(";", $._NL), repeat($._NL)),
     _semis: $ => repeat1(choice(";", $._NL)),
 
-    line_comment: $ => token(seq('//', /[^\r\n]*[\r\n]/)),
+    line_comment: $ => token(seq('//', /[^\r\n]*/)),
 
     // We need to consume all the newlines after the commend, otherwise, the comments
     // may be inserted in unwanted places. Comments (and other extra) nodes are inserted
@@ -1403,7 +1403,7 @@ module.exports = grammar({
     multiline_comment: $ => seq(
       token("/*"), 
       repeat(choice($._NL, /./)), 
-      /\*\/(\r?\n)*/,
+      token("*/"),
     )
   }
 });

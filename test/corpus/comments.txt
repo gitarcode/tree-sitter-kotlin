@@ -20,13 +20,13 @@ Comments
   (statement
     (additive_expression
       (integer_literal)
-      (integer_literal)))
-  (line_comment)
-  (multiline_comment
+      (integer_literal))
+    (line_comment)
     (multiline_comment
-      (multiline_comment)))
-  (line_comment)
-  (multiline_comment))
+      (multiline_comment
+        (multiline_comment)))
+    (line_comment)
+    (multiline_comment)))
 
 ================================================================================
 Comment after imports
@@ -51,8 +51,8 @@ class Foo {}
       name: (identifier
         (simple_identifier)
         (simple_identifier)
-        (simple_identifier))))
-  (line_comment)
+        (simple_identifier))
+      (line_comment)))
   (class_declaration
     name: (simple_identifier)
     body: (class_body)))
@@ -80,8 +80,8 @@ class Foo {}
       name: (identifier
         (simple_identifier)
         (simple_identifier)
-        (simple_identifier))))
-  (multiline_comment)
+        (simple_identifier))
+      (multiline_comment)))
   (class_declaration
     name: (simple_identifier)
     body: (class_body)))
@@ -111,8 +111,8 @@ class Foo {}
       name: (identifier
         (simple_identifier)
         (simple_identifier)
-        (simple_identifier))))
-  (multiline_comment)
+        (simple_identifier))
+      (multiline_comment)))
   (class_declaration
     name: (simple_identifier)
     body: (class_body)))
@@ -145,7 +145,7 @@ Comments in function call
 ================================================================================
 
 f(1 //line comment
-/* comment 1*/ + /* comment 2*/ 2)
+  + /* comment 2*/ 2)
 
 --------------------------------------------------------------------------------
 
@@ -158,6 +158,5 @@ f(1 //line comment
           (additive_expression
             (integer_literal)
             (line_comment)
-            (multiline_comment)
             (multiline_comment)
             (integer_literal)))))))

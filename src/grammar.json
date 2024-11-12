@@ -7621,7 +7621,7 @@
           },
           {
             "type": "PATTERN",
-            "value": "[^\\r\\n]*[\\r\\n]"
+            "value": "[^\\r\\n]*"
           }
         ]
       }
@@ -7653,8 +7653,11 @@
           }
         },
         {
-          "type": "PATTERN",
-          "value": "\\*\\/(\\r?\\n)*"
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "*/"
+          }
         }
       ]
     }
