@@ -305,12 +305,12 @@ module.exports = grammar({
       )
     ),
 
-    delegation_specifier: $ => choice(
+    delegation_specifier: $ => prec.right(choice(
       $.constructor_invocation,
       $.explicit_delegation,
       $.user_type,
       $.function_type
-    ),
+    )),
 
     constructor_invocation: $ => seq(
       $.user_type,
