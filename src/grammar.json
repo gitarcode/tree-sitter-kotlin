@@ -5804,6 +5804,13 @@
             "value": "try"
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
             "type": "SYMBOL",
             "name": "block"
           },
@@ -5813,6 +5820,13 @@
               {
                 "type": "SEQ",
                 "members": [
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_NL"
+                    }
+                  },
                   {
                     "type": "REPEAT1",
                     "content": {
@@ -5835,8 +5849,20 @@
                 ]
               },
               {
-                "type": "SYMBOL",
-                "name": "finally_block"
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_NL"
+                    }
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "finally_block"
+                  }
+                ]
               }
             ]
           }

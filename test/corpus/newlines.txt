@@ -665,3 +665,30 @@ error("Found references to atomicfu in jar file $name in the following class fil
                             (string_content)
                             (string_content))
                           (simple_identifier))))))))))))))
+
+================================================================================
+Try expression with catch on newline
+================================================================================
+
+try { main.immediate }
+catch (e: UnsupportedOperationException) { null }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (try_expression
+      (block
+        (statements
+          (statement
+            (dot_qualified_expression
+              receiver: (simple_identifier)
+              selector: (simple_identifier)))))
+      (catch_block
+        name: (simple_identifier)
+        type: (user_type
+          (type_identifier))
+        body: (block
+          (statements
+            (statement
+              (null_literal))))))))

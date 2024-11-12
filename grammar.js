@@ -1058,10 +1058,11 @@ module.exports = grammar({
 
     try_expression: $ => prec.right(seq(
       "try",
+      repeat($._NL),
       $.block,
       choice(
-        seq(repeat1($.catch_block), optional($.finally_block)),
-        $.finally_block
+        seq(repeat($._NL), repeat1($.catch_block), optional($.finally_block)),
+        seq(repeat($._NL), $.finally_block)
       )
     )),
 
