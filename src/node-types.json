@@ -2149,21 +2149,6 @@
     }
   },
   {
-    "type": "import_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "import_header",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "index_access_expression",
     "named": true,
     "fields": {
@@ -3173,7 +3158,7 @@
           "named": true
         },
         {
-          "type": "import_list",
+          "type": "import_header",
           "named": true
         },
         {

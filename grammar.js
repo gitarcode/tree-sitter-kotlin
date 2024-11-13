@@ -78,7 +78,6 @@ module.exports = grammar({
   conflicts: $ => [
     [$.class_declaration],
     [$.class_declaration, $.primary_constructor],
-    [$.import_list],
     
     // @Type(... could either be an annotation constructor invocation or an annotated expression
     [$.constructor_invocation, $._unescaped_annotation],
@@ -150,7 +149,7 @@ module.exports = grammar({
     [$._delegation_specifiers],
     [$.explicit_delegation, $._primary_expression],
     [$.function_value_parameters],
-    [$.class_parameters]
+    [$.class_parameters],
   ],
 
   extras: $ => [
@@ -187,7 +186,7 @@ module.exports = grammar({
       optional($.shebang_line),
       repeat($.file_annotation),
       optional($.package_header),
-      optional($.import_list),
+      repeat(seq($.import_header, optional($._semi))),
       // In principle, we either parse a Kotlin file (.kt) or a Kotlin script (.kts).
       // Statements cannot appear as top-level constructs in Kotlin files, only in scripts.
       // However, here, we're allowing parsing of both statements and declarations as top level.
@@ -207,14 +206,11 @@ module.exports = grammar({
 
     package_header: $ => seq("package", $.identifier, $._semi),
 
-    import_list: $ => repeat1($.import_header),
-
-    import_header: $ => seq(
+    import_header: $ => prec.left(seq(
       "import",
       field('name', $.identifier),
       optional(choice(seq(".", $.wildcard_import), $._import_alias)),
-      optional($._semi)
-    ),
+    )),
 
     wildcard_import: $ => seq(repeat($._NL), "*"),
 

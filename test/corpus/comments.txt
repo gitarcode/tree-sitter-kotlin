@@ -41,18 +41,17 @@ class Foo {}
 --------------------------------------------------------------------------------
 
 (source_file
-  (import_list
-    (import_header
-      name: (identifier
-        (simple_identifier)
-        (simple_identifier)
-        (simple_identifier)))
-    (import_header
-      name: (identifier
-        (simple_identifier)
-        (simple_identifier)
-        (simple_identifier))
-      (line_comment)))
+  (import_header
+    name: (identifier
+      (simple_identifier)
+      (simple_identifier)
+      (simple_identifier)))
+  (import_header
+    name: (identifier
+      (simple_identifier)
+      (simple_identifier)
+      (simple_identifier)))
+  (line_comment)
   (class_declaration
     name: (simple_identifier)
     body: (class_body)))
@@ -70,18 +69,17 @@ class Foo {}
 --------------------------------------------------------------------------------
 
 (source_file
-  (import_list
-    (import_header
-      name: (identifier
-        (simple_identifier)
-        (simple_identifier)
-        (simple_identifier)))
-    (import_header
-      name: (identifier
-        (simple_identifier)
-        (simple_identifier)
-        (simple_identifier))
-      (multiline_comment)))
+  (import_header
+    name: (identifier
+      (simple_identifier)
+      (simple_identifier)
+      (simple_identifier)))
+  (import_header
+    name: (identifier
+      (simple_identifier)
+      (simple_identifier)
+      (simple_identifier)))
+  (multiline_comment)
   (class_declaration
     name: (simple_identifier)
     body: (class_body)))
@@ -101,18 +99,17 @@ class Foo {}
 --------------------------------------------------------------------------------
 
 (source_file
-  (import_list
-    (import_header
-      name: (identifier
-        (simple_identifier)
-        (simple_identifier)
-        (simple_identifier)))
-    (import_header
-      name: (identifier
-        (simple_identifier)
-        (simple_identifier)
-        (simple_identifier))
-      (multiline_comment)))
+  (import_header
+    name: (identifier
+      (simple_identifier)
+      (simple_identifier)
+      (simple_identifier)))
+  (import_header
+    name: (identifier
+      (simple_identifier)
+      (simple_identifier)
+      (simple_identifier)))
+  (multiline_comment)
   (class_declaration
     name: (simple_identifier)
     body: (class_body)))
@@ -161,7 +158,6 @@ f(1 //line comment
             (multiline_comment)
             (integer_literal)))))))
 
-
 ================================================================================
 Comments before constructor parameter
 ================================================================================
@@ -198,3 +194,32 @@ public data class PluginName(
           (value_argument
             (simple_identifier)))))
     body: (class_body)))
+
+================================================================================
+Comment between imports
+================================================================================
+
+/* this is a comment */
+import a.b.c
+/* this is a comment */
+/* this is a comment */
+import x.y.z
+/* this is a comment */
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (multiline_comment)
+  (import_header
+    name: (identifier
+      (simple_identifier)
+      (simple_identifier)
+      (simple_identifier)))
+  (multiline_comment)
+  (multiline_comment)
+  (import_header
+    name: (identifier
+      (simple_identifier)
+      (simple_identifier)
+      (simple_identifier)))
+  (multiline_comment))
