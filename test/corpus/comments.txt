@@ -160,3 +160,41 @@ f(1 //line comment
             (line_comment)
             (multiline_comment)
             (integer_literal)))))))
+
+
+================================================================================
+Comments before constructor parameter
+================================================================================
+
+public data class PluginName(
+    /**
+     * Plugin name.
+     */
+    val pluginName: String
+) : AbstractCoroutineContextElement(PluginName) {
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    modifiers: (modifiers
+      (visibility_modifier)
+      (class_modifier))
+    name: (simple_identifier)
+    (primary_constructor
+      (class_parameters
+        (multiline_comment)
+        (class_parameter
+          binding_pattern: (binding_pattern_kind)
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
+    (delegation_specifier
+      (constructor_invocation
+        (user_type
+          (type_identifier))
+        (value_arguments
+          (value_argument
+            (simple_identifier)))))
+    body: (class_body)))
