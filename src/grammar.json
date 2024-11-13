@@ -357,8 +357,15 @@
             }
           },
           {
-            "type": "SYMBOL",
-            "name": "_ASSIGNMENT"
+            "type": "STRING",
+            "value": "="
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           },
           {
             "type": "SYMBOL",
@@ -937,8 +944,15 @@
                   }
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "_ASSIGNMENT"
+                  "type": "STRING",
+                  "value": "="
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
+                  }
                 },
                 {
                   "type": "FIELD",
@@ -1618,8 +1632,15 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "_ASSIGNMENT"
+                  "type": "STRING",
+                  "value": "="
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
+                  }
                 },
                 {
                   "type": "FIELD",
@@ -1865,8 +1886,15 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "_ASSIGNMENT"
+              "type": "STRING",
+              "value": "="
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_NL"
+              }
             },
             {
               "type": "FIELD",
@@ -2039,8 +2067,15 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "SYMBOL",
-                      "name": "_ASSIGNMENT"
+                      "type": "STRING",
+                      "value": "="
+                    },
+                    {
+                      "type": "REPEAT",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "_NL"
+                      }
                     },
                     {
                       "type": "FIELD",
@@ -3650,17 +3685,8 @@
           "type": "FIELD",
           "name": "op",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_ASSIGNMENT"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "_assignment_and_operator"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "_assignment_and_operator"
           }
         },
         {
@@ -4645,8 +4671,15 @@
                   }
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "_ASSIGNMENT"
+                  "type": "STRING",
+                  "value": "="
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
+                  }
                 }
               ]
             },
@@ -5772,8 +5805,15 @@
                   "name": "variable_declaration"
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "_ASSIGNMENT"
+                  "type": "STRING",
+                  "value": "="
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
+                  }
                 }
               ]
             },
@@ -6276,6 +6316,10 @@
     "_assignment_and_operator": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "STRING",
+          "value": "="
+        },
         {
           "type": "STRING",
           "value": "+="
@@ -7854,10 +7898,6 @@
     "_ARROW": {
       "type": "PATTERN",
       "value": "\\s*->"
-    },
-    "_ASSIGNMENT": {
-      "type": "PATTERN",
-      "value": "=\\s*"
     },
     "_semi": {
       "type": "SEQ",
