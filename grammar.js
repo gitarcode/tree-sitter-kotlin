@@ -146,7 +146,8 @@ module.exports = grammar({
     [$.type_constraints],
     [$.class_declaration, $.type_constraints],
     [$.type_constraints, $.property_declaration],
-    [$.do_while_statement]
+    [$.do_while_statement],
+    [$._delegation_specifiers]
   ],
 
   extras: $ => [
@@ -309,7 +310,9 @@ module.exports = grammar({
     _delegation_specifiers: $ => seq(
       sep1(
         $.delegation_specifier, 
+        repeat($._NL),
         ",",
+        repeat($._NL),
       )
     ),
 

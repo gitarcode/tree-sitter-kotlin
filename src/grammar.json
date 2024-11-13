@@ -982,8 +982,22 @@
                 "type": "SEQ",
                 "members": [
                   {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_NL"
+                    }
+                  },
+                  {
                     "type": "STRING",
                     "value": ","
+                  },
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_NL"
+                    }
                   },
                   {
                     "type": "SYMBOL",
@@ -7968,6 +7982,9 @@
     ],
     [
       "do_while_statement"
+    ],
+    [
+      "_delegation_specifiers"
     ]
   ],
   "precedences": [],
