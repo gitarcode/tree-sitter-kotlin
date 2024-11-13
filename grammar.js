@@ -157,7 +157,9 @@ module.exports = grammar({
 
   externals: $ => [
     $._bin_min,
-    $._bin_plus
+    $._bin_plus,
+    $._safe_dot,
+    $._elvis,
   ],
 
   supertypes: $ => [
@@ -575,10 +577,8 @@ module.exports = grammar({
 
     nullable_type: $ => seq(
       choice($._type_reference, $.parenthesized_type),
-      repeat1($._quest)
+      repeat1("?")
     ),
-
-    _quest: $ => "?",
 
     user_type: $ => seq(
       $._simple_user_type, repeat(seq(choice($._DOT, "."), repeat($._NL), $._simple_user_type))
@@ -722,7 +722,7 @@ module.exports = grammar({
 
     dot_qualified_expression: $ => prec(PREC.DOT, seq(
       field('receiver', choice($._primary_expression, $.postfix_expression)),
-      choice(choice($._DOT, "."), $._SAFE_DOT),
+      choice(choice($._DOT, "."), $._safe_dot),
       repeat($._NL),
       field('selector', choice(
         $.simple_identifier,
@@ -789,7 +789,7 @@ module.exports = grammar({
 
     infix_expression: $ => prec.left(PREC.INFIX, seq($.expression, $.simple_identifier, repeat($._NL), $.expression)),
 
-    elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, $._ELVIS, repeat($._NL), $.expression)),
+    elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, $._elvis, repeat($._NL), $.expression)),
 
     check_expression: $ => prec.left(PREC.CHECK, seq($.expression, choice(
       seq($._in_operator, $.expression),
@@ -1094,7 +1094,7 @@ module.exports = grammar({
     ),
 
     callable_reference: $ => prec(PREC.DOT, seq(
-      optional(choice($.user_type, $.this_expression)),
+      optional(choice(seq($.user_type, optional("?")), $.this_expression)),
       "::",
       choice($.simple_identifier, "class")
     )),
@@ -1405,7 +1405,6 @@ module.exports = grammar({
     _backtick_identifier: $ => /`[^\r\n`]+`/,
 
     _DOT: $ => /\s+\./,
-    _SAFE_DOT: $ => /\s*\?\./,
     _ELVIS: $ => /\s*\?:/,
     _CONJ: $ => /\s*&&/,
     _DISJ: $ => /\s*\|\|/,

@@ -1282,3 +1282,33 @@ slideInHorizontally { w -> multiplier * w } with
                       op: (prefix_unary_operator)
                       expression: (integer_literal)))
                   (simple_identifier))))))))))
+
+================================================================================
+Null-safe callable expression
+================================================================================
+
+String?::plus
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (callable_reference
+      (user_type
+        (type_identifier))
+      (simple_identifier))))
+
+================================================================================
+Null-safe callable expression with space in between
+================================================================================
+
+String? ::plus
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (callable_reference
+      (user_type
+        (type_identifier))
+      (simple_identifier))))

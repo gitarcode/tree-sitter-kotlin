@@ -2933,15 +2933,11 @@
         {
           "type": "REPEAT1",
           "content": {
-            "type": "SYMBOL",
-            "name": "_quest"
+            "type": "STRING",
+            "value": "?"
           }
         }
       ]
-    },
-    "_quest": {
-      "type": "STRING",
-      "value": "?"
     },
     "user_type": {
       "type": "SEQ",
@@ -3699,7 +3695,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "_SAFE_DOT"
+                "name": "_safe_dot"
               }
             ]
           },
@@ -4127,7 +4123,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_ELVIS"
+            "name": "_elvis"
           },
           {
             "type": "REPEAT",
@@ -6047,8 +6043,25 @@
                 "type": "CHOICE",
                 "members": [
                   {
-                    "type": "SYMBOL",
-                    "name": "user_type"
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "user_type"
+                      },
+                      {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "STRING",
+                            "value": "?"
+                          },
+                          {
+                            "type": "BLANK"
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "type": "SYMBOL",
@@ -7632,10 +7645,6 @@
       "type": "PATTERN",
       "value": "\\s+\\."
     },
-    "_SAFE_DOT": {
-      "type": "PATTERN",
-      "value": "\\s*\\?\\."
-    },
     "_ELVIS": {
       "type": "PATTERN",
       "value": "\\s*\\?:"
@@ -7970,6 +7979,14 @@
     {
       "type": "SYMBOL",
       "name": "_bin_plus"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_safe_dot"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_elvis"
     }
   ],
   "inline": [],
