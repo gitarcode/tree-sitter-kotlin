@@ -125,7 +125,7 @@ module.exports = grammar({
 
     [$.expression, $.call_expression],
 
-    [$._simple_user_type, $._primary_expression],
+    [$._simple_user_type, $._common_primary_expression],
 
     [$._simple_user_type],
 
@@ -137,8 +137,8 @@ module.exports = grammar({
     [$.class_parameter],
     [$.collection_literal],
     // becuase of $._NL after simple_identifier, all can reduce
-    [$.value_argument, $._primary_expression],
-    [$.variable_declaration, $._primary_expression],
+    [$.value_argument, $._common_primary_expression],
+    [$.variable_declaration, $._common_primary_expression],
     [$.variable_declaration, $._simple_user_type],
     [$.value_argument],
     [$.property_declaration],
@@ -147,7 +147,8 @@ module.exports = grammar({
     [$.class_declaration, $.type_constraints],
     [$.type_constraints, $.property_declaration],
     [$.do_while_statement],
-    [$._delegation_specifiers]
+    [$._delegation_specifiers],
+    [$.explicit_delegation, $._primary_expression]
   ],
 
   extras: $ => [
@@ -337,7 +338,7 @@ module.exports = grammar({
       ),
       "by",
       repeat($._NL),
-      $.expression
+      choice($._common_primary_expression, alias($.simple_call_expression, $.call_expression))
     ),
 
     type_parameters: $ => seq(
@@ -738,7 +739,24 @@ module.exports = grammar({
       field('expression', $._primary_expression), 
       optional($.type_arguments),
       $._call_arguments
-      ),
+    ),
+
+    // It's not possible to resolve the ambiguity between explicit delegation and calls with last lambda argument.
+    // For example:
+    //   class Derived(b: Base) : Base by b {
+    //     override fun printMessage() { print("abc") }
+    //   }
+    // Here, b {}, can be parsed as both a call expression or a delegation followed by the class body. In this case,
+    // we need the second interpreation. But in funciton calls like `with (s) {}`, we want `{}` to be parsed as part
+    // of the call. That means that based on the context a call_expression happens in, we either want left or right
+    // associativity for the arguments, which is not posssible to specify with tree-sitter. 
+    // Creating a separate nonterminal, is the cleanest way to move forward.
+    // 
+    simple_call_expression: $=> prec(10, seq(
+      field('expression', $._primary_expression), 
+      optional($.type_arguments),
+      field('args', $.value_arguments)
+    )),
 
     // Right precedence here to extend the call to the right, i.e., `with (s) { s }`
     // should be parsed as a flat list of arguments. 
@@ -851,6 +869,11 @@ module.exports = grammar({
     ),
 
     _primary_expression: $ => choice(
+      $._common_primary_expression,
+      $.call_expression,
+    ),
+
+    _common_primary_expression: $ => choice(
       $.parenthesized_expression,
       $.simple_identifier,
       $._literal_constant,
@@ -864,7 +887,6 @@ module.exports = grammar({
       $.when_expression,
       $.try_expression,
       $.dot_qualified_expression,
-      $.call_expression,
       $.index_access_expression
     ),
 

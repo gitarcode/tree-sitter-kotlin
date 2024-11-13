@@ -1099,8 +1099,22 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "expression"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_common_primary_expression"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "simple_call_expression"
+              },
+              "named": true,
+              "value": "call_expression"
+            }
+          ]
         }
       ]
     },
@@ -3773,6 +3787,43 @@
         }
       ]
     },
+    "simple_call_expression": {
+      "type": "PREC",
+      "value": 10,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "expression",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_primary_expression"
+            }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "type_arguments"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "FIELD",
+            "name": "args",
+            "content": {
+              "type": "SYMBOL",
+              "name": "value_arguments"
+            }
+          }
+        ]
+      }
+    },
     "_call_arguments": {
       "type": "PREC_RIGHT",
       "value": 0,
@@ -4557,6 +4608,19 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "_common_primary_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "call_expression"
+        }
+      ]
+    },
+    "_common_primary_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
           "name": "parenthesized_expression"
         },
         {
@@ -4606,10 +4670,6 @@
         {
           "type": "SYMBOL",
           "name": "dot_qualified_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "call_expression"
         },
         {
           "type": "SYMBOL",
@@ -7919,7 +7979,7 @@
     ],
     [
       "_simple_user_type",
-      "_primary_expression"
+      "_common_primary_expression"
     ],
     [
       "_simple_user_type"
@@ -7950,11 +8010,11 @@
     ],
     [
       "value_argument",
-      "_primary_expression"
+      "_common_primary_expression"
     ],
     [
       "variable_declaration",
-      "_primary_expression"
+      "_common_primary_expression"
     ],
     [
       "variable_declaration",
@@ -7985,6 +8045,10 @@
     ],
     [
       "_delegation_specifiers"
+    ],
+    [
+      "explicit_delegation",
+      "_primary_expression"
     ]
   ],
   "precedences": [],

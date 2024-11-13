@@ -646,3 +646,84 @@ enum class Screens {
         name: (simple_identifier))
       (enum_entry
         name: (simple_identifier)))))
+
+================================================================================
+Explicit delegation with constructor parameter
+================================================================================
+
+class Derived(b: Base) : Base by b {
+    override fun printMessage() { print("abc") }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    name: (simple_identifier)
+    (primary_constructor
+      (class_parameters
+        (class_parameter
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
+    (delegation_specifier
+      (explicit_delegation
+        (user_type
+          (type_identifier))
+        (simple_identifier)))
+    body: (class_body
+      (function_declaration
+        modifiers: (modifiers
+          (member_modifier))
+        name: (simple_identifier)
+        parameters: (function_value_parameters)
+        body: (function_body
+          (block
+            (statements
+              (statement
+                (call_expression
+                  expression: (simple_identifier)
+                  args: (value_arguments
+                    (value_argument
+                      (string_literal
+                        (string_content)))))))))))))
+
+================================================================================
+Explicit delegation with new Instance
+================================================================================
+
+internal abstract class MessageQueue : MutableList<Runnable> by ArrayDeque() {
+    abstract fun schedule()
+    abstract fun reschedule()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    modifiers: (modifiers
+      (visibility_modifier)
+      (inheritance_modifier))
+    name: (simple_identifier)
+    (delegation_specifier
+      (explicit_delegation
+        (user_type
+          (type_identifier)
+          (type_arguments
+            (type_projection
+              type: (user_type
+                (type_identifier)))))
+        (call_expression
+          expression: (simple_identifier)
+          args: (value_arguments))))
+    body: (class_body
+      (function_declaration
+        modifiers: (modifiers
+          (inheritance_modifier))
+        name: (simple_identifier)
+        parameters: (function_value_parameters))
+      (function_declaration
+        modifiers: (modifiers
+          (inheritance_modifier))
+        name: (simple_identifier)
+        parameters: (function_value_parameters)))))
