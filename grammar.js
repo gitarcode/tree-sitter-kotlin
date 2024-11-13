@@ -702,10 +702,10 @@ module.exports = grammar({
     )),
 
     assignment: $ =>
-      prec.left(PREC.ASSIGNMENT, seq(
+      seq(
         field('left', $._directly_assignable_expression),
         field('op', choice($._ASSIGNMENT, $._assignment_and_operator)),
-        field('right', $.expression))),
+        field('right', $.expression)),
 
     // ==========
     // Expressions
