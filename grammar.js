@@ -148,7 +148,9 @@ module.exports = grammar({
     [$.type_constraints, $.property_declaration],
     [$.do_while_statement],
     [$._delegation_specifiers],
-    [$.explicit_delegation, $._primary_expression]
+    [$.explicit_delegation, $._primary_expression],
+    [$.function_value_parameters],
+    [$.class_parameters]
   ],
 
   extras: $ => [
@@ -290,7 +292,8 @@ module.exports = grammar({
     ),
 
     class_parameters: $ => seq(
-      $._LPAR,
+      "(",
+      repeat($._NL),
       optional(sep1($.class_parameter, repeat($._NL), ",", repeat($._NL))),
       optional(","),
       repeat($._NL),
@@ -395,7 +398,8 @@ module.exports = grammar({
     )),
 
     function_value_parameters: $ => seq(
-      $._LPAR,
+      "(",
+      repeat($._NL),
       optional(sep1($.function_value_parameter, repeat($._NL), ",", repeat($._NL))),
       optional(","),
       repeat($._NL),
@@ -466,7 +470,8 @@ module.exports = grammar({
       optional(field('modifiers', $.modifiers)),
       "get",
       optional(seq(
-        $._LPAR,
+        "(",
+        repeat($._NL),
         ")",
         optional(seq(":", $._type)),
         $.function_body
@@ -477,7 +482,8 @@ module.exports = grammar({
       optional(field('modifiers', $.modifiers)),
       "set",
       optional(seq(
-        $._LPAR,
+        "(",
+        repeat($._NL),
         $.parameter_with_optional_type,
         ")",
         optional(seq(":", $._type)),
@@ -486,7 +492,8 @@ module.exports = grammar({
     )),
 
     parameters_with_optional_type: $ => seq(
-      $._LPAR,
+      "(",
+      repeat($._NL),
       sep1($.parameter_with_optional_type, ","), 
       ")"
     ),
@@ -612,15 +619,17 @@ module.exports = grammar({
 
     // A higher-than-default precedence resolves the ambiguity with 'parenthesized_type'
     function_type_parameters: $ => prec.left(1, seq(
-      $._LPAR,
+      "(",
+      repeat($._NL),
       optional(sep1(choice($.parameter, $._type), ",")),
       ")"
     )),
 
-    parenthesized_type: $ => seq($._LPAR, $._type, ")"),
+    parenthesized_type: $ => seq("(", repeat($._NL), $._type, ")"),
 
     parenthesized_user_type: $ => seq(
-      $._LPAR,
+      "(",
+      repeat($._NL),
       choice($.user_type, $.parenthesized_user_type),
       ")"
     ),
@@ -663,7 +672,8 @@ module.exports = grammar({
 
     for_statement: $ => prec.right(seq(
       "for",
-      $._LPAR,
+      "(",
+      repeat($._NL),
       repeat($.annotation),
       field('var_decl', choice($.variable_declaration, $.multi_variable_declaration)),
       "in",
@@ -675,7 +685,8 @@ module.exports = grammar({
 
     while_statement: $ => seq(
       "while",
-      $._LPAR,
+      "(",
+      repeat($._NL),
       $.expression,
       ")",
       repeat($._NL),
@@ -688,7 +699,8 @@ module.exports = grammar({
       optional($.control_structure_body),
       repeat($._NL),
       "while",
-      $._LPAR,
+      "(",
+      repeat($._NL),
       $.expression,
       ")",
     )),
@@ -848,7 +860,8 @@ module.exports = grammar({
     type_arguments: $ => prec.dynamic(PREC.GENERIC, seq("<", sep1($.type_projection, ","), ">")),
 
     value_arguments: $ => seq(
-      $._LPAR,
+      "(",
+      repeat($._NL),
       optional(
         seq(
           sep1($.value_argument, repeat($._NL), ",", repeat($._NL)),
@@ -890,7 +903,7 @@ module.exports = grammar({
       $.index_access_expression
     ),
 
-    parenthesized_expression: $ => seq($._LPAR, $.expression, repeat($._NL), ")"),
+    parenthesized_expression: $ => seq("(", repeat($._NL), $.expression, repeat($._NL), ")"),
 
     collection_literal: $ => seq(
       "[", 
@@ -968,7 +981,7 @@ module.exports = grammar({
     ),
 
     multi_variable_declaration: $ => seq(
-      $._LPAR,
+      "(",
       repeat($._NL),
       $.variable_declaration, 
       repeat(seq(repeat($._NL), ',', repeat($._NL), $.variable_declaration)),
@@ -1017,7 +1030,8 @@ module.exports = grammar({
     if_expression: $ => prec.right(seq(
       "if",
       repeat($._NL),
-      $._LPAR,
+      "(",
+      repeat($._NL),
       field('condition', $.expression), 
       repeat($._NL),
       ")",
@@ -1040,7 +1054,8 @@ module.exports = grammar({
     ),
 
     when_subject: $ => seq(
-      $._LPAR,
+      "(",
+      repeat($._NL),
       optional(seq(
         repeat($.annotation),
         "val",
@@ -1098,7 +1113,8 @@ module.exports = grammar({
 
     catch_block: $ => seq(
       "catch",
-      $._LPAR,
+      "(",
+      repeat($._NL),
       repeat($.annotation),
       field('name', $.simple_identifier),
       ":",
