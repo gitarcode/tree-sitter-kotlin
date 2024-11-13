@@ -7862,10 +7862,6 @@
       "type": "PATTERN",
       "value": "\\s*->"
     },
-    "_LPAR": {
-      "type": "PATTERN",
-      "value": "\\(\\s*"
-    },
     "_ASSIGNMENT": {
       "type": "PATTERN",
       "value": "=\\s*"

@@ -1452,7 +1452,6 @@ module.exports = grammar({
     _NL: $ => /\r?\n/,
     _ELSE: $ => token(prec(1, /\s*else\s*/)),
     _ARROW: $ => /\s*->/,
-    _LPAR: $ => /\(\s*/,
     _ASSIGNMENT: $ => /=\s*/,
     _semi: $ => seq(choice(";", $._NL), repeat($._NL)),
     _semis: $ => repeat1(choice(";", $._NL)),
