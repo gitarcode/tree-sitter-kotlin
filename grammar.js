@@ -150,6 +150,7 @@ module.exports = grammar({
     [$.explicit_delegation, $._primary_expression],
     [$.function_value_parameters],
     [$.class_parameters],
+    [$._setter_getter]
   ],
 
   extras: $ => [
@@ -455,10 +456,12 @@ module.exports = grammar({
       )),
       repeat($._NL),
       optional(';'),
-      choice(
-        seq(optional($.getter), optional(seq(repeat($._NL), $.setter))),
-        seq(optional($.setter), optional(seq(repeat($._NL), $.setter)))
-      )
+      optional($._setter_getter)
+    ),
+
+    _setter_getter: $ => choice(
+      seq($.getter, repeat($._NL), optional($.setter)),
+      seq($.setter, repeat($._NL), optional($.getter))
     ),
 
     property_delegate: $ => seq("by", repeat($._NL), $.expression),
