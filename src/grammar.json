@@ -3700,10 +3700,6 @@
         {
           "type": "SYMBOL",
           "name": "labeled_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "if_expression"
         }
       ]
     },
@@ -3809,33 +3805,37 @@
       }
     },
     "call_expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "FIELD",
-          "name": "expression",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_primary_expression"
-          }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
+      "type": "PREC",
+      "value": 17,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "expression",
+            "content": {
               "type": "SYMBOL",
-              "name": "type_arguments"
-            },
-            {
-              "type": "BLANK"
+              "name": "expression"
             }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_call_arguments"
-        }
-      ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "type_arguments"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_call_arguments"
+          }
+        ]
+      }
     },
     "simple_call_expression": {
       "type": "PREC",
@@ -4677,6 +4677,10 @@
         {
           "type": "SYMBOL",
           "name": "call_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "if_expression"
         }
       ]
     },
@@ -8153,6 +8157,45 @@
     ],
     [
       "function_value_parameter"
+    ],
+    [
+      "type_arguments",
+      "_comparison_operator"
+    ],
+    [
+      "call_expression",
+      "prefix_expression",
+      "comparison_expression"
+    ],
+    [
+      "call_expression",
+      "elvis_expression",
+      "comparison_expression"
+    ],
+    [
+      "call_expression",
+      "range_expression",
+      "comparison_expression"
+    ],
+    [
+      "call_expression",
+      "check_expression",
+      "comparison_expression"
+    ],
+    [
+      "call_expression",
+      "additive_expression",
+      "comparison_expression"
+    ],
+    [
+      "call_expression",
+      "multiplicative_expression",
+      "comparison_expression"
+    ],
+    [
+      "call_expression",
+      "infix_expression",
+      "comparison_expression"
     ]
   ],
   "precedences": [],

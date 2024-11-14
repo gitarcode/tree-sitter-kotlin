@@ -151,7 +151,15 @@ module.exports = grammar({
     [$.function_value_parameters],
     [$.class_parameters],
     [$._setter_getter],
-    [$.function_value_parameter]
+    [$.function_value_parameter],
+    [$.type_arguments, $._comparison_operator],
+    [$.call_expression, $.prefix_expression, $.comparison_expression],
+    [$.call_expression, $.elvis_expression, $.comparison_expression],
+    [$.call_expression, $.range_expression, $.comparison_expression],
+    [$.call_expression, $.check_expression, $.comparison_expression],
+    [$.call_expression, $.additive_expression, $.comparison_expression],
+    [$.call_expression, $.multiplicative_expression, $.comparison_expression],
+    [$.call_expression, $.infix_expression, $.comparison_expression]
   ],
 
   extras: $ => [
@@ -741,7 +749,6 @@ module.exports = grammar({
       $.jump_expression,
       $.annotated_expression,
       $.labeled_expression,
-      $.if_expression
     ),
 
     postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $.expression), field('operator', $.postfix_unary_operator))),
@@ -757,11 +764,11 @@ module.exports = grammar({
       ))
     )),
 
-    call_expression: $ => seq(
-      field('expression', $._primary_expression), 
+    call_expression: $ => prec(PREC.CALL, seq(
+      field('expression', $.expression), 
       optional($.type_arguments),
       $._call_arguments
-    ),
+    )),
 
     // It's not possible to resolve the ambiguity between explicit delegation and calls with last lambda argument.
     // For example:
@@ -894,6 +901,7 @@ module.exports = grammar({
     _primary_expression: $ => choice(
       $._common_primary_expression,
       $.call_expression,
+      $.if_expression
     ),
 
     _common_primary_expression: $ => choice(
@@ -910,7 +918,7 @@ module.exports = grammar({
       $.when_expression,
       $.try_expression,
       $.dot_qualified_expression,
-      $.index_access_expression
+      $.index_access_expression,
     ),
 
     parenthesized_expression: $ => seq("(", repeat($._NL), $.expression, repeat($._NL), ")"),
