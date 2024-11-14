@@ -150,7 +150,8 @@ module.exports = grammar({
     [$.explicit_delegation, $._primary_expression],
     [$.function_value_parameters],
     [$.class_parameters],
-    [$._setter_getter]
+    [$._setter_getter],
+    [$.function_value_parameter]
   ],
 
   extras: $ => [
@@ -304,7 +305,7 @@ module.exports = grammar({
       field('name', $.simple_identifier),
       ":",
       field('type', $._type),
-      optional(seq(repeat($._NL), "=", repeat($._NL), field('initializer', $.expression)))
+      optional($._initializer)
     ),
 
     binding_pattern_kind: $ => choice("val", "var"),
@@ -407,7 +408,7 @@ module.exports = grammar({
     function_value_parameter: $ => seq(
       optional(field('modifiers', $.parameter_modifiers)),
       field('parameter', $.parameter),
-      optional(seq("=", repeat($._NL), field('initializer', $.expression)))
+      optional($._initializer)
     ),
 
     receiver_type: $ => seq(
@@ -458,13 +459,15 @@ module.exports = grammar({
       field('var_decl', choice($.variable_declaration, $.multi_variable_declaration)),
       optional(field('type_constraints', $.type_constraints)),
       optional(choice(
-        seq("=", repeat($._NL), field('initializer', $.expression)),
+        $._initializer,
         $.property_delegate
       )),
       repeat($._NL),
       optional(';'),
       optional($._setter_getter)
     ),
+
+    _initializer: $ => seq(repeat($._NL), "=", repeat($._NL), field('initializer', $.expression)),
 
     _setter_getter: $ => choice(
       seq($.getter, repeat($._NL), optional($.setter)),
