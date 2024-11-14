@@ -781,8 +781,8 @@ module.exports = grammar({
     // associativity for the arguments, which is not posssible to specify with tree-sitter. 
     // Creating a separate nonterminal, is the cleanest way to move forward.
     // 
-    simple_call_expression: $=> prec(10, seq(
-      field('expression', $._primary_expression), 
+    simple_call_expression: $=> prec(PREC.CALL, seq(
+      field('expression', $.expression), 
       optional($.type_arguments),
       field('args', $.value_arguments)
     )),
