@@ -1861,7 +1861,7 @@
     "named": true,
     "fields": {
       "alternative": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -1893,7 +1893,7 @@
         ]
       },
       "consequence": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {

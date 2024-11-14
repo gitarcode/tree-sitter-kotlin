@@ -2137,6 +2137,13 @@
             "type": "SYMBOL",
             "name": "expression"
           }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
         }
       ]
     },
@@ -5795,24 +5802,12 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "FIELD",
-                    "name": "consequence",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_if_block"
-                    }
-                  },
-                  {
-                    "type": "REPEAT",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_NL"
-                    }
-                  }
-                ]
+                "type": "FIELD",
+                "name": "consequence",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_if_block"
+                }
               },
               {
                 "type": "SEQ",
@@ -5867,23 +5862,35 @@
       }
     },
     "_if_block": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "expression"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "expression"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "assignment"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "block"
+            },
+            {
+              "type": "STRING",
+              "value": ";"
+            }
+          ]
         },
         {
-          "type": "SYMBOL",
-          "name": "assignment"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "block"
-        },
-        {
-          "type": "STRING",
-          "value": ";"
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
         }
       ]
     },
@@ -8524,6 +8531,12 @@
     ],
     [
       "assignment"
+    ],
+    [
+      "_if_block"
+    ],
+    [
+      "_initializer"
     ]
   ],
   "precedences": [],

@@ -192,7 +192,9 @@ module.exports = grammar({
     [$.if_expression],
     [$.lambda_literal],
     [$.when_entry],
-    [$.assignment]
+    [$.assignment],
+    [$._if_block],
+    [$._initializer]
   ],
 
   extras: $ => [
@@ -507,7 +509,7 @@ module.exports = grammar({
       optional($._setter_getter)
     ),
 
-    _initializer: $ => seq(repeat($._NL), "=", repeat($._NL), field('initializer', $.expression)),
+    _initializer: $ => seq(repeat($._NL), "=", repeat($._NL), field('initializer', $.expression), repeat($._NL)),
 
     _setter_getter: $ => choice(
       seq($.getter, repeat($._NL), optional($.setter)),
@@ -1094,7 +1096,7 @@ module.exports = grammar({
       ")",
       repeat($._NL),
       choice(
-        seq(field('consequence', $._if_block), repeat($._NL)),
+        field('consequence', $._if_block),
         seq(
           optional(field('consequence', $._if_block)),
           repeat($._NL),
@@ -1105,12 +1107,12 @@ module.exports = grammar({
       )
     )),
 
-    _if_block: $ => choice(
+    _if_block: $ => seq(choice(
       $.expression, 
       $.assignment, 
       $.block,
       ";"
-    ),
+    ), repeat($._NL)),
 
     when_subject: $ => seq(
       "(",
