@@ -98,6 +98,7 @@ module.exports = grammar({
     [$.reification_modifier, $._soft_keywords],
     [$.getter, $._soft_keywords],
     [$.setter, $._soft_keywords],
+    [$.enum_class_declaration, $._soft_keywords],
 
     [$.type_parameter_modifiers],
     [$.type_projection_modifiers],
@@ -182,7 +183,12 @@ module.exports = grammar({
     [$.dot_qualified_expression, $.additive_expression, $.elvis_expression, $.comparison_expression, $.conjunction_expression, $.disjunction_expression],
     [$.dot_qualified_expression, $.additive_expression, $.elvis_expression, $.check_expression, $.conjunction_expression, $.disjunction_expression],
     [$.dot_qualified_expression, $.multiplicative_expression, $.additive_expression, $.elvis_expression, $.conjunction_expression, $.disjunction_expression],
-    [$.dot_qualified_expression, $.additive_expression, $.infix_expression, $.elvis_expression, $.conjunction_expression, $.disjunction_expression]
+    [$.dot_qualified_expression, $.additive_expression, $.infix_expression, $.elvis_expression, $.conjunction_expression, $.disjunction_expression],
+    [$._top_level_statement, $.assignment, $.dot_qualified_expression, $.additive_expression, $.elvis_expression, $.conjunction_expression, $.disjunction_expression, $._semi],
+    [$.assignment, $._if_block],
+    [$.if_expression],
+    [$.lambda_literal],
+    [$.when_entry]
   ],
 
   extras: $ => [
@@ -192,8 +198,8 @@ module.exports = grammar({
   ],
 
   externals: $ => [
-    $._bin_min,
-    $._bin_plus,
+    // $._bin_min,
+    // $._bin_plus,
   ],
 
   supertypes: $ => [
@@ -255,7 +261,7 @@ module.exports = grammar({
         $._loop_statement,
         $.expression
       ), 
-      $._semi,
+      optional($._semi),
       repeat($._NL)
     ),
 
@@ -652,7 +658,8 @@ module.exports = grammar({
     function_type: $ => seq(
       optional(seq($.user_type, ".")), // TODO: Support "real" types
       $.function_type_parameters,
-      $._ARROW,
+      repeat($._NL),
+      "->",
       repeat($._NL),
       $._type
     ),
@@ -745,13 +752,13 @@ module.exports = grammar({
       ")",
     )),
 
-    assignment: $ => prec(1, seq(
+    assignment: $ => seq(
       field('left', $.expression),
       repeat($._NL),
       field('op', $._assignment_and_operator),
       repeat($._NL),
       field('right', $.expression)
-    )),
+    ),
 
     // ==========
     // Expressions
@@ -1020,7 +1027,7 @@ module.exports = grammar({
     lambda_literal: $ => seq(
       "{",
       repeat($._NL),
-      optional(seq(optional(field('parameters', $.lambda_parameters)), $._ARROW, repeat($._NL))),
+      optional(seq(optional(field('parameters', $.lambda_parameters)), repeat($._NL), "->", repeat($._NL))),
       optional(field('body', $.statements)),
       "}"
     ),
@@ -1085,7 +1092,8 @@ module.exports = grammar({
         field('consequence', $._if_block),
         seq(
           optional(field('consequence', $._if_block)),
-          $._ELSE,
+          repeat($._NL),
+          "else",
           field('alternative', $._if_block)
         )
       )
@@ -1129,9 +1137,10 @@ module.exports = grammar({
           repeat($._NL),
           optional(","),
         ),
-        $._ELSE
+        "else"
       ),
-      $._ARROW,
+      repeat($._NL),
+      "->",
       repeat($._NL),
       $.control_structure_body,
       optional($._semi)
@@ -1196,7 +1205,7 @@ module.exports = grammar({
 
     _is_operator: $ => choice("is", "!is"),
 
-    _additive_operator: $ => choice($._bin_plus, $._bin_min),
+    _additive_operator: $ => choice("+", "-"),
 
     _multiplicative_operator: $ => choice("*", "/", "%"),
 
@@ -1492,8 +1501,8 @@ module.exports = grammar({
     _backtick_identifier: $ => /`[^\r\n`]+`/,
 
     _NL: $ => /\r?\n/,
-    _ELSE: $ => token(prec(1, /\s*else\s*/)),
-    _ARROW: $ => /\s*->/,
+    // _ELSE: $ => token(prec(1, /\s*else\s*/)),
+    // _ARROW: $ => /\s*->/,
     _semi: $ => choice(";", $._NL),
     // _semis: $ => repeat1(choice(";", $._NL)),
 

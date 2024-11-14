@@ -311,8 +311,16 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_semi"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_semi"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "REPEAT",
@@ -3149,8 +3157,15 @@
           "name": "function_type_parameters"
         },
         {
-          "type": "SYMBOL",
-          "name": "_ARROW"
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "->"
         },
         {
           "type": "REPEAT",
@@ -3638,51 +3653,47 @@
       }
     },
     "assignment": {
-      "type": "PREC",
-      "value": 1,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "left",
-            "content": {
-              "type": "SYMBOL",
-              "name": "expression"
-            }
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_NL"
-            }
-          },
-          {
-            "type": "FIELD",
-            "name": "op",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_assignment_and_operator"
-            }
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_NL"
-            }
-          },
-          {
-            "type": "FIELD",
-            "name": "right",
-            "content": {
-              "type": "SYMBOL",
-              "name": "expression"
-            }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "left",
+          "content": {
+            "type": "SYMBOL",
+            "name": "expression"
           }
-        ]
-      }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "op",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_assignment_and_operator"
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "right",
+          "content": {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        }
+      ]
     },
     "expression": {
       "type": "CHOICE",
@@ -5280,8 +5291,15 @@
                   ]
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "_ARROW"
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
+                  }
+                },
+                {
+                  "type": "STRING",
+                  "value": "->"
                 },
                 {
                   "type": "REPEAT",
@@ -5741,8 +5759,15 @@
                     ]
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "_ELSE"
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_NL"
+                    }
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "else"
                   },
                   {
                     "type": "FIELD",
@@ -5963,14 +5988,21 @@
               ]
             },
             {
-              "type": "SYMBOL",
-              "name": "_ELSE"
+              "type": "STRING",
+              "value": "else"
             }
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_ARROW"
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "->"
         },
         {
           "type": "REPEAT",
@@ -6425,12 +6457,12 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_bin_plus"
+          "type": "STRING",
+          "value": "+"
         },
         {
-          "type": "SYMBOL",
-          "name": "_bin_min"
+          "type": "STRING",
+          "value": "-"
         }
       ]
     },
@@ -7879,21 +7911,6 @@
       "type": "PATTERN",
       "value": "\\r?\\n"
     },
-    "_ELSE": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PREC",
-        "value": 1,
-        "content": {
-          "type": "PATTERN",
-          "value": "\\s*else\\s*"
-        }
-      }
-    },
-    "_ARROW": {
-      "type": "PATTERN",
-      "value": "\\s*->"
-    },
     "_semi": {
       "type": "CHOICE",
       "members": [
@@ -8047,6 +8064,10 @@
     ],
     [
       "setter",
+      "_soft_keywords"
+    ],
+    [
+      "enum_class_declaration",
       "_soft_keywords"
     ],
     [
@@ -8352,19 +8373,33 @@
       "elvis_expression",
       "conjunction_expression",
       "disjunction_expression"
+    ],
+    [
+      "_top_level_statement",
+      "assignment",
+      "dot_qualified_expression",
+      "additive_expression",
+      "elvis_expression",
+      "conjunction_expression",
+      "disjunction_expression",
+      "_semi"
+    ],
+    [
+      "assignment",
+      "_if_block"
+    ],
+    [
+      "if_expression"
+    ],
+    [
+      "lambda_literal"
+    ],
+    [
+      "when_entry"
     ]
   ],
   "precedences": [],
-  "externals": [
-    {
-      "type": "SYMBOL",
-      "name": "_bin_min"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "_bin_plus"
-    }
-  ],
+  "externals": [],
   "inline": [],
   "supertypes": [
     "expression"

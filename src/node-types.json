@@ -3901,6 +3901,10 @@
     "named": false
   },
   {
+    "type": "->",
+    "named": false
+  },
+  {
     "type": ".",
     "named": false
   },
@@ -4086,6 +4090,10 @@
   },
   {
     "type": "dynamic",
+    "named": false
+  },
+  {
+    "type": "else",
     "named": false
   },
   {
