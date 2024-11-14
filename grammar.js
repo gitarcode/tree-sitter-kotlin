@@ -185,10 +185,14 @@ module.exports = grammar({
     [$.dot_qualified_expression, $.multiplicative_expression, $.additive_expression, $.elvis_expression, $.conjunction_expression, $.disjunction_expression],
     [$.dot_qualified_expression, $.additive_expression, $.infix_expression, $.elvis_expression, $.conjunction_expression, $.disjunction_expression],
     [$._top_level_statement, $.assignment, $.dot_qualified_expression, $.additive_expression, $.elvis_expression, $.conjunction_expression, $.disjunction_expression, $._semi],
+    [$._top_level_statement, $.assignment, $.dot_qualified_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression, $._semi],
+    [$.dot_qualified_expression, $.prefix_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
     [$.assignment, $._if_block],
     [$.if_expression],
     [$.lambda_literal],
-    [$.when_entry]
+    [$.when_entry],
+    [$.assignment]
   ],
 
   extras: $ => [
@@ -757,7 +761,8 @@ module.exports = grammar({
       repeat($._NL),
       field('op', $._assignment_and_operator),
       repeat($._NL),
-      field('right', $.expression)
+      field('right', $.expression),
+      repeat($._NL),
     ),
 
     // ==========
@@ -861,25 +866,25 @@ module.exports = grammar({
       $.disjunction_expression
     ),
 
-    multiplicative_expression: $ => prec.left(PREC.MULTIPLICATIVE, seq($.expression, $._multiplicative_operator, $.expression)),
+    multiplicative_expression: $ => prec.left(PREC.MULTIPLICATIVE, seq($.expression, repeat($._NL), $._multiplicative_operator, repeat($._NL), $.expression)),
 
     additive_expression: $ => prec.left(PREC.ADDITIVE, seq($.expression, repeat($._NL), $._additive_operator, repeat($._NL), $.expression)),
 
-    range_expression: $ => prec.left(PREC.RANGE, seq($.expression, $._range_opeartor, $.expression)),
+    range_expression: $ => prec.left(PREC.RANGE, seq($.expression, repeat($._NL), $._range_opeartor, repeat($._NL), $.expression)),
 
     _range_opeartor: $ => choice("..", "..<"),
 
-    infix_expression: $ => prec.left(PREC.INFIX, seq($.expression, $.simple_identifier, repeat($._NL), $.expression)),
+    infix_expression: $ => prec.left(PREC.INFIX, seq($.expression, repeat($._NL), $.simple_identifier, repeat($._NL), $.expression)),
 
     elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, repeat($._NL), "?:", repeat($._NL), $.expression)),
 
-    check_expression: $ => prec.left(PREC.CHECK, seq($.expression, choice(
+    check_expression: $ => prec.left(PREC.CHECK, seq($.expression, repeat($._NL), choice(
       seq($._in_operator, $.expression),
       seq($._is_operator, $._type)))),
 
-    comparison_expression: $ => prec.left(PREC.COMPARISON, seq($.expression, $._comparison_operator, $.expression)),
+    comparison_expression: $ => prec.left(PREC.COMPARISON, seq($.expression, repeat($._NL), $._comparison_operator, $.expression)),
 
-    equality_expression: $ => prec.left(PREC.EQUALITY, seq($.expression, $._equality_operator, $.expression)),
+    equality_expression: $ => prec.left(PREC.EQUALITY, seq($.expression, repeat($._NL), $._equality_operator, $.expression)),
 
     conjunction_expression: $ => prec.left(PREC.CONJUNCTION, seq(
       field('left', $.expression), 
@@ -1089,11 +1094,12 @@ module.exports = grammar({
       ")",
       repeat($._NL),
       choice(
-        field('consequence', $._if_block),
+        seq(field('consequence', $._if_block), repeat($._NL)),
         seq(
           optional(field('consequence', $._if_block)),
           repeat($._NL),
           "else",
+          repeat($._NL),
           field('alternative', $._if_block)
         )
       )
