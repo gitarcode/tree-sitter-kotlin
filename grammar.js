@@ -159,7 +159,7 @@ module.exports = grammar({
     [$.call_expression, $.check_expression, $.comparison_expression],
     [$.call_expression, $.additive_expression, $.comparison_expression],
     [$.call_expression, $.multiplicative_expression, $.comparison_expression],
-    [$.call_expression, $.infix_expression, $.comparison_expression]
+    [$.call_expression, $.infix_expression, $.comparison_expression],
   ],
 
   extras: $ => [
@@ -723,11 +723,11 @@ module.exports = grammar({
       ")",
     )),
 
-    assignment: $ => seq(
-      field('left', $._directly_assignable_expression),
-      field('op', $._assignment_and_operator),
+    assignment: $ => prec(1, seq(
+      field('left', $.expression),
+      field('op', $._assignment_and_operator, repeat($._NL)),
       field('right', $.expression)
-    ),
+    )),
 
     // ==========
     // Expressions
@@ -754,7 +754,7 @@ module.exports = grammar({
     postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $.expression), field('operator', $.postfix_unary_operator))),
 
     dot_qualified_expression: $ => prec(PREC.DOT, seq(
-      field('receiver', choice($._primary_expression, $.postfix_expression)),
+      field('receiver', choice($.expression)),
       choice(choice($._DOT, "."), $._safe_dot),
       repeat($._NL),
       field('selector', choice(
