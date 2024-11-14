@@ -6,7 +6,6 @@
 enum TokenType {
     BIN_MIN,
     BIN_PLUS,
-    ELVIS,
 };
 
 static inline void advance(TSLexer *lexer) { 
@@ -33,8 +32,6 @@ void tree_sitter_kotlin_external_scanner_deserialize(void *payload, const char *
 bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
     if (valid_symbols[BIN_MIN]) {
         lexer->result_symbol = BIN_MIN;
-        lexer->mark_end(lexer);
-        skip_whitespace(lexer);
         if (lexer->lookahead == '-') {
             advance(lexer);
             lexer->mark_end(lexer);
@@ -46,8 +43,6 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
     }
     if (valid_symbols[BIN_PLUS]) {
         lexer->result_symbol = BIN_PLUS;
-        lexer->mark_end(lexer);
-        skip_whitespace(lexer);
         if (lexer->lookahead == '+') {
             advance(lexer);
             lexer->mark_end(lexer);
@@ -55,27 +50,6 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
             if (lexer -> lookahead != '+' && lexer -> lookahead != '=') {
                 return true;
             }
-        }
-    }
-    if (valid_symbols[ELVIS]) {
-        lexer->mark_end(lexer);
-        skip_whitespace(lexer);
-        if (lexer->lookahead == '?') {
-            advance(lexer);
-        } else {
-            return false;
-        }
-        // Elvis
-        if (lexer->lookahead == ':') {
-            advance(lexer);
-        } else {
-            return false;
-        }
-        // ?:: should be tokenized as ? ::, so we should not emit an elvis operator here
-        if (lexer -> lookahead != ':') {
-            lexer->mark_end(lexer);
-            lexer->result_symbol = ELVIS;
-            return true;
         }
     }
     return false;

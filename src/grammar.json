@@ -4172,6 +4172,13 @@
             "name": "expression"
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
             "type": "SYMBOL",
             "name": "_additive_operator"
           },
@@ -4262,8 +4269,15 @@
             "name": "expression"
           },
           {
-            "type": "SYMBOL",
-            "name": "_elvis"
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "?:"
           },
           {
             "type": "REPEAT",
@@ -4380,8 +4394,15 @@
             }
           },
           {
-            "type": "SYMBOL",
-            "name": "_CONJ"
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "&&"
           },
           {
             "type": "REPEAT",
@@ -4416,8 +4437,15 @@
             }
           },
           {
-            "type": "SYMBOL",
-            "name": "_DISJ"
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "||"
           },
           {
             "type": "REPEAT",
@@ -7847,18 +7875,6 @@
       "type": "PATTERN",
       "value": "`[^\\r\\n`]+`"
     },
-    "_ELVIS": {
-      "type": "PATTERN",
-      "value": "\\s*\\?:"
-    },
-    "_CONJ": {
-      "type": "PATTERN",
-      "value": "\\s*&&"
-    },
-    "_DISJ": {
-      "type": "PATTERN",
-      "value": "\\s*\\|\\|"
-    },
     "_NL": {
       "type": "PATTERN",
       "value": "\\r?\\n"
@@ -8202,6 +8218,140 @@
       "assignment",
       "dot_qualified_expression",
       "_semi"
+    ],
+    [
+      "assignment",
+      "dot_qualified_expression",
+      "elvis_expression",
+      "_semi"
+    ],
+    [
+      "dot_qualified_expression",
+      "prefix_expression",
+      "elvis_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "range_expression",
+      "elvis_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "additive_expression",
+      "elvis_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "multiplicative_expression",
+      "elvis_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "infix_expression",
+      "elvis_expression"
+    ],
+    [
+      "assignment",
+      "dot_qualified_expression",
+      "additive_expression",
+      "elvis_expression",
+      "_semi"
+    ],
+    [
+      "dot_qualified_expression",
+      "prefix_expression",
+      "additive_expression",
+      "elvis_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "additive_expression",
+      "range_expression",
+      "elvis_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "multiplicative_expression",
+      "additive_expression",
+      "elvis_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "additive_expression",
+      "infix_expression",
+      "elvis_expression"
+    ],
+    [
+      "assignment",
+      "dot_qualified_expression",
+      "additive_expression",
+      "elvis_expression",
+      "conjunction_expression",
+      "disjunction_expression",
+      "_semi"
+    ],
+    [
+      "dot_qualified_expression",
+      "prefix_expression",
+      "additive_expression",
+      "elvis_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "additive_expression",
+      "elvis_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "additive_expression",
+      "range_expression",
+      "elvis_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "additive_expression",
+      "elvis_expression",
+      "equality_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "additive_expression",
+      "elvis_expression",
+      "comparison_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "additive_expression",
+      "elvis_expression",
+      "check_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "multiplicative_expression",
+      "additive_expression",
+      "elvis_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "additive_expression",
+      "infix_expression",
+      "elvis_expression",
+      "conjunction_expression",
+      "disjunction_expression"
     ]
   ],
   "precedences": [],
@@ -8213,10 +8363,6 @@
     {
       "type": "SYMBOL",
       "name": "_bin_plus"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "_elvis"
     }
   ],
   "inline": [],

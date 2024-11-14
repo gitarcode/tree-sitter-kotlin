@@ -162,7 +162,27 @@ module.exports = grammar({
     [$.call_expression, $.infix_expression, $.comparison_expression],
     [$.dot_qualified_expression, $._semi],
     [$._top_level_object, $._semi],
-    [$.assignment, $.dot_qualified_expression, $._semi]
+    [$.assignment, $.dot_qualified_expression, $._semi],
+    [$.assignment, $.dot_qualified_expression, $.elvis_expression, $._semi],
+    [$.dot_qualified_expression, $.prefix_expression, $.elvis_expression],
+    [$.dot_qualified_expression, $.range_expression, $.elvis_expression],
+    [$.dot_qualified_expression, $.additive_expression, $.elvis_expression],
+    [$.dot_qualified_expression, $.multiplicative_expression, $.elvis_expression],
+    [$.dot_qualified_expression, $.infix_expression, $.elvis_expression],
+    [$.assignment, $.dot_qualified_expression, $.additive_expression, $.elvis_expression, $._semi],
+    [$.dot_qualified_expression, $.prefix_expression, $.additive_expression, $.elvis_expression],
+    [$.dot_qualified_expression, $.additive_expression, $.range_expression, $.elvis_expression],
+    [$.dot_qualified_expression, $.multiplicative_expression, $.additive_expression, $.elvis_expression],
+    [$.dot_qualified_expression, $.additive_expression, $.infix_expression, $.elvis_expression],
+    [$.assignment, $.dot_qualified_expression, $.additive_expression, $.elvis_expression, $.conjunction_expression, $.disjunction_expression, $._semi],
+    [$.dot_qualified_expression, $.prefix_expression, $.additive_expression, $.elvis_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.additive_expression, $.elvis_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.additive_expression, $.range_expression, $.elvis_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.additive_expression, $.elvis_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.additive_expression, $.elvis_expression, $.comparison_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.additive_expression, $.elvis_expression, $.check_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.multiplicative_expression, $.additive_expression, $.elvis_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.additive_expression, $.infix_expression, $.elvis_expression, $.conjunction_expression, $.disjunction_expression]
   ],
 
   extras: $ => [
@@ -174,7 +194,6 @@ module.exports = grammar({
   externals: $ => [
     $._bin_min,
     $._bin_plus,
-    $._elvis,
   ],
 
   supertypes: $ => [
@@ -837,7 +856,7 @@ module.exports = grammar({
 
     multiplicative_expression: $ => prec.left(PREC.MULTIPLICATIVE, seq($.expression, $._multiplicative_operator, $.expression)),
 
-    additive_expression: $ => prec.left(PREC.ADDITIVE, seq($.expression, $._additive_operator, repeat($._NL), $.expression)),
+    additive_expression: $ => prec.left(PREC.ADDITIVE, seq($.expression, repeat($._NL), $._additive_operator, repeat($._NL), $.expression)),
 
     range_expression: $ => prec.left(PREC.RANGE, seq($.expression, $._range_opeartor, $.expression)),
 
@@ -845,7 +864,7 @@ module.exports = grammar({
 
     infix_expression: $ => prec.left(PREC.INFIX, seq($.expression, $.simple_identifier, repeat($._NL), $.expression)),
 
-    elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, $._elvis, repeat($._NL), $.expression)),
+    elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, repeat($._NL), "?:", repeat($._NL), $.expression)),
 
     check_expression: $ => prec.left(PREC.CHECK, seq($.expression, choice(
       seq($._in_operator, $.expression),
@@ -857,14 +876,16 @@ module.exports = grammar({
 
     conjunction_expression: $ => prec.left(PREC.CONJUNCTION, seq(
       field('left', $.expression), 
-      $._CONJ,
+      repeat($._NL),
+      "&&",
       repeat($._NL),
       field('right', $.expression))
     ),
 
     disjunction_expression: $ => prec.left(PREC.DISJUNCTION, seq(
       field('left', $.expression), 
-      $._DISJ,
+      repeat($._NL),
+      "||",
       repeat($._NL),
       field('right', $.expression))
     ),
@@ -1470,9 +1491,6 @@ module.exports = grammar({
 
     _backtick_identifier: $ => /`[^\r\n`]+`/,
 
-    _ELVIS: $ => /\s*\?:/,
-    _CONJ: $ => /\s*&&/,
-    _DISJ: $ => /\s*\|\|/,
     _NL: $ => /\r?\n/,
     _ELSE: $ => token(prec(1, /\s*else\s*/)),
     _ARROW: $ => /\s*->/,
