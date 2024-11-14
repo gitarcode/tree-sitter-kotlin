@@ -160,6 +160,9 @@ module.exports = grammar({
     [$.call_expression, $.additive_expression, $.comparison_expression],
     [$.call_expression, $.multiplicative_expression, $.comparison_expression],
     [$.call_expression, $.infix_expression, $.comparison_expression],
+    [$.dot_qualified_expression, $._semi],
+    [$._top_level_object, $._semi],
+    [$.assignment, $.dot_qualified_expression, $._semi]
   ],
 
   extras: $ => [
@@ -171,7 +174,6 @@ module.exports = grammar({
   externals: $ => [
     $._bin_min,
     $._bin_plus,
-    $._safe_dot,
     $._elvis,
   ],
 
@@ -214,7 +216,7 @@ module.exports = grammar({
       $._semi
     ),
 
-    package_header: $ => seq("package", $.identifier, $._semi),
+    package_header: $ => seq("package", $.identifier, $._semi, repeat($._NL)),
 
     import_header: $ => prec.left(seq(
       "import",
@@ -226,7 +228,7 @@ module.exports = grammar({
 
     _import_alias: $ => seq("as", field('alias', $.simple_identifier)),
 
-    _top_level_object: $ => seq($._declaration, optional($._semi)),
+    _top_level_object: $ => seq($._declaration, optional($._semi), repeat($._NL)),
 
     _top_level_statement: $ => seq(
       choice(
@@ -235,6 +237,7 @@ module.exports = grammar({
         $.expression
       ), 
       $._semi,
+      repeat($._NL)
     ),
 
     type_alias: $ => prec.right(seq(
@@ -382,7 +385,7 @@ module.exports = grammar({
 
     _class_member_declarations: $ => repeat1(seq(
       $._class_member_declaration, 
-      optional($._semi)
+      optional(seq($._semi, repeat($._NL))),
     )),
 
     _class_member_declaration: $ => choice(
@@ -610,7 +613,7 @@ module.exports = grammar({
     ),
 
     user_type: $ => seq(
-      $._simple_user_type, repeat(seq(choice($._DOT, "."), repeat($._NL), $._simple_user_type))
+      $._simple_user_type, repeat(seq(".", repeat($._NL), $._simple_user_type))
     ),
 
     _simple_user_type: $ => seq(
@@ -628,7 +631,7 @@ module.exports = grammar({
     _type_projection_modifier: $ => $.variance_modifier,
 
     function_type: $ => seq(
-      optional(seq($.user_type, choice($._DOT, "."))), // TODO: Support "real" types
+      optional(seq($.user_type, ".")), // TODO: Support "real" types
       $.function_type_parameters,
       $._ARROW,
       repeat($._NL),
@@ -657,8 +660,8 @@ module.exports = grammar({
     // ==========
 
     statements: $ => seq(
-      sep1($.statement, $._semis),
-      optional($._semis)
+      sep1($.statement, repeat1($._semi)),
+      repeat($._semi)
     ),
 
     statement: $ => choice(
@@ -725,7 +728,9 @@ module.exports = grammar({
 
     assignment: $ => prec(1, seq(
       field('left', $.expression),
-      field('op', $._assignment_and_operator, repeat($._NL)),
+      repeat($._NL),
+      field('op', $._assignment_and_operator),
+      repeat($._NL),
       field('right', $.expression)
     )),
 
@@ -755,7 +760,8 @@ module.exports = grammar({
 
     dot_qualified_expression: $ => prec(PREC.DOT, seq(
       field('receiver', choice($.expression)),
-      choice(choice($._DOT, "."), $._safe_dot),
+      repeat($._NL),
+      choice(".", "?."),
       repeat($._NL),
       field('selector', choice(
         $.simple_identifier,
@@ -1464,15 +1470,14 @@ module.exports = grammar({
 
     _backtick_identifier: $ => /`[^\r\n`]+`/,
 
-    _DOT: $ => /\s+\./,
     _ELVIS: $ => /\s*\?:/,
     _CONJ: $ => /\s*&&/,
     _DISJ: $ => /\s*\|\|/,
     _NL: $ => /\r?\n/,
     _ELSE: $ => token(prec(1, /\s*else\s*/)),
     _ARROW: $ => /\s*->/,
-    _semi: $ => seq(choice(";", $._NL), repeat($._NL)),
-    _semis: $ => repeat1(choice(";", $._NL)),
+    _semi: $ => choice(";", $._NL),
+    // _semis: $ => repeat1(choice(";", $._NL)),
 
     line_comment: $ => token(seq('//', /[^\r\n]*/)),
 

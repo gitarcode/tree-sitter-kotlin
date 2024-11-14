@@ -6,7 +6,6 @@
 enum TokenType {
     BIN_MIN,
     BIN_PLUS,
-    SAFE_DOT,
     ELVIS,
 };
 
@@ -58,20 +57,13 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
             }
         }
     }
-    if (valid_symbols[SAFE_DOT] || valid_symbols[ELVIS]) {
+    if (valid_symbols[ELVIS]) {
         lexer->mark_end(lexer);
         skip_whitespace(lexer);
         if (lexer->lookahead == '?') {
             advance(lexer);
         } else {
             return false;
-        }
-        // Safe dot
-        if (lexer->lookahead == '.') {
-            advance(lexer);
-            lexer->mark_end(lexer);
-            lexer->result_symbol = SAFE_DOT;
-            return true;
         }
         // Elvis
         if (lexer->lookahead == ':') {
