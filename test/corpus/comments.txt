@@ -223,3 +223,25 @@ import x.y.z
       (simple_identifier)
       (simple_identifier)))
   (multiline_comment))
+
+
+================================================================================
+Comments between statements
+================================================================================
+
+// aaa
+a
+// bbb
+b
+// ccc
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (statement
+    (simple_identifier))
+  (line_comment)
+  (statement
+    (simple_identifier))
+  (line_comment))

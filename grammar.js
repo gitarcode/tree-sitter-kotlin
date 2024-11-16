@@ -150,6 +150,7 @@ module.exports = grammar({
     [$.explicit_delegation, $._primary_expression],
     [$.function_value_parameters],
     [$.class_parameters],
+    [$.source_file]
   ],
 
   extras: $ => [
@@ -190,7 +191,7 @@ module.exports = grammar({
       // In principle, we either parse a Kotlin file (.kt) or a Kotlin script (.kts).
       // Statements cannot appear as top-level constructs in Kotlin files, only in scripts.
       // However, here, we're allowing parsing of both statements and declarations as top level.
-      repeat(choice($._top_level_object, alias($._top_level_statement, $.statement)))
+      repeat(choice($._top_level_object, $._top_level_statements))
     ),
 
     shebang_line: $ => seq("#!", /[^\r\n]*/),
@@ -216,7 +217,10 @@ module.exports = grammar({
 
     _import_alias: $ => seq("as", field('alias', $.simple_identifier)),
 
-    _top_level_object: $ => seq($._declaration, optional($._semi)),
+    _top_level_object: $ => seq($._declaration, repeat($._semi)),
+
+    _top_level_statements: $ =>
+      repeat1(seq(alias($._top_level_statement, $.statement), repeat($._semi))),
 
     _top_level_statement: $ => seq(
       choice(
@@ -634,17 +638,15 @@ module.exports = grammar({
     // Statements
     // ==========
 
-    statements: $ => seq(
-      sep1($.statement, $._semis),
-      optional($._semis)
-    ),
+    statements: $ =>
+      repeat1(seq($.statement, repeat($._semi))),
 
-    statement: $ => choice(
+    statement: $ => seq(choice(
       $._declaration,
       $.assignment,
       $._loop_statement,
       $.expression
-    ),
+    ), $._semi),
 
     label: $ => token(seq(
       /[a-zA-Z_][a-zA-Z_0-9]*/,
@@ -1449,7 +1451,7 @@ module.exports = grammar({
     _ELSE: $ => token(prec(1, /\s*else\s*/)),
     _ARROW: $ => /\s*->/,
     _ASSIGNMENT: $ => /=\s*/,
-    _semi: $ => seq(choice(";", $._NL), repeat($._NL)),
+    _semi: $ => choice(";", $._NL),
     _semis: $ => repeat1(choice(";", $._NL)),
 
     line_comment: $ => token(seq('//', /[^\r\n]*/)),
