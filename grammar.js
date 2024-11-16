@@ -921,8 +921,9 @@ module.exports = grammar({
       repeat($._NL),
       "||",
       repeat($._NL),
-      field('right', $.expression))
-    ),
+      field('right', $.expression),
+      repeat($._NL)
+    )),
 
     // Suffixes
 
