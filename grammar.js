@@ -151,7 +151,9 @@ module.exports = grammar({
     [$.explicit_delegation, $._primary_expression],
     [$.function_value_parameters],
     [$.class_parameters],
-    [$.source_file]
+    [$.source_file],
+    [$._type_reference, $.function_type],
+    [$._type_reference, $.parenthesized_user_type]
   ],
 
   extras: $ => [
@@ -576,10 +578,10 @@ module.exports = grammar({
     ),
 
     // Give type reference a higher precedence to resolve conflict with parenthesized expression
-    _type_reference: $ => prec(PREC.TYPE_REFERENCE, choice(
+    _type_reference: $ => choice(
       field('type', $.user_type),
       "dynamic"
-    )),
+    ),
 
     not_nullable_type: $ => seq(
       optional($.type_modifiers),
@@ -739,7 +741,7 @@ module.exports = grammar({
     postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $.expression), field('operator', $.postfix_unary_operator))),
 
     dot_qualified_expression: $ => prec(PREC.DOT, seq(
-      field('receiver', choice($._primary_expression, $.postfix_expression)),
+      field('receiver', choice($.expression)),
       choice(choice($._DOT, "."), $._safe_dot),
       repeat($._NL),
       field('selector', choice(
@@ -1447,7 +1449,7 @@ module.exports = grammar({
 
     _backtick_identifier: $ => /`[^\r\n`]+`/,
 
-    _DOT: $ => /\s+\./,
+    _DOT: $ => /\s*\./,
     _ELVIS: $ => /\s*\?:/,
     _CONJ: $ => /\s*&&/,
     _DISJ: $ => /\s*\|\|/,
