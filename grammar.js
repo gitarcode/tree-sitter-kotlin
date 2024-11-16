@@ -217,7 +217,8 @@ module.exports = grammar({
     [$.statements],
     [$.class_body],
     [$.return_expression],
-    [$.throw_expression]
+    [$.throw_expression],
+    [$.constructor_invocation]
   ],
 
   extras: $ => [
@@ -270,7 +271,8 @@ module.exports = grammar({
         seq("[", repeat1($._unescaped_annotation), "]"),
         $._unescaped_annotation
       ),
-      repeat($._NL)
+      $._semi,
+      optional($._NL)
     ),
 
     package_header: $ => seq("package", $.identifier, $._semi, repeat($._NL)),
@@ -400,7 +402,8 @@ module.exports = grammar({
 
     constructor_invocation: $ => seq(
       $.user_type,
-      $.value_arguments
+      $.value_arguments,
+      repeat($._NL)
     ),
 
     _annotated_delegation_specifier: $ => seq(repeat($.annotation), repeat($._NL), $.delegation_specifier),

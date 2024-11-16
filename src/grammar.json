@@ -146,11 +146,20 @@
           ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_NL"
-          }
+          "type": "SYMBOL",
+          "name": "_semi"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_NL"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -1094,6 +1103,13 @@
         {
           "type": "SYMBOL",
           "name": "value_arguments"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
         }
       ]
     },
@@ -8806,6 +8822,9 @@
     ],
     [
       "throw_expression"
+    ],
+    [
+      "constructor_invocation"
     ]
   ],
   "precedences": [],
