@@ -226,12 +226,15 @@ import x.y.z
 
 
 ================================================================================
-Comments between statements
+Comments between top-level statements
 ================================================================================
 
 // aaa
 a
-// bbb
+/**
+  b
+  b
+*/ 
 b
 // ccc
 
@@ -241,7 +244,39 @@ b
   (line_comment)
   (statement
     (simple_identifier))
-  (line_comment)
+  (multiline_comment)
   (statement
     (simple_identifier))
   (line_comment))
+
+================================================================================
+Comments between block statements
+================================================================================
+
+fun f() {
+  // aaa
+  a
+  /**
+   b
+   b
+  */ 
+  b
+  // ccc
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block
+        (line_comment)
+        (statements
+          (statement
+            (simple_identifier))
+          (multiline_comment)
+          (statement
+            (simple_identifier))
+          (line_comment))))))
