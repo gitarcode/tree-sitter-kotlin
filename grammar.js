@@ -187,7 +187,9 @@ module.exports = grammar({
       repeat($._NL),
       optional($.shebang_line),
       repeat($.file_annotation),
+      repeat($._NL),
       optional($.package_header),
+      repeat($._NL),
       repeat(seq($.import_header, optional(seq($._semi, repeat($._NL))))),
       // In principle, we either parse a Kotlin file (.kt) or a Kotlin script (.kts).
       // Statements cannot appear as top-level constructs in Kotlin files, only in scripts.
@@ -204,10 +206,9 @@ module.exports = grammar({
         $._unescaped_annotation
       ),
       $._semi,
-      repeat($._NL)
     ),
 
-    package_header: $ => seq("package", $.identifier, $._semi),
+    package_header: $ => prec.right(seq("package", $.identifier, optional($._semi))),
 
     import_header: $ => prec.left(seq(
       "import",
