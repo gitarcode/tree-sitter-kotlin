@@ -203,7 +203,12 @@ module.exports = grammar({
     [$.value_arguments, $.value_argument],
     [$.dot_qualified_expression, $.spread_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression, $.value_argument],
     [$.when_expression],
-    [$.statement]
+    [$.statement],
+    [$.call_expression, $.annotated_expression, $.comparison_expression],
+    [$.dot_qualified_expression, $.annotated_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.annotated_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression, $.value_argument],
+    [$.file_annotation, $._soft_keywords],
+    [$.annotated_expression]
   ],
 
   extras: $ => [
@@ -248,12 +253,15 @@ module.exports = grammar({
     shebang_line: $ => seq("#!", /[^\r\n]*/),
 
     file_annotation: $ => seq(
-      "@", "file", ":",
+      "@", "file", 
+      repeat($._NL),
+      ":",
+      repeat($._NL),
       choice(
         seq("[", repeat1($._unescaped_annotation), "]"),
         $._unescaped_annotation
       ),
-      $._semi
+      repeat($._NL)
     ),
 
     package_header: $ => seq("package", $.identifier, $._semi, repeat($._NL)),
@@ -854,7 +862,7 @@ module.exports = grammar({
       ']')
     ),
 
-    annotated_expression: $ => seq($.annotation, $.expression),
+    annotated_expression: $ => seq($.annotation, repeat($._NL), $.expression, repeat($._NL)),
 
     labeled_expression: $ => seq($.label, $.expression),
 

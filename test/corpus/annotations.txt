@@ -227,6 +227,66 @@ class SaneFlowPlaysScrabble : ShakespearePlaysScrabble() {
         (value_arguments)))
     body: (class_body)))
 
+======================
+Simple Annotated expression
+======================
+
+@Annotation x
+
+---
+
+(source_file
+  (statement
+    (annotated_expression
+      (annotation
+        (user_type
+          (type_identifier)))
+      (simple_identifier))))
+
+======================
+Annotated call expression
+======================
+
+@Annotation f(1, 2, 3)
+
+---
+
+(source_file
+  (statement
+    (annotated_expression
+      (annotation
+        (user_type
+          (type_identifier)))
+      (call_expression
+        expression: (simple_identifier)
+        args: (value_arguments
+          (value_argument
+            (integer_literal))
+          (value_argument
+            (integer_literal))
+          (value_argument
+            (integer_literal)))))))
+
+======================
+Annotated dot_qualified expression
+======================
+
+@Annotation
+a.b.c
+
+---
+
+(source_file
+  (statement
+    (annotated_expression
+      (annotation
+        (user_type
+          (type_identifier)))
+      (dot_qualified_expression
+        receiver: (dot_qualified_expression
+          receiver: (simple_identifier)
+          selector: (simple_identifier))
+        selector: (simple_identifier)))))
 
 ======================
 Annotated expression

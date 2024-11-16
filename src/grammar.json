@@ -99,8 +99,22 @@
           "value": "file"
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "STRING",
           "value": ":"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
         },
         {
           "type": "CHOICE",
@@ -132,8 +146,11 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_semi"
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
         }
       ]
     },
@@ -4077,8 +4094,22 @@
           "name": "annotation"
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "SYMBOL",
           "name": "expression"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
         }
       ]
     },
@@ -8631,6 +8662,47 @@
     ],
     [
       "statement"
+    ],
+    [
+      "call_expression",
+      "annotated_expression",
+      "comparison_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "annotated_expression",
+      "multiplicative_expression",
+      "additive_expression",
+      "range_expression",
+      "infix_expression",
+      "elvis_expression",
+      "check_expression",
+      "comparison_expression",
+      "equality_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "annotated_expression",
+      "multiplicative_expression",
+      "additive_expression",
+      "range_expression",
+      "infix_expression",
+      "elvis_expression",
+      "check_expression",
+      "comparison_expression",
+      "equality_expression",
+      "conjunction_expression",
+      "disjunction_expression",
+      "value_argument"
+    ],
+    [
+      "file_annotation",
+      "_soft_keywords"
+    ],
+    [
+      "annotated_expression"
     ]
   ],
   "precedences": [],
