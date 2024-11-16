@@ -98,6 +98,7 @@ module.exports = grammar({
     [$.reification_modifier, $._soft_keywords],
     [$.getter, $._soft_keywords],
     [$.setter, $._soft_keywords],
+    [$.enum_class_declaration, $._soft_keywords],
 
     [$.type_parameter_modifiers],
     [$.type_projection_modifiers],
@@ -638,15 +639,16 @@ module.exports = grammar({
     // Statements
     // ==========
 
-    statements: $ =>
-      repeat1(seq($.statement, repeat($._semi))),
+    statements: $ => seq(
+      sep1($.statement, repeat($._semi)),
+      repeat($._semi)
+    ),
 
-    statement: $ => seq(choice(
+    statement: $ => choice(
       $._declaration,
       $.assignment,
       $._loop_statement,
-      $.expression
-    ), $._semi),
+      $.expression),
 
     label: $ => token(seq(
       /[a-zA-Z_][a-zA-Z_0-9]*/,

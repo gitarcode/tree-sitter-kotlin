@@ -3308,51 +3308,63 @@
       ]
     },
     "statements": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "statement"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_semi"
-            }
-          }
-        ]
-      }
-    },
-    "statement": {
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
+          "type": "SEQ",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_declaration"
+              "name": "statement"
             },
             {
-              "type": "SYMBOL",
-              "name": "assignment"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_loop_statement"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "expression"
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_semi"
+                    }
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "statement"
+                  }
+                ]
+              }
             }
           ]
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_semi"
+          }
+        }
+      ]
+    },
+    "statement": {
+      "type": "CHOICE",
+      "members": [
+        {
           "type": "SYMBOL",
-          "name": "_semi"
+          "name": "_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "assignment"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_loop_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
         }
       ]
     },
@@ -8032,6 +8044,10 @@
     ],
     [
       "setter",
+      "_soft_keywords"
+    ],
+    [
+      "enum_class_declaration",
       "_soft_keywords"
     ],
     [
