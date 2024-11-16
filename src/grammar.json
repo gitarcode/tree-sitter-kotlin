@@ -3401,8 +3401,20 @@
           "name": "_loop_statement"
         },
         {
-          "type": "SYMBOL",
-          "name": "expression"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "expression"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_NL"
+              }
+            }
+          ]
         }
       ]
     },
@@ -6035,6 +6047,13 @@
           }
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "STRING",
           "value": "}"
         }
@@ -8606,6 +8625,12 @@
       "conjunction_expression",
       "disjunction_expression",
       "value_argument"
+    ],
+    [
+      "when_expression"
+    ],
+    [
+      "statement"
     ]
   ],
   "precedences": [],

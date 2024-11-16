@@ -201,7 +201,9 @@ module.exports = grammar({
     [$.import_header, $._semi],
     [$.import_header],
     [$.value_arguments, $.value_argument],
-    [$.dot_qualified_expression, $.spread_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression, $.value_argument]
+    [$.dot_qualified_expression, $.spread_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression, $.value_argument],
+    [$.when_expression],
+    [$.statement]
   ],
 
   extras: $ => [
@@ -710,7 +712,7 @@ module.exports = grammar({
       $._declaration,
       $.assignment,
       $._loop_statement,
-      $.expression
+      seq($.expression, repeat($._NL))
     ),
 
     label: $ => token(seq(
@@ -1146,6 +1148,7 @@ module.exports = grammar({
       "{",
       repeat($._NL),
       repeat($.when_entry),
+      repeat($._NL),
       "}"
     ),
 
