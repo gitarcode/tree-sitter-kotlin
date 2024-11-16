@@ -197,7 +197,9 @@ module.exports = grammar({
     [$.property_delegate],
     [$.function_body],
     [$.property_declaration],
-    [$.property_declaration, $.property_delegate]
+    [$.property_declaration, $.property_delegate],
+    [$.import_header, $._semi],
+    [$.import_header]
   ],
 
   extras: $ => [
@@ -232,7 +234,7 @@ module.exports = grammar({
       optional($.shebang_line),
       repeat($.file_annotation),
       optional($.package_header),
-      repeat(seq($.import_header, optional($._semi))),
+      repeat($.import_header),
       // In principle, we either parse a Kotlin file (.kt) or a Kotlin script (.kts).
       // Statements cannot appear as top-level constructs in Kotlin files, only in scripts.
       // However, here, we're allowing parsing of both statements and declarations as top level.
@@ -252,11 +254,14 @@ module.exports = grammar({
 
     package_header: $ => seq("package", $.identifier, $._semi, repeat($._NL)),
 
-    import_header: $ => prec.left(seq(
+    import_header: $ => seq(
       "import",
       field('name', $.identifier),
+      repeat($._NL),
       optional(choice(seq(".", $.wildcard_import), $._import_alias)),
-    )),
+      repeat($._NL),
+      optional($._semi)
+    ),
 
     wildcard_import: $ => seq(repeat($._NL), "*"),
 
