@@ -6426,7 +6426,7 @@
       ]
     },
     "return_expression": {
-      "type": "PREC_RIGHT",
+      "type": "PREC",
       "value": 0,
       "content": {
         "type": "SEQ",
@@ -6455,12 +6455,19 @@
                 "type": "BLANK"
               }
             ]
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           }
         ]
       }
     },
     "throw_expression": {
-      "type": "PREC_RIGHT",
+      "type": "PREC",
       "value": 0,
       "content": {
         "type": "SEQ",
@@ -6472,6 +6479,13 @@
           {
             "type": "SYMBOL",
             "name": "expression"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           }
         ]
       }
@@ -8786,6 +8800,12 @@
     ],
     [
       "class_body"
+    ],
+    [
+      "return_expression"
+    ],
+    [
+      "throw_expression"
     ]
   ],
   "precedences": [],

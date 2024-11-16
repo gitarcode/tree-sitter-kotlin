@@ -39,7 +39,7 @@ override fun isDisposed(): Boolean { expectUnreached();  return false }
               expression: (simple_identifier)
                 args: (value_arguments)))
             (statement
-              (jump_expression
+              (return_expression
                 (boolean_literal))))))))
 
 ================================================================================

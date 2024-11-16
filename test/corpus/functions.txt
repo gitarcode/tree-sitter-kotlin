@@ -136,7 +136,7 @@ fun foo(p0: Int): Long {
       (block
         (statements
           (statement
-            (jump_expression
+            (return_expression
               (call_expression
                 expression: (dot_qualified_expression
                   receiver: (simple_identifier)
@@ -394,7 +394,7 @@ fun String.myLength(): Int {
       (block
         (statements
           (statement
-            (jump_expression
+            (return_expression
               (dot_qualified_expression
                 receiver: (this_expression)
                 selector: (simple_identifier)))))))))

@@ -215,7 +215,9 @@ module.exports = grammar({
     [$.dot_qualified_expression, $.spread_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression, $.value_argument],
     [$.explicit_delegation],
     [$.statements],
-    [$.class_body]
+    [$.class_body],
+    [$.return_expression],
+    [$.throw_expression]
   ],
 
   extras: $ => [
@@ -1224,12 +1226,12 @@ module.exports = grammar({
 
     finally_block: $ => seq("finally", $.block),
 
-    return_expression: $ => prec.right(PREC.RETURN_OR_THROW, seq(
-      choice("return", $._return_at), optional($.expression))
+    return_expression: $ => prec(PREC.RETURN_OR_THROW, seq(
+      choice("return", $._return_at), optional($.expression), repeat($._NL))
     ),
 
-    throw_expression: $ => prec.right(PREC.RETURN_OR_THROW, seq(
-      "throw", $.expression
+    throw_expression: $ => prec(PREC.RETURN_OR_THROW, seq(
+      "throw", $.expression, repeat($._NL)
     )),
 
     continue_expression: $ => choice(
