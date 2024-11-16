@@ -4363,13 +4363,6 @@
             "name": "expression"
           },
           {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_NL"
-            }
-          },
-          {
             "type": "SYMBOL",
             "name": "simple_identifier"
           },
@@ -8710,6 +8703,60 @@
     ],
     [
       "annotated_expression"
+    ],
+    [
+      "_top_level_statement",
+      "assignment",
+      "dot_qualified_expression",
+      "multiplicative_expression",
+      "additive_expression",
+      "range_expression",
+      "elvis_expression",
+      "check_expression",
+      "comparison_expression",
+      "equality_expression",
+      "conjunction_expression",
+      "disjunction_expression",
+      "_semi"
+    ],
+    [
+      "dot_qualified_expression",
+      "prefix_expression",
+      "multiplicative_expression",
+      "additive_expression",
+      "range_expression",
+      "elvis_expression",
+      "check_expression",
+      "comparison_expression",
+      "equality_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "multiplicative_expression",
+      "additive_expression",
+      "range_expression",
+      "elvis_expression",
+      "check_expression",
+      "comparison_expression",
+      "equality_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "spread_expression",
+      "multiplicative_expression",
+      "additive_expression",
+      "range_expression",
+      "elvis_expression",
+      "check_expression",
+      "comparison_expression",
+      "equality_expression",
+      "conjunction_expression",
+      "disjunction_expression",
+      "value_argument"
     ]
   ],
   "precedences": [],

@@ -208,7 +208,11 @@ module.exports = grammar({
     [$.dot_qualified_expression, $.annotated_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
     [$.dot_qualified_expression, $.annotated_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression, $.value_argument],
     [$.file_annotation, $._soft_keywords],
-    [$.annotated_expression]
+    [$.annotated_expression],
+    [$._top_level_statement, $.assignment, $.dot_qualified_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression, $._semi],
+    [$.dot_qualified_expression, $.prefix_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.spread_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression, $.value_argument]
   ],
 
   extras: $ => [
@@ -896,7 +900,7 @@ module.exports = grammar({
 
     _range_opeartor: $ => choice("..", "..<"),
 
-    infix_expression: $ => prec.left(PREC.INFIX, seq($.expression, repeat($._NL), $.simple_identifier, repeat($._NL), $.expression)),
+    infix_expression: $ => prec.left(PREC.INFIX, seq($.expression, $.simple_identifier, repeat($._NL), $.expression)),
 
     elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, repeat($._NL), "?:", repeat($._NL), $.expression)),
 
