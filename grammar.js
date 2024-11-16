@@ -1090,7 +1090,7 @@ module.exports = grammar({
       $._ARROW,
       repeat($._NL),
       $.control_structure_body,
-      optional($._semi)
+      optional(seq($._semi, repeat($._NL)))
     ),
 
     when_condition: $ => choice(

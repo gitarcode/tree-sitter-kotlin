@@ -719,3 +719,76 @@ while (iterator.hasNext())
                 receiver: (simple_identifier)
                 selector: (simple_identifier))
               args: (value_arguments))))))))
+
+================================================================================
+Newline after when entry
+================================================================================
+
+when (val animatedImage = state) {
+    is LoadState.Success -> Image(
+        bitmap = animatedImage.data.animate(),
+        contentDescription = null,
+    )
+    
+    is LoadState.Loading -> CircularProgressIndicator()
+    
+    is LoadState.Error -> Text("Error!")
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (when_expression
+      (when_subject
+        (variable_declaration
+          id: (simple_identifier))
+        (simple_identifier))
+      (when_entry
+        (when_condition
+          (type_test
+            type: (user_type
+              (type_identifier)
+              (type_identifier))))
+        (control_structure_body
+          (statement
+            (call_expression
+              expression: (simple_identifier)
+              args: (value_arguments
+                (value_argument
+                  (simple_identifier)
+                  (call_expression
+                    expression: (dot_qualified_expression
+                      receiver: (dot_qualified_expression
+                        receiver: (simple_identifier)
+                        selector: (simple_identifier))
+                      selector: (simple_identifier))
+                    args: (value_arguments)))
+                (value_argument
+                  (simple_identifier)
+                  (null_literal)))))))
+      (when_entry
+        (when_condition
+          (type_test
+            type: (user_type
+              (type_identifier)
+              (type_identifier))))
+        (control_structure_body
+          (statement
+            (call_expression
+              expression: (simple_identifier)
+              args: (value_arguments)))))
+      (when_entry
+        (when_condition
+          (type_test
+            type: (user_type
+              (type_identifier)
+              (type_identifier))))
+        (control_structure_body
+          (statement
+            (call_expression
+              expression: (simple_identifier)
+              args: (value_arguments
+                (value_argument
+                  (string_literal
+                    (string_content)))))))))))
