@@ -199,7 +199,9 @@ module.exports = grammar({
     [$.property_declaration],
     [$.property_declaration, $.property_delegate],
     [$.import_header, $._semi],
-    [$.import_header]
+    [$.import_header],
+    [$.value_arguments, $.value_argument],
+    [$.dot_qualified_expression, $.spread_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression, $.value_argument]
   ],
 
   extras: $ => [
@@ -932,9 +934,9 @@ module.exports = grammar({
         seq(
           sep1($.value_argument, repeat($._NL), ",", repeat($._NL)),
           optional(seq(repeat($._NL), ",")),
-          repeat($._NL),
         )
       ),
+      repeat($._NL),
       ")"
     ),
 
@@ -944,7 +946,8 @@ module.exports = grammar({
       optional(seq($.simple_identifier, repeat($._NL), "=", repeat($._NL))),
       optional("*"),
       repeat($._NL),
-      $.expression
+      $.expression,
+      repeat($._NL),
     ),
 
     _primary_expression: $ => choice(
