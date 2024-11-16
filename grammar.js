@@ -194,7 +194,8 @@ module.exports = grammar({
     [$.when_entry],
     [$.assignment],
     [$._if_block],
-    [$._initializer]
+    [$._initializer],
+    [$.property_delegate]
   ],
 
   extras: $ => [
@@ -500,23 +501,24 @@ module.exports = grammar({
       optional(seq(field('receiver_type', $.receiver_type), '.')),
       field('var_decl', choice($.variable_declaration, $.multi_variable_declaration)),
       optional(field('type_constraints', $.type_constraints)),
+      repeat($._NL),
       optional(choice(
         $._initializer,
         $.property_delegate
       )),
-      repeat($._NL),
       optional(';'),
+      repeat($._NL),
       optional($._setter_getter)
     ),
 
-    _initializer: $ => seq(repeat($._NL), "=", repeat($._NL), field('initializer', $.expression), repeat($._NL)),
+    _initializer: $ => seq("=", repeat($._NL), field('initializer', $.expression), repeat($._NL)),
 
+    property_delegate: $ => seq("by", repeat($._NL), $.expression, repeat($._NL)),
+    
     _setter_getter: $ => choice(
       seq($.getter, repeat($._NL), optional($.setter)),
       seq($.setter, repeat($._NL), optional($.getter))
     ),
-
-    property_delegate: $ => seq("by", repeat($._NL), $.expression),
 
     getter: $ => prec.right(seq(
       optional(field('modifiers', $.modifiers)),
