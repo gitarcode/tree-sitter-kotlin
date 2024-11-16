@@ -212,7 +212,10 @@ module.exports = grammar({
     [$._top_level_statement, $.assignment, $.dot_qualified_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression, $._semi],
     [$.dot_qualified_expression, $.prefix_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
     [$.dot_qualified_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
-    [$.dot_qualified_expression, $.spread_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression, $.value_argument]
+    [$.dot_qualified_expression, $.spread_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.elvis_expression, $.check_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression, $.value_argument],
+    [$.explicit_delegation],
+    [$.statements],
+    [$.class_body]
   ],
 
   extras: $ => [
@@ -353,6 +356,7 @@ module.exports = grammar({
       "{",
       repeat($._NL),
       optional($._class_member_declarations),
+      repeat($._NL),
       "}"
     ),
 
@@ -406,7 +410,8 @@ module.exports = grammar({
       ),
       "by",
       repeat($._NL),
-      choice($._common_primary_expression, alias($.simple_call_expression, $.call_expression))
+      choice($._common_primary_expression, alias($.simple_call_expression, $.call_expression)),
+      repeat($._NL)
     ),
 
     type_parameters: $ => seq(
@@ -738,6 +743,7 @@ module.exports = grammar({
       "{",
       repeat($._NL),
       optional($.statements),
+      repeat($._NL),
       "}")
     ),
 
@@ -808,7 +814,8 @@ module.exports = grammar({
       $.postfix_expression,
       $.as_expression,
       $.spread_expression,
-      $.jump_expression,
+      $.return_expression,
+      $.throw_expression,
       $.annotated_expression,
       $.labeled_expression,
     ),
@@ -986,6 +993,8 @@ module.exports = grammar({
       $.try_expression,
       $.dot_qualified_expression,
       $.index_access_expression,
+      $.continue_expression,
+      $.break_expression
     ),
 
     parenthesized_expression: $ => seq("(", repeat($._NL), $.expression, repeat($._NL), ")"),
@@ -1215,13 +1224,22 @@ module.exports = grammar({
 
     finally_block: $ => seq("finally", $.block),
 
-    jump_expression: $ => choice(
-      prec.right(PREC.RETURN_OR_THROW, seq("throw", $.expression)),
-      prec.right(PREC.RETURN_OR_THROW, seq(choice("return", $._return_at), optional($.expression))),
+    return_expression: $ => prec.right(PREC.RETURN_OR_THROW, seq(
+      choice("return", $._return_at), optional($.expression))
+    ),
+
+    throw_expression: $ => prec.right(PREC.RETURN_OR_THROW, seq(
+      "throw", $.expression
+    )),
+
+    continue_expression: $ => choice(
       "continue",
-      $._continue_at,
+      seq("continue@", $._lexical_identifier)
+    ),
+
+    break_expression: $ => choice(
       "break",
-      $._break_at
+      seq("break@", $._lexical_identifier)
     ),
 
     callable_reference: $ => prec(PREC.DOT, seq(
@@ -1445,16 +1463,6 @@ module.exports = grammar({
 
     _return_at: $ => seq(
       "return@",
-      alias($._lexical_identifier, $.label)
-    ),
-
-    _continue_at: $ => seq(
-      "continue@",
-      alias($._lexical_identifier, $.label)
-    ),
-
-    _break_at: $ => seq(
-      "break@",
       alias($._lexical_identifier, $.label)
     ),
 
