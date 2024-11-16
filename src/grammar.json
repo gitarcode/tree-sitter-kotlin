@@ -1901,6 +1901,13 @@
                 "type": "SYMBOL",
                 "name": "expression"
               }
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_NL"
+              }
             }
           ]
         }
@@ -2056,13 +2063,6 @@
           ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_NL"
-          }
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
@@ -2120,6 +2120,13 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "STRING",
           "value": "="
         },
@@ -2150,6 +2157,13 @@
     "property_delegate": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
         {
           "type": "STRING",
           "value": "by"
@@ -8246,9 +8260,6 @@
       "value_argument"
     ],
     [
-      "property_declaration"
-    ],
-    [
       "_enum_entries"
     ],
     [
@@ -8546,6 +8557,16 @@
       "_initializer"
     ],
     [
+      "property_delegate"
+    ],
+    [
+      "function_body"
+    ],
+    [
+      "property_declaration"
+    ],
+    [
+      "property_declaration",
       "property_delegate"
     ]
   ],

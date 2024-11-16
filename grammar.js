@@ -141,7 +141,6 @@ module.exports = grammar({
     [$.variable_declaration, $._common_primary_expression],
     [$.variable_declaration, $._simple_user_type],
     [$.value_argument],
-    [$.property_declaration],
     [$._enum_entries],
     [$.type_constraints],
     [$.class_declaration, $.type_constraints],
@@ -195,7 +194,10 @@ module.exports = grammar({
     [$.assignment],
     [$._if_block],
     [$._initializer],
-    [$.property_delegate]
+    [$.property_delegate],
+    [$.function_body],
+    [$.property_declaration],
+    [$.property_declaration, $.property_delegate]
   ],
 
   extras: $ => [
@@ -485,7 +487,7 @@ module.exports = grammar({
 
     function_body: $ => choice(
       $.block, 
-      seq("=", repeat($._NL), field('expression', $.expression))
+      seq("=", repeat($._NL), field('expression', $.expression), repeat($._NL))
     ),
 
     variable_declaration: $ => seq(
@@ -501,7 +503,6 @@ module.exports = grammar({
       optional(seq(field('receiver_type', $.receiver_type), '.')),
       field('var_decl', choice($.variable_declaration, $.multi_variable_declaration)),
       optional(field('type_constraints', $.type_constraints)),
-      repeat($._NL),
       optional(choice(
         $._initializer,
         $.property_delegate
@@ -511,9 +512,9 @@ module.exports = grammar({
       optional($._setter_getter)
     ),
 
-    _initializer: $ => seq("=", repeat($._NL), field('initializer', $.expression), repeat($._NL)),
+    _initializer: $ => seq(repeat($._NL), "=", repeat($._NL), field('initializer', $.expression), repeat($._NL)),
 
-    property_delegate: $ => seq("by", repeat($._NL), $.expression, repeat($._NL)),
+    property_delegate: $ => seq(repeat($._NL), "by", repeat($._NL), $.expression, repeat($._NL)),
     
     _setter_getter: $ => choice(
       seq($.getter, repeat($._NL), optional($.setter)),
