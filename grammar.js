@@ -726,12 +726,12 @@ module.exports = grammar({
       ")",
     )),
 
-    assignment: $ =>
-      prec.left(PREC.ASSIGNMENT, seq(
-        field('left', $._directly_assignable_expression),
-        field('op', $._assignment_and_operator),
-        repeat($._NL),
-        field('right', $.expression))),
+    assignment: $ => seq(
+      field('left', $.expression),
+      field('op', $._assignment_and_operator),
+      repeat($._NL),
+      field('right', $.expression)
+    ),
 
     // ==========
     // Expressions
@@ -1077,12 +1077,12 @@ module.exports = grammar({
       ")",
     ),
 
-    _if_block: $ => choice(
+    _if_block: $ => prec.right(choice(
       $.expression, 
       $.assignment, 
       $.block,
       ";"
-    ),
+    )),
 
     when_subject: $ => seq(
       "(",
@@ -1203,16 +1203,6 @@ module.exports = grammar({
     prefix_unary_operator: $ => choice("++", "--", "-", "+", "!"),
 
     postfix_unary_operator: $ => choice("++", "--", "!!"),
-
-    _directly_assignable_expression: $ => prec(
-      PREC.ASSIGNMENT,
-      choice(
-        $.dot_qualified_expression,
-        $.index_access_expression,
-        $.simple_identifier,
-        $.postfix_expression,
-      )
-    ),
 
     // ==========
     // Modifiers

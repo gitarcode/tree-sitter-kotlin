@@ -393,19 +393,7 @@
         "required": true,
         "types": [
           {
-            "type": "dot_qualified_expression",
-            "named": true
-          },
-          {
-            "type": "index_access_expression",
-            "named": true
-          },
-          {
-            "type": "postfix_expression",
-            "named": true
-          },
-          {
-            "type": "simple_identifier",
+            "type": "expression",
             "named": true
           }
         ]
