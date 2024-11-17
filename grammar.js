@@ -155,7 +155,7 @@ module.exports = grammar({
     [$.call_expression, $.prefix_expression, $.comparison_expression],
     [$.call_expression, $.elvis_expression, $.comparison_expression],
     [$.call_expression, $.range_expression, $.comparison_expression],
-    [$.call_expression, $.check_expression, $.comparison_expression],
+    [$.call_expression, $.in_expression, $.comparison_expression],
     [$.call_expression, $.additive_expression, $.comparison_expression],
     [$.call_expression, $.multiplicative_expression, $.comparison_expression],
     [$.call_expression, $.infix_expression, $.comparison_expression],
@@ -828,11 +828,12 @@ module.exports = grammar({
       $.range_expression,
       $.infix_expression,
       $.elvis_expression,
-      $.check_expression,
       $.comparison_expression,
       $.equality_expression,
       $.conjunction_expression,
-      $.disjunction_expression
+      $.disjunction_expression,
+      $.in_expression,
+      $.is_expression
     ),
 
     multiplicative_expression: $ => prec.left(PREC.MULTIPLICATIVE, seq($.expression, $._multiplicative_operator, $.expression)),
@@ -847,9 +848,9 @@ module.exports = grammar({
 
     elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, $._elvis, repeat($._NL), $.expression)),
 
-    check_expression: $ => prec.left(PREC.CHECK, seq($.expression, choice(
-      seq($._in_operator, $.expression),
-      seq($._is_operator, $._type)))),
+    in_expression: $ => prec.left(PREC.CHECK, seq($.expression, $._in_operator, $.expression)),
+
+    is_expression: $ => prec(PREC.CHECK, seq($.expression, $._is_operator, $._type)),
 
     comparison_expression: $ => prec.left(PREC.COMPARISON, seq($.expression, $._comparison_operator, $.expression)),
 

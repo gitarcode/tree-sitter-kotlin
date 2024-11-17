@@ -979,7 +979,7 @@ it.sliceArray(1..<it.size)
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (check_expression
+          (in_expression
             (integer_literal)
             (range_expression
               (integer_literal)

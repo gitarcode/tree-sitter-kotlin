@@ -44,10 +44,6 @@
         "named": true
       },
       {
-        "type": "check_expression",
-        "named": true
-      },
-      {
         "type": "collection_literal",
         "named": true
       },
@@ -88,6 +84,10 @@
         "named": true
       },
       {
+        "type": "in_expression",
+        "named": true
+      },
+      {
         "type": "index_access_expression",
         "named": true
       },
@@ -97,6 +97,10 @@
       },
       {
         "type": "integer_literal",
+        "named": true
+      },
+      {
+        "type": "is_expression",
         "named": true
       },
       {
@@ -619,52 +623,6 @@
       "types": [
         {
           "type": "character_escape_seq",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "check_expression",
-    "named": true,
-    "fields": {
-      "type": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "user_type",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "not_nullable_type",
-          "named": true
-        },
-        {
-          "type": "nullable_type",
-          "named": true
-        },
-        {
-          "type": "parenthesized_type",
-          "named": true
-        },
-        {
-          "type": "type_modifiers",
           "named": true
         }
       ]
@@ -1983,6 +1941,21 @@
     }
   },
   {
+    "type": "in_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "index_access_expression",
     "named": true,
     "fields": {
@@ -2042,6 +2015,52 @@
     "type": "interpolated_identifier",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "is_expression",
+    "named": true,
+    "fields": {
+      "type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "user_type",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "function_type",
+          "named": true
+        },
+        {
+          "type": "not_nullable_type",
+          "named": true
+        },
+        {
+          "type": "nullable_type",
+          "named": true
+        },
+        {
+          "type": "parenthesized_type",
+          "named": true
+        },
+        {
+          "type": "type_modifiers",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "labeled_expression",

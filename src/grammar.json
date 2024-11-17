@@ -4201,10 +4201,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "check_expression"
-        },
-        {
-          "type": "SYMBOL",
           "name": "comparison_expression"
         },
         {
@@ -4218,6 +4214,14 @@
         {
           "type": "SYMBOL",
           "name": "disjunction_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "in_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "is_expression"
         }
       ]
     },
@@ -4360,7 +4364,7 @@
         ]
       }
     },
-    "check_expression": {
+    "in_expression": {
       "type": "PREC_LEFT",
       "value": 7,
       "content": {
@@ -4371,35 +4375,33 @@
             "name": "expression"
           },
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "_in_operator"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "expression"
-                  }
-                ]
-              },
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "_is_operator"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_type"
-                  }
-                ]
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "_in_operator"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        ]
+      }
+    },
+    "is_expression": {
+      "type": "PREC",
+      "value": 7,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_is_operator"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_type"
           }
         ]
       }
@@ -8252,7 +8254,7 @@
     ],
     [
       "call_expression",
-      "check_expression",
+      "in_expression",
       "comparison_expression"
     ],
     [
