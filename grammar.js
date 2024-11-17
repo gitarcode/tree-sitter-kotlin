@@ -163,7 +163,8 @@ module.exports = grammar({
     [$.return_expression],
     [$.lambda_literal],
     [$.when_entry],
-    [$.function_type_parameters, $.parenthesized_type]
+    [$.function_type_parameters, $.parenthesized_type],
+    [$._setter_getter]
   ],
 
   extras: $ => [
@@ -474,13 +475,16 @@ module.exports = grammar({
       )),
       repeat($._NL),
       optional(';'),
-      choice(
-        seq(optional($.getter), optional(seq(repeat($._NL), $.setter))),
-        seq(optional($.setter), optional(seq(repeat($._NL), $.setter)))
-      )
+      repeat($._NL),
+      repeat($._setter_getter)
     ),
 
     property_delegate: $ => seq("by", repeat($._NL), $.expression),
+
+    _setter_getter: $ => choice(
+      seq($.getter, repeat($._NL), optional($.setter)),
+      seq($.setter, repeat($._NL), optional($.getter))
+    ),
 
     getter: $ => prec.right(seq(
       optional(field('modifiers', $.modifiers)),
