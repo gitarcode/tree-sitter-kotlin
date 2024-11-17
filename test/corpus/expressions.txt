@@ -1312,3 +1312,39 @@ String? ::plus
       (user_type
         (type_identifier))
       (simple_identifier))))
+
+================================================================================
+Spread expression
+================================================================================
+
+f(*list)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (call_expression
+      expression: (simple_identifier)
+      args: (value_arguments
+        (value_argument
+          (spread_expression
+            (simple_identifier)))))))
+
+================================================================================
+Spread expression with newline
+================================================================================
+
+f(*
+
+list)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (call_expression
+      expression: (simple_identifier)
+      args: (value_arguments
+        (value_argument
+          (spread_expression
+            (simple_identifier)))))))
