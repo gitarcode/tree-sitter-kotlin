@@ -123,8 +123,6 @@ module.exports = grammar({
     // eventually dies if there is no '.'
     [$.identifier],
 
-    [$.expression, $.call_expression],
-
     [$._simple_user_type, $._common_primary_expression],
 
     [$._simple_user_type],
@@ -153,7 +151,16 @@ module.exports = grammar({
     [$.class_parameters],
     [$.source_file],
     [$._type_reference, $.function_type],
-    [$._type_reference, $.parenthesized_user_type]
+    [$._type_reference, $.parenthesized_user_type],
+    [$.type_arguments, $._comparison_operator],
+    [$.call_expression, $.prefix_expression, $.comparison_expression],
+    [$.call_expression, $.elvis_expression, $.comparison_expression],
+    [$.call_expression, $.range_expression, $.comparison_expression],
+    [$.call_expression, $.check_expression, $.comparison_expression],
+    [$.call_expression, $.additive_expression, $.comparison_expression],
+    [$.call_expression, $.multiplicative_expression, $.comparison_expression],
+    [$.call_expression, $.infix_expression, $.comparison_expression],
+    [$.annotated_lambda, $.modifiers]
   ],
 
   extras: $ => [
@@ -751,11 +758,11 @@ module.exports = grammar({
       ))
     )),
 
-    call_expression: $ => seq(
-      field('expression', $._primary_expression), 
+    call_expression: $ => prec(PREC.CALL, seq(
+      field('expression', $.expression), 
       optional($.type_arguments),
       $._call_arguments
-    ),
+    )),
 
     // It's not possible to resolve the ambiguity between explicit delegation and calls with last lambda argument.
     // For example:
@@ -768,8 +775,8 @@ module.exports = grammar({
     // associativity for the arguments, which is not posssible to specify with tree-sitter. 
     // Creating a separate nonterminal, is the cleanest way to move forward.
     // 
-    simple_call_expression: $=> prec(10, seq(
-      field('expression', $._primary_expression), 
+    simple_call_expression: $=> prec(PREC.CALL, seq(
+      field('expression', $.expression), 
       optional($.type_arguments),
       field('args', $.value_arguments)
     )),

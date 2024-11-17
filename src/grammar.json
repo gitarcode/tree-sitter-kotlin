@@ -3887,37 +3887,8 @@
       }
     },
     "call_expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "FIELD",
-          "name": "expression",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_primary_expression"
-          }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "type_arguments"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_call_arguments"
-        }
-      ]
-    },
-    "simple_call_expression": {
       "type": "PREC",
-      "value": 10,
+      "value": 17,
       "content": {
         "type": "SEQ",
         "members": [
@@ -3926,7 +3897,40 @@
             "name": "expression",
             "content": {
               "type": "SYMBOL",
-              "name": "_primary_expression"
+              "name": "expression"
+            }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "type_arguments"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_call_arguments"
+          }
+        ]
+      }
+    },
+    "simple_call_expression": {
+      "type": "PREC",
+      "value": 17,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "expression",
+            "content": {
+              "type": "SYMBOL",
+              "name": "expression"
             }
           },
           {
@@ -8134,10 +8138,6 @@
       "identifier"
     ],
     [
-      "expression",
-      "call_expression"
-    ],
-    [
       "_simple_user_type",
       "_common_primary_expression"
     ],
@@ -8226,6 +8226,49 @@
     [
       "_type_reference",
       "parenthesized_user_type"
+    ],
+    [
+      "type_arguments",
+      "_comparison_operator"
+    ],
+    [
+      "call_expression",
+      "prefix_expression",
+      "comparison_expression"
+    ],
+    [
+      "call_expression",
+      "elvis_expression",
+      "comparison_expression"
+    ],
+    [
+      "call_expression",
+      "range_expression",
+      "comparison_expression"
+    ],
+    [
+      "call_expression",
+      "check_expression",
+      "comparison_expression"
+    ],
+    [
+      "call_expression",
+      "additive_expression",
+      "comparison_expression"
+    ],
+    [
+      "call_expression",
+      "multiplicative_expression",
+      "comparison_expression"
+    ],
+    [
+      "call_expression",
+      "infix_expression",
+      "comparison_expression"
+    ],
+    [
+      "annotated_lambda",
+      "modifiers"
     ]
   ],
   "precedences": [],
