@@ -750,7 +750,6 @@ module.exports = grammar({
       $.postfix_expression,
       $.as_expression,
       $.is_expression,
-      $.spread_expression,
       $.annotated_expression,
       $.labeled_expression,
       $.if_expression,
@@ -821,8 +820,6 @@ module.exports = grammar({
     ),
 
     as_expression: $ => prec(PREC.AS, seq($.expression, $._as_operator, repeat($._NL), $._type)),
-
-    spread_expression: $ => prec(PREC.SPREAD, seq("*", repeat($._NL), $.expression)),
 
     // Binary expressions
 
