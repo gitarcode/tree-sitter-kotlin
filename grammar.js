@@ -164,7 +164,8 @@ module.exports = grammar({
     [$.lambda_literal],
     [$.when_entry],
     [$.function_type_parameters, $.parenthesized_type],
-    [$._setter_getter]
+    [$._setter_getter],
+    [$.if_expression]
   ],
 
   extras: $ => [
@@ -1051,24 +1052,30 @@ module.exports = grammar({
       $._super_at
     )),
 
-    if_expression: $ => prec.right(seq(
+    if_expression: $ => seq(
       "if",
       repeat($._NL),
-      "(",
-      repeat($._NL),
-      field('condition', $.expression), 
-      repeat($._NL),
-      ")",
+      $._if_condition,
       repeat($._NL),
       choice(
         field('consequence', $._if_block),
         seq(
           optional(field('consequence', $._if_block)),
-          $._ELSE,
+          repeat($._NL),
+          "else",
+          repeat($._NL),
           field('alternative', $._if_block)
         )
       )
-    )),
+    ),
+
+    _if_condition: $ => seq(
+      "(",
+      repeat($._NL),
+      field('condition', $.expression), 
+      repeat($._NL),
+      ")",
+    ),
 
     _if_block: $ => choice(
       $.expression, 
@@ -1108,7 +1115,8 @@ module.exports = grammar({
           repeat($._NL),
           optional(","),
         ),
-        $._ELSE
+        repeat($._NL),
+        "else",
       ),
       repeat($._NL),
       "->",
@@ -1470,9 +1478,7 @@ module.exports = grammar({
     _CONJ: $ => /\s*&&/,
     _DISJ: $ => /\s*\|\|/,
     _NL: $ => /\r?\n/,
-    _ELSE: $ => token(prec(1, /\s*else\s*/)),
     _semi: $ => choice(";", $._NL),
-    _semis: $ => repeat1(choice(";", $._NL)),
 
     line_comment: $ => token(seq('//', /[^\r\n]*/)),
 
