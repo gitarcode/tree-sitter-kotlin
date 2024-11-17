@@ -141,7 +141,7 @@ when (this) {
                 (type_projection)))))
         (control_structure_body
           (statement
-            (jump_expression
+            (return_expression
               (null_literal))))))))
 
 ================================================================================
@@ -703,7 +703,7 @@ fun f(a: A): A {
       (block
         (statements
           (statement
-            (jump_expression
+            (return_expression
               (object_literal
                 (delegation_specifier
                   (explicit_delegation
@@ -834,7 +834,7 @@ suppressions
                         (value_argument
                           (simple_identifier))))
                     selector: (simple_identifier))
-                  (jump_expression
+                  (throw_expression
                     (call_expression
                       expression: (simple_identifier)
                       args: (value_arguments

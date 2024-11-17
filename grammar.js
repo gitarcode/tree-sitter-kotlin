@@ -98,7 +98,6 @@ module.exports = grammar({
     [$.reification_modifier, $._soft_keywords],
     [$.getter, $._soft_keywords],
     [$.setter, $._soft_keywords],
-    [$.enum_class_declaration, $._soft_keywords],
 
     [$.type_parameter_modifiers],
     [$.type_projection_modifiers],
@@ -160,7 +159,9 @@ module.exports = grammar({
     [$.call_expression, $.additive_expression, $.comparison_expression],
     [$.call_expression, $.multiplicative_expression, $.comparison_expression],
     [$.call_expression, $.infix_expression, $.comparison_expression],
-    [$.annotated_lambda, $.modifiers]
+    [$.annotated_lambda, $.modifiers],
+    [$.return_expression],
+
   ],
 
   extras: $ => [
@@ -651,7 +652,7 @@ module.exports = grammar({
     // ==========
 
     statements: $ => seq(
-      sep1($.statement, repeat($._semi)),
+      sep1($.statement, repeat1($._semi)),
       repeat($._semi)
     ),
 
@@ -739,10 +740,11 @@ module.exports = grammar({
       $.postfix_expression,
       $.as_expression,
       $.spread_expression,
-      $.jump_expression,
       $.annotated_expression,
       $.labeled_expression,
-      $.if_expression
+      $.if_expression,
+      $.return_expression,
+      $.throw_expression
     ),
 
     postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $.expression), field('operator', $.postfix_unary_operator))),
@@ -911,7 +913,9 @@ module.exports = grammar({
       $.when_expression,
       $.try_expression,
       $.dot_qualified_expression,
-      $.index_access_expression
+      $.index_access_expression,
+      $.continue_expression,
+      $.break_expression
     ),
 
     parenthesized_expression: $ => seq("(", repeat($._NL), $.expression, repeat($._NL), ")"),
@@ -1136,13 +1140,23 @@ module.exports = grammar({
 
     finally_block: $ => seq("finally", $.block),
 
-    jump_expression: $ => choice(
-      prec.right(PREC.RETURN_OR_THROW, seq("throw", $.expression)),
-      prec.right(PREC.RETURN_OR_THROW, seq(choice("return", $._return_at), optional($.expression))),
+    return_expression: $ => prec(PREC.RETURN_OR_THROW, seq(
+      choice("return", seq("return@", $._lexical_identifier)), 
+      optional($.expression)
+    )),
+
+    throw_expression: $ => prec(PREC.RETURN_OR_THROW, seq(
+      "throw", $.expression,
+    )),
+
+    continue_expression: $ => choice(
       "continue",
-      $._continue_at,
+      seq("continue@", $._lexical_identifier)
+    ),
+
+    break_expression: $ => choice(
       "break",
-      $._break_at
+      seq("break@", $._lexical_identifier)
     ),
 
     callable_reference: $ => prec(PREC.DOT, seq(
@@ -1363,21 +1377,6 @@ module.exports = grammar({
     // ==========
     // Keywords
     // ==========
-
-    _return_at: $ => seq(
-      "return@",
-      alias($._lexical_identifier, $.label)
-    ),
-
-    _continue_at: $ => seq(
-      "continue@",
-      alias($._lexical_identifier, $.label)
-    ),
-
-    _break_at: $ => seq(
-      "break@",
-      alias($._lexical_identifier, $.label)
-    ),
 
     _this_at: $ => seq(
       "this@",

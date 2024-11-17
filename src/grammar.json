@@ -3369,7 +3369,7 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "REPEAT",
+                    "type": "REPEAT1",
                     "content": {
                       "type": "SYMBOL",
                       "name": "_semi"
@@ -3773,10 +3773,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "jump_expression"
-        },
-        {
-          "type": "SYMBOL",
           "name": "annotated_expression"
         },
         {
@@ -3786,6 +3782,14 @@
         {
           "type": "SYMBOL",
           "name": "if_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "return_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "throw_expression"
         }
       ]
     },
@@ -4813,6 +4817,14 @@
         {
           "type": "SYMBOL",
           "name": "index_access_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "continue_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "break_expression"
         }
       ]
     },
@@ -6211,75 +6223,107 @@
         }
       ]
     },
-    "jump_expression": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "PREC_RIGHT",
-          "value": 0,
-          "content": {
-            "type": "SEQ",
+    "return_expression": {
+      "type": "PREC",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
             "members": [
               {
                 "type": "STRING",
-                "value": "throw"
+                "value": "return"
               },
               {
-                "type": "SYMBOL",
-                "name": "expression"
-              }
-            ]
-          }
-        },
-        {
-          "type": "PREC_RIGHT",
-          "value": 0,
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "CHOICE",
+                "type": "SEQ",
                 "members": [
                   {
                     "type": "STRING",
-                    "value": "return"
+                    "value": "return@"
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "_return_at"
-                  }
-                ]
-              },
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "expression"
-                  },
-                  {
-                    "type": "BLANK"
+                    "name": "_lexical_identifier"
                   }
                 ]
               }
             ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "expression"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           }
-        },
+        ]
+      }
+    },
+    "throw_expression": {
+      "type": "PREC",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "throw"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        ]
+      }
+    },
+    "continue_expression": {
+      "type": "CHOICE",
+      "members": [
         {
           "type": "STRING",
           "value": "continue"
         },
         {
-          "type": "SYMBOL",
-          "name": "_continue_at"
-        },
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "continue@"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_lexical_identifier"
+            }
+          ]
+        }
+      ]
+    },
+    "break_expression": {
+      "type": "CHOICE",
+      "members": [
         {
           "type": "STRING",
           "value": "break"
         },
         {
-          "type": "SYMBOL",
-          "name": "_break_at"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "break@"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_lexical_identifier"
+            }
+          ]
         }
       ]
     },
@@ -7194,60 +7238,6 @@
         }
       ]
     },
-    "_return_at": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "return@"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_lexical_identifier"
-          },
-          "named": true,
-          "value": "label"
-        }
-      ]
-    },
-    "_continue_at": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "continue@"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_lexical_identifier"
-          },
-          "named": true,
-          "value": "label"
-        }
-      ]
-    },
-    "_break_at": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "break@"
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_lexical_identifier"
-          },
-          "named": true,
-          "value": "label"
-        }
-      ]
-    },
     "_this_at": {
       "type": "SEQ",
       "members": [
@@ -8105,10 +8095,6 @@
       "_soft_keywords"
     ],
     [
-      "enum_class_declaration",
-      "_soft_keywords"
-    ],
-    [
       "type_parameter_modifiers"
     ],
     [
@@ -8269,6 +8255,9 @@
     [
       "annotated_lambda",
       "modifiers"
+    ],
+    [
+      "return_expression"
     ]
   ],
   "precedences": [],

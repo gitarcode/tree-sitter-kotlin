@@ -318,7 +318,7 @@ internal fun parse(xml: String): Element {
                 selector: (simple_identifier))
               args: (value_arguments)))
           (statement
-            (jump_expression
+            (return_expression
               (postfix_expression
                 expression: (dot_qualified_expression
                   receiver: (simple_identifier)

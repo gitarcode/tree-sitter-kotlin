@@ -108,7 +108,7 @@ fun foo():String
       (block
         (statements
           (statement
-            (jump_expression
+            (return_expression
               (string_literal
                 (string_content)))))))))
 
@@ -169,7 +169,7 @@ fun foo() {
                       receiver: (simple_identifier)
                       selector: (simple_identifier))
                     args: (value_arguments)))
-                (jump_expression)))))))))
+                (break_expression)))))))))
 
 ================================================================================
 get after newline
