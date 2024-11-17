@@ -4099,6 +4099,13 @@
           "name": "annotation"
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "SYMBOL",
           "name": "expression"
         }
@@ -4110,6 +4117,13 @@
         {
           "type": "SYMBOL",
           "name": "label"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
         },
         {
           "type": "SYMBOL",
@@ -4186,6 +4200,13 @@
           {
             "type": "STRING",
             "value": "*"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           },
           {
             "type": "SYMBOL",

@@ -810,9 +810,9 @@ module.exports = grammar({
       ']')
     ),
 
-    annotated_expression: $ => seq($.annotation, $.expression),
+    annotated_expression: $ => seq($.annotation, repeat($._NL), $.expression),
 
-    labeled_expression: $ => seq($.label, $.expression),
+    labeled_expression: $ => seq($.label, repeat($._NL), $.expression),
 
     prefix_expression: $ => prec(PREC.PREFIX, seq(
       field('op', $.prefix_unary_operator), 
@@ -822,7 +822,7 @@ module.exports = grammar({
 
     as_expression: $ => prec(PREC.AS, seq($.expression, $._as_operator, repeat($._NL), $._type)),
 
-    spread_expression: $ => prec(PREC.SPREAD, seq("*", $.expression)),
+    spread_expression: $ => prec(PREC.SPREAD, seq("*", repeat($._NL), $.expression)),
 
     // Binary expressions
 
