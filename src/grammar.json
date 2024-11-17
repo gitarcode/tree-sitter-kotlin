@@ -6651,31 +6651,6 @@
         }
       ]
     },
-    "_directly_assignable_expression": {
-      "type": "PREC",
-      "value": 1,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "dot_qualified_expression"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "index_access_expression"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "simple_identifier"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "postfix_expression"
-          }
-        ]
-      }
-    },
     "modifiers": {
       "type": "REPEAT1",
       "content": {
