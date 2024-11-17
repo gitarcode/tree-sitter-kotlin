@@ -749,6 +749,7 @@ module.exports = grammar({
       $.prefix_expression,
       $.postfix_expression,
       $.as_expression,
+      $.is_expression,
       $.spread_expression,
       $.annotated_expression,
       $.labeled_expression,
@@ -813,10 +814,13 @@ module.exports = grammar({
 
     labeled_expression: $ => seq($.label, $.expression),
 
-    prefix_expression: $ => prec(PREC.PREFIX, 
-      seq(field('op', $.prefix_unary_operator), field('expression', $.expression))),
+    prefix_expression: $ => prec(PREC.PREFIX, seq(
+      field('op', $.prefix_unary_operator), 
+      repeat($._NL),
+      field('expression', $.expression))
+    ),
 
-    as_expression: $ => prec(PREC.AS, seq($.expression, $._as_operator, $._type)),
+    as_expression: $ => prec(PREC.AS, seq($.expression, $._as_operator, repeat($._NL), $._type)),
 
     spread_expression: $ => prec(PREC.SPREAD, seq("*", $.expression)),
 
@@ -833,14 +837,13 @@ module.exports = grammar({
       $.conjunction_expression,
       $.disjunction_expression,
       $.in_expression,
-      $.is_expression
     ),
 
-    multiplicative_expression: $ => prec.left(PREC.MULTIPLICATIVE, seq($.expression, $._multiplicative_operator, $.expression)),
+    multiplicative_expression: $ => prec.left(PREC.MULTIPLICATIVE, seq($.expression, $._multiplicative_operator, repeat($._NL), $.expression)),
 
     additive_expression: $ => prec.left(PREC.ADDITIVE, seq($.expression, $._additive_operator, repeat($._NL), $.expression)),
 
-    range_expression: $ => prec.left(PREC.RANGE, seq($.expression, $._range_opeartor, $.expression)),
+    range_expression: $ => prec.left(PREC.RANGE, seq($.expression, $._range_opeartor, repeat($._NL), $.expression)),
 
     _range_opeartor: $ => choice("..", "..<"),
 
@@ -848,13 +851,13 @@ module.exports = grammar({
 
     elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, $._elvis, repeat($._NL), $.expression)),
 
-    in_expression: $ => prec.left(PREC.CHECK, seq($.expression, $._in_operator, $.expression)),
+    in_expression: $ => prec.left(PREC.CHECK, seq($.expression, $._in_operator, repeat($._NL), $.expression)),
 
-    is_expression: $ => prec(PREC.CHECK, seq($.expression, $._is_operator, $._type)),
+    is_expression: $ => prec(PREC.CHECK, seq($.expression, $._is_operator, repeat($._NL), $._type)),
 
-    comparison_expression: $ => prec.left(PREC.COMPARISON, seq($.expression, $._comparison_operator, $.expression)),
+    comparison_expression: $ => prec.left(PREC.COMPARISON, seq($.expression, $._comparison_operator, repeat($._NL), $.expression)),
 
-    equality_expression: $ => prec.left(PREC.EQUALITY, seq($.expression, $._equality_operator, $.expression)),
+    equality_expression: $ => prec.left(PREC.EQUALITY, seq($.expression, $._equality_operator, repeat($._NL), $.expression)),
 
     conjunction_expression: $ => prec.left(PREC.CONJUNCTION, seq(
       field('left', $.expression), 

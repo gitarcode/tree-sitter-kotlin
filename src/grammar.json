@@ -3789,6 +3789,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "is_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "spread_expression"
         },
         {
@@ -4128,6 +4132,13 @@
             }
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
             "type": "FIELD",
             "name": "expression",
             "content": {
@@ -4151,6 +4162,13 @@
           {
             "type": "SYMBOL",
             "name": "_as_operator"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           },
           {
             "type": "SYMBOL",
@@ -4218,10 +4236,6 @@
         {
           "type": "SYMBOL",
           "name": "in_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "is_expression"
         }
       ]
     },
@@ -4238,6 +4252,13 @@
           {
             "type": "SYMBOL",
             "name": "_multiplicative_operator"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           },
           {
             "type": "SYMBOL",
@@ -4287,6 +4308,13 @@
           {
             "type": "SYMBOL",
             "name": "_range_opeartor"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           },
           {
             "type": "SYMBOL",
@@ -4379,6 +4407,13 @@
             "name": "_in_operator"
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
             "type": "SYMBOL",
             "name": "expression"
           }
@@ -4398,6 +4433,13 @@
           {
             "type": "SYMBOL",
             "name": "_is_operator"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           },
           {
             "type": "SYMBOL",
@@ -4421,6 +4463,13 @@
             "name": "_comparison_operator"
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
             "type": "SYMBOL",
             "name": "expression"
           }
@@ -4440,6 +4489,13 @@
           {
             "type": "SYMBOL",
             "name": "_equality_operator"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           },
           {
             "type": "SYMBOL",
