@@ -3456,19 +3456,6 @@
         ]
       }
     },
-    "control_structure_body": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "block"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "statement"
-        }
-      ]
-    },
     "block": {
       "type": "PREC",
       "value": 1,
@@ -3598,7 +3585,7 @@
                 "name": "body",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "control_structure_body"
+                  "name": "_if_block"
                 }
               },
               {
@@ -3651,7 +3638,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "control_structure_body"
+              "name": "_if_block"
             }
           ]
         }
@@ -3679,7 +3666,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "control_structure_body"
+                "name": "_if_block"
               },
               {
                 "type": "BLANK"
@@ -5912,6 +5899,10 @@
             "name": "block"
           },
           {
+            "type": "SYMBOL",
+            "name": "_loop_statement"
+          },
+          {
             "type": "STRING",
             "value": ";"
           }
@@ -6133,7 +6124,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "control_structure_body"
+          "name": "_if_block"
         },
         {
           "type": "CHOICE",
@@ -8343,6 +8334,10 @@
     ],
     [
       "if_expression"
+    ],
+    [
+      "while_statement",
+      "_if_block"
     ]
   ],
   "precedences": [],

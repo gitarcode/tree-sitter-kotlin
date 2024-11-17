@@ -971,25 +971,6 @@
     "fields": {}
   },
   {
-    "type": "control_structure_body",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "block",
-          "named": true
-        },
-        {
-          "type": "statement",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "delegation_specifier",
     "named": true,
     "fields": {},
@@ -1051,11 +1032,27 @@
       "required": true,
       "types": [
         {
-          "type": "control_structure_body",
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "do_while_statement",
           "named": true
         },
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "for_statement",
+          "named": true
+        },
+        {
+          "type": "while_statement",
           "named": true
         }
       ]
@@ -1446,7 +1443,31 @@
         "required": false,
         "types": [
           {
-            "type": "control_structure_body",
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "assignment",
+            "named": true
+          },
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "do_while_statement",
+            "named": true
+          },
+          {
+            "type": "expression",
+            "named": true
+          },
+          {
+            "type": "for_statement",
+            "named": true
+          },
+          {
+            "type": "while_statement",
             "named": true
           }
         ]
@@ -1861,7 +1882,19 @@
             "named": true
           },
           {
+            "type": "do_while_statement",
+            "named": true
+          },
+          {
             "type": "expression",
+            "named": true
+          },
+          {
+            "type": "for_statement",
+            "named": true
+          },
+          {
+            "type": "while_statement",
             "named": true
           }
         ]
@@ -1893,7 +1926,19 @@
             "named": true
           },
           {
+            "type": "do_while_statement",
+            "named": true
+          },
+          {
             "type": "expression",
+            "named": true
+          },
+          {
+            "type": "for_statement",
+            "named": true
+          },
+          {
+            "type": "while_statement",
             "named": true
           }
         ]
@@ -3745,14 +3790,34 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "control_structure_body",
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "do_while_statement",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "for_statement",
           "named": true
         },
         {
           "type": "when_condition",
+          "named": true
+        },
+        {
+          "type": "while_statement",
           "named": true
         }
       ]
@@ -3809,11 +3874,27 @@
       "required": true,
       "types": [
         {
-          "type": "control_structure_body",
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "do_while_statement",
           "named": true
         },
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "for_statement",
+          "named": true
+        },
+        {
+          "type": "while_statement",
           "named": true
         }
       ]

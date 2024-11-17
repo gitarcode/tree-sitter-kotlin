@@ -165,7 +165,8 @@ module.exports = grammar({
     [$.when_entry],
     [$.function_type_parameters, $.parenthesized_type],
     [$._setter_getter],
-    [$.if_expression]
+    [$.if_expression],
+    [$.while_statement, $._if_block]
   ],
 
   extras: $ => [
@@ -676,8 +677,6 @@ module.exports = grammar({
       "@"
     )),
 
-    control_structure_body: $ => choice($.block, $.statement),
-
     block: $ => prec(PREC.BLOCK, seq(
       "{",
       repeat($._NL),
@@ -701,7 +700,7 @@ module.exports = grammar({
       field('expression', $.expression),
       ")",
       repeat($._NL),
-      optional(field('body', $.control_structure_body))
+      optional(field('body', $._if_block))
     )),
 
     while_statement: $ => seq(
@@ -711,13 +710,13 @@ module.exports = grammar({
       $.expression,
       ")",
       repeat($._NL),
-      choice(";", $.control_structure_body)
+      choice(";", $._if_block)
     ),
 
     do_while_statement: $ => prec.right(seq(
       "do",
       repeat($._NL),
-      optional($.control_structure_body),
+      optional($._if_block),
       repeat($._NL),
       "while",
       "(",
@@ -1082,6 +1081,7 @@ module.exports = grammar({
       $.expression, 
       $.assignment, 
       $.block,
+      $._loop_statement,
       ";"
     )),
 
@@ -1122,7 +1122,7 @@ module.exports = grammar({
       repeat($._NL),
       "->",
       repeat($._NL),
-      $.control_structure_body,
+      $._if_block,
       optional(seq($._semi, repeat($._NL)))
     ),
 

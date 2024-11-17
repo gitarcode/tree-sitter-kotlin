@@ -12,8 +12,7 @@ for (value in values) {}
       var_decl: (variable_declaration
                 id: (simple_identifier))
       expression: (simple_identifier)
-      body: (control_structure_body
-        (block)))))
+      body: (block))))
 
 ================================================================================
 Statements separated by semicolon
@@ -237,3 +236,33 @@ var positionPercentage: Float
                       (real_literal))
                     (value_argument
                       (real_literal))))))))))))
+
+================================================================================
+For statement in if expression
+================================================================================
+
+if (x > 0) 
+	for (i in 10) {
+    	println(i)
+    }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (if_expression
+      condition: (comparison_expression
+        (simple_identifier)
+        (integer_literal))
+      consequence: (for_statement
+        var_decl: (variable_declaration
+          id: (simple_identifier))
+        expression: (integer_literal)
+        body: (block
+          (statements
+            (statement
+              (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments
+                  (value_argument
+                    (simple_identifier)))))))))))

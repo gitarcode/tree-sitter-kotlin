@@ -107,15 +107,11 @@ val y = when(x) {
       (when_entry
         (when_condition
           (integer_literal))
-        (control_structure_body
-          (statement
-            (boolean_literal))))
+        (boolean_literal))
       (when_entry
         (when_condition
           (integer_literal))
-        (control_structure_body
-          (statement
-            (boolean_literal)))))))
+        (boolean_literal)))))
 
 ================================================================================
 When expression with type arguments
@@ -139,10 +135,8 @@ when (this) {
               (type_identifier)
               (type_arguments
                 (type_projection)))))
-        (control_structure_body
-          (statement
-            (return_expression
-              (null_literal))))))))
+        (return_expression
+          (null_literal))))))
 
 ================================================================================
 Value declaration with receiver type
@@ -408,7 +402,6 @@ when (dir) {
       (when_entry
         (when_condition
           (integer_literal))
-        (control_structure_body
           (block
             (statements
               (statement
@@ -432,7 +425,7 @@ when (dir) {
                   left: (dot_qualified_expression
                     receiver: (simple_identifier)
                     selector: (simple_identifier))
-                  right: (simple_identifier))))))))))
+                  right: (simple_identifier)))))))))
 
 ================================================================================
 Comments in Strings
@@ -925,17 +918,15 @@ when (this) {
       (when_subject
         (this_expression))
       (when_entry
-        (control_structure_body
-          (statement
-            (additive_expression
-              (string_literal
-                (interpolated_identifier)
-                (string_content)
-                (interpolated_identifier))
-              (if_expression
-                condition: (simple_identifier)
-                consequence: (simple_identifier)
-                alternative: (string_literal)))))))))
+        (additive_expression
+          (string_literal
+            (interpolated_identifier)
+            (string_content)
+            (interpolated_identifier))
+          (if_expression
+            condition: (simple_identifier)
+            consequence: (simple_identifier)
+            alternative: (string_literal)))))))
 
 ================================================================================
 When expression with trailing comma
@@ -955,14 +946,12 @@ when (x) {
       (when_entry
         (when_condition
           (integer_literal))
-        (control_structure_body
-          (statement
             (call_expression
               expression: (simple_identifier)
               args: (value_arguments
                 (value_argument
                   (string_literal
-                    (string_content)))))))))))
+                    (string_content)))))))))
 
 ================================================================================
 Range expression
@@ -1210,17 +1199,15 @@ when {
       (when_entry
         (when_condition
           (simple_identifier))
-        (control_structure_body
           (block
             (statements
               (statement
-                (simple_identifier))))))
+                (simple_identifier)))))
       (when_entry
-        (control_structure_body
-          (block
-            (statements
-              (statement
-                (simple_identifier)))))))))
+        (block
+          (statements
+            (statement
+              (simple_identifier))))))))
 
 ================================================================================
 Increment/decrement assignments
