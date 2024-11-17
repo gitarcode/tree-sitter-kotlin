@@ -7956,10 +7956,6 @@
       "type": "PATTERN",
       "value": "\\s*\\."
     },
-    "_ELVIS": {
-      "type": "PATTERN",
-      "value": "\\s*\\?:"
-    },
     "_CONJ": {
       "type": "PATTERN",
       "value": "\\s*&&"

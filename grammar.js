@@ -1463,7 +1463,6 @@ module.exports = grammar({
     _backtick_identifier: $ => /`[^\r\n`]+`/,
 
     _DOT: $ => /\s*\./,
-    _ELVIS: $ => /\s*\?:/,
     _CONJ: $ => /\s*&&/,
     _DISJ: $ => /\s*\|\|/,
     _NL: $ => /\r?\n/,
