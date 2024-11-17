@@ -161,7 +161,9 @@ module.exports = grammar({
     [$.call_expression, $.infix_expression, $.comparison_expression],
     [$.annotated_lambda, $.modifiers],
     [$.return_expression],
-
+    [$.lambda_literal],
+    [$.when_entry],
+    [$.function_type_parameters, $.parenthesized_type]
   ],
 
   extras: $ => [
@@ -626,18 +628,19 @@ module.exports = grammar({
     function_type: $ => seq(
       optional(seq($.user_type, choice($._DOT, "."))), // TODO: Support "real" types
       $.function_type_parameters,
-      $._ARROW,
+      repeat($._NL),
+      "->",
       repeat($._NL),
       $._type
     ),
 
     // A higher-than-default precedence resolves the ambiguity with 'parenthesized_type'
-    function_type_parameters: $ => prec.left(1, seq(
+    function_type_parameters: $ => seq(
       "(",
       repeat($._NL),
       optional(sep1(choice($.parameter, $._type), ",")),
       ")"
-    )),
+    ),
 
     parenthesized_type: $ => seq("(", repeat($._NL), $._type, ")"),
 
@@ -992,7 +995,7 @@ module.exports = grammar({
     lambda_literal: $ => seq(
       "{",
       repeat($._NL),
-      optional(seq(optional(field('parameters', $.lambda_parameters)), $._ARROW, repeat($._NL))),
+      optional(seq(optional(field('parameters', $.lambda_parameters)), repeat($._NL), "->", repeat($._NL))),
       optional(field('body', $.statements)),
       "}"
     ),
@@ -1103,7 +1106,8 @@ module.exports = grammar({
         ),
         $._ELSE
       ),
-      $._ARROW,
+      repeat($._NL),
+      "->",
       repeat($._NL),
       $.control_structure_body,
       optional(seq($._semi, repeat($._NL)))
@@ -1464,8 +1468,8 @@ module.exports = grammar({
     _DISJ: $ => /\s*\|\|/,
     _NL: $ => /\r?\n/,
     _ELSE: $ => token(prec(1, /\s*else\s*/)),
-    _ARROW: $ => /\s*->/,
     _semi: $ => choice(";", $._NL),
+    _semis: $ => repeat1(choice(";", $._NL)),
 
     line_comment: $ => token(seq('//', /[^\r\n]*/)),
 
