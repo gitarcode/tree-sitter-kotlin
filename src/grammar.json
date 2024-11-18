@@ -4706,6 +4706,13 @@
             "value": "<"
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
             "type": "SEQ",
             "members": [
               {
@@ -4718,8 +4725,22 @@
                   "type": "SEQ",
                   "members": [
                     {
+                      "type": "REPEAT",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "_NL"
+                      }
+                    },
+                    {
                       "type": "STRING",
                       "value": ","
+                    },
+                    {
+                      "type": "REPEAT",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "_NL"
+                      }
                     },
                     {
                       "type": "SYMBOL",
@@ -4729,6 +4750,13 @@
                 }
               }
             ]
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           },
           {
             "type": "STRING",

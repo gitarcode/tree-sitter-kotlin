@@ -937,3 +937,51 @@ fun f(
                       (string_content))))))))))
     body: (function_body
       (block))))
+
+
+================================================================================
+Newline on type arguments
+================================================================================
+
+internal object TransformRequestBodyHook : ClientHook<
+    suspend TransformRequestBodyContext.(
+        request: HttpRequestBuilder,
+        content: Any,
+        bodyType: TypeInfo?
+    ) -> OutgoingContent?> {
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (object_declaration
+    modifiers: (modifiers
+      (visibility_modifier))
+    name: (simple_identifier)
+    (delegation_specifier
+      (user_type
+        (type_identifier)
+        (type_arguments
+          (type_projection
+            (type_modifiers)
+            (function_type
+              (user_type
+                (type_identifier))
+              (function_type_parameters
+                (parameter
+                  name: (simple_identifier)
+                  type: (user_type
+                    (type_identifier)))
+                (parameter
+                  name: (simple_identifier)
+                  type: (user_type
+                    (type_identifier)))
+                (parameter
+                  name: (simple_identifier)
+                  type: (nullable_type
+                    type: (user_type
+                      (type_identifier)))))
+              (nullable_type
+                type: (user_type
+                  (type_identifier))))))))
+    body: (class_body)))

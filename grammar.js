@@ -900,7 +900,13 @@ module.exports = grammar({
     // Here we're defining a dynamic precedence for type arguments to resolve the ambiguity
     // between the comparison and generic call syntax.
     // Any expression such as a<b>(c) should be resolved in favor of the generic call.
-    type_arguments: $ => prec.dynamic(PREC.GENERIC, seq("<", sep1($.type_projection, ","), ">")),
+    type_arguments: $ => prec.dynamic(PREC.GENERIC, seq(
+      "<", 
+      repeat($._NL),
+      sep1($.type_projection, repeat($._NL), ",", repeat($._NL)), 
+      repeat($._NL),
+      ">"
+    )),
 
     value_arguments: $ => seq(
       "(",
