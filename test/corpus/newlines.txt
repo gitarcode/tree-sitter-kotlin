@@ -705,7 +705,7 @@ while (iterator.hasNext())
 (source_file
   (statement
     (while_statement
-      (call_expression
+      expression: (call_expression
         expression: (dot_qualified_expression
           receiver: (simple_identifier)
           selector: (simple_identifier))

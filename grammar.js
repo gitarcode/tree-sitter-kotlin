@@ -712,8 +712,11 @@ module.exports = grammar({
       repeat($._NL),
       repeat($.annotation),
       field('var_decl', choice($.variable_declaration, $.multi_variable_declaration)),
+      repeat($._NL),
       "in",
+      repeat($._NL),
       field('expression', $.expression),
+      repeat($._NL),
       ")",
       repeat($._NL),
       optional(field('body', $._if_block))
@@ -723,7 +726,8 @@ module.exports = grammar({
       "while",
       "(",
       repeat($._NL),
-      $.expression,
+      field('expression', $.expression),
+      repeat($._NL),
       ")",
       repeat($._NL),
       choice(";", $._if_block)

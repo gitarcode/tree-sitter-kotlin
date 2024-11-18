@@ -3634,8 +3634,22 @@
             }
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
             "type": "STRING",
             "value": "in"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           },
           {
             "type": "FIELD",
@@ -3643,6 +3657,13 @@
             "content": {
               "type": "SYMBOL",
               "name": "expression"
+            }
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
             }
           },
           {
@@ -3694,8 +3715,19 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "expression"
+          "type": "FIELD",
+          "name": "expression",
+          "content": {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
         },
         {
           "type": "STRING",
