@@ -169,7 +169,8 @@ module.exports = grammar({
     [$.while_statement, $._if_block],
     [$.secondary_constructor],
     [$.type_parameter],
-    [$.explicit_delegation, $._unary_expression]
+    [$.explicit_delegation, $._unary_expression],
+    [$.class_body, $._semi]
   ],
 
   extras: $ => [
@@ -402,9 +403,9 @@ module.exports = grammar({
     // Class members
     // ==========
 
-    _class_member_declarations: $ => repeat1(seq(
-      $._class_member_declaration, 
-      optional(seq($._semi, repeat($._NL))),
+    _class_member_declarations: $ => repeat1(choice(
+      $._class_member_declaration,
+      $._semi
     )),
 
     _class_member_declaration: $ => choice(

@@ -766,3 +766,25 @@ private class SendBroadcast(
               (type_projection
                 type: (user_type
                   (type_identifier))))))))))
+
+================================================================================
+Class members and semicolon
+================================================================================
+
+class A {;
+	fun f() {
+    }
+    ;
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    name: (simple_identifier)
+    body: (class_body
+      (function_declaration
+        name: (simple_identifier)
+        parameters: (function_value_parameters)
+        body: (function_body
+          (block))))))

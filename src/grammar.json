@@ -1441,35 +1441,15 @@
     "_class_member_declarations": {
       "type": "REPEAT1",
       "content": {
-        "type": "SEQ",
+        "type": "CHOICE",
         "members": [
           {
             "type": "SYMBOL",
             "name": "_class_member_declaration"
           },
           {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "_semi"
-                  },
-                  {
-                    "type": "REPEAT",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_NL"
-                    }
-                  }
-                ]
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "_semi"
           }
         ]
       }
@@ -8415,6 +8395,10 @@
     [
       "explicit_delegation",
       "_unary_expression"
+    ],
+    [
+      "class_body",
+      "_semi"
     ]
   ],
   "precedences": [],
