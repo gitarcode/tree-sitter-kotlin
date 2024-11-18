@@ -190,7 +190,8 @@ module.exports = grammar({
   ],
 
   supertypes: $ => [
-    $.expression
+    $.expression,
+    $.jump_expression
   ],
 
   word: $ => $._alpha_identifier,
@@ -759,7 +760,8 @@ module.exports = grammar({
     expression: $ => choice(
       $._unary_expression,
       $._binary_expression,
-      $._primary_expression
+      $._primary_expression,
+      $.jump_expression
     ),
 
     // Unary expressions
@@ -772,8 +774,13 @@ module.exports = grammar({
       $.annotated_expression,
       $.labeled_expression,
       $.if_expression,
+    ),
+
+    jump_expression: $ => choice(
       $.return_expression,
-      $.throw_expression
+      $.throw_expression,
+      $.continue_expression,
+      $.break_expression
     ),
 
     postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $.expression), field('operator', $.postfix_unary_operator))),
@@ -950,8 +957,6 @@ module.exports = grammar({
       $.try_expression,
       $.dot_qualified_expression,
       $.index_access_expression,
-      $.continue_expression,
-      $.break_expression
     ),
 
     parenthesized_expression: $ => seq("(", repeat($._NL), $.expression, repeat($._NL), ")"),
