@@ -3685,7 +3685,7 @@
                 "name": "body",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "_if_block"
+                  "name": "_control_body_structure"
                 }
               },
               {
@@ -3749,7 +3749,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "_if_block"
+              "name": "_control_body_structure"
             }
           ]
         }
@@ -3777,7 +3777,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_if_block"
+                "name": "_control_body_structure"
               },
               {
                 "type": "BLANK"
@@ -5930,7 +5930,7 @@
               "name": "consequence",
               "content": {
                 "type": "SYMBOL",
-                "name": "_if_block"
+                "name": "_control_body_structure"
               }
             },
             {
@@ -5944,7 +5944,7 @@
                       "name": "consequence",
                       "content": {
                         "type": "SYMBOL",
-                        "name": "_if_block"
+                        "name": "_control_body_structure"
                       }
                     },
                     {
@@ -5975,7 +5975,7 @@
                   "name": "alternative",
                   "content": {
                     "type": "SYMBOL",
-                    "name": "_if_block"
+                    "name": "_control_body_structure"
                   }
                 }
               ]
@@ -6019,7 +6019,7 @@
         }
       ]
     },
-    "_if_block": {
+    "_control_body_structure": {
       "type": "PREC_RIGHT",
       "value": 0,
       "content": {
@@ -6263,7 +6263,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_if_block"
+          "name": "_control_body_structure"
         },
         {
           "type": "CHOICE",
@@ -8472,7 +8472,7 @@
     ],
     [
       "while_statement",
-      "_if_block"
+      "_control_body_structure"
     ],
     [
       "secondary_constructor"

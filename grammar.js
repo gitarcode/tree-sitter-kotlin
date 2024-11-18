@@ -166,7 +166,7 @@ module.exports = grammar({
     [$.function_type_parameters, $.parenthesized_type],
     [$._setter_getter],
     [$.if_expression],
-    [$.while_statement, $._if_block],
+    [$.while_statement, $._control_body_structure],
     [$.secondary_constructor],
     [$.type_parameter],
     [$.explicit_delegation, $._unary_expression],
@@ -719,7 +719,7 @@ module.exports = grammar({
       repeat($._NL),
       ")",
       repeat($._NL),
-      optional(field('body', $._if_block))
+      optional(field('body', $._control_body_structure))
     )),
 
     while_statement: $ => seq(
@@ -730,13 +730,13 @@ module.exports = grammar({
       repeat($._NL),
       ")",
       repeat($._NL),
-      choice(";", $._if_block)
+      choice(";", $._control_body_structure)
     ),
 
     do_while_statement: $ => prec.right(seq(
       "do",
       repeat($._NL),
-      optional($._if_block),
+      optional($._control_body_structure),
       repeat($._NL),
       "while",
       "(",
@@ -1084,13 +1084,13 @@ module.exports = grammar({
       $._if_condition,
       repeat($._NL),
       choice(
-        field('consequence', $._if_block),
+        field('consequence', $._control_body_structure),
         seq(
-          optional(field('consequence', $._if_block)),
+          optional(field('consequence', $._control_body_structure)),
           repeat($._NL),
           "else",
           repeat($._NL),
-          field('alternative', $._if_block)
+          field('alternative', $._control_body_structure)
         )
       )
     ),
@@ -1103,7 +1103,7 @@ module.exports = grammar({
       ")",
     ),
 
-    _if_block: $ => prec.right(choice(
+    _control_body_structure: $ => prec.right(choice(
       $.expression, 
       $.assignment, 
       $.block,
@@ -1148,7 +1148,7 @@ module.exports = grammar({
       repeat($._NL),
       "->",
       repeat($._NL),
-      $._if_block,
+      $._control_body_structure,
       optional(seq($._semi, repeat($._NL)))
     ),
 
