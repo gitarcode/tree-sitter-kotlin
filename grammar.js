@@ -726,7 +726,7 @@ module.exports = grammar({
       "while",
       "(",
       repeat($._NL),
-      field('expression', $.expression),
+      $.expression,
       repeat($._NL),
       ")",
       repeat($._NL),

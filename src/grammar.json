@@ -3715,12 +3715,8 @@
           }
         },
         {
-          "type": "FIELD",
-          "name": "expression",
-          "content": {
-            "type": "SYMBOL",
-            "name": "expression"
-          }
+          "type": "SYMBOL",
+          "name": "expression"
         },
         {
           "type": "REPEAT",
