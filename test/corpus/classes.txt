@@ -727,3 +727,42 @@ internal abstract class MessageQueue : MutableList<Runnable> by ArrayDeque() {
           (inheritance_modifier))
         name: (simple_identifier)
         parameters: (function_value_parameters)))))
+
+================================================================================
+Explicit delegation with type cast
+================================================================================
+
+private class SendBroadcast(
+    val cont: CancellableContinuation<Boolean>
+) : Waiter by cont as CancellableContinuationImpl<Boolean>
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    modifiers: (modifiers
+      (visibility_modifier))
+    name: (simple_identifier)
+    (primary_constructor
+      (class_parameters
+        (class_parameter
+          binding_pattern: (binding_pattern_kind)
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)
+            (type_arguments
+              (type_projection
+                type: (user_type
+                  (type_identifier))))))))
+    (delegation_specifier
+      (explicit_delegation
+        (user_type
+          (type_identifier))
+        (as_expression
+          (simple_identifier)
+          type: (user_type
+            (type_identifier)
+            (type_arguments
+              (type_projection
+                type: (user_type
+                  (type_identifier))))))))))

@@ -168,7 +168,8 @@ module.exports = grammar({
     [$.if_expression],
     [$.while_statement, $._if_block],
     [$.secondary_constructor],
-    [$.type_parameter]
+    [$.type_parameter],
+    [$.explicit_delegation, $._unary_expression]
   ],
 
   extras: $ => [
@@ -363,7 +364,11 @@ module.exports = grammar({
       ),
       "by",
       repeat($._NL),
-      choice($._common_primary_expression, alias($.simple_call_expression, $.call_expression))
+      choice(
+        $._common_primary_expression, 
+        alias($.simple_call_expression, $.call_expression),
+        $.as_expression
+      )
     ),
 
     type_parameters: $ => seq(

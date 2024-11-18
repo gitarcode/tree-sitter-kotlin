@@ -1183,6 +1183,10 @@
               },
               "named": true,
               "value": "call_expression"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "as_expression"
             }
           ]
         }
@@ -8407,6 +8411,10 @@
     ],
     [
       "type_parameter"
+    ],
+    [
+      "explicit_delegation",
+      "_unary_expression"
     ]
   ],
   "precedences": [],

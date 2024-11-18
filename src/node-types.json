@@ -1290,6 +1290,10 @@
           "named": true
         },
         {
+          "type": "as_expression",
+          "named": true
+        },
+        {
           "type": "bin_literal",
           "named": true
         },
