@@ -170,7 +170,9 @@ module.exports = grammar({
     [$.secondary_constructor],
     [$.type_parameter],
     [$.explicit_delegation, $._unary_expression],
-    [$.class_body, $._semi]
+    [$.class_body, $._semi],
+    [$.parameter, $._simple_user_type],
+    [$.function_type_parameters]
   ],
 
   extras: $ => [
@@ -656,7 +658,8 @@ module.exports = grammar({
     function_type_parameters: $ => seq(
       "(",
       repeat($._NL),
-      optional(sep1(choice($.parameter, $._type), ",")),
+      optional(sep1(choice($.parameter, $._type), repeat($._NL), ",", repeat($._NL))),
+      repeat($._NL),
       ")"
     ),
 
@@ -666,6 +669,7 @@ module.exports = grammar({
       "(",
       repeat($._NL),
       choice($.user_type, $.parenthesized_user_type),
+      repeat($._NL),
       ")"
     ),
 

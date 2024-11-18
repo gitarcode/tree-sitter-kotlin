@@ -870,3 +870,70 @@ abstract class UserTypeBuilder<
             (dot_qualified_expression
               receiver: (simple_identifier)
               selector: (simple_identifier))))))))
+
+================================================================================
+Function type parameters on new line
+================================================================================
+
+fun f(
+	onNoWaiterSuspend: (
+      segm: ChannelSegment<E>,
+      i: Int,
+      element: E,
+      s: Long
+  ) -> R = { _, _, _, _ -> error("unexpected") }) {
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (function_type
+            (function_type_parameters
+              (parameter
+                name: (simple_identifier)
+                type: (user_type
+                  (type_identifier)
+                  (type_arguments
+                    (type_projection
+                      type: (user_type
+                        (type_identifier))))))
+              (parameter
+                name: (simple_identifier)
+                type: (user_type
+                  (type_identifier)))
+              (parameter
+                name: (simple_identifier)
+                type: (user_type
+                  (type_identifier)))
+              (parameter
+                name: (simple_identifier)
+                type: (user_type
+                  (type_identifier))))
+            type: (user_type
+              (type_identifier))))
+        initializer: (lambda_literal
+          parameters: (lambda_parameters
+            (variable_declaration
+              id: (simple_identifier))
+            (variable_declaration
+              id: (simple_identifier))
+            (variable_declaration
+              id: (simple_identifier))
+            (variable_declaration
+              id: (simple_identifier)))
+          body: (statements
+            (statement
+              (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments
+                  (value_argument
+                    (string_literal
+                      (string_content))))))))))
+    body: (function_body
+      (block))))
