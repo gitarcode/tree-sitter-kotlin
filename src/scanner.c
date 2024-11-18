@@ -16,8 +16,6 @@ static inline void advance(TSLexer *lexer) {
     lexer->advance(lexer, false); 
 }
 
-static inline void skip(TSLexer *lexer) { lexer->advance(lexer, true); }
-
 static inline void skip_whitespace(TSLexer *lexer) {
     while (iswspace(lexer->lookahead)) {
         advance(lexer);
