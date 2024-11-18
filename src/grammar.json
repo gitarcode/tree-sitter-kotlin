@@ -2695,6 +2695,13 @@
           "value": "constructor"
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "FIELD",
           "name": "parameters",
           "content": {
@@ -2709,8 +2716,22 @@
               "type": "SEQ",
               "members": [
                 {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
+                  }
+                },
+                {
                   "type": "STRING",
                   "value": ":"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
+                  }
                 },
                 {
                   "type": "SYMBOL",
@@ -8352,6 +8373,9 @@
     [
       "while_statement",
       "_if_block"
+    ],
+    [
+      "secondary_constructor"
     ]
   ],
   "precedences": [],

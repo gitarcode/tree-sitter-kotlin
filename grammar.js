@@ -166,7 +166,8 @@ module.exports = grammar({
     [$.function_type_parameters, $.parenthesized_type],
     [$._setter_getter],
     [$.if_expression],
-    [$.while_statement, $._if_block]
+    [$.while_statement, $._if_block],
+    [$.secondary_constructor]
   ],
 
   extras: $ => [
@@ -546,8 +547,9 @@ module.exports = grammar({
     secondary_constructor: $ => seq(
       optional(field('modifiers', $.modifiers)),
       "constructor",
+      repeat($._NL),
       field('parameters', $.function_value_parameters),
-      optional(seq(":", $.constructor_delegation_call)),
+      optional(seq(repeat($._NL), ":", repeat($._NL), $.constructor_delegation_call)),
       optional(field('block', $.block))
     ),
 
