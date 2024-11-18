@@ -784,3 +784,89 @@ when (val animatedImage = state) {
             (value_argument
               (string_literal
                 (string_content)))))))))
+
+================================================================================
+Colon on newline after secondary constructor
+================================================================================
+
+class A {
+  constructor(a: Stirng)
+    : this(a)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    name: (simple_identifier)
+    body: (class_body
+      (secondary_constructor
+        parameters: (function_value_parameters
+          (function_value_parameter
+            parameter: (parameter
+              name: (simple_identifier)
+              type: (user_type
+                (type_identifier)))))
+        (constructor_delegation_call
+          (value_arguments
+            (value_argument
+              (simple_identifier))))))))
+
+================================================================================
+Newline in type parameters
+================================================================================
+
+abstract class UserTypeBuilder<
+        TType : UserType,
+        TBuilder : UserType.UserTypeBuilder<TType, TBuilder>
+> internal constructor(
+        type: TType
+) : AbstractUserElementBuilder<TType, TBuilder>(type.mixin)
+
+--------------------------------------------------------------------------------
+(source_file
+  (class_declaration
+    modifiers: (modifiers
+      (inheritance_modifier))
+    name: (simple_identifier)
+    (type_parameters
+      (type_parameter
+        (type_identifier)
+        type: (user_type
+          (type_identifier)))
+      (type_parameter
+        (type_identifier)
+        type: (user_type
+          (type_identifier)
+          (type_identifier)
+          (type_arguments
+            (type_projection
+              type: (user_type
+                (type_identifier)))
+            (type_projection
+              type: (user_type
+                (type_identifier)))))))
+    (primary_constructor
+      modifiers: (modifiers
+        (visibility_modifier))
+      (class_parameters
+        (class_parameter
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
+    (delegation_specifier
+      (constructor_invocation
+        (user_type
+          (type_identifier)
+          (type_arguments
+            (type_projection
+              type: (user_type
+                (type_identifier)))
+            (type_projection
+              type: (user_type
+                (type_identifier)))))
+        (value_arguments
+          (value_argument
+            (dot_qualified_expression
+              receiver: (simple_identifier)
+              selector: (simple_identifier))))))))

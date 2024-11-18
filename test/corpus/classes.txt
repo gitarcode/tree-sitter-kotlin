@@ -727,30 +727,3 @@ internal abstract class MessageQueue : MutableList<Runnable> by ArrayDeque() {
           (inheritance_modifier))
         name: (simple_identifier)
         parameters: (function_value_parameters)))))
-
-================================================================================
-Colon on newline after secondary constructor
-================================================================================
-
-class A {
-  constructor(a: Stirng)
-    : this(a)
-}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (class_declaration
-    name: (simple_identifier)
-    body: (class_body
-      (secondary_constructor
-        parameters: (function_value_parameters
-          (function_value_parameter
-            parameter: (parameter
-              name: (simple_identifier)
-              type: (user_type
-                (type_identifier)))))
-        (constructor_delegation_call
-          (value_arguments
-            (value_argument
-              (simple_identifier))))))))

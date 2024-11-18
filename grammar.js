@@ -167,7 +167,8 @@ module.exports = grammar({
     [$._setter_getter],
     [$.if_expression],
     [$.while_statement, $._if_block],
-    [$.secondary_constructor]
+    [$.secondary_constructor],
+    [$.type_parameter]
   ],
 
   extras: $ => [
@@ -368,7 +369,9 @@ module.exports = grammar({
     type_parameters: $ => seq(
       repeat($._NL),
       "<", 
-      sep1($.type_parameter, ","), 
+      repeat($._NL),
+      sep1($.type_parameter, repeat($._NL), ",", repeat($._NL)), 
+      repeat($._NL),
       ">"
     ),
 
