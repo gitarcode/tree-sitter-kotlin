@@ -180,6 +180,7 @@ module.exports = grammar({
     $._bin_plus,
     $._safe_dot,
     $._elvis,
+    $._dot
   ],
 
   supertypes: $ => [
@@ -444,7 +445,7 @@ module.exports = grammar({
       optional(field('modifiers', $.modifiers)),
       "fun",
       optional($.type_parameters),
-      optional(seq(repeat($._NL), field('receiver_type', $.receiver_type), repeat($._NL), optional('.'))),
+      optional(seq(repeat($._NL), field('receiver_type', $.receiver_type), repeat($._NL), optional(choice($._dot, '.')))),
       field('name', $.simple_identifier),
       field('parameters', $.function_value_parameters),
       optional(seq(repeat($._NL), ":", repeat($._NL), field('type', $._type))),
@@ -468,7 +469,7 @@ module.exports = grammar({
       optional(field('modifiers', $.modifiers)),
       $.binding_pattern_kind,
       optional(field('type_parameters', $.type_parameters)),
-      optional(seq(field('receiver_type', $.receiver_type), '.')),
+      optional(seq(field('receiver_type', $.receiver_type), choice($._dot, '.'))),
       field('var_decl', choice($.variable_declaration, $.multi_variable_declaration)),
       optional(field('type_constraints', $.type_constraints)),
       optional(choice(
@@ -614,7 +615,7 @@ module.exports = grammar({
     ),
 
     user_type: $ => seq(
-      $._simple_user_type, repeat(seq(choice($._DOT, "."), repeat($._NL), $._simple_user_type))
+      $._simple_user_type, repeat(seq(choice($._dot, "."), repeat($._NL), $._simple_user_type))
     ),
 
     _simple_user_type: $ => seq(
@@ -632,7 +633,7 @@ module.exports = grammar({
     _type_projection_modifier: $ => $.variance_modifier,
 
     function_type: $ => seq(
-      optional(seq($.user_type, choice($._DOT, "."))), // TODO: Support "real" types
+      optional(seq($.user_type, choice($._dot, "."))), // TODO: Support "real" types
       $.function_type_parameters,
       repeat($._NL),
       "->",
@@ -760,7 +761,7 @@ module.exports = grammar({
 
     dot_qualified_expression: $ => prec(PREC.DOT, seq(
       field('receiver', choice($.expression)),
-      choice(choice($._DOT, "."), $._safe_dot),
+      choice(choice($._dot, "."), $._safe_dot),
       repeat($._NL),
       field('selector', choice(
         $.simple_identifier,
@@ -1465,7 +1466,6 @@ module.exports = grammar({
 
     _backtick_identifier: $ => /`[^\r\n`]+`/,
 
-    _DOT: $ => /\s*\./,
     _CONJ: $ => /\s*&&/,
     _DISJ: $ => /\s*\|\|/,
     _NL: $ => /\r?\n/,

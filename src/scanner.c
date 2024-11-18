@@ -8,6 +8,7 @@ enum TokenType {
     BIN_PLUS,
     SAFE_DOT,
     ELVIS,
+    DOT
 };
 
 static inline void advance(TSLexer *lexer) { 
@@ -31,6 +32,20 @@ unsigned tree_sitter_kotlin_external_scanner_serialize(void *payload, char *buff
 
 void tree_sitter_kotlin_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {}
 
+static bool line_comment(TSLexer *lexer) {
+    if (lexer->lookahead == '/') {
+        advance(lexer);
+        if (lexer->lookahead == '/') {
+            advance(lexer);
+            while (lexer->lookahead != '\n') {
+                advance(lexer);
+            }
+            return true;
+        }
+    }
+    return false;
+}
+
 bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
     if (valid_symbols[BIN_MIN]) {
         lexer->result_symbol = BIN_MIN;
@@ -48,12 +63,39 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
     if (valid_symbols[BIN_PLUS]) {
         lexer->result_symbol = BIN_PLUS;
         lexer->mark_end(lexer);
-        skip_whitespace(lexer);
+        while (iswspace(lexer->lookahead) || lexer->lookahead == '/') {
+            skip_whitespace(lexer);
+            if (lexer->lookahead == '/') {
+                if (!line_comment(lexer)) {
+                    return false;
+                }
+            }
+        }
         if (lexer->lookahead == '+') {
             advance(lexer);
             lexer->mark_end(lexer);
             // do not recognize ++, +=
             if (lexer -> lookahead != '+' && lexer -> lookahead != '=') {
+                return true;
+            }
+        }
+    }
+    if (valid_symbols[DOT]) {
+        lexer->mark_end(lexer);
+        while (iswspace(lexer->lookahead) || lexer->lookahead == '/') {
+            skip_whitespace(lexer);
+            if (lexer->lookahead == '/') {
+                if (!line_comment(lexer)) {
+                    return false;
+                }
+            }
+        }
+        if (lexer->lookahead == '.') {
+            advance(lexer);
+            lexer->mark_end(lexer);
+            if (lexer -> lookahead != '.') {
+                lexer->result_symbol = DOT;
+                lexer->mark_end(lexer);
                 return true;
             }
         }

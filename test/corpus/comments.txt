@@ -154,7 +154,6 @@ f(1 //line comment
         (value_argument
           (additive_expression
             (integer_literal)
-            (line_comment)
             (multiline_comment)
             (integer_literal)))))))
 

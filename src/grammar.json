@@ -1831,8 +1831,17 @@
                     "type": "CHOICE",
                     "members": [
                       {
-                        "type": "STRING",
-                        "value": "."
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "_dot"
+                          },
+                          {
+                            "type": "STRING",
+                            "value": "."
+                          }
+                        ]
                       },
                       {
                         "type": "BLANK"
@@ -2078,8 +2087,17 @@
                   }
                 },
                 {
-                  "type": "STRING",
-                  "value": "."
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_dot"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "."
+                    }
+                  ]
                 }
               ]
             },
@@ -3099,7 +3117,7 @@
                 "members": [
                   {
                     "type": "SYMBOL",
-                    "name": "_DOT"
+                    "name": "_dot"
                   },
                   {
                     "type": "STRING",
@@ -3208,7 +3226,7 @@
                   "members": [
                     {
                       "type": "SYMBOL",
-                      "name": "_DOT"
+                      "name": "_dot"
                     },
                     {
                       "type": "STRING",
@@ -3852,7 +3870,7 @@
                 "members": [
                   {
                     "type": "SYMBOL",
-                    "name": "_DOT"
+                    "name": "_dot"
                   },
                   {
                     "type": "STRING",
@@ -7983,10 +8001,6 @@
       "type": "PATTERN",
       "value": "`[^\\r\\n`]+`"
     },
-    "_DOT": {
-      "type": "PATTERN",
-      "value": "\\s*\\."
-    },
     "_CONJ": {
       "type": "PATTERN",
       "value": "\\s*&&"
@@ -8357,6 +8371,10 @@
     {
       "type": "SYMBOL",
       "name": "_elvis"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_dot"
     }
   ],
   "inline": [],
