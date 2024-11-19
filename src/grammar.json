@@ -2160,6 +2160,13 @@
           ]
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
@@ -8553,6 +8560,14 @@
     ],
     [
       "_top_level_statement"
+    ],
+    [
+      "property_declaration",
+      "_setter_getter"
+    ],
+    [
+      "type_constraints",
+      "property_declaration"
     ]
   ],
   "precedences": [],

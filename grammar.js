@@ -171,7 +171,9 @@ module.exports = grammar({
     [$.class_body, $._semi],
     [$.parameter, $._simple_user_type],
     [$.function_type_parameters],
-    [$._top_level_statement]
+    [$._top_level_statement],
+    [$.property_declaration, $._setter_getter],
+    [$.type_constraints, $.property_declaration]
   ],
 
   extras: $ => [
@@ -484,6 +486,7 @@ module.exports = grammar({
       optional(seq(field('receiver_type', $.receiver_type), choice($._dot, '.'))),
       field('var_decl', choice($.variable_declaration, $.multi_variable_declaration)),
       optional(field('type_constraints', $.type_constraints)),
+      repeat($._NL),
       optional(choice(
         seq("=", repeat($._NL), field('initializer', $.expression)),
         $.property_delegate

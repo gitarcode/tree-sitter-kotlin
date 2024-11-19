@@ -983,3 +983,23 @@ internal object TransformRequestBodyHook : ClientHook<
                 type: (user_type
                   (type_identifier))))))))
     body: (class_body)))
+
+================================================================================
+Newline after property declaration
+================================================================================
+
+private val property: Boolean
+  = true
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    modifiers: (modifiers
+      (visibility_modifier))
+    (binding_pattern_kind)
+    var_decl: (variable_declaration
+      id: (simple_identifier)
+      type: (user_type
+        (type_identifier)))
+    initializer: (boolean_literal)))
