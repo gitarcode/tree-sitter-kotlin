@@ -36,6 +36,7 @@ class Foo(){
                 left: (dot_qualified_expression
                   receiver: (this_expression)
                   selector: (simple_identifier))
+                op: (assignment_operator)
                 right: (simple_identifier)))))))))
 
 ================================================================================
@@ -72,5 +73,6 @@ fun main(){
               left: (index_access_expression
                 expression: (simple_identifier)
                 index: (integer_literal))
+              op: (assignment_operator)  
               right: (string_literal
                 (string_content)))))))))

@@ -11,11 +11,13 @@ something as A
   (statement
     (as_expression
       (simple_identifier)
+      (as_operator)
       type: (user_type
         (type_identifier))))
   (statement      
     (as_expression
       (simple_identifier)
+      (as_operator)
       type: (user_type
         (type_identifier)))))
 
@@ -31,6 +33,7 @@ something as Some.NestedType
   (statement
     (as_expression
       (simple_identifier)
+      (as_operator)
       type: (user_type
         (type_identifier)
         (type_identifier)))))
@@ -47,6 +50,7 @@ somethingElse as A.Deeply.Nested.Type
   (statement
     (as_expression
       (simple_identifier)
+      (as_operator)
       type: (user_type
         (type_identifier)
         (type_identifier)
@@ -65,6 +69,7 @@ something as Generic<*>
   (statement
     (as_expression
       (simple_identifier)
+      (as_operator)
       type: (user_type
         (type_identifier)
         (type_arguments
@@ -83,6 +88,7 @@ something as Generic<A, Type>
   (statement
     (as_expression
       (simple_identifier)
+      (as_operator)
       type: (user_type
         (type_identifier)
         (type_arguments
@@ -92,6 +98,7 @@ something as Generic<A, Type>
   (statement
     (as_expression
       (simple_identifier)
+      (as_operator)
       type: (user_type
         (type_identifier)
         (type_arguments
@@ -115,6 +122,7 @@ consumer as (Int) -> Unit
   (statement
     (as_expression
       (simple_identifier)
+      (as_operator)
       (function_type
         (function_type_parameters)
         type: (user_type
@@ -122,6 +130,7 @@ consumer as (Int) -> Unit
   (statement
     (as_expression
       (simple_identifier)
+      (as_operator)
       (function_type
         (function_type_parameters
           type: (user_type
@@ -142,6 +151,7 @@ b as (Nested.Type, (Int)) -> Unit
   (statement
     (as_expression
       (simple_identifier)
+      (as_operator)
       (function_type
         (function_type_parameters
           type: (user_type
@@ -157,6 +167,7 @@ b as (Nested.Type, (Int)) -> Unit
   (statement
     (as_expression
       (simple_identifier)
+      (as_operator)
       (function_type
         (function_type_parameters
           type: (user_type
@@ -180,6 +191,7 @@ a as (first: A, second: B) -> Unit
   (statement
     (as_expression
       (simple_identifier)
+      (as_operator)
       (function_type
         (function_type_parameters
           (parameter
@@ -205,6 +217,7 @@ a as T.() -> Unit
   (statement
     (as_expression
       (simple_identifier)
+      (as_operator)
       (function_type
         (user_type
           (type_identifier))
@@ -314,6 +327,7 @@ a as T & F
   (statement
     (as_expression
     (simple_identifier)
+    (as_operator)
     (not_nullable_type
       (user_type
         (type_identifier))
@@ -332,6 +346,7 @@ a as @Foo T & F
   (statement
     (as_expression
       (simple_identifier)
+      (as_operator)
       (not_nullable_type
         (type_modifiers
           (annotation

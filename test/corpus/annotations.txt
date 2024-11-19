@@ -292,6 +292,7 @@ internal fun parse(xml: String): Element {
                                 receiver: (parenthesized_expression
                                   (as_expression
                                     (simple_identifier)
+                                    (as_operator)
                                     type: (user_type
                                       (type_identifier))))
                                 selector: (simple_identifier))
@@ -306,14 +307,17 @@ internal fun parse(xml: String): Element {
                         (statement
                           (assignment
                             left: (simple_identifier)
+                            op: (assignment_operator)
                             right: (boolean_literal)))
                         (statement
                           (assignment
                             left: (simple_identifier)
+                            op: (assignment_operator)
                             right: (boolean_literal)))
                         (statement
                           (assignment
                             left: (simple_identifier)
+                            op: (assignment_operator)
                             right: (simple_identifier)))))))
                 selector: (simple_identifier))
               args: (value_arguments)))

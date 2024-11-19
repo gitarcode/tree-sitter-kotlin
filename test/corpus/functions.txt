@@ -92,6 +92,7 @@ fun sum(a: Int, b: Int) = a + b
     body: (function_body
       expression: (additive_expression
         (simple_identifier)
+        (additive_operator)
         (simple_identifier)))))
 
 ==================
@@ -183,6 +184,7 @@ fun test() {
           (statement
             (assignment
               left: (simple_identifier)
+              op: (assignment_operator)
               right: (boolean_literal)))
           (statement
             (call_expression

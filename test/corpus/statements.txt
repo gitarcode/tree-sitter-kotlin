@@ -156,6 +156,7 @@ val foo = Foo()
         receiver: (parenthesized_expression
           (as_expression
             (simple_identifier)
+            (as_operator)
             type: (user_type
               (type_identifier))))
         selector: (simple_identifier))
@@ -227,6 +228,7 @@ var positionPercentage: Float
             (statement
               (assignment
                 left: (simple_identifier)
+                op: (assignment_operator)
                 right: (call_expression
                   expression: (dot_qualified_expression
                     receiver: (simple_identifier)
@@ -253,6 +255,7 @@ if (x > 0)
     (if_expression
       condition: (comparison_expression
         (simple_identifier)
+        (comparison_operator)
         (integer_literal))
       consequence: (for_statement
         var_decl: (variable_declaration

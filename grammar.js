@@ -151,7 +151,7 @@ module.exports = grammar({
     [$.source_file],
     [$._type_reference, $.function_type],
     [$._type_reference, $.parenthesized_user_type],
-    [$.type_arguments, $._comparison_operator],
+    [$.type_arguments, $.comparison_operator],
     [$.call_expression, $.prefix_expression, $.comparison_expression],
     [$.call_expression, $.elvis_expression, $.comparison_expression],
     [$.call_expression, $.range_expression, $.comparison_expression],
@@ -753,7 +753,7 @@ module.exports = grammar({
 
     assignment: $ => seq(
       field('left', $.expression),
-      field('op', $._assignment_and_operator),
+      field('op', $.assignment_operator),
       repeat($._NL),
       field('right', $.expression)
     ),
@@ -850,7 +850,7 @@ module.exports = grammar({
       field('expression', $.expression))
     ),
 
-    as_expression: $ => prec(PREC.AS, seq($.expression, $._as_operator, repeat($._NL), $._type)),
+    as_expression: $ => prec(PREC.AS, seq($.expression, $.as_operator, repeat($._NL), $._type)),
 
     // Binary expressions
 
@@ -867,25 +867,23 @@ module.exports = grammar({
       $.in_expression,
     ),
 
-    multiplicative_expression: $ => prec.left(PREC.MULTIPLICATIVE, seq($.expression, $._multiplicative_operator, repeat($._NL), $.expression)),
+    multiplicative_expression: $ => prec.left(PREC.MULTIPLICATIVE, seq($.expression, $.multiplicative_operator, repeat($._NL), $.expression)),
 
-    additive_expression: $ => prec.left(PREC.ADDITIVE, seq($.expression, $._additive_operator, repeat($._NL), $.expression)),
+    additive_expression: $ => prec.left(PREC.ADDITIVE, seq($.expression, $.additive_operator, repeat($._NL), $.expression)),
 
-    range_expression: $ => prec.left(PREC.RANGE, seq($.expression, $._range_opeartor, repeat($._NL), $.expression)),
-
-    _range_opeartor: $ => choice("..", "..<"),
+    range_expression: $ => prec.left(PREC.RANGE, seq($.expression, $.range_opeartor, repeat($._NL), $.expression)),
 
     infix_expression: $ => prec.left(PREC.INFIX, seq($.expression, $.simple_identifier, repeat($._NL), $.expression)),
 
     elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, $._elvis, repeat($._NL), $.expression)),
 
-    in_expression: $ => prec.left(PREC.CHECK, seq($.expression, $._in_operator, repeat($._NL), $.expression)),
+    in_expression: $ => prec.left(PREC.CHECK, seq($.expression, $.in_operator, repeat($._NL), $.expression)),
 
-    is_expression: $ => prec(PREC.CHECK, seq($.expression, $._is_operator, repeat($._NL), $._type)),
+    is_expression: $ => prec(PREC.CHECK, seq($.expression, $.is_operator, repeat($._NL), $._type)),
 
-    comparison_expression: $ => prec.left(PREC.COMPARISON, seq($.expression, $._comparison_operator, repeat($._NL), $.expression)),
+    comparison_expression: $ => prec.left(PREC.COMPARISON, seq($.expression, $.comparison_operator, repeat($._NL), $.expression)),
 
-    equality_expression: $ => prec.left(PREC.EQUALITY, seq($.expression, $._equality_operator, repeat($._NL), $.expression)),
+    equality_expression: $ => prec.left(PREC.EQUALITY, seq($.expression, $.equality_operator, repeat($._NL), $.expression)),
 
     conjunction_expression: $ => prec.left(PREC.CONJUNCTION, seq(
       field('left', $.expression), 
@@ -1168,9 +1166,9 @@ module.exports = grammar({
       $.type_test
     ),
 
-    range_test: $ => seq($._in_operator, $.expression),
+    range_test: $ => seq($.in_operator, $.expression),
 
-    type_test: $ => seq($._is_operator, $._type),
+    type_test: $ => seq($.is_operator, $._type),
 
     try_expression: $ => prec.right(seq(
       "try",
@@ -1221,25 +1219,27 @@ module.exports = grammar({
       choice($.simple_identifier, "class")
     )),
 
-    _assignment_and_operator: $ => choice("=", "+=", "-=", "*=", "/=", "%="),
+    assignment_operator: $ => choice("=", "+=", "-=", "*=", "/=", "%="),
 
-    _equality_operator: $ => choice("!=", "!==", "==", "==="),
+    equality_operator: $ => choice("!=", "!==", "==", "==="),
 
-    _comparison_operator: $ => choice("<", ">", "<=", ">="),
+    comparison_operator: $ => choice("<", ">", "<=", ">="),
 
-    _in_operator: $ => choice("in", "!in"),
+    in_operator: $ => choice("in", "!in"),
 
-    _is_operator: $ => choice("is", "!is"),
+    is_operator: $ => choice("is", "!is"),
 
-    _additive_operator: $ => choice($._bin_plus, $._bin_min),
+    additive_operator: $ => choice($._bin_plus, $._bin_min),
 
-    _multiplicative_operator: $ => choice("*", "/", "%"),
+    multiplicative_operator: $ => choice("*", "/", "%"),
 
-    _as_operator: $ => choice("as", "as?"),
+    as_operator: $ => choice("as", "as?"),
 
     prefix_unary_operator: $ => choice("++", "--", "-", "+", "!"),
 
     postfix_unary_operator: $ => choice("++", "--", "!!"),
+
+    range_opeartor: $ => choice("..", "..<"),
 
     // ==========
     // Modifiers

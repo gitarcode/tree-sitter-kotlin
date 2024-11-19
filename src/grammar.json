@@ -3845,7 +3845,7 @@
           "name": "op",
           "content": {
             "type": "SYMBOL",
-            "name": "_assignment_and_operator"
+            "name": "assignment_operator"
           }
         },
         {
@@ -4298,7 +4298,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_as_operator"
+            "name": "as_operator"
           },
           {
             "type": "REPEAT",
@@ -4371,7 +4371,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_multiplicative_operator"
+            "name": "multiplicative_operator"
           },
           {
             "type": "REPEAT",
@@ -4399,7 +4399,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_additive_operator"
+            "name": "additive_operator"
           },
           {
             "type": "REPEAT",
@@ -4427,7 +4427,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_range_opeartor"
+            "name": "range_opeartor"
           },
           {
             "type": "REPEAT",
@@ -4442,19 +4442,6 @@
           }
         ]
       }
-    },
-    "_range_opeartor": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": ".."
-        },
-        {
-          "type": "STRING",
-          "value": "..<"
-        }
-      ]
     },
     "infix_expression": {
       "type": "PREC_LEFT",
@@ -4524,7 +4511,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_in_operator"
+            "name": "in_operator"
           },
           {
             "type": "REPEAT",
@@ -4552,7 +4539,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_is_operator"
+            "name": "is_operator"
           },
           {
             "type": "REPEAT",
@@ -4580,7 +4567,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_comparison_operator"
+            "name": "comparison_operator"
           },
           {
             "type": "REPEAT",
@@ -4608,7 +4595,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_equality_operator"
+            "name": "equality_operator"
           },
           {
             "type": "REPEAT",
@@ -6334,7 +6321,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_in_operator"
+          "name": "in_operator"
         },
         {
           "type": "SYMBOL",
@@ -6347,7 +6334,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_is_operator"
+          "name": "is_operator"
         },
         {
           "type": "SYMBOL",
@@ -6671,7 +6658,7 @@
         ]
       }
     },
-    "_assignment_and_operator": {
+    "assignment_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6700,7 +6687,7 @@
         }
       ]
     },
-    "_equality_operator": {
+    "equality_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6721,7 +6708,7 @@
         }
       ]
     },
-    "_comparison_operator": {
+    "comparison_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6742,7 +6729,7 @@
         }
       ]
     },
-    "_in_operator": {
+    "in_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6755,7 +6742,7 @@
         }
       ]
     },
-    "_is_operator": {
+    "is_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6768,7 +6755,7 @@
         }
       ]
     },
-    "_additive_operator": {
+    "additive_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6781,7 +6768,7 @@
         }
       ]
     },
-    "_multiplicative_operator": {
+    "multiplicative_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6798,7 +6785,7 @@
         }
       ]
     },
-    "_as_operator": {
+    "as_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6850,6 +6837,19 @@
         {
           "type": "STRING",
           "value": "!!"
+        }
+      ]
+    },
+    "range_opeartor": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ".."
+        },
+        {
+          "type": "STRING",
+          "value": "..<"
         }
       ]
     },
@@ -8431,7 +8431,7 @@
     ],
     [
       "type_arguments",
-      "_comparison_operator"
+      "comparison_operator"
     ],
     [
       "call_expression",
