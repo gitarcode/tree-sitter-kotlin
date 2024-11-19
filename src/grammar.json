@@ -8190,7 +8190,7 @@
     },
     "_NL": {
       "type": "PATTERN",
-      "value": "\\n"
+      "value": "\\r?\\n"
     },
     "_semi": {
       "type": "CHOICE",
