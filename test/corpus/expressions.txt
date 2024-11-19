@@ -394,7 +394,7 @@ when (dir) {
               left: (dot_qualified_expression
                 receiver: (simple_identifier)
                 selector: (simple_identifier))
-              op: (assignment_operator)  
+              op: (assignment_op)  
               right: (dot_qualified_expression
                 receiver: (simple_identifier)
                 selector: (simple_identifier))))
@@ -403,7 +403,7 @@ when (dir) {
               left: (dot_qualified_expression
                 receiver: (simple_identifier)
                 selector: (simple_identifier))
-              op: (assignment_operator)  
+              op: (assignment_op)  
               right: (simple_identifier)))))))
   (statement
     (when_expression
@@ -427,7 +427,7 @@ when (dir) {
                   left: (dot_qualified_expression
                     receiver: (simple_identifier)
                     selector: (simple_identifier))
-                  op: (assignment_operator)  
+                  op: (assignment_op)  
                   right: (dot_qualified_expression
                     receiver: (simple_identifier)
                     selector: (simple_identifier))))
@@ -436,7 +436,7 @@ when (dir) {
                   left: (dot_qualified_expression
                     receiver: (simple_identifier)
                     selector: (simple_identifier))
-                  op: (assignment_operator)  
+                  op: (assignment_op)  
                   right: (simple_identifier)))))))))
 
 ================================================================================
@@ -644,11 +644,11 @@ else
       condition: (simple_identifier)
       consequence: (assignment
         left: (simple_identifier)
-        op: (assignment_operator)
+        op: (assignment_op)
         right: (integer_literal))
       alternative: (assignment
         left: (simple_identifier)
-        op: (assignment_operator)
+        op: (assignment_op)
         right: (integer_literal)))))
 
 ================================================================================
@@ -1064,7 +1064,6 @@ fun f(l: MutableList<Int>?) {
               left: (postfix_expression
                 expression: (simple_identifier)
                 operator: (postfix_unary_operator))
-              op: (assignment_operator)  
               right: (integer_literal))))))))
 
 ================================================================================
@@ -1102,7 +1101,7 @@ if (x == 1)
     (if_expression
       condition: (equality_expression
         (simple_identifier)
-        (equality_operator)
+        op: (eq_operator)
         (integer_literal))
       consequence: (simple_identifier))))
 
@@ -1122,7 +1121,7 @@ else
     (if_expression
       condition: (equality_expression
         (simple_identifier)
-        (equality_operator)
+        op: (eq_operator)
         (integer_literal))
       consequence: (simple_identifier)
       alternative: (simple_identifier))))
@@ -1144,12 +1143,12 @@ if (x == 1)
     (if_expression
       condition: (equality_expression
         (simple_identifier)
-        (equality_operator)
+        op: (eq_operator)
         (integer_literal))
       consequence: (if_expression
         condition: (equality_expression
           (simple_identifier)
-          (equality_operator)
+          op: (eq_operator)
           (integer_literal))
         consequence: (string_literal
           (string_content))
@@ -1171,12 +1170,12 @@ else if (y == 1)
     (if_expression
       condition: (equality_expression
         (simple_identifier)
-        (equality_operator)
+        op: (eq_operator)
         (integer_literal))
       alternative: (if_expression
         condition: (equality_expression
           (simple_identifier)
-          (equality_operator)
+          op: (eq_operator)
           (integer_literal))
         consequence: (simple_identifier)))))
 
@@ -1197,12 +1196,12 @@ else
     (if_expression
       condition: (equality_expression
         (simple_identifier)
-        (equality_operator)
+        op: (eq_operator)
         (integer_literal))
       alternative: (if_expression
         condition: (equality_expression
           (simple_identifier)
-          (equality_operator)
+          op: (eq_operator)
           (integer_literal))
         consequence: (simple_identifier)
         alternative: (simple_identifier)))))
@@ -1251,12 +1250,10 @@ y += 1
   (statement
     (assignment
       left: (simple_identifier)
-      op: (assignment_operator)
       right: (integer_literal)))
   (statement
     (assignment
       left: (simple_identifier)
-      op: (assignment_operator)
       right: (integer_literal))))
 
 ================================================================================

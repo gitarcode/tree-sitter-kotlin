@@ -3845,7 +3845,7 @@
           "name": "op",
           "content": {
             "type": "SYMBOL",
-            "name": "assignment_operator"
+            "name": "_assignment_operator"
           }
         },
         {
@@ -4594,8 +4594,12 @@
             "name": "expression"
           },
           {
-            "type": "SYMBOL",
-            "name": "equality_operator"
+            "type": "FIELD",
+            "name": "op",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_equality_operator"
+            }
           },
           {
             "type": "REPEAT",
@@ -6658,12 +6662,12 @@
         ]
       }
     },
-    "assignment_operator": {
+    "_assignment_operator": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "="
+          "type": "SYMBOL",
+          "name": "assignment_op"
         },
         {
           "type": "STRING",
@@ -6687,26 +6691,38 @@
         }
       ]
     },
-    "equality_operator": {
+    "assignment_op": {
+      "type": "STRING",
+      "value": "="
+    },
+    "_equality_operator": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "!="
+          "type": "SYMBOL",
+          "name": "neq_opeartor"
         },
         {
           "type": "STRING",
           "value": "!=="
         },
         {
-          "type": "STRING",
-          "value": "=="
+          "type": "SYMBOL",
+          "name": "eq_operator"
         },
         {
           "type": "STRING",
           "value": "==="
         }
       ]
+    },
+    "neq_opeartor": {
+      "type": "STRING",
+      "value": "!="
+    },
+    "eq_operator": {
+      "type": "STRING",
+      "value": "=="
     },
     "comparison_operator": {
       "type": "CHOICE",

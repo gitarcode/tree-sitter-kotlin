@@ -228,7 +228,7 @@ var positionPercentage: Float
             (statement
               (assignment
                 left: (simple_identifier)
-                op: (assignment_operator)
+                op: (assignment_op)
                 right: (call_expression
                   expression: (dot_qualified_expression
                     receiver: (simple_identifier)

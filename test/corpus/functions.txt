@@ -184,7 +184,7 @@ fun test() {
           (statement
             (assignment
               left: (simple_identifier)
-              op: (assignment_operator)
+              op: (assignment_op)
               right: (boolean_literal)))
           (statement
             (call_expression

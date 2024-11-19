@@ -431,7 +431,27 @@
         "required": true,
         "types": [
           {
-            "type": "assignment_operator",
+            "type": "%=",
+            "named": false
+          },
+          {
+            "type": "*=",
+            "named": false
+          },
+          {
+            "type": "+=",
+            "named": false
+          },
+          {
+            "type": "-=",
+            "named": false
+          },
+          {
+            "type": "/=",
+            "named": false
+          },
+          {
+            "type": "assignment_op",
             "named": true
           }
         ]
@@ -449,7 +469,7 @@
     }
   },
   {
-    "type": "assignment_operator",
+    "type": "assignment_op",
     "named": true,
     "fields": {}
   },
@@ -1287,26 +1307,40 @@
   {
     "type": "equality_expression",
     "named": true,
-    "fields": {},
+    "fields": {
+      "op": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "!==",
+            "named": false
+          },
+          {
+            "type": "===",
+            "named": false
+          },
+          {
+            "type": "eq_operator",
+            "named": true
+          },
+          {
+            "type": "neq_opeartor",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "equality_operator",
-          "named": true
-        },
         {
           "type": "expression",
           "named": true
         }
       ]
     }
-  },
-  {
-    "type": "equality_operator",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "explicit_delegation",
@@ -3985,10 +4019,6 @@
     "named": false
   },
   {
-    "type": "!=",
-    "named": false
-  },
-  {
     "type": "!==",
     "named": false
   },
@@ -4137,10 +4167,6 @@
     "named": false
   },
   {
-    "type": "==",
-    "named": false
-  },
-  {
     "type": "===",
     "named": false
   },
@@ -4277,6 +4303,10 @@
     "named": false
   },
   {
+    "type": "eq_operator",
+    "named": true
+  },
+  {
     "type": "expect",
     "named": false
   },
@@ -4374,6 +4404,10 @@
   },
   {
     "type": "line_comment",
+    "named": true
+  },
+  {
+    "type": "neq_opeartor",
     "named": true
   },
   {

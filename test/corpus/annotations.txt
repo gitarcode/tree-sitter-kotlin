@@ -307,17 +307,17 @@ internal fun parse(xml: String): Element {
                         (statement
                           (assignment
                             left: (simple_identifier)
-                            op: (assignment_operator)
+                            op: (assignment_op)
                             right: (boolean_literal)))
                         (statement
                           (assignment
                             left: (simple_identifier)
-                            op: (assignment_operator)
+                            op: (assignment_op)
                             right: (boolean_literal)))
                         (statement
                           (assignment
                             left: (simple_identifier)
-                            op: (assignment_operator)
+                            op: (assignment_op)
                             right: (simple_identifier)))))))
                 selector: (simple_identifier))
               args: (value_arguments)))

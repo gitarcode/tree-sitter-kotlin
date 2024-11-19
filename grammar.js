@@ -753,7 +753,7 @@ module.exports = grammar({
 
     assignment: $ => seq(
       field('left', $.expression),
-      field('op', $.assignment_operator),
+      field('op', $._assignment_operator),
       repeat($._NL),
       field('right', $.expression)
     ),
@@ -883,7 +883,7 @@ module.exports = grammar({
 
     comparison_expression: $ => prec.left(PREC.COMPARISON, seq($.expression, $.comparison_operator, repeat($._NL), $.expression)),
 
-    equality_expression: $ => prec.left(PREC.EQUALITY, seq($.expression, $.equality_operator, repeat($._NL), $.expression)),
+    equality_expression: $ => prec.left(PREC.EQUALITY, seq($.expression, field('op', $._equality_operator), repeat($._NL), $.expression)),
 
     conjunction_expression: $ => prec.left(PREC.CONJUNCTION, seq(
       field('left', $.expression), 
@@ -1219,10 +1219,13 @@ module.exports = grammar({
       choice($.simple_identifier, "class")
     )),
 
-    assignment_operator: $ => choice("=", "+=", "-=", "*=", "/=", "%="),
+    _assignment_operator: $ => choice($.assignment_op, "+=", "-=", "*=", "/=", "%="),
+    assignment_op: $ => "=",
 
-    equality_operator: $ => choice("!=", "!==", "==", "==="),
-
+    _equality_operator: $ => choice($.neq_opeartor, "!==", $.eq_operator, "==="),
+    neq_opeartor: $ => "!=",
+    eq_operator: $ => "==",
+    
     comparison_operator: $ => choice("<", ">", "<=", ">="),
 
     in_operator: $ => choice("in", "!in"),
