@@ -178,7 +178,7 @@ module.exports = grammar({
   extras: $ => [
     $.line_comment,
     $.multiline_comment,
-    NON_NL_WHITESPACE
+    $._ws
   ],
 
   externals: $ => [
@@ -1498,6 +1498,7 @@ module.exports = grammar({
 
     _CONJ: $ => /\s*&&/,
     _DISJ: $ => /\s*\|\|/,
+    _ws: $ => NON_NL_WHITESPACE,
     _NL: $ => /\r?\n/,
     _semi: $ => choice(";", $._NL),
 
