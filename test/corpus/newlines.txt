@@ -197,7 +197,6 @@ class Foo {
               (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments))
-              (multiplicative_operator)  
               (integer_literal))))))))
 
 ================================================================================
@@ -237,7 +236,6 @@ else boo()
   (statement
     (if_expression
       condition: (prefix_expression
-        op: (prefix_unary_operator)
         expression: (simple_identifier))
       consequence: (integer_literal)
       alternative: (call_expression
@@ -256,7 +254,6 @@ if (!foo) 3 else boo()
   (statement
     (if_expression
       condition: (prefix_expression
-        op: (prefix_unary_operator)
         expression: (simple_identifier))
       consequence: (integer_literal)
       alternative: (call_expression
@@ -315,7 +312,6 @@ fun foo() {
                 id: (simple_identifier))
               initializer: (additive_expression
                 (simple_identifier)
-                (additive_operator)
                 (simple_identifier)))))))))
 
 ================================================================================
@@ -343,7 +339,6 @@ fun foo() {
                 id: (simple_identifier))
               initializer: (additive_expression
                 (simple_identifier)
-                (additive_operator)
                 (simple_identifier)))))))))
 
 ================================================================================
@@ -446,19 +441,15 @@ val current =
                     (dot_qualified_expression
                       receiver: (simple_identifier)
                       selector: (simple_identifier))
-                    (multiplicative_operator)
                     (dot_qualified_expression
                       receiver: (simple_identifier)
                       selector: (simple_identifier))))
-                (additive_operator)
                 (simple_identifier)))
-            (multiplicative_operator)
             (parenthesized_expression
               (additive_expression
                 (dot_qualified_expression
                   receiver: (simple_identifier)
                   selector: (simple_identifier))
-                (additive_operator)
                 (integer_literal)))))
         (value_argument
           (simple_identifier)
@@ -466,7 +457,6 @@ val current =
             (dot_qualified_expression
               receiver: (simple_identifier)
               selector: (simple_identifier))
-            (additive_operator)  
             (integer_literal)))))))
 
 ================================================================================
@@ -515,7 +505,6 @@ val previewClasspathString =
                     selector: (simple_identifier))
                   selector: (simple_identifier))
                 args: (value_arguments))
-              (additive_operator)  
               (call_expression
                 expression: (dot_qualified_expression
                   receiver: (dot_qualified_expression
@@ -523,7 +512,6 @@ val previewClasspathString =
                     selector: (simple_identifier))
                   selector: (simple_identifier))
                 args: (value_arguments)))
-            (additive_operator)    
             (call_expression
               expression: (dot_qualified_expression
                 receiver: (dot_qualified_expression
@@ -674,7 +662,6 @@ error("Found references to atomicfu in jar file $name in the following class fil
                             (string_content)
                             (string_content)
                             (string_content))
-                          (additive_operator)  
                           (simple_identifier))))))))))))))
 
 ================================================================================

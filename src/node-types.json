@@ -204,20 +204,11 @@
       "required": true,
       "types": [
         {
-          "type": "additive_operator",
-          "named": true
-        },
-        {
           "type": "expression",
           "named": true
         }
       ]
     }
-  },
-  {
-    "type": "additive_operator",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "annotated_expression",
@@ -377,10 +368,6 @@
       "required": true,
       "types": [
         {
-          "type": "as_operator",
-          "named": true
-        },
-        {
           "type": "expression",
           "named": true
         },
@@ -406,11 +393,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "as_operator",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "assignment",
@@ -2325,18 +2307,9 @@
         {
           "type": "expression",
           "named": true
-        },
-        {
-          "type": "multiplicative_operator",
-          "named": true
         }
       ]
     }
-  },
-  {
-    "type": "multiplicative_operator",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "not_nullable_type",
@@ -2691,17 +2664,20 @@
         "required": true,
         "types": [
           {
-            "type": "postfix_unary_operator",
-            "named": true
+            "type": "!!",
+            "named": false
+          },
+          {
+            "type": "++",
+            "named": false
+          },
+          {
+            "type": "--",
+            "named": false
           }
         ]
       }
     }
-  },
-  {
-    "type": "postfix_unary_operator",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "prefix_expression",
@@ -2722,17 +2698,28 @@
         "required": true,
         "types": [
           {
-            "type": "prefix_unary_operator",
-            "named": true
+            "type": "!",
+            "named": false
+          },
+          {
+            "type": "+",
+            "named": false
+          },
+          {
+            "type": "++",
+            "named": false
+          },
+          {
+            "type": "-",
+            "named": false
+          },
+          {
+            "type": "--",
+            "named": false
           }
         ]
       }
     }
-  },
-  {
-    "type": "prefix_unary_operator",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "primary_constructor",
@@ -2883,18 +2870,9 @@
         {
           "type": "expression",
           "named": true
-        },
-        {
-          "type": "range_opeartor",
-          "named": true
         }
       ]
     }
-  },
-  {
-    "type": "range_opeartor",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "range_test",

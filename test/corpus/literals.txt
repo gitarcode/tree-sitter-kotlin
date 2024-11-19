@@ -192,7 +192,6 @@ Real literals
     (real_literal))
   (statement
     (prefix_expression
-      op: (prefix_unary_operator)
       expression: (real_literal)))
   (statement
     (real_literal))
@@ -200,7 +199,6 @@ Real literals
     (real_literal))
   (statement  
     (prefix_expression
-      op: (prefix_unary_operator)
       expression: (real_literal))))
 
 ================================================================================

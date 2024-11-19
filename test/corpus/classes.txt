@@ -87,10 +87,8 @@ class Strings {
             (additive_expression
               (string_literal
                 (string_content))
-              (additive_operator)
               (string_literal
                 (string_content)))
-            (additive_operator)
             (string_literal
               (string_content))))))))
 
@@ -765,7 +763,6 @@ private class SendBroadcast(
           (type_identifier))
         (as_expression
           (simple_identifier)
-          (as_operator)
           type: (user_type
             (type_identifier)
             (type_arguments

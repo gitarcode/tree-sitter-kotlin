@@ -786,7 +786,7 @@ module.exports = grammar({
       $.break_expression
     ),
 
-    postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $.expression), field('operator', $.postfix_unary_operator))),
+    postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $.expression), field('operator', $._postfix_unary_operator))),
 
     dot_qualified_expression: $ => prec(PREC.DOT, seq(
       field('receiver', choice($.expression)),
@@ -843,12 +843,12 @@ module.exports = grammar({
     labeled_expression: $ => seq($.label, repeat($._NL), $.expression),
 
     prefix_expression: $ => prec(PREC.PREFIX, seq(
-      field('op', $.prefix_unary_operator), 
+      field('op', $._prefix_unary_operator), 
       repeat($._NL),
       field('expression', $.expression))
     ),
 
-    as_expression: $ => prec(PREC.AS, seq($.expression, $.as_operator, repeat($._NL), $._type)),
+    as_expression: $ => prec(PREC.AS, seq($.expression, $._as_operator, repeat($._NL), $._type)),
 
     // Binary expressions
 
@@ -865,11 +865,11 @@ module.exports = grammar({
       $.in_expression,
     ),
 
-    multiplicative_expression: $ => prec.left(PREC.MULTIPLICATIVE, seq($.expression, $.multiplicative_operator, repeat($._NL), $.expression)),
+    multiplicative_expression: $ => prec.left(PREC.MULTIPLICATIVE, seq($.expression, $._multiplicative_operator, repeat($._NL), $.expression)),
 
-    additive_expression: $ => prec.left(PREC.ADDITIVE, seq($.expression, $.additive_operator, repeat($._NL), $.expression)),
+    additive_expression: $ => prec.left(PREC.ADDITIVE, seq($.expression, $._additive_operator, repeat($._NL), $.expression)),
 
-    range_expression: $ => prec.left(PREC.RANGE, seq($.expression, $.range_opeartor, repeat($._NL), $.expression)),
+    range_expression: $ => prec.left(PREC.RANGE, seq($.expression, $._range_opeartor, repeat($._NL), $.expression)),
 
     infix_expression: $ => prec.left(PREC.INFIX, seq($.expression, $.simple_identifier, repeat($._NL), $.expression)),
 
@@ -1229,17 +1229,17 @@ module.exports = grammar({
 
     is_operator: $ => choice("is", "!is"),
 
-    additive_operator: $ => choice($._bin_plus, $._bin_min),
+    _additive_operator: $ => choice($._bin_plus, $._bin_min),
 
-    multiplicative_operator: $ => choice("*", "/", "%"),
+    _multiplicative_operator: $ => choice("*", "/", "%"),
 
-    as_operator: $ => choice("as", "as?"),
+    _as_operator: $ => choice("as", "as?"),
 
-    prefix_unary_operator: $ => choice("++", "--", "-", "+", "!"),
+    _prefix_unary_operator: $ => choice("++", "--", "-", "+", "!"),
 
-    postfix_unary_operator: $ => choice("++", "--", "!!"),
+    _postfix_unary_operator: $ => choice("++", "--", "!!"),
 
-    range_opeartor: $ => choice("..", "..<"),
+    _range_opeartor: $ => choice("..", "..<"),
 
     // ==========
     // Modifiers

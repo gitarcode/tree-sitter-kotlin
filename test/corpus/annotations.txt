@@ -292,14 +292,12 @@ internal fun parse(xml: String): Element {
                                 receiver: (parenthesized_expression
                                   (as_expression
                                     (simple_identifier)
-                                    (as_operator)
                                     type: (user_type
                                       (type_identifier))))
                                 selector: (simple_identifier))
                               args: (value_arguments
                                 (value_argument
-                                  (simple_identifier))))
-                            operator: (postfix_unary_operator)))))
+                                  (simple_identifier))))))))
                     selector: (simple_identifier))
                   lambda_arg: (annotated_lambda
                     (lambda_literal
@@ -326,8 +324,7 @@ internal fun parse(xml: String): Element {
               (postfix_expression
                 expression: (dot_qualified_expression
                   receiver: (simple_identifier)
-                  selector: (simple_identifier))
-                operator: (postfix_unary_operator)))))))))
+                  selector: (simple_identifier))))))))))
 
 
 ======================

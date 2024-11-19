@@ -3959,7 +3959,7 @@
             "name": "operator",
             "content": {
               "type": "SYMBOL",
-              "name": "postfix_unary_operator"
+              "name": "_postfix_unary_operator"
             }
           }
         ]
@@ -4265,7 +4265,7 @@
             "name": "op",
             "content": {
               "type": "SYMBOL",
-              "name": "prefix_unary_operator"
+              "name": "_prefix_unary_operator"
             }
           },
           {
@@ -4298,7 +4298,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "as_operator"
+            "name": "_as_operator"
           },
           {
             "type": "REPEAT",
@@ -4371,7 +4371,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "multiplicative_operator"
+            "name": "_multiplicative_operator"
           },
           {
             "type": "REPEAT",
@@ -4399,7 +4399,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "additive_operator"
+            "name": "_additive_operator"
           },
           {
             "type": "REPEAT",
@@ -4427,7 +4427,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "range_opeartor"
+            "name": "_range_opeartor"
           },
           {
             "type": "REPEAT",
@@ -6776,7 +6776,7 @@
         }
       ]
     },
-    "additive_operator": {
+    "_additive_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6789,7 +6789,7 @@
         }
       ]
     },
-    "multiplicative_operator": {
+    "_multiplicative_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6806,7 +6806,7 @@
         }
       ]
     },
-    "as_operator": {
+    "_as_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6819,7 +6819,7 @@
         }
       ]
     },
-    "prefix_unary_operator": {
+    "_prefix_unary_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6844,7 +6844,7 @@
         }
       ]
     },
-    "postfix_unary_operator": {
+    "_postfix_unary_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6861,7 +6861,7 @@
         }
       ]
     },
-    "range_opeartor": {
+    "_range_opeartor": {
       "type": "CHOICE",
       "members": [
         {
