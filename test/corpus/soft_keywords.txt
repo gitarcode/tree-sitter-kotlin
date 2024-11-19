@@ -46,7 +46,7 @@ delegate = parser
   (statement
     (assignment
       left: (simple_identifier)
-      op: (assignment_op)
+      op: (assignment_operator)
       right: (simple_identifier))))
 
 ================================================================================

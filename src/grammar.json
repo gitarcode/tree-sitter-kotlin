@@ -3845,7 +3845,7 @@
           "name": "op",
           "content": {
             "type": "SYMBOL",
-            "name": "_assignment_operator"
+            "name": "assignment_operator"
           }
         },
         {
@@ -4598,7 +4598,7 @@
             "name": "op",
             "content": {
               "type": "SYMBOL",
-              "name": "_equality_operator"
+              "name": "equality_operator"
             }
           },
           {
@@ -6679,12 +6679,12 @@
         ]
       }
     },
-    "_assignment_operator": {
+    "assignment_operator": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "assignment_op"
+          "type": "STRING",
+          "value": "="
         },
         {
           "type": "STRING",
@@ -6708,38 +6708,26 @@
         }
       ]
     },
-    "assignment_op": {
-      "type": "STRING",
-      "value": "="
-    },
-    "_equality_operator": {
+    "equality_operator": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "neq_operator"
+          "type": "STRING",
+          "value": "!="
         },
         {
           "type": "STRING",
           "value": "!=="
         },
         {
-          "type": "SYMBOL",
-          "name": "eq_operator"
+          "type": "STRING",
+          "value": "=="
         },
         {
           "type": "STRING",
           "value": "==="
         }
       ]
-    },
-    "neq_operator": {
-      "type": "STRING",
-      "value": "!="
-    },
-    "eq_operator": {
-      "type": "STRING",
-      "value": "=="
     },
     "comparison_operator": {
       "type": "CHOICE",

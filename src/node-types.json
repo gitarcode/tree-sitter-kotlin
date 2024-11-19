@@ -431,27 +431,7 @@
         "required": true,
         "types": [
           {
-            "type": "%=",
-            "named": false
-          },
-          {
-            "type": "*=",
-            "named": false
-          },
-          {
-            "type": "+=",
-            "named": false
-          },
-          {
-            "type": "-=",
-            "named": false
-          },
-          {
-            "type": "/=",
-            "named": false
-          },
-          {
-            "type": "assignment_op",
+            "type": "assignment_operator",
             "named": true
           }
         ]
@@ -469,7 +449,7 @@
     }
   },
   {
-    "type": "assignment_op",
+    "type": "assignment_operator",
     "named": true,
     "fields": {}
   },
@@ -1313,19 +1293,7 @@
         "required": true,
         "types": [
           {
-            "type": "!==",
-            "named": false
-          },
-          {
-            "type": "===",
-            "named": false
-          },
-          {
-            "type": "eq_operator",
-            "named": true
-          },
-          {
-            "type": "neq_operator",
+            "type": "equality_operator",
             "named": true
           }
         ]
@@ -1341,6 +1309,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "equality_operator",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "explicit_delegation",
@@ -4019,6 +3992,10 @@
     "named": false
   },
   {
+    "type": "!=",
+    "named": false
+  },
+  {
     "type": "!==",
     "named": false
   },
@@ -4167,6 +4144,10 @@
     "named": false
   },
   {
+    "type": "==",
+    "named": false
+  },
+  {
     "type": "===",
     "named": false
   },
@@ -4303,10 +4284,6 @@
     "named": false
   },
   {
-    "type": "eq_operator",
-    "named": true
-  },
-  {
     "type": "expect",
     "named": false
   },
@@ -4404,10 +4381,6 @@
   },
   {
     "type": "line_comment",
-    "named": true
-  },
-  {
-    "type": "neq_operator",
     "named": true
   },
   {

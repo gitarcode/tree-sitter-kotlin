@@ -723,7 +723,7 @@ while (iterator.hasNext())
         args: (value_arguments))
           (assignment
             left: (simple_identifier)
-            op: (assignment_op)
+            op: (assignment_operator)
             right: (call_expression
               expression: (dot_qualified_expression
                 receiver: (simple_identifier)
