@@ -159,7 +159,6 @@ module.exports = grammar({
     [$.call_expression, $.multiplicative_expression, $.comparison_expression],
     [$.call_expression, $.infix_expression, $.comparison_expression],
     [$.annotated_lambda, $.modifiers],
-    [$.return_expression],
     [$.lambda_literal],
     [$.when_entry],
     [$.function_type_parameters, $.parenthesized_type],
@@ -1195,10 +1194,10 @@ module.exports = grammar({
 
     finally_block: $ => seq("finally", repeat($._NL), $.block),
 
-    return_expression: $ => seq(
+    return_expression: $ => prec.right(seq(
       choice("return", seq("return@", $._lexical_identifier)), 
       optional($.expression)
-    ),
+    )),
 
     throw_expression: $ => seq(
       "throw", $.expression,

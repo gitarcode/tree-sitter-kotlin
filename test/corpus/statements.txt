@@ -296,3 +296,32 @@ fun f() {
               (integer_literal)))
           (statement
             (simple_identifier)))))))
+
+================================================================================
+Statements after return
+================================================================================
+
+fun f(x: Int) {
+  return x
+  return
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
+    body: (function_body
+      (block
+        (statements
+          (statement
+            (return_expression
+              (simple_identifier)))
+          (statement
+            (return_expression)))))))
