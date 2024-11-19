@@ -487,18 +487,19 @@ module.exports = grammar({
         seq("=", repeat($._NL), field('initializer', $.expression)),
         $.property_delegate
       )),
-      repeat($._NL),
-      optional(';'),
-      repeat($._NL),
       repeat($._setter_getter)
     ),
 
     property_delegate: $ => seq("by", repeat($._NL), $.expression),
 
-    _setter_getter: $ => choice(
+    _setter_getter: $ => seq(
+      repeat($._NL),
+      optional(';'),
+      repeat($._NL),
+      choice(
       seq($.getter, repeat($._NL), optional($.setter)),
       seq($.setter, repeat($._NL), optional($.getter))
-    ),
+    )),
 
     getter: $ => prec.right(seq(
       optional(field('modifiers', $.modifiers)),
