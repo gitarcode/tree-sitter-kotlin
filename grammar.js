@@ -150,7 +150,7 @@ module.exports = grammar({
     [$.source_file],
     [$._type_reference, $.function_type],
     [$._type_reference, $.parenthesized_user_type],
-    [$.type_arguments, $.comparison_operator],
+    [$.type_arguments, $._comparison_operator],
     [$.call_expression, $.prefix_expression, $.comparison_expression],
     [$.call_expression, $.elvis_expression, $.comparison_expression],
     [$.call_expression, $.range_expression, $.comparison_expression],
@@ -751,7 +751,7 @@ module.exports = grammar({
 
     assignment: $ => seq(
       field('left', $.expression),
-      field('op', $.assignment_operator),
+      field('op', $._assignment_operator),
       repeat($._NL),
       field('right', $.expression)
     ),
@@ -875,13 +875,13 @@ module.exports = grammar({
 
     elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, $._elvis, repeat($._NL), $.expression)),
 
-    in_expression: $ => prec.left(PREC.CHECK, seq($.expression, $.in_operator, repeat($._NL), $.expression)),
+    in_expression: $ => prec.left(PREC.CHECK, seq($.expression, $._in_operator, repeat($._NL), $.expression)),
 
-    is_expression: $ => prec(PREC.CHECK, seq($.expression, $.is_operator, repeat($._NL), $._type)),
+    is_expression: $ => prec(PREC.CHECK, seq($.expression, $._is_operator, repeat($._NL), $._type)),
 
-    comparison_expression: $ => prec.left(PREC.COMPARISON, seq($.expression, $.comparison_operator, repeat($._NL), $.expression)),
+    comparison_expression: $ => prec.left(PREC.COMPARISON, seq($.expression, $._comparison_operator, repeat($._NL), $.expression)),
 
-    equality_expression: $ => prec.left(PREC.EQUALITY, seq($.expression, field('op', $.equality_operator), repeat($._NL), $.expression)),
+    equality_expression: $ => prec.left(PREC.EQUALITY, seq($.expression, field('op', $._equality_operator), repeat($._NL), $.expression)),
 
     conjunction_expression: $ => prec.left(PREC.CONJUNCTION, seq(
       field('left', $.expression), 
@@ -1164,9 +1164,9 @@ module.exports = grammar({
       $.type_test
     ),
 
-    range_test: $ => seq($.in_operator, $.expression),
+    range_test: $ => seq($._in_operator, $.expression),
 
-    type_test: $ => seq($.is_operator, $._type),
+    type_test: $ => seq($._is_operator, $._type),
 
     try_expression: $ => prec.right(seq(
       "try",
@@ -1219,15 +1219,15 @@ module.exports = grammar({
       choice($.simple_identifier, "class")
     )),
 
-    assignment_operator: $ => choice("=", "+=", "-=", "*=", "/=", "%="),
+    _assignment_operator: $ => choice("=", "+=", "-=", "*=", "/=", "%="),
 
-    equality_operator: $ => choice("!=", "!==", "==", "==="),
+    _equality_operator: $ => choice("!=", "!==", "==", "==="),
     
-    comparison_operator: $ => choice("<", ">", "<=", ">="),
+    _comparison_operator: $ => choice("<", ">", "<=", ">="),
 
-    in_operator: $ => choice("in", "!in"),
+    _in_operator: $ => choice("in", "!in"),
 
-    is_operator: $ => choice("is", "!is"),
+    _is_operator: $ => choice("is", "!is"),
 
     _additive_operator: $ => choice($._bin_plus, $._bin_min),
 

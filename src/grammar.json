@@ -3845,7 +3845,7 @@
           "name": "op",
           "content": {
             "type": "SYMBOL",
-            "name": "assignment_operator"
+            "name": "_assignment_operator"
           }
         },
         {
@@ -4511,7 +4511,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "in_operator"
+            "name": "_in_operator"
           },
           {
             "type": "REPEAT",
@@ -4539,7 +4539,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "is_operator"
+            "name": "_is_operator"
           },
           {
             "type": "REPEAT",
@@ -4567,7 +4567,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "comparison_operator"
+            "name": "_comparison_operator"
           },
           {
             "type": "REPEAT",
@@ -4598,7 +4598,7 @@
             "name": "op",
             "content": {
               "type": "SYMBOL",
-              "name": "equality_operator"
+              "name": "_equality_operator"
             }
           },
           {
@@ -6325,7 +6325,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "in_operator"
+          "name": "_in_operator"
         },
         {
           "type": "SYMBOL",
@@ -6338,7 +6338,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "is_operator"
+          "name": "_is_operator"
         },
         {
           "type": "SYMBOL",
@@ -6679,7 +6679,7 @@
         ]
       }
     },
-    "assignment_operator": {
+    "_assignment_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6708,7 +6708,7 @@
         }
       ]
     },
-    "equality_operator": {
+    "_equality_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6729,7 +6729,7 @@
         }
       ]
     },
-    "comparison_operator": {
+    "_comparison_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6750,7 +6750,7 @@
         }
       ]
     },
-    "in_operator": {
+    "_in_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -6763,7 +6763,7 @@
         }
       ]
     },
-    "is_operator": {
+    "_is_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -8456,7 +8456,7 @@
     ],
     [
       "type_arguments",
-      "comparison_operator"
+      "_comparison_operator"
     ],
     [
       "call_expression",

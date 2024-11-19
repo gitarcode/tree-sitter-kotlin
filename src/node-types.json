@@ -413,8 +413,28 @@
         "required": true,
         "types": [
           {
-            "type": "assignment_operator",
-            "named": true
+            "type": "%=",
+            "named": false
+          },
+          {
+            "type": "*=",
+            "named": false
+          },
+          {
+            "type": "+=",
+            "named": false
+          },
+          {
+            "type": "-=",
+            "named": false
+          },
+          {
+            "type": "/=",
+            "named": false
+          },
+          {
+            "type": "=",
+            "named": false
           }
         ]
       },
@@ -429,11 +449,6 @@
         ]
       }
     }
-  },
-  {
-    "type": "assignment_operator",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "binding_pattern_kind",
@@ -894,20 +909,11 @@
       "required": true,
       "types": [
         {
-          "type": "comparison_operator",
-          "named": true
-        },
-        {
           "type": "expression",
           "named": true
         }
       ]
     }
-  },
-  {
-    "type": "comparison_operator",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "conjunction_expression",
@@ -1275,8 +1281,20 @@
         "required": true,
         "types": [
           {
-            "type": "equality_operator",
-            "named": true
+            "type": "!=",
+            "named": false
+          },
+          {
+            "type": "!==",
+            "named": false
+          },
+          {
+            "type": "==",
+            "named": false
+          },
+          {
+            "type": "===",
+            "named": false
           }
         ]
       }
@@ -1291,11 +1309,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "equality_operator",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "explicit_delegation",
@@ -2008,18 +2021,9 @@
         {
           "type": "expression",
           "named": true
-        },
-        {
-          "type": "in_operator",
-          "named": true
         }
       ]
     }
-  },
-  {
-    "type": "in_operator",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "index_access_expression",
@@ -2110,10 +2114,6 @@
           "named": true
         },
         {
-          "type": "is_operator",
-          "named": true
-        },
-        {
           "type": "not_nullable_type",
           "named": true
         },
@@ -2131,11 +2131,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "is_operator",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "labeled_expression",
@@ -2879,15 +2874,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "expression",
-          "named": true
-        },
-        {
-          "type": "in_operator",
           "named": true
         }
       ]
@@ -3643,14 +3634,10 @@
     },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "is_operator",
           "named": true
         },
         {
