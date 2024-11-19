@@ -6700,7 +6700,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "neq_opeartor"
+          "name": "neq_operator"
         },
         {
           "type": "STRING",
@@ -6716,7 +6716,7 @@
         }
       ]
     },
-    "neq_opeartor": {
+    "neq_operator": {
       "type": "STRING",
       "value": "!="
     },

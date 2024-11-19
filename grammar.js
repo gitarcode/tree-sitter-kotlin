@@ -1222,8 +1222,8 @@ module.exports = grammar({
     _assignment_operator: $ => choice($.assignment_op, "+=", "-=", "*=", "/=", "%="),
     assignment_op: $ => "=",
 
-    _equality_operator: $ => choice($.neq_opeartor, "!==", $.eq_operator, "==="),
-    neq_opeartor: $ => "!=",
+    _equality_operator: $ => choice($.neq_operator, "!==", $.eq_operator, "==="),
+    neq_operator: $ => "!=",
     eq_operator: $ => "==",
     
     comparison_operator: $ => choice("<", ">", "<=", ">="),

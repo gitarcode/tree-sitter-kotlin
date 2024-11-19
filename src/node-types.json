@@ -1325,7 +1325,7 @@
             "named": true
           },
           {
-            "type": "neq_opeartor",
+            "type": "neq_operator",
             "named": true
           }
         ]
@@ -4407,7 +4407,7 @@
     "named": true
   },
   {
-    "type": "neq_opeartor",
+    "type": "neq_operator",
     "named": true
   },
   {
