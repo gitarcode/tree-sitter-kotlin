@@ -50,7 +50,6 @@ const PREC = {
   BLOCK: 1,
   ARGUMENTS: 1,
   STRING_CONTENT: 1,
-  RETURN_OR_THROW: 0,
 };
 const DEC_DIGITS = token(sep1(/[0-9]+/, /_+/));
 const HEX_DIGITS = token(sep1(/[0-9a-fA-F]+/, /_+/));
@@ -1196,14 +1195,14 @@ module.exports = grammar({
 
     finally_block: $ => seq("finally", repeat($._NL), $.block),
 
-    return_expression: $ => prec(PREC.RETURN_OR_THROW, seq(
+    return_expression: $ => seq(
       choice("return", seq("return@", $._lexical_identifier)), 
       optional($.expression)
-    )),
+    ),
 
-    throw_expression: $ => prec(PREC.RETURN_OR_THROW, seq(
+    throw_expression: $ => seq(
       "throw", $.expression,
-    )),
+    ),
 
     continue_expression: $ => choice(
       "continue",
