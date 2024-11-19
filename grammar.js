@@ -69,7 +69,7 @@ const DOLLAR_IN_STRING_CONTENT = token(/\$[^\p{L}_{"]+/);
 
 const QUOTE_IN_MULTI_LINE_STRING_CONTENT = token(/"[^"]|""[^"]/);
 
-const NON_NL_WHITESPACE = /[ \t\v\f\r\u00a0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000]/;
+const NON_NL_WHITESPACE = /[ \t\v\f\u00a0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000]/;
 
 module.exports = grammar({
   name: "kotlin",
@@ -176,7 +176,7 @@ module.exports = grammar({
   extras: $ => [
     $.line_comment,
     $.multiline_comment,
-    NON_NL_WHITESPACE
+    $._ws
   ],
 
   externals: $ => [
@@ -1506,7 +1506,8 @@ module.exports = grammar({
 
     _CONJ: $ => /\s*&&/,
     _DISJ: $ => /\s*\|\|/,
-    _NL: $ => /\n/,
+    _ws: $ => NON_NL_WHITESPACE,
+    _NL: $ => /\r?\n/,
     _semi: $ => choice(";", $._NL),
 
     line_comment: $ => token(seq('//', /[^\r\n]*/)),
