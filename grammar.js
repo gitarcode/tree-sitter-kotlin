@@ -1182,6 +1182,7 @@ module.exports = grammar({
 
     catch_block: $ => seq(
       "catch",
+      repeat($._NL),
       "(",
       repeat($._NL),
       repeat($.annotation),
@@ -1189,10 +1190,11 @@ module.exports = grammar({
       ":",
       field('type', $._type),
       ")",
+      repeat($._NL),
       field('body', $.block),
     ),
 
-    finally_block: $ => seq("finally", $.block),
+    finally_block: $ => seq("finally", repeat($._NL), $.block),
 
     return_expression: $ => prec(PREC.RETURN_OR_THROW, seq(
       choice("return", seq("return@", $._lexical_identifier)), 

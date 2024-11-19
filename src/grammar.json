@@ -6430,6 +6430,13 @@
           "value": "catch"
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "STRING",
           "value": "("
         },
@@ -6472,6 +6479,13 @@
           "value": ")"
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "FIELD",
           "name": "body",
           "content": {
@@ -6487,6 +6501,13 @@
         {
           "type": "STRING",
           "value": "finally"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
         },
         {
           "type": "SYMBOL",
