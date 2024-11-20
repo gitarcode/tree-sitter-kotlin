@@ -826,3 +826,97 @@ class A {
                       var_decl: (variable_declaration
                         id: (simple_identifier))
                       initializer: (integer_literal))))))))))))
+
+
+================================================================================
+Consequtive classes without body
+================================================================================
+
+private open class Action
+private data class EmitResumes(val job: TestJob) : Action()
+private data class Collected(val job: TestJob, val value: Any?) : Action()
+private data class ResumeCollecting(val job: TestJob) : Action()
+private data class Cancelled(val job: TestJob) : Action()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    modifiers: (modifiers
+      (visibility_modifier)
+      (inheritance_modifier))
+    name: (simple_identifier))
+  (class_declaration
+    modifiers: (modifiers
+      (visibility_modifier)
+      (class_modifier))
+    name: (simple_identifier)
+    (primary_constructor
+      (class_parameters
+        (class_parameter
+          binding_pattern: (binding_pattern_kind)
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
+    (delegation_specifier
+      (constructor_invocation
+        (user_type
+          (type_identifier))
+        (value_arguments))))
+  (class_declaration
+    modifiers: (modifiers
+      (visibility_modifier)
+      (class_modifier))
+    name: (simple_identifier)
+    (primary_constructor
+      (class_parameters
+        (class_parameter
+          binding_pattern: (binding_pattern_kind)
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))
+        (class_parameter
+          binding_pattern: (binding_pattern_kind)
+          name: (simple_identifier)
+          type: (nullable_type
+            type: (user_type
+              (type_identifier))))))
+    (delegation_specifier
+      (constructor_invocation
+        (user_type
+          (type_identifier))
+        (value_arguments))))
+  (class_declaration
+    modifiers: (modifiers
+      (visibility_modifier)
+      (class_modifier))
+    name: (simple_identifier)
+    (primary_constructor
+      (class_parameters
+        (class_parameter
+          binding_pattern: (binding_pattern_kind)
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
+    (delegation_specifier
+      (constructor_invocation
+        (user_type
+          (type_identifier))
+        (value_arguments))))
+  (class_declaration
+    modifiers: (modifiers
+      (visibility_modifier)
+      (class_modifier))
+    name: (simple_identifier)
+    (primary_constructor
+      (class_parameters
+        (class_parameter
+          binding_pattern: (binding_pattern_kind)
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
+    (delegation_specifier
+      (constructor_invocation
+        (user_type
+          (type_identifier))
+        (value_arguments)))))
