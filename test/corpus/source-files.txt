@@ -203,3 +203,29 @@ package test import a.b.c import d.e.f
       (simple_identifier)
       (simple_identifier)
       (simple_identifier))))
+
+================================================================================
+Semicolon after package header on separate line
+================================================================================
+
+package test
+
+
+;
+
+// comment
+import androidx.compose.desktop.initCompose
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (package_header
+    (identifier
+      (simple_identifier)))
+  (line_comment)
+  (import_header
+    name: (identifier
+      (simple_identifier)
+      (simple_identifier)
+      (simple_identifier)
+      (simple_identifier))))

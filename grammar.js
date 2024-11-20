@@ -175,7 +175,8 @@ module.exports = grammar({
     [$.type_constraints, $.property_declaration],
     [$.lambda_literal, $._semi],
     [$.statements],
-    [$.enum_class_body]
+    [$.enum_class_body],
+    [$.package_header]
   ],
 
   extras: $ => [
@@ -234,7 +235,7 @@ module.exports = grammar({
       $._semi,
     ),
 
-    package_header: $ => prec.right(seq("package", $.identifier, optional($._semi))),
+    package_header: $ => seq("package", $.identifier, optional(seq(repeat($._NL), ";"))),
 
     import_header: $ => prec.left(seq(
       "import",
