@@ -173,7 +173,8 @@ module.exports = grammar({
     [$._top_level_statement],
     [$.type_constraints, $.property_declaration],
     [$.enum_class_body],
-    [$.package_header]
+    [$.package_header],
+    [$._when_condition_clause]
   ],
 
   extras: $ => [
@@ -1155,6 +1156,13 @@ module.exports = grammar({
     ),
 
     when_entry: $ => seq(
+      $._when_condition_clause,
+      repeat($._NL),
+      $._control_body_structure,
+      optional(seq($._semi, repeat($._NL)))
+    ),
+
+    _when_condition_clause: $ => seq(
       choice(
         seq(
           sep1($.when_condition, repeat($._NL), ",", repeat($._NL)), 
@@ -1167,9 +1175,6 @@ module.exports = grammar({
         repeat($._NL),
       ),
       "->",
-      repeat($._NL),
-      $._control_body_structure,
-      optional(seq($._semi, repeat($._NL)))
     ),
 
     when_condition: $ => choice(
