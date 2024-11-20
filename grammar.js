@@ -172,8 +172,9 @@ module.exports = grammar({
     [$.parameter, $._simple_user_type],
     [$.function_type_parameters],
     [$._top_level_statement],
-    [$.property_declaration, $._setter_getter],
-    [$.type_constraints, $.property_declaration]
+    [$.type_constraints, $.property_declaration],
+    [$.lambda_literal, $._semi],
+    [$.statements]
   ],
 
   extras: $ => [
@@ -684,10 +685,7 @@ module.exports = grammar({
     // Statements
     // ==========
 
-    statements: $ => seq(
-      sep1($.statement, repeat1($._semi)),
-      repeat($._semi)
-    ),
+    statements: $ => sep1($.statement, repeat1($._semi)),
 
     statement: $ => choice(
       $._declaration,
@@ -704,6 +702,7 @@ module.exports = grammar({
       "{",
       repeat($._NL),
       optional($.statements),
+      repeat($._semi),
       "}")
     ),
 
@@ -1049,6 +1048,7 @@ module.exports = grammar({
       repeat($._NL),
       optional(seq(optional(field('parameters', $.lambda_parameters)), repeat($._NL), "->", repeat($._NL))),
       optional(field('body', $.statements)),
+      repeat($._semi),
       "}"
     ),
 
