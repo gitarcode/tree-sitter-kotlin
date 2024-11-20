@@ -1585,13 +1585,6 @@
                 "type": "BLANK"
               }
             ]
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_NL"
-            }
           }
         ]
       }
@@ -2848,6 +2841,13 @@
           ]
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
@@ -2944,13 +2944,6 @@
               "type": "BLANK"
             }
           ]
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_NL"
-          }
         }
       ]
     },
@@ -3630,8 +3623,22 @@
             "value": "("
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
             "type": "SYMBOL",
             "name": "_in_expression"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           },
           {
             "type": "STRING",
@@ -3666,13 +3673,6 @@
     "_in_expression": {
       "type": "SEQ",
       "members": [
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_NL"
-          }
-        },
         {
           "type": "REPEAT",
           "content": {
@@ -3721,13 +3721,6 @@
           "content": {
             "type": "SYMBOL",
             "name": "expression"
-          }
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_NL"
           }
         }
       ]
@@ -8599,6 +8592,9 @@
     ],
     [
       "statements"
+    ],
+    [
+      "enum_class_body"
     ]
   ],
   "precedences": [],

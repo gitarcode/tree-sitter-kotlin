@@ -174,7 +174,8 @@ module.exports = grammar({
     [$._top_level_statement],
     [$.type_constraints, $.property_declaration],
     [$.lambda_literal, $._semi],
-    [$.statements]
+    [$.statements],
+    [$.enum_class_body]
   ],
 
   extras: $ => [
@@ -429,7 +430,6 @@ module.exports = grammar({
       optional(field('name', $.simple_identifier)),
       optional(seq(":", repeat($._NL), $._delegation_specifiers)),
       optional(field('body', $.class_body)),
-      repeat($._NL)
     )),
 
     function_value_parameters: $ => seq(
@@ -582,6 +582,7 @@ module.exports = grammar({
       "{",
       repeat($._NL),
       optional($._enum_entries),
+      repeat($._NL),
       optional(seq(";", repeat($._NL), optional($._class_member_declarations))),
       "}"
     ),
@@ -591,7 +592,6 @@ module.exports = grammar({
       repeat(seq(repeat($._NL), ",", repeat($._NL), $.enum_entry)),
       repeat($._NL),
       optional(","),
-      repeat($._NL),
     ),
 
     enum_entry: $ => seq(
@@ -716,21 +716,21 @@ module.exports = grammar({
       "for",
       repeat($._NL),
       "(",
+      repeat($._NL),
       $._in_expression,
+      repeat($._NL),
       ")",
       repeat($._NL),
       optional(field('body', $._control_body_structure))
     )),
 
     _in_expression: $ => seq(
-      repeat($._NL),
       repeat($.annotation),
       field('var_decl', choice($.variable_declaration, $.multi_variable_declaration)),
       repeat($._NL),
       "in",
       repeat($._NL),
       field('expression', $.expression),
-      repeat($._NL),
     ),
 
     while_statement: $ => seq(
