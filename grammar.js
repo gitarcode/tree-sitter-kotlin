@@ -686,13 +686,16 @@ module.exports = grammar({
     // Statements
     // ==========
 
-    statements: $ => sep1($.statement, repeat1($._semi)),
+    statements: $ => repeat1(seq($.statement, repeat($._semi))),
 
-    statement: $ => choice(
-      $._declaration,
-      $.assignment,
-      $._loop_statement,
-      $.expression),
+    statement: $ => prec.right(seq(
+      choice(
+        $._declaration,
+        $.assignment,
+        $._loop_statement,
+        $.expression),
+      optional($._semi)
+    )),
 
     label: $ => token(seq(
       /[a-zA-Z_][a-zA-Z_0-9]*/,
@@ -703,7 +706,6 @@ module.exports = grammar({
       "{",
       repeat($._NL),
       optional($.statements),
-      repeat($._semi),
       "}")
     ),
 
@@ -1049,7 +1051,6 @@ module.exports = grammar({
       repeat($._NL),
       optional(seq(optional(field('parameters', $.lambda_parameters)), repeat($._NL), "->", repeat($._NL))),
       optional(field('body', $.statements)),
-      repeat($._semi),
       "}"
     ),
 

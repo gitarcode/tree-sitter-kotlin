@@ -3485,53 +3485,65 @@
       ]
     },
     "statements": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "statement"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
+      "type": "REPEAT1",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "statement"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_semi"
+            }
+          }
+        ]
+      }
+    },
+    "statement": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
             "members": [
               {
-                "type": "REPEAT1",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_semi"
-                }
+                "type": "SYMBOL",
+                "name": "_declaration"
               },
               {
                 "type": "SYMBOL",
-                "name": "statement"
+                "name": "assignment"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_loop_statement"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "expression"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_semi"
+              },
+              {
+                "type": "BLANK"
               }
             ]
           }
-        }
-      ]
-    },
-    "statement": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_declaration"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "assignment"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_loop_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "expression"
-        }
-      ]
+        ]
+      }
     },
     "label": {
       "type": "TOKEN",
@@ -3577,13 +3589,6 @@
                 "type": "BLANK"
               }
             ]
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_semi"
-            }
           },
           {
             "type": "STRING",
@@ -5607,13 +5612,6 @@
               "type": "BLANK"
             }
           ]
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_semi"
-          }
         },
         {
           "type": "STRING",

@@ -277,5 +277,5 @@ fun f() {
             (simple_identifier))
           (multiline_comment)
           (statement
-            (simple_identifier)))
-        (line_comment)))))
+            (simple_identifier))
+          (line_comment))))))
