@@ -75,9 +75,6 @@ module.exports = grammar({
   name: "kotlin",
 
   conflicts: $ => [
-    [$.class_declaration],
-    [$.class_declaration, $.primary_constructor],
-    
     // @Type(... could either be an annotation constructor invocation or an annotated expression
     [$.constructor_invocation, $._unescaped_annotation],
 
@@ -174,7 +171,8 @@ module.exports = grammar({
     [$.enum_class_body],
     [$.package_header],
     [$._when_condition_clause],
-    [$._wrapper]
+    [$._wrapper],
+    [$.enum_class_declaration, $.type_constraints]
   ],
 
   extras: $ => [
@@ -283,24 +281,28 @@ module.exports = grammar({
     // Classes
     // ==========
 
-    class_declaration: $ =>seq(
+    class_declaration: $ => prec.right(seq(
       optional(field('modifiers', $.modifiers)),
       choice("class", seq(optional(seq("fun", repeat($._NL))), "interface")),
       repeat($._NL),
       field('name', $.simple_identifier),
+      repeat($._NL),
       optional($.type_parameters),
+      repeat($._NL),
       optional($.primary_constructor),
       optional(seq(repeat($._NL), ":", repeat($._NL),  $._delegation_specifiers)),
       repeat($._NL),
       optional($.type_constraints),
       optional(field('body', $.class_body)),
-    ),
+    )),
 
     enum_class_declaration: $ => prec.right(seq(
       optional(field('modifiers', $.modifiers)),
       seq("enum", "class"),
       field('name', $.simple_identifier),
+      repeat($._NL),
       optional($.type_parameters),
+      repeat($._NL),
       optional($.primary_constructor),
       optional(seq(":", repeat($._NL), $._delegation_specifiers)),
       optional($.type_constraints),
@@ -308,7 +310,6 @@ module.exports = grammar({
     )),
 
     primary_constructor: $ => seq(
-      repeat($._NL),
       optional(seq(optional(field('modifiers', $.modifiers)), "constructor", repeat($._NL))),
       $.class_parameters
     ),
@@ -378,7 +379,6 @@ module.exports = grammar({
     ),
 
     type_parameters: $ => seq(
-      repeat($._NL),
       "<", 
       repeat($._NL),
       sep1($.type_parameter, repeat($._NL), ",", repeat($._NL)), 

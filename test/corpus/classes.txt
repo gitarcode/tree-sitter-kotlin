@@ -791,3 +791,39 @@ class A {;
         parameters: (function_value_parameters)
         body: (function_body
           (block))))))
+
+
+================================================================================
+Class in function
+================================================================================
+
+class A {
+	fun f() {
+    class B {
+      val a = 1
+    }
+  }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    name: (simple_identifier)
+    body: (class_body
+      (function_declaration
+        name: (simple_identifier)
+        parameters: (function_value_parameters)
+        body: (function_body
+          (block
+            (statements
+              (statement
+                (class_declaration
+                  name: (simple_identifier)
+                  body: (class_body
+                    (property_declaration
+                      (binding_pattern_kind)
+                      var_decl: (variable_declaration
+                        id: (simple_identifier))
+                      initializer: (integer_literal))))))))))))
+                      
