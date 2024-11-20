@@ -2503,6 +2503,13 @@
                     ]
                   },
                   {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_NL"
+                    }
+                  },
+                  {
                     "type": "SYMBOL",
                     "name": "function_body"
                   }

@@ -531,6 +531,7 @@ module.exports = grammar({
         $.parameter_with_optional_type,
         ")",
         optional(seq(":", $._type)),
+        repeat($._NL),
         $.function_body
       ))
     )),
