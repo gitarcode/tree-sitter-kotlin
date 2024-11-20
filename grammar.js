@@ -755,10 +755,17 @@ module.exports = grammar({
     )),
 
     assignment: $ => seq(
-      field('left', $.expression),
+      field('left', $._directly_assignable_expression),
       field('op', $._assignment_operator),
       repeat($._NL),
       field('right', $.expression)
+    ),
+
+    _directly_assignable_expression: $ => choice(
+      $.dot_qualified_expression,
+      $.index_access_expression,
+      $.simple_identifier,
+      $.postfix_expression,
     ),
 
     // ==========

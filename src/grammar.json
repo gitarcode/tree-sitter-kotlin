@@ -3857,7 +3857,7 @@
           "name": "left",
           "content": {
             "type": "SYMBOL",
-            "name": "expression"
+            "name": "_directly_assignable_expression"
           }
         },
         {
@@ -3882,6 +3882,27 @@
             "type": "SYMBOL",
             "name": "expression"
           }
+        }
+      ]
+    },
+    "_directly_assignable_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "dot_qualified_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "index_access_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "simple_identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "postfix_expression"
         }
       ]
     },
