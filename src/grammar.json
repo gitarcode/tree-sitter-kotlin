@@ -6278,6 +6278,13 @@
                       "type": "BLANK"
                     }
                   ]
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
+                  }
                 }
               ]
             },
@@ -6291,15 +6298,15 @@
             {
               "type": "STRING",
               "value": "else"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_NL"
+              }
             }
           ]
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_NL"
-          }
         },
         {
           "type": "STRING",
@@ -8553,10 +8560,6 @@
       "if_expression"
     ],
     [
-      "while_statement",
-      "_control_body_structure"
-    ],
-    [
       "secondary_constructor"
     ],
     [
@@ -8583,13 +8586,6 @@
     [
       "type_constraints",
       "property_declaration"
-    ],
-    [
-      "lambda_literal",
-      "_semi"
-    ],
-    [
-      "statements"
     ],
     [
       "enum_class_body"
