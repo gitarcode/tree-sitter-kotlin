@@ -826,4 +826,3 @@ class A {
                       var_decl: (variable_declaration
                         id: (simple_identifier))
                       initializer: (integer_literal))))))))))))
-                      

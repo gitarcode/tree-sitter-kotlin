@@ -8330,10 +8330,6 @@
   ],
   "conflicts": [
     [
-      "class_declaration",
-      "primary_constructor"
-    ],
-    [
       "constructor_invocation",
       "_unescaped_annotation"
     ],
