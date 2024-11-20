@@ -1484,10 +1484,6 @@
         "required": false,
         "types": [
           {
-            "type": ";",
-            "named": false
-          },
-          {
             "type": "assignment",
             "named": true
           },
@@ -1911,10 +1907,6 @@
         "required": false,
         "types": [
           {
-            "type": ";",
-            "named": false
-          },
-          {
             "type": "assignment",
             "named": true
           },
@@ -1954,10 +1946,6 @@
         "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": ";",
-            "named": false
-          },
           {
             "type": "assignment",
             "named": true
@@ -3845,7 +3833,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "assignment",

@@ -1126,13 +1126,12 @@ module.exports = grammar({
       ")",
     ),
 
-    _control_body_structure: $ => prec.right(choice(
+    _control_body_structure: $ => choice(
       $.expression, 
       $.assignment, 
       $.block,
       $._loop_statement,
-      ";"
-    )),
+    ),
 
     when_subject: $ => seq(
       "(",
