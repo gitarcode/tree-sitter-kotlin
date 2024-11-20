@@ -160,7 +160,6 @@ module.exports = grammar({
     [$.call_expression, $.infix_expression, $.comparison_expression],
     [$.annotated_lambda, $.modifiers],
     [$.lambda_literal],
-    [$.when_entry],
     [$.function_type_parameters, $.parenthesized_type],
     [$._setter_getter],
     [$.if_expression],
@@ -174,7 +173,8 @@ module.exports = grammar({
     [$.type_constraints, $.property_declaration],
     [$.enum_class_body],
     [$.package_header],
-    [$._when_condition_clause]
+    [$._when_condition_clause],
+    [$._wrapper]
   ],
 
   extras: $ => [
@@ -1151,15 +1151,18 @@ module.exports = grammar({
       optional($.when_subject),
       "{",
       repeat($._NL),
-      repeat($.when_entry),
+      repeat($._wrapper),
       "}"
     ),
+
+    // This is a wrapper node so that the comment and whitespace is not recognized as
+    // part of the when_entry node.  
+    _wrapper: $ => seq($.when_entry, repeat($._semi)),
 
     when_entry: $ => seq(
       $._when_condition_clause,
       repeat($._NL),
       $._control_body_structure,
-      optional(seq($._semi, repeat($._NL)))
     ),
 
     _when_condition_clause: $ => seq(
