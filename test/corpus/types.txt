@@ -206,8 +206,9 @@ a as T.() -> Unit
     (as_expression
       (simple_identifier)
       (function_type
-        (user_type
-          (type_identifier))
+        (receiver_type
+          type: (user_type
+            (type_identifier)))
         (function_type_parameters)
         type: (user_type
           (type_identifier))))))
@@ -227,9 +228,10 @@ var customRequest: (RequestConfig.Builder.() -> RequestConfig.Builder)
       id: (simple_identifier)
       type: (parenthesized_type
         (function_type
-          (user_type
-            (type_identifier)
-            (type_identifier))
+          (receiver_type
+            type: (user_type
+              (type_identifier)
+              (type_identifier)))
           (function_type_parameters)
           type: (user_type
             (type_identifier)

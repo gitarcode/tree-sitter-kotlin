@@ -174,7 +174,9 @@ module.exports = grammar({
     [$.package_header],
     [$._when_condition_clause],
     [$._wrapper],
-    [$.enum_class_declaration, $.type_constraints]
+    [$.enum_class_declaration, $.type_constraints],
+    [$.receiver_type, $._type],
+    [$.receiver_type]
   ],
 
   extras: $ => [
@@ -656,7 +658,7 @@ module.exports = grammar({
     _type_projection_modifier: $ => $.variance_modifier,
 
     function_type: $ => seq(
-      optional(seq($.user_type, choice($._dot, "."))), // TODO: Support "real" types
+      optional(seq($.receiver_type, choice($._dot, "."), repeat($._NL))), 
       $.function_type_parameters,
       repeat($._NL),
       "->",

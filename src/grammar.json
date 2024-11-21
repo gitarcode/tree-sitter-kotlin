@@ -3299,7 +3299,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "user_type"
+                  "name": "receiver_type"
                 },
                 {
                   "type": "CHOICE",
@@ -3313,6 +3313,13 @@
                       "value": "."
                     }
                   ]
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
+                  }
                 }
               ]
             },
@@ -8621,6 +8628,13 @@
     [
       "enum_class_declaration",
       "type_constraints"
+    ],
+    [
+      "receiver_type",
+      "_type"
+    ],
+    [
+      "receiver_type"
     ]
   ],
   "precedences": [],

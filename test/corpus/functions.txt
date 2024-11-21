@@ -398,3 +398,56 @@ fun String.myLength(): Int {
               (dot_qualified_expression
                 receiver: (this_expression)
                 selector: (simple_identifier)))))))))
+
+==================
+Function with function type argument
+==================
+
+private fun Route.staticContentRoute(
+    remotePath: String,
+    autoHead: Boolean,
+    handler: suspend (ApplicationCall).() -> Unit
+) = route(remotePath) {
+}
+
+---
+
+(source_file
+  (function_declaration
+    modifiers: (modifiers
+      (visibility_modifier))
+    receiver_type: (receiver_type
+      type: (user_type
+        (type_identifier)))
+    name: (simple_identifier)
+    parameters: (function_value_parameters
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier))))
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier))))
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (type_modifiers)
+          type: (function_type
+            (receiver_type
+              (parenthesized_type
+                type: (user_type
+                  (type_identifier))))
+            (function_type_parameters)
+            type: (user_type
+              (type_identifier))))))
+    body: (function_body
+      expression: (call_expression
+        expression: (simple_identifier)
+        args: (value_arguments
+          (value_argument
+            (simple_identifier)))
+        lambda_arg: (annotated_lambda
+          (lambda_literal))))))

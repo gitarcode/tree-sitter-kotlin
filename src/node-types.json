@@ -1720,11 +1720,11 @@
           "named": true
         },
         {
-          "type": "type_modifiers",
+          "type": "receiver_type",
           "named": true
         },
         {
-          "type": "user_type",
+          "type": "type_modifiers",
           "named": true
         }
       ]

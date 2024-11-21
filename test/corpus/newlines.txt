@@ -963,8 +963,9 @@ internal object TransformRequestBodyHook : ClientHook<
           (type_projection
             (type_modifiers)
             (function_type
-              (user_type
-                (type_identifier))
+              (receiver_type
+                type: (user_type
+                  (type_identifier)))
               (function_type_parameters
                 (parameter
                   name: (simple_identifier)
