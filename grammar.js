@@ -147,7 +147,6 @@ module.exports = grammar({
     [$.function_value_parameters],
     [$.class_parameters],
     [$.source_file],
-    [$._type_reference, $.function_type],
     [$._type_reference, $.parenthesized_user_type],
     [$.type_arguments, $._comparison_operator],
     [$.call_expression, $.prefix_expression, $.comparison_expression],
