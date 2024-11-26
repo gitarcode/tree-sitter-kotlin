@@ -6217,8 +6217,20 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "SYMBOL",
-            "name": "_wrapper"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_when_entry"
+              },
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_semi"
+                }
+              }
+            ]
           }
         },
         {
@@ -6227,19 +6239,16 @@
         }
       ]
     },
-    "_wrapper": {
-      "type": "SEQ",
+    "_when_entry": {
+      "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
           "name": "when_entry"
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_semi"
-          }
+          "type": "SYMBOL",
+          "name": "else_entry"
         }
       ]
     },
@@ -6247,70 +6256,50 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_when_condition_clause"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "when_condition"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_NL"
+                    }
+                  },
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "REPEAT",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_NL"
+                    }
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "when_condition"
+                  }
+                ]
+              }
+            }
+          ]
         },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_NL"
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_control_body_structure"
-        }
-      ]
-    },
-    "_when_condition_clause": {
-      "type": "SEQ",
-      "members": [
         {
           "type": "CHOICE",
           "members": [
             {
               "type": "SEQ",
               "members": [
-                {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "when_condition"
-                    },
-                    {
-                      "type": "REPEAT",
-                      "content": {
-                        "type": "SEQ",
-                        "members": [
-                          {
-                            "type": "REPEAT",
-                            "content": {
-                              "type": "SYMBOL",
-                              "name": "_NL"
-                            }
-                          },
-                          {
-                            "type": "STRING",
-                            "value": ","
-                          },
-                          {
-                            "type": "REPEAT",
-                            "content": {
-                              "type": "SYMBOL",
-                              "name": "_NL"
-                            }
-                          },
-                          {
-                            "type": "SYMBOL",
-                            "name": "when_condition"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                },
                 {
                   "type": "REPEAT",
                   "content": {
@@ -6329,39 +6318,66 @@
                       "type": "BLANK"
                     }
                   ]
-                },
-                {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "_NL"
-                  }
                 }
               ]
             },
             {
-              "type": "REPEAT",
-              "content": {
-                "type": "SYMBOL",
-                "name": "_NL"
-              }
-            },
-            {
-              "type": "STRING",
-              "value": "else"
-            },
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "SYMBOL",
-                "name": "_NL"
-              }
+              "type": "BLANK"
             }
           ]
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "STRING",
           "value": "->"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_control_body_structure"
+        }
+      ]
+    },
+    "else_entry": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "else"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "->"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_control_body_structure"
         }
       ]
     },
@@ -8599,10 +8615,7 @@
       "package_header"
     ],
     [
-      "_when_condition_clause"
-    ],
-    [
-      "_wrapper"
+      "when_entry"
     ],
     [
       "enum_class_declaration",

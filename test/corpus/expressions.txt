@@ -912,7 +912,7 @@ when (this) {
     (when_expression
       (when_subject
         (this_expression))
-      (when_entry
+      (else_entry
         (additive_expression
           (string_literal
             (interpolated_identifier)
@@ -1194,7 +1194,7 @@ when {
             (statements
               (statement
                 (simple_identifier)))))
-      (when_entry
+      (else_entry
         (block
           (statements
             (statement

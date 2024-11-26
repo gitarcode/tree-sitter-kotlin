@@ -171,8 +171,7 @@ module.exports = grammar({
     [$.type_constraints, $.property_declaration],
     [$.enum_class_body],
     [$.package_header],
-    [$._when_condition_clause],
-    [$._wrapper],
+    [$.when_entry],
     [$.enum_class_declaration, $.type_constraints],
     [$.receiver_type, $._type],
     [$.receiver_type]
@@ -1155,33 +1154,30 @@ module.exports = grammar({
       optional($.when_subject),
       "{",
       repeat($._NL),
-      repeat($._wrapper),
+      repeat(seq($._when_entry, repeat($._semi))),
       "}"
     ),
 
-    // This is a wrapper node so that the comment and whitespace is not recognized as
-    // part of the when_entry node.  
-    _wrapper: $ => seq($.when_entry, repeat($._semi)),
+    _when_entry: $ => choice(
+      $.when_entry,
+      $.else_entry
+    ),
 
     when_entry: $ => seq(
-      $._when_condition_clause,
+      sep1($.when_condition, repeat($._NL), ",", repeat($._NL)), 
+      optional(seq(repeat($._NL), optional(","))),
+      repeat($._NL),
+      "->",
       repeat($._NL),
       $._control_body_structure,
     ),
 
-    _when_condition_clause: $ => seq(
-      choice(
-        seq(
-          sep1($.when_condition, repeat($._NL), ",", repeat($._NL)), 
-          repeat($._NL),
-          optional(","),
-          repeat($._NL),
-        ),
-        repeat($._NL),
-        "else",
-        repeat($._NL),
-      ),
+    else_entry: $ => seq(
+      "else",
+      repeat($._NL),
       "->",
+      repeat($._NL),
+      $._control_body_structure,
     ),
 
     when_condition: $ => choice(
