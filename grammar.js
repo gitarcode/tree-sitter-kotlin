@@ -1154,9 +1154,11 @@ module.exports = grammar({
       optional($.when_subject),
       "{",
       repeat($._NL),
-      repeat(seq($._when_entry, repeat($._semi))),
+      optional($.when_entries),
       "}"
     ),
+
+    when_entries: $ => repeat1(seq($._when_entry, repeat($._semi))),
 
     _when_entry: $ => choice(
       $.when_entry,

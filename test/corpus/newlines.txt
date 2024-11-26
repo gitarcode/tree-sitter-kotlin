@@ -740,48 +740,49 @@ when (val animatedImage = state) {
         (variable_declaration
           id: (simple_identifier))
         (simple_identifier))
-      (when_entry
-        (when_condition
-          (type_test
-            type: (user_type
-              (type_identifier)
-              (type_identifier))))
-        (call_expression
-          expression: (simple_identifier)
-          args: (value_arguments
-            (value_argument
-              (simple_identifier)
-              (call_expression
-                expression: (dot_qualified_expression
-                  receiver: (dot_qualified_expression
-                    receiver: (simple_identifier)
+      (when_entries  
+        (when_entry
+          (when_condition
+            (type_test
+              type: (user_type
+                (type_identifier)
+                (type_identifier))))
+          (call_expression
+            expression: (simple_identifier)
+            args: (value_arguments
+              (value_argument
+                (simple_identifier)
+                (call_expression
+                  expression: (dot_qualified_expression
+                    receiver: (dot_qualified_expression
+                      receiver: (simple_identifier)
+                      selector: (simple_identifier))
                     selector: (simple_identifier))
-                  selector: (simple_identifier))
-                args: (value_arguments)))
-            (value_argument
-              (simple_identifier)
-              (null_literal)))))
-      (when_entry
-        (when_condition
-          (type_test
-            type: (user_type
-              (type_identifier)
-              (type_identifier))))
-        (call_expression
-          expression: (simple_identifier)
-          args: (value_arguments)))
-      (when_entry
-        (when_condition
-          (type_test
-            type: (user_type
-              (type_identifier)
-              (type_identifier))))
-        (call_expression
-          expression: (simple_identifier)
-          args: (value_arguments
-            (value_argument
-              (string_literal
-                (string_content)))))))))
+                  args: (value_arguments)))
+              (value_argument
+                (simple_identifier)
+                (null_literal)))))
+        (when_entry
+          (when_condition
+            (type_test
+              type: (user_type
+                (type_identifier)
+                (type_identifier))))
+          (call_expression
+            expression: (simple_identifier)
+            args: (value_arguments)))
+        (when_entry
+          (when_condition
+            (type_test
+              type: (user_type
+                (type_identifier)
+                (type_identifier))))
+          (call_expression
+            expression: (simple_identifier)
+            args: (value_arguments
+              (value_argument
+                (string_literal
+                  (string_content))))))))))
 
 ================================================================================
 Colon on newline after secondary constructor

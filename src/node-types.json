@@ -3863,6 +3863,25 @@
     }
   },
   {
+    "type": "when_entries",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "else_entry",
+          "named": true
+        },
+        {
+          "type": "when_entry",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "when_entry",
     "named": true,
     "fields": {},
@@ -3910,11 +3929,7 @@
       "required": false,
       "types": [
         {
-          "type": "else_entry",
-          "named": true
-        },
-        {
-          "type": "when_entry",
+          "type": "when_entries",
           "named": true
         },
         {

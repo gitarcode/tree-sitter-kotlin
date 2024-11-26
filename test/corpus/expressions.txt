@@ -104,14 +104,15 @@ val y = when(x) {
     initializer: (when_expression
       (when_subject
         (simple_identifier))
-      (when_entry
-        (when_condition
-          (integer_literal))
-        (boolean_literal))
-      (when_entry
-        (when_condition
-          (integer_literal))
-        (boolean_literal)))))
+      (when_entries
+        (when_entry
+          (when_condition
+            (integer_literal))
+          (boolean_literal))
+        (when_entry
+          (when_condition
+            (integer_literal))
+          (boolean_literal))))))
 
 ================================================================================
 When expression with type arguments
@@ -128,15 +129,16 @@ when (this) {
     (when_expression
       (when_subject
         (this_expression))
-      (when_entry
-        (when_condition
-          (type_test
-            type: (user_type
-              (type_identifier)
-              (type_arguments
-                (type_projection)))))
-        (return_expression
-          (null_literal))))))
+      (when_entries
+        (when_entry
+          (when_condition
+            (type_test
+              type: (user_type
+                (type_identifier)
+                (type_arguments
+                  (type_projection)))))
+          (return_expression
+            (null_literal)))))))
 
 ================================================================================
 Value declaration with receiver type
@@ -399,33 +401,34 @@ when (dir) {
     (when_expression
       (when_subject
         (simple_identifier))
-      (when_entry
-        (when_condition
-          (integer_literal))
-          (block
-            (statements
-              (statement
-                (property_declaration
-                  (binding_pattern_kind)
-                  var_decl: (variable_declaration
-                    id: (simple_identifier))
-                  initializer: (dot_qualified_expression
-                    receiver: (simple_identifier)
-                    selector: (simple_identifier))))
-              (statement
-                (assignment
-                  left: (dot_qualified_expression
-                    receiver: (simple_identifier)
-                    selector: (simple_identifier))
-                  right: (dot_qualified_expression
-                    receiver: (simple_identifier)
-                    selector: (simple_identifier))))
-              (statement
-                (assignment
-                  left: (dot_qualified_expression
-                    receiver: (simple_identifier)
-                    selector: (simple_identifier))
-                  right: (simple_identifier)))))))))
+      (when_entries
+        (when_entry
+          (when_condition
+            (integer_literal))
+            (block
+              (statements
+                (statement
+                  (property_declaration
+                    (binding_pattern_kind)
+                    var_decl: (variable_declaration
+                      id: (simple_identifier))
+                    initializer: (dot_qualified_expression
+                      receiver: (simple_identifier)
+                      selector: (simple_identifier))))
+                (statement
+                  (assignment
+                    left: (dot_qualified_expression
+                      receiver: (simple_identifier)
+                      selector: (simple_identifier))
+                    right: (dot_qualified_expression
+                      receiver: (simple_identifier)
+                      selector: (simple_identifier))))
+                (statement
+                  (assignment
+                    left: (dot_qualified_expression
+                      receiver: (simple_identifier)
+                      selector: (simple_identifier))
+                    right: (simple_identifier))))))))))
 
 ================================================================================
 Comments in Strings
@@ -912,16 +915,17 @@ when (this) {
     (when_expression
       (when_subject
         (this_expression))
-      (else_entry
-        (additive_expression
-          (string_literal
-            (interpolated_identifier)
-            (string_content)
-            (interpolated_identifier))
-          (if_expression
-            condition: (simple_identifier)
-            consequence: (simple_identifier)
-            alternative: (string_literal)))))))
+      (when_entries
+        (else_entry
+          (additive_expression
+            (string_literal
+              (interpolated_identifier)
+              (string_content)
+              (interpolated_identifier))
+            (if_expression
+              condition: (simple_identifier)
+              consequence: (simple_identifier)
+              alternative: (string_literal))))))))
 
 ================================================================================
 When expression with trailing comma
@@ -938,15 +942,16 @@ when (x) {
     (when_expression
       (when_subject
         (simple_identifier))
-      (when_entry
-        (when_condition
-          (integer_literal))
-            (call_expression
-              expression: (simple_identifier)
-              args: (value_arguments
-                (value_argument
-                  (string_literal
-                    (string_content)))))))))
+      (when_entries  
+        (when_entry
+          (when_condition
+            (integer_literal))
+              (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments
+                  (value_argument
+                    (string_literal
+                      (string_content))))))))))
 
 ================================================================================
 Range expression
@@ -1187,18 +1192,19 @@ when {
 (source_file
   (statement
     (when_expression
-      (when_entry
-        (when_condition
-          (simple_identifier))
+      (when_entries
+        (when_entry
+          (when_condition
+            (simple_identifier))
+            (block
+              (statements
+                (statement
+                  (simple_identifier)))))
+        (else_entry
           (block
             (statements
               (statement
-                (simple_identifier)))))
-      (else_entry
-        (block
-          (statements
-            (statement
-              (simple_identifier))))))))
+                (simple_identifier)))))))))
 
 ================================================================================
 Increment/decrement assignments
