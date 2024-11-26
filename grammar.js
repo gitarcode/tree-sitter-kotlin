@@ -688,16 +688,16 @@ module.exports = grammar({
     // Statements
     // ==========
 
-    statements: $ => repeat1(seq($._statement, repeat($._semi))),
+    statements: $ => repeat1($._statement),
 
-    _statement: $ => prec.right(seq($.statement, optional($._semi))),
+    _statement: $ => prec.right(seq($.statement, repeat($._semi))),
 
-    statement: $ =>
-      choice(
-        $._declaration,
-        $.assignment,
-        $._loop_statement,
-        $.expression),
+    statement: $ => choice(
+      $._declaration,
+      $.assignment,
+      $._loop_statement,
+      $.expression
+    ),
 
     label: $ => token(seq(
       /[a-zA-Z_][a-zA-Z_0-9]*/,
