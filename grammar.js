@@ -830,7 +830,7 @@ module.exports = grammar({
     // of the call. That means that based on the context a call_expression happens in, we either want left or right
     // associativity for the arguments, which is not posssible to specify with tree-sitter. 
     // Creating a separate nonterminal, is the cleanest way to move forward.
-    // 
+    // A simple_call_expression is the one without the trailing lambda argument.
     simple_call_expression: $=> prec(PREC.CALL, seq(
       field('expression', $.expression), 
       optional($.type_arguments),
