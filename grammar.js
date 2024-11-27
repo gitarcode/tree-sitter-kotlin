@@ -291,10 +291,8 @@ module.exports = grammar({
       repeat($._NL),
       optional($.primary_constructor),
       optional(seq(repeat($._NL), ":", repeat($._NL),  $._delegation_specifiers)),
-      repeat($._NL),
-      optional($.type_constraints),
-      repeat($._NL),
-      optional(field('body', $.class_body)),
+      optional(seq(repeat($._NL), $.type_constraints)),
+      optional(seq(repeat($._NL), field('body', $.class_body))),
     ),
 
     enum_class_declaration: $ => seq(
