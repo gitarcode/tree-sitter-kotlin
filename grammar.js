@@ -687,9 +687,7 @@ module.exports = grammar({
     // Statements
     // ==========
 
-    statements: $ => repeat1($._statement),
-
-    _statement: $ => prec.right(seq($.statement, repeat($._semi))),
+    statements: $ => seq(sep1($.statement, repeat1($._semi)), repeat($._semi)),
 
     statement: $ => choice(
       $._declaration,

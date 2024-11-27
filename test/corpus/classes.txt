@@ -920,3 +920,39 @@ private data class Cancelled(val job: TestJob) : Action()
         (user_type
           (type_identifier))
         (value_arguments)))))
+
+
+================================================================================
+Local class in function
+================================================================================
+
+class X {
+    fun f() {
+        val a = 1
+        class Y {
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    name: (simple_identifier)
+    body: (class_body
+      (function_declaration
+        name: (simple_identifier)
+        parameters: (function_value_parameters)
+        body: (function_body
+          (block
+            (statements
+              (statement
+                (property_declaration
+                  (binding_pattern_kind)
+                  var_decl: (variable_declaration
+                    id: (simple_identifier))
+                  initializer: (integer_literal)))
+              (statement
+                (class_declaration
+                  name: (simple_identifier)
+                  body: (class_body))))))))))
