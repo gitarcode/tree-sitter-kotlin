@@ -160,7 +160,6 @@ module.exports = grammar({
     [$.secondary_constructor],
     [$.type_parameter],
     [$.explicit_delegation, $._unary_expression],
-    [$.class_body, $._semi],
     [$.parameter, $._simple_user_type],
     [$.function_type_parameters],
     [$._top_level_statement],
@@ -412,16 +411,16 @@ module.exports = grammar({
     // Class members
     // ==========
 
-    _class_member_declarations: $ => repeat1(choice(
-      $._class_member_declaration,
-      $._semi
-    )),
+    _class_member_declarations: $ => repeat1(
+      seq($._class_member_declaration, repeat($._NL))
+    ),
 
     _class_member_declaration: $ => choice(
       $._declaration,
       $.companion_object,
       $.anonymous_initializer,
-      $.secondary_constructor
+      $.secondary_constructor,
+      ";"
     ),
 
     anonymous_initializer: $ => seq("init", $.block),
@@ -469,7 +468,7 @@ module.exports = grammar({
       optional(seq(repeat($._NL), ":", repeat($._NL), field('type', $._type))),
       optional($.type_constraints),
       repeat($._NL),
-      optional(field('body', $.function_body))
+      optional(seq(field('body', $.function_body)))
     )),
 
     function_body: $ => choice(
