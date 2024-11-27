@@ -640,6 +640,13 @@
           ]
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
@@ -658,144 +665,154 @@
       ]
     },
     "enum_class_declaration": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "FIELD",
-                "name": "modifiers",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "modifiers"
-                }
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "enum"
-              },
-              {
-                "type": "STRING",
-                "value": "class"
-              }
-            ]
-          },
-          {
-            "type": "FIELD",
-            "name": "name",
-            "content": {
-              "type": "SYMBOL",
-              "name": "simple_identifier"
-            }
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_NL"
-            }
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "modifiers",
+              "content": {
                 "type": "SYMBOL",
-                "name": "type_parameters"
-              },
-              {
-                "type": "BLANK"
+                "name": "modifiers"
               }
-            ]
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_NL"
+            },
+            {
+              "type": "BLANK"
             }
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "primary_constructor"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": ":"
-                  },
-                  {
-                    "type": "REPEAT",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_NL"
-                    }
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_delegation_specifiers"
-                  }
-                ]
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "type_constraints"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "FIELD",
-                "name": "body",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "enum_class_body"
-                }
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "enum"
+            },
+            {
+              "type": "STRING",
+              "value": "class"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "simple_identifier"
           }
-        ]
-      }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "type_parameters"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "primary_constructor"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
+                  }
+                },
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
+                  }
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_delegation_specifiers"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "type_constraints"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "body",
+              "content": {
+                "type": "SYMBOL",
+                "name": "enum_class_body"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
     },
     "primary_constructor": {
       "type": "SEQ",
@@ -8365,6 +8382,9 @@
   "conflicts": [
     [
       "class_declaration"
+    ],
+    [
+      "enum_class_declaration"
     ],
     [
       "constructor_invocation",

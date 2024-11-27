@@ -72,6 +72,7 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.class_declaration],
+    [$.enum_class_declaration],
 
     // @Type(... could either be an annotation constructor invocation or an annotated expression
     [$.constructor_invocation, $._unescaped_annotation],
@@ -291,10 +292,11 @@ module.exports = grammar({
       optional(seq(repeat($._NL), ":", repeat($._NL),  $._delegation_specifiers)),
       repeat($._NL),
       optional($.type_constraints),
+      repeat($._NL),
       optional(field('body', $.class_body)),
     ),
 
-    enum_class_declaration: $ => prec.right(seq(
+    enum_class_declaration: $ => seq(
       optional(field('modifiers', $.modifiers)),
       seq("enum", "class"),
       field('name', $.simple_identifier),
@@ -302,10 +304,11 @@ module.exports = grammar({
       optional($.type_parameters),
       repeat($._NL),
       optional($.primary_constructor),
-      optional(seq(":", repeat($._NL), $._delegation_specifiers)),
+      optional(seq(repeat($._NL), ":", repeat($._NL), $._delegation_specifiers)),
       optional($.type_constraints),
+      repeat($._NL),
       optional(field('body', $.enum_class_body))
-    )),
+    ),
 
     primary_constructor: $ => seq(
       optional(seq(optional(field('modifiers', $.modifiers)), "constructor", repeat($._NL))),
