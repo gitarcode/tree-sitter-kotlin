@@ -4338,6 +4338,10 @@
             {
               "type": "SYMBOL",
               "name": "postfix_expression"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "jump_expression"
             }
           ]
         }
@@ -8693,6 +8697,10 @@
     [
       "annotated_expression",
       "_primary_expression"
+    ],
+    [
+      "expression",
+      "annotated_expression"
     ]
   ],
   "precedences": [],

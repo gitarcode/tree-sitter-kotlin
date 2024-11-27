@@ -267,6 +267,10 @@
           "named": true
         },
         {
+          "type": "jump_expression",
+          "named": true
+        },
+        {
           "type": "lambda_literal",
           "named": true
         },

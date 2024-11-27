@@ -359,3 +359,27 @@ fun runBenchmark(name: String, frameCount: Int, content: @Composable () -> Unit)
               (type_identifier))))))
     body: (function_body
       (block))))
+
+======================
+Annotated return expression
+======================
+
+@OptIn(UnsafeWasmMemoryApi::class)
+return a
+
+---
+
+(source_file
+  (statement
+    (annotated_expression
+      (annotation
+        (constructor_invocation
+          (user_type
+            (type_identifier))
+          (value_arguments
+            (value_argument
+              (callable_reference
+                (user_type
+                  (type_identifier)))))))
+      (return_expression
+        (simple_identifier)))))
