@@ -793,7 +793,6 @@ module.exports = grammar({
       $.is_expression,
       $.annotated_expression,
       $.labeled_expression,
-      $.if_expression,
     ),
 
     jump_expression: $ => choice(
@@ -981,6 +980,7 @@ module.exports = grammar({
       $.try_expression,
       $.dot_qualified_expression,
       $.index_access_expression,
+      $.if_expression
     ),
 
     parenthesized_expression: $ => seq("(", repeat($._NL), $.expression, repeat($._NL), ")"),

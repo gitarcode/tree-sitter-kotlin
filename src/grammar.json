@@ -4028,10 +4028,6 @@
         {
           "type": "SYMBOL",
           "name": "labeled_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "if_expression"
         }
       ]
     },
@@ -5174,6 +5170,10 @@
         {
           "type": "SYMBOL",
           "name": "index_access_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "if_expression"
         }
       ]
     },

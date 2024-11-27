@@ -383,3 +383,45 @@ return a
                   (type_identifier)))))))
       (return_expression
         (simple_identifier)))))
+
+======================
+Annotated if-else
+======================
+
+@Suppress("UNCHECKED_CAST")
+if (it.isCanceled) deferred.cancel() else deferred.complete(it.result as T)
+
+---
+
+(source_file
+  (statement
+    (annotated_expression
+      (annotation
+        (constructor_invocation
+          (user_type
+            (type_identifier))
+          (value_arguments
+            (value_argument
+              (string_literal
+                (string_content))))))
+      (if_expression
+        condition: (dot_qualified_expression
+          receiver: (simple_identifier)
+          selector: (simple_identifier))
+        consequence: (call_expression
+          expression: (dot_qualified_expression
+            receiver: (simple_identifier)
+            selector: (simple_identifier))
+          args: (value_arguments))
+        alternative: (call_expression
+          expression: (dot_qualified_expression
+            receiver: (simple_identifier)
+            selector: (simple_identifier))
+          args: (value_arguments
+            (value_argument
+              (as_expression
+                (dot_qualified_expression
+                  receiver: (simple_identifier)
+                  selector: (simple_identifier))
+                type: (user_type
+                  (type_identifier))))))))))
