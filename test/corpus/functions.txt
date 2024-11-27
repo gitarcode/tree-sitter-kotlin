@@ -451,3 +451,28 @@ private fun Route.staticContentRoute(
             (simple_identifier)))
         lambda_arg: (annotated_lambda
           (lambda_literal))))))
+
+==================
+Inner function with comment
+==================
+
+fun bar() {
+// comment
+  foo()
+}
+
+---
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block
+        (line_comment)
+        (statements
+          (statement
+            (call_expression
+              expression: (simple_identifier)
+              args: (value_arguments))))))))
+        

@@ -73,7 +73,6 @@ module.exports = grammar({
   conflicts: $ => [
     [$.class_declaration],
     [$.enum_class_declaration],
-    [$.function_declaration],
 
     // @Type(... could either be an annotation constructor invocation or an annotated expression
     [$.constructor_invocation, $._unescaped_annotation],
@@ -459,7 +458,7 @@ module.exports = grammar({
       )
     ),
 
-    function_declaration: $ => seq(
+    function_declaration: $ => prec.right(seq(
       optional(field('modifiers', $.modifiers)),
       "fun",
       optional($.type_parameters),
@@ -467,9 +466,10 @@ module.exports = grammar({
       field('name', $.simple_identifier),
       field('parameters', $.function_value_parameters),
       optional(seq(repeat($._NL), ":", repeat($._NL), field('type', $._type))),
-      optional(seq(repeat($._NL), $.type_constraints)),
-      optional(seq(repeat($._NL), field('body', $.function_body)))
-    ),
+      optional($.type_constraints),
+      repeat($._NL),
+      optional(field('body', $.function_body))
+    )),
 
     function_body: $ => choice(
       $.block, 
