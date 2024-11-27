@@ -457,8 +457,10 @@ Inner function with comment
 ==================
 
 fun bar() {
-// comment
-  foo()
+  // comment1
+  // comment2
+  fun foo() {
+  }
 }
 
 ---
@@ -470,9 +472,13 @@ fun bar() {
     body: (function_body
       (block
         (line_comment)
+        (line_comment)
         (statements
           (statement
-            (call_expression
-              expression: (simple_identifier)
-              args: (value_arguments))))))))
+            (function_declaration
+              name: (simple_identifier)
+              parameters: (function_value_parameters)
+              body: (function_body
+                (block)))))))))
+
         
