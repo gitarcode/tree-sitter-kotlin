@@ -1230,6 +1230,10 @@
               "name": "_common_primary_expression"
             },
             {
+              "type": "SYMBOL",
+              "name": "parenthesized_expression"
+            },
+            {
               "type": "ALIAS",
               "content": {
                 "type": "SYMBOL",
@@ -4321,8 +4325,21 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "expression"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_common_primary_expression"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "call_expression"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "postfix_expression"
+            }
+          ]
         }
       ]
     },
@@ -5072,16 +5089,16 @@
         {
           "type": "SYMBOL",
           "name": "call_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parenthesized_expression"
         }
       ]
     },
     "_common_primary_expression": {
       "type": "CHOICE",
       "members": [
-        {
-          "type": "SYMBOL",
-          "name": "parenthesized_expression"
-        },
         {
           "type": "SYMBOL",
           "name": "simple_identifier"
@@ -8503,10 +8520,6 @@
       "when_subject"
     ],
     [
-      "annotated_expression",
-      "value_argument"
-    ],
-    [
       "annotation"
     ],
     [
@@ -8672,6 +8685,14 @@
     ],
     [
       "receiver_type"
+    ],
+    [
+      "_unary_expression",
+      "annotated_expression"
+    ],
+    [
+      "annotated_expression",
+      "_primary_expression"
     ]
   ],
   "precedences": [],

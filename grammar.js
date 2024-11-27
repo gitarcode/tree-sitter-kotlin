@@ -124,7 +124,6 @@ module.exports = grammar({
 
     [$.annotated_expression, $.modifiers],
     [$.annotated_expression, $.when_subject],
-    [$.annotated_expression, $.value_argument],
     [$.annotation],
     [$.variable_declaration],
     [$.class_parameter],
@@ -171,7 +170,9 @@ module.exports = grammar({
     [$.when_entry],
     [$.enum_class_declaration, $.type_constraints],
     [$.receiver_type, $._type],
-    [$.receiver_type]
+    [$.receiver_type],
+    [$._unary_expression, $.annotated_expression],
+    [$.annotated_expression, $._primary_expression]
   ],
 
   extras: $ => [
@@ -373,7 +374,8 @@ module.exports = grammar({
       "by",
       repeat($._NL),
       choice(
-        $._common_primary_expression, 
+        $._common_primary_expression,
+        $.parenthesized_expression,
         alias($.simple_call_expression, $.call_expression),
         $.as_expression
       )
@@ -853,7 +855,13 @@ module.exports = grammar({
       ']')
     ),
 
-    annotated_expression: $ => seq($.annotation, repeat($._NL), $.expression),
+    // There is an inherent ambiguity between annotated expressions and annotated function types:
+    // `@Annotation() f` should be parsed as an annotated expression while
+    // `@Annotation () -> Int` should be parsed as a function type
+    // We cannot beforehand decide whether `()` is part of th annotation or not. To resolve this ambiguity
+    // is to exclude paranethesized expression to be able to be part of an annotation. All annotations that are function-call-lik
+    // should be parsed as a single annotation, and not an annotated expression on parenthesized expressions.
+    annotated_expression: $ => seq($.annotation, repeat($._NL), choice($._common_primary_expression, $.call_expression, $.postfix_expression)),
 
     labeled_expression: $ => seq($.label, repeat($._NL), $.expression),
 
@@ -956,10 +964,10 @@ module.exports = grammar({
     _primary_expression: $ => choice(
       $._common_primary_expression,
       $.call_expression,
+      $.parenthesized_expression,
     ),
 
     _common_primary_expression: $ => choice(
-      $.parenthesized_expression,
       $.simple_identifier,
       $._literal_constant,
       $.string_literal,
