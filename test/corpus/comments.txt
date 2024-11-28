@@ -279,3 +279,35 @@ fun f() {
           (statement
             (simple_identifier)))
         (line_comment)))))
+
+
+================================================================================
+Line comments between block statements
+================================================================================
+
+fun f() {
+	// aaaa
+	b // bbb
+    // ccc
+	a // ddd
+    // eee
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block
+        (line_comment)
+        (statements
+          (statement
+            (simple_identifier))
+          (line_comment)
+          (line_comment)
+          (statement
+            (simple_identifier)))
+        (line_comment)
+        (line_comment)))))
