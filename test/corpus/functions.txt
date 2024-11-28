@@ -453,7 +453,7 @@ private fun Route.staticContentRoute(
           (lambda_literal))))))
 
 ==================
-functions separated with comments
+Functions separated with comments
 ==================
 
   fun foo() {}
@@ -496,3 +496,23 @@ functions separated with comments
               args: (value_arguments))))
         (line_comment)))))
 
+==================
+Functions with one statement and semicolon
+==================
+
+fun isAdult(): Boolean { return true; }
+
+---
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    type: (user_type
+      (type_identifier))
+    body: (function_body
+      (block
+        (statements
+          (statement
+            (return_expression
+              (boolean_literal))))))))

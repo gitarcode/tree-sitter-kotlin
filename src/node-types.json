@@ -2299,6 +2299,10 @@
         "required": false,
         "types": [
           {
+            "type": ";",
+            "named": false
+          },
+          {
             "type": "statements",
             "named": true
           }
@@ -3316,7 +3320,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "statement",
