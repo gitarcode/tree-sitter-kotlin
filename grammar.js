@@ -695,7 +695,7 @@ module.exports = grammar({
 
     _statements: $ => seq($.statements, repeat($._semi)),
 
-    statements: $ => sep1($.statement, repeat1($._semi)),
+    statements: $ => seq(sep1($.statement, repeat1($._semi)), optional(seq(repeat($._NL), prec.dynamic(1, ";")))),
 
     statement: $ => choice(
       $._declaration,
