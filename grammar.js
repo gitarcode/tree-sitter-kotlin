@@ -93,7 +93,6 @@ module.exports = grammar({
     [$.reification_modifier, $._soft_keywords],
     [$.getter, $._soft_keywords],
     [$.setter, $._soft_keywords],
-    [$.enum_class_declaration, $._soft_keywords],
 
     [$.type_parameter_modifiers],
     [$.type_projection_modifiers],
@@ -160,7 +159,6 @@ module.exports = grammar({
     [$.explicit_delegation, $._unary_expression],
     [$.parameter, $._simple_user_type],
     [$.function_type_parameters],
-    [$._top_level_statement],
     [$.type_constraints, $.property_declaration],
     [$.enum_class_body],
     [$.package_header],
@@ -252,7 +250,7 @@ module.exports = grammar({
         $._loop_statement,
         $.expression
       ), 
-      optional($._semi),
+      $._semi,
     ),
 
     type_alias: $ => prec.right(seq(

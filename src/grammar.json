@@ -357,16 +357,8 @@
           ]
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_semi"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "_semi"
         }
       ]
     },
@@ -8531,10 +8523,6 @@
       "_soft_keywords"
     ],
     [
-      "enum_class_declaration",
-      "_soft_keywords"
-    ],
-    [
       "type_parameter_modifiers"
     ],
     [
@@ -8706,9 +8694,6 @@
     ],
     [
       "function_type_parameters"
-    ],
-    [
-      "_top_level_statement"
     ],
     [
       "type_constraints",
