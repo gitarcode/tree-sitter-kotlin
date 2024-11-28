@@ -3761,42 +3761,64 @@
         }
       ]
     },
+    "_statements": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "statements"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        }
+      ]
+    },
     "statements": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SEQ",
+          "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
               "name": "statement"
             },
             {
-              "type": "REPEAT",
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "REPEAT1",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_semi"
-                    }
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "statement"
-                  }
-                ]
-              }
+              "type": "STRING",
+              "value": ";"
             }
           ]
         },
         {
           "type": "REPEAT",
           "content": {
-            "type": "SYMBOL",
-            "name": "_semi"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "REPEAT1",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_semi"
+                }
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "statement"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": ";"
+                  }
+                ]
+              }
+            ]
           }
         }
       ]
@@ -3857,7 +3879,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "statements"
+              "name": "_statements"
             },
             {
               "type": "BLANK"
@@ -5898,7 +5920,7 @@
                 "name": "body",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "statements"
+                  "name": "_statements"
                 }
               },
               {
@@ -8919,6 +8941,13 @@
     [
       "function_declaration_no_body",
       "function_declaration"
+    ],
+    [
+      "statements"
+    ],
+    [
+      "statements",
+      "_semi"
     ]
   ],
   "precedences": [],

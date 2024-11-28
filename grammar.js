@@ -169,7 +169,9 @@ module.exports = grammar({
     [$._unary_expression, $.annotated_expression],
     [$.annotated_expression, $._primary_expression],
     [$.expression, $.annotated_expression],
-    [$.function_declaration_no_body, $.function_declaration]
+    [$.function_declaration_no_body, $.function_declaration],
+    [$.statements],
+    [$.statements, $._semi]
   ],
 
   extras: $ => [
@@ -691,7 +693,9 @@ module.exports = grammar({
     // Statements
     // ==========
 
-    statements: $ => seq(sep1($.statement, repeat1($._semi)), repeat($._semi)),
+    _statements: $ => seq($.statements, repeat($._NL)),
+
+    statements: $ => sep1(choice($.statement, ";"), repeat1($._semi)),
 
     statement: $ => choice(
       $._declaration,
@@ -708,7 +712,7 @@ module.exports = grammar({
     block: $ => seq(
       "{",
       repeat($._NL),
-      optional($.statements),
+      optional($._statements),
       "}")
     ,
 
@@ -1059,7 +1063,7 @@ module.exports = grammar({
       "{",
       repeat($._NL),
       optional(seq(optional(field('parameters', $.lambda_parameters)), repeat($._NL), "->", repeat($._NL))),
-      optional(field('body', $.statements)),
+      optional(field('body', $._statements)),
       "}"
     )),
 

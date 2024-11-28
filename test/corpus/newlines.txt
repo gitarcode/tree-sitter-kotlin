@@ -1044,5 +1044,6 @@ var stringRepresentation: String
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    (simple_identifier)))))
-            (line_comment)))))))
+                    (simple_identifier))))))
+          (line_comment))))))
+
