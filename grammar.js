@@ -152,7 +152,6 @@ module.exports = grammar({
     [$.call_expression, $.multiplicative_expression, $.comparison_expression],
     [$.call_expression, $.infix_expression, $.comparison_expression],
     [$.annotated_lambda, $.modifiers],
-    [$.lambda_literal],
     [$.function_type_parameters, $.parenthesized_type],
     [$._setter_getter],
     [$.if_expression],
@@ -171,7 +170,7 @@ module.exports = grammar({
     [$._unary_expression, $.annotated_expression],
     [$.annotated_expression, $._primary_expression],
     [$.expression, $.annotated_expression],
-    [$.function_declaration]
+    [$.function_declaration],
   ],
 
   extras: $ => [
@@ -693,12 +692,12 @@ module.exports = grammar({
       "@"
     )),
 
-    block: $ => prec(PREC.BLOCK, seq(
+    block: $ => seq(
       "{",
       repeat($._NL),
       optional($.statements),
       "}")
-    ),
+    ,
 
     _loop_statement: $ => choice(
       $.for_statement,
@@ -1043,13 +1042,13 @@ module.exports = grammar({
       seq("$", alias($.simple_identifier, $.interpolated_identifier))
     ),
 
-    lambda_literal: $ => seq(
+    lambda_literal: $ => prec(-1, seq(
       "{",
       repeat($._NL),
       optional(seq(optional(field('parameters', $.lambda_parameters)), repeat($._NL), "->", repeat($._NL))),
       optional(field('body', $.statements)),
       "}"
-    ),
+    )),
 
     multi_variable_declaration: $ => seq(
       "(",
