@@ -168,7 +168,7 @@ module.exports = grammar({
     [$._unary_expression, $.annotated_expression],
     [$.annotated_expression, $._primary_expression],
     [$.expression, $.annotated_expression],
-    [$.function_declaration],
+    [$.function_declaration_no_body, $.function_declaration]
   ],
 
   extras: $ => [
@@ -268,7 +268,7 @@ module.exports = grammar({
       $.class_declaration,
       $.enum_class_declaration,
       $.object_declaration,
-      $.function_declaration,
+      $._function_declaration,
       $.property_declaration,
       $.type_alias
     ),
@@ -447,7 +447,12 @@ module.exports = grammar({
       )
     ),
 
-    function_declaration: $ => seq(
+    _function_declaration: $ => choice(
+      $.function_declaration,
+      seq(alias($.function_declaration_no_body, $.function_declaration), $._semi)
+    ),
+
+    function_declaration_no_body: $ => seq(
       optional(field('modifiers', $.modifiers)),
       "fun",
       optional($.type_parameters),
@@ -456,8 +461,20 @@ module.exports = grammar({
       field('parameters', $.function_value_parameters),
       optional(seq(repeat($._NL), ":", repeat($._NL), field('type', $._type))),
       optional(seq(repeat($._NL), $.type_constraints)),
-      optional(seq(repeat($._NL), field('body', $.function_body)))
     ),
+
+    function_declaration: $ => prec.right(seq(
+      optional(field('modifiers', $.modifiers)),
+      "fun",
+      optional($.type_parameters),
+      optional(seq(repeat($._NL), field('receiver_type', $.receiver_type), repeat($._NL), optional(choice($._dot, '.')))),
+      field('name', $.simple_identifier),
+      field('parameters', $.function_value_parameters),
+      optional(seq(repeat($._NL), ":", repeat($._NL), field('type', $._type))),
+      optional(seq(repeat($._NL), $.type_constraints)),
+      repeat($._NL), 
+      field('body', $.function_body)
+    )),
 
     function_body: $ => choice(
       $.block, 

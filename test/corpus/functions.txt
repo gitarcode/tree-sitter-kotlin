@@ -453,15 +453,21 @@ private fun Route.staticContentRoute(
           (lambda_literal))))))
 
 ==================
-Inner function with comment
+functions separated with comments
 ==================
 
-fun bar() {
-  // comment1
-  // comment2
-  fun foo() {
+  fun foo() {}
+//^ !scope:root
+//    ^ !decl:root:function:foo:0
+//       ^ !scope:scope_1:root
+//          ^ !scope:scope_2:scope_1
+  fun bar() {
+//    ^ !decl:root:function:bar:0
+//       ^ !scope:scope_3:root
+//          ^ !scope:scope_4:scope_3
+    foo()
+//  ^ !use:read:foo::0
   }
-}
 
 ---
 
@@ -470,15 +476,22 @@ fun bar() {
     name: (simple_identifier)
     parameters: (function_value_parameters)
     body: (function_body
+      (block)))
+  (line_comment)
+  (line_comment)
+  (line_comment)
+  (line_comment)
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
       (block
+        (line_comment)
         (line_comment)
         (line_comment)
         (statements
           (statement
-            (function_declaration
-              name: (simple_identifier)
-              parameters: (function_value_parameters)
-              body: (function_body
-                (block)))))))))
-
-        
+            (call_expression
+              expression: (simple_identifier)
+              args: (value_arguments)))
+          (line_comment))))))
