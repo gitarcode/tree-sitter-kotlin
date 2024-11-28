@@ -93,6 +93,7 @@ module.exports = grammar({
     [$.reification_modifier, $._soft_keywords],
     [$.getter, $._soft_keywords],
     [$.setter, $._soft_keywords],
+    [$.enum_class_declaration, $._soft_keywords],
 
     [$.type_parameter_modifiers],
     [$.type_projection_modifiers],
@@ -242,7 +243,7 @@ module.exports = grammar({
     _top_level_object: $ => seq($._declaration, repeat($._semi)),
 
     _top_level_statements: $ =>
-      repeat1(seq(seq(alias($._top_level_statement, $.statement), $._semi), repeat($._semi))),
+      repeat1(seq(alias($._top_level_statement, $.statement), repeat($._semi))),
 
     _top_level_statement: $ => choice(
       $.assignment,
