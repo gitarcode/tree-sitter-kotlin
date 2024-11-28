@@ -242,16 +242,13 @@ module.exports = grammar({
     _top_level_object: $ => seq($._declaration, repeat($._semi)),
 
     _top_level_statements: $ =>
-      repeat1(seq(alias($._top_level_statement, $.statement), repeat($._semi))),
+      repeat1(seq(seq(alias($._top_level_statement, $.statement), $._semi), repeat($._semi))),
 
-    _top_level_statement: $ => seq(
-      choice(
-        $.assignment,
-        $._loop_statement,
-        $.expression
-      ), 
-      $._semi,
-    ),
+    _top_level_statement: $ => choice(
+      $.assignment,
+      $._loop_statement,
+      $.expression
+    ), 
 
     type_alias: $ => prec.right(seq(
       optional(field('modifiers', $.modifiers)),
