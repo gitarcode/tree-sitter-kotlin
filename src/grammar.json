@@ -6322,8 +6322,12 @@
                   }
                 },
                 {
-                  "type": "STRING",
-                  "value": "else"
+                  "type": "PREC_DYNAMIC",
+                  "value": 1,
+                  "content": {
+                    "type": "STRING",
+                    "value": "else"
+                  }
                 },
                 {
                   "type": "REPEAT",
