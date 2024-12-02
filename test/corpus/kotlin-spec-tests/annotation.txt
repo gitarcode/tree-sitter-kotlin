@@ -53,8 +53,8 @@ fun foo() {
                             (statement
                             (additive_expression
                                 (simple_identifier)
-                                (integer_literal))))))))
-                (line_comment))
+                                (integer_literal)))))))))
+                (line_comment)
                 (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments

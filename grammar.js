@@ -125,7 +125,7 @@ module.exports = grammar({
 
     [$.annotated_expression, $.modifiers],
     [$.annotated_expression, $.when_subject],
-    [$.annotation],
+    [$._annotation],
     [$.variable_declaration],
     [$.class_parameter],
     [$.collection_literal],
@@ -344,7 +344,7 @@ module.exports = grammar({
       repeat($._NL),
     ),
 
-    _annotated_delegation_specifier: $ => seq(repeat($.annotation), repeat($._NL), $.delegation_specifier),
+    _annotated_delegation_specifier: $ => seq(repeat($._annotation), repeat($._NL), $.delegation_specifier),
 
     delegation_specifier: $ => prec.right(choice(
       $.constructor_invocation,
@@ -390,7 +390,7 @@ module.exports = grammar({
     type_constraints: $ => seq(repeat($._NL), "where", repeat($._NL), sep1($.type_constraint, repeat($._NL), ",", repeat($._NL))),
 
     type_constraint: $ => seq(
-      repeat($.annotation),
+      repeat($._annotation),
       alias($.simple_identifier, $.type_identifier),
       repeat($._NL),
       ":",
@@ -484,7 +484,7 @@ module.exports = grammar({
     ),
 
     variable_declaration: $ => seq(
-      // repeat($.annotation), TODO
+      // repeat($._annotation), TODO
       field('id', $.simple_identifier),
       optional(field('type', seq(repeat($._NL), ":", repeat($._NL), $._type)))
     ),
@@ -737,7 +737,7 @@ module.exports = grammar({
     )),
 
     _in_expression: $ => seq(
-      repeat($.annotation),
+      repeat($._annotation),
       field('var_decl', choice($.variable_declaration, $.multi_variable_declaration)),
       repeat($._NL),
       "in",
@@ -861,7 +861,7 @@ module.exports = grammar({
       ']')
     ),
 
-    annotated_expression: $ => seq($.annotation, $.expression),
+    annotated_expression: $ => seq($._annotation, $.expression),
 
     labeled_expression: $ => prec(PREC.LABEL, seq($.label, repeat($._NL), $.expression)),
 
@@ -923,7 +923,7 @@ module.exports = grammar({
     // Suffixes
 
     annotated_lambda: $ => seq(
-      repeat($.annotation),
+      repeat($._annotation),
       optional($.label),
       $.lambda_literal
     ),
@@ -953,7 +953,7 @@ module.exports = grammar({
     ),
 
     value_argument: $ => seq(
-      optional($.annotation),
+      optional($._annotation),
       repeat($._NL),
       optional(seq($.simple_identifier, repeat($._NL), "=", repeat($._NL))),
       optional("*"),
@@ -1145,7 +1145,7 @@ module.exports = grammar({
       "(",
       repeat($._NL),
       optional(seq(
-        repeat($.annotation),
+        repeat($._annotation),
         "val",
         $.variable_declaration,
         "=",
@@ -1214,7 +1214,7 @@ module.exports = grammar({
       repeat($._NL),
       "(",
       repeat($._NL),
-      repeat($.annotation),
+      repeat($._annotation),
       field('name', $.simple_identifier),
       ":",
       field('type', $._type),
@@ -1276,9 +1276,9 @@ module.exports = grammar({
     // Modifiers
     // ==========
 
-    modifiers: $ => repeat1(choice($.annotation, $._modifier)),
+    modifiers: $ => repeat1(choice($._annotation, $._modifier)),
 
-    parameter_modifiers: $ => prec.right(repeat1(choice($.annotation, $.parameter_modifier))),
+    parameter_modifiers: $ => prec.right(repeat1(choice($._annotation, $.parameter_modifier))),
 
     _modifier: $ => choice(
       $.class_modifier,
@@ -1293,7 +1293,7 @@ module.exports = grammar({
 
     type_modifiers: $ => repeat1($._type_modifier),
 
-    _type_modifier: $ => choice($.annotation, "suspend"),
+    _type_modifier: $ => choice($._annotation, "suspend"),
 
     class_modifier: $ => choice(
       "sealed",
@@ -1325,7 +1325,7 @@ module.exports = grammar({
     _type_parameter_modifier: $ => choice(
       $.reification_modifier,
       $.variance_modifier,
-      $.annotation
+      $._annotation
     ),
 
     function_modifier: $ => choice(
@@ -1362,10 +1362,12 @@ module.exports = grammar({
     // Annotations
     // ==========
 
-    annotation: $ => seq(
-      choice($._single_annotation, $._multi_annotation),
+    _annotation: $ => seq(
+      $.annotation,
       repeat($._NL)
     ),
+
+    annotation: $ => choice($._single_annotation, $._multi_annotation),
 
     _single_annotation: $ => seq(
       "@",
