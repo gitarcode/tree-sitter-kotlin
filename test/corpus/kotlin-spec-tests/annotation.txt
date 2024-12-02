@@ -731,3 +731,211 @@ fun foo() {
                 (user_type
                     (type_identifier)))
                 (this_expression))))))))
+
+
+================================================================================
+Annotations on parenthesized types
+================================================================================
+
+fun B<(@A C)>.receiverArgument() {}
+
+fun parameter(a: (@A C)) {}
+
+fun parameterArgument(a: B<(@A C)>) {}
+
+fun returnValue(): (@A C)
+
+fun <T> returnTypeParameterValue(): (@A T)
+
+fun returnArgument(): B<(@A C)>
+
+val lambdaType: (@A() (() -> C))
+
+val lambdaParameter: ((@A C)) -> C
+val lambdaParameterNP: (@A C) -> C
+
+val lambdaReturnValue: () -> (@A C)
+
+val lambdaReceiver: (@A C).() -> C
+
+val lambdaParameterNP: (@A C) -> C
+
+--------------------------------------------------------------------------------
+
+(source_file
+    (function_declaration
+    receiver_type: (receiver_type
+        type: (user_type
+        (type_identifier)
+        (type_arguments
+            (type_projection
+            (parenthesized_type
+                (type_modifiers
+                (annotation
+                    (user_type
+                    (type_identifier))))
+                type: (user_type
+                (type_identifier)))))))
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+        (block)))
+    (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters
+        (function_value_parameter
+        parameter: (parameter
+            name: (simple_identifier)
+            type: (parenthesized_type
+            (type_modifiers
+                (annotation
+                (user_type
+                    (type_identifier))))
+            type: (user_type
+                (type_identifier))))))
+    body: (function_body
+        (block)))
+    (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters
+        (function_value_parameter
+        parameter: (parameter
+            name: (simple_identifier)
+            type: (user_type
+            (type_identifier)
+            (type_arguments
+                (type_projection
+                (parenthesized_type
+                    (type_modifiers
+                    (annotation
+                        (user_type
+                        (type_identifier))))
+                    type: (user_type
+                    (type_identifier)))))))))
+    body: (function_body
+        (block)))
+    (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    type: (parenthesized_type
+        (type_modifiers
+        (annotation
+            (user_type
+            (type_identifier))))
+        type: (user_type
+        (type_identifier))))
+    (function_declaration
+    (type_parameters
+        (type_parameter
+        (type_identifier)))
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    type: (parenthesized_type
+        (type_modifiers
+        (annotation
+            (user_type
+            (type_identifier))))
+        type: (user_type
+        (type_identifier))))
+    (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    type: (user_type
+        (type_identifier)
+        (type_arguments
+        (type_projection
+            (parenthesized_type
+            (type_modifiers
+                (annotation
+                (user_type
+                    (type_identifier))))
+            type: (user_type
+                (type_identifier)))))))
+    (property_declaration
+    (binding_pattern_kind)
+    var_decl: (variable_declaration
+        id: (simple_identifier)
+        type: (parenthesized_type
+        (type_modifiers
+            (annotation
+            (constructor_invocation
+                (user_type
+                (type_identifier))
+                (value_arguments))))
+        (parenthesized_type
+            (function_type
+            (function_type_parameters)
+            type: (user_type
+                (type_identifier)))))))
+    (property_declaration
+    (binding_pattern_kind)
+    var_decl: (variable_declaration
+        id: (simple_identifier)
+        type: (function_type
+        (function_type_parameters
+            (parenthesized_type
+            (type_modifiers
+                (annotation
+                (user_type
+                    (type_identifier))))
+            type: (user_type
+                (type_identifier))))
+        type: (user_type
+            (type_identifier)))))
+    (property_declaration
+    (binding_pattern_kind)
+    var_decl: (variable_declaration
+        id: (simple_identifier)
+        type: (function_type
+        (function_type_parameters
+            (type_modifiers
+            (annotation
+                (user_type
+                (type_identifier))))
+            type: (user_type
+            (type_identifier)))
+        type: (user_type
+            (type_identifier)))))
+    (property_declaration
+    (binding_pattern_kind)
+    var_decl: (variable_declaration
+        id: (simple_identifier)
+        type: (function_type
+        (function_type_parameters)
+        (parenthesized_type
+            (type_modifiers
+            (annotation
+                (user_type
+                (type_identifier))))
+            type: (user_type
+            (type_identifier))))))
+    (property_declaration
+    (binding_pattern_kind)
+    var_decl: (variable_declaration
+        id: (simple_identifier)
+        type: (function_type
+        (receiver_type
+            (parenthesized_type
+            (type_modifiers
+                (annotation
+                (user_type
+                    (type_identifier))))
+            type: (user_type
+                (type_identifier))))
+        (function_type_parameters)
+        type: (user_type
+            (type_identifier)))))
+    (property_declaration
+    (binding_pattern_kind)
+    var_decl: (variable_declaration
+        id: (simple_identifier)
+        type: (function_type
+        (function_type_parameters
+            (type_modifiers
+            (annotation
+                (user_type
+                (type_identifier))))
+            type: (user_type
+            (type_identifier)))
+        type: (user_type
+            (type_identifier))))))
