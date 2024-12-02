@@ -610,3 +610,88 @@ fun foo() {
                 (simple_identifier)
                 type: (user_type
                     (type_identifier))))))))))
+
+================================================================================
+Block level expressions no newline
+================================================================================
+
+enum class A {
+    @[Ann] @Ann(1) X(),
+
+    @Ann Y() {},
+
+    private @Ann() Z(),
+
+    @Ann @private Q,
+
+    // TODO: try to make Ann() working here (?)
+    @Ann() W;
+
+    @Ann fun foo() {}
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+    (enum_class_declaration
+    name: (simple_identifier)
+    body: (enum_class_body
+        (enum_entry
+        modifiers: (modifiers
+            (annotation
+            (user_type
+                (type_identifier)))
+            (annotation
+            (constructor_invocation
+                (user_type
+                (type_identifier))
+                (value_arguments
+                (value_argument
+                    (integer_literal))))))
+        name: (simple_identifier)
+        arguments: (value_arguments))
+        (enum_entry
+        modifiers: (modifiers
+            (annotation
+            (user_type
+                (type_identifier))))
+        name: (simple_identifier)
+        arguments: (value_arguments)
+        body: (class_body))
+        (enum_entry
+        modifiers: (modifiers
+            (visibility_modifier)
+            (annotation
+            (constructor_invocation
+                (user_type
+                (type_identifier))
+                (value_arguments))))
+        name: (simple_identifier)
+        arguments: (value_arguments))
+        (enum_entry
+        modifiers: (modifiers
+            (annotation
+            (user_type
+                (type_identifier)))
+            (annotation
+            (user_type
+                (type_identifier))))
+        name: (simple_identifier))
+        (line_comment)
+        (enum_entry
+        modifiers: (modifiers
+            (annotation
+            (constructor_invocation
+                (user_type
+                (type_identifier))
+                (value_arguments))))
+        name: (simple_identifier))
+        (function_declaration
+        modifiers: (modifiers
+            (annotation
+            (user_type
+                (type_identifier))))
+        name: (simple_identifier)
+        parameters: (function_value_parameters)
+        body: (function_body
+            (block))))))
