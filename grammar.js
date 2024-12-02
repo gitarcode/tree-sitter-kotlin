@@ -169,6 +169,9 @@ module.exports = grammar({
     [$.function_declaration_no_body, $.function_declaration],
     [$.statements],
     [$.statements, $._semi],
+    // There is an inherent ambiguity between annotated expressions and annotated function types:
+    // `@Annotation() f` should be parsed as an annotated expression while
+    // `@Annotation () -> Int` should be parsed as a function type
     [$.annotated_expression, $.value_argument],
     [$._annotated_delegation_specifier, $._type_modifier],
     [$._annotated_delegation_specifier],
@@ -858,12 +861,6 @@ module.exports = grammar({
       ']')
     ),
 
-    // There is an inherent ambiguity between annotated expressions and annotated function types:
-    // `@Annotation() f` should be parsed as an annotated expression while
-    // `@Annotation () -> Int` should be parsed as a function type
-    // We cannot beforehand decide whether `()` is part of th annotation or not. To resolve this ambiguity
-    // is to exclude paranethesized expression to be able to be part of an annotation. All annotations that are function-call-lik
-    // should be parsed as a single annotation, and not an annotated expression on parenthesized expressions.
     annotated_expression: $ => seq($.annotation, $.expression),
 
     labeled_expression: $ => prec(PREC.LABEL, seq($.label, repeat($._NL), $.expression)),
@@ -985,7 +982,9 @@ module.exports = grammar({
       $.labeled_expression
     ),
 
-    parenthesized_expression: $ => seq("(", repeat($._NL), $.expression, repeat($._NL), ")"),
+    // we need to give parenthesized expression a lower dymanic precedence to resolve ambiguities like
+    // @Annotation() in favor of a single annotation rather than an annotation of a parenthesized expression.
+    parenthesized_expression: $ => prec.dynamic(-1, seq("(", repeat($._NL), $.expression, repeat($._NL), ")")),
 
     collection_literal: $ => seq(
       "[", 

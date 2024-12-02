@@ -229,7 +229,7 @@ class SaneFlowPlaysScrabble : ShakespearePlaysScrabble() {
 
 
 ======================
-Annotated dot_qualified_expression
+Annotated call in function
 ======================
 
 fun parse(xml: String): Element {
@@ -240,6 +240,43 @@ fun parse(xml: String): Element {
 
 ---
 
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (user_type
+            (type_identifier)))))
+    type: (user_type
+      (type_identifier))
+    body: (function_body
+      (block
+        (statements
+          (statement
+            (property_declaration
+              (binding_pattern_kind)
+              var_decl: (variable_declaration
+                id: (simple_identifier))
+              initializer: (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments))))
+          (statement
+            (annotated_expression
+              (annotation
+                (constructor_invocation
+                  (user_type
+                    (type_identifier))
+                  (value_arguments
+                    (value_argument
+                      (string_literal
+                        (string_content))))))
+              (call_expression
+                expression: (dot_qualified_expression
+                  receiver: (simple_identifier)
+                  selector: (simple_identifier))
+                args: (value_arguments)))))))))
 
 ======================
 Annotated function type

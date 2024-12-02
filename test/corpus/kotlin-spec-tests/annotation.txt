@@ -30,3 +30,57 @@ fun foo() {
 
 --------------------------------------------------------------------------------
 
+(source_file
+    (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+        (block
+        (statements
+            (statement
+            (annotated_expression
+                (annotation
+                (constructor_invocation
+                    (user_type
+                    (type_identifier))
+                    (value_arguments
+                    (value_argument
+                        (lambda_literal
+                        parameters: (lambda_parameters
+                            (variable_declaration
+                            id: (simple_identifier)))
+                        body: (statements
+                            (statement
+                            (additive_expression
+                                (simple_identifier)
+                                (integer_literal))))))))
+                (line_comment))
+                (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments
+                    (value_argument
+                    (integer_literal))))))
+            (statement
+            (annotated_expression
+                (annotation
+                (constructor_invocation
+                    (user_type
+                    (type_identifier))
+                    (value_arguments)))
+                (parenthesized_expression
+                (lambda_literal
+                    parameters: (lambda_parameters
+                    (variable_declaration
+                        id: (simple_identifier)))
+                    body: (statements
+                    (statement
+                        (additive_expression
+                        (simple_identifier)
+                        (integer_literal))))))))
+            (line_comment)
+            (statement
+            (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments
+                (value_argument
+                    (integer_literal))))))))))
