@@ -4160,6 +4160,22 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "label"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_annotation"
+              }
+            ]
+          }
+        },
+        {
           "type": "FIELD",
           "name": "left",
           "content": {
@@ -8756,10 +8772,6 @@
     ],
     [
       "annotated_expression",
-      "modifiers"
-    ],
-    [
-      "annotated_expression",
       "when_subject"
     ],
     [
@@ -8937,6 +8949,18 @@
       "call_expression",
       "labeled_expression",
       "comparison_expression"
+    ],
+    [
+      "assignment",
+      "annotated_expression",
+      "modifiers"
+    ],
+    [
+      "assignment",
+      "annotated_expression"
+    ],
+    [
+      "annotated_expression"
     ]
   ],
   "precedences": [],

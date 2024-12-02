@@ -123,7 +123,6 @@ module.exports = grammar({
 
     [$._simple_user_type],
 
-    [$.annotated_expression, $.modifiers],
     [$.annotated_expression, $.when_subject],
     [$._annotation],
     [$.variable_declaration],
@@ -176,7 +175,10 @@ module.exports = grammar({
     [$._annotated_delegation_specifier, $._type_modifier],
     [$._annotated_delegation_specifier],
     [$.explicit_delegation, $.expression],
-    [$.call_expression, $.labeled_expression, $.comparison_expression]
+    [$.call_expression, $.labeled_expression, $.comparison_expression],
+    [$.assignment, $.annotated_expression, $.modifiers],
+    [$.assignment, $.annotated_expression],
+    [$.annotated_expression]
   ],
 
   extras: $ => [
@@ -769,6 +771,7 @@ module.exports = grammar({
     )),
 
     assignment: $ => seq(
+      repeat(choice($.label, $._annotation)),
       field('left', $._directly_assignable_expression),
       field('op', $._assignment_operator),
       repeat($._NL),
