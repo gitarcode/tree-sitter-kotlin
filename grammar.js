@@ -77,23 +77,6 @@ module.exports = grammar({
     // @Type(... could either be an annotation constructor invocation or an annotated expression
     [$.constructor_invocation, $._unescaped_annotation],
 
-    [$.platform_modifier, $._soft_keywords],
-    [$._type_modifier, $._soft_keywords],
-    [$.class_modifier, $._soft_keywords],
-    [$.function_modifier, $._soft_keywords],
-    [$.member_modifier, $._soft_keywords],
-    [$.visibility_modifier, $._soft_keywords],
-    [$.property_modifier, $._soft_keywords],
-    [$.inheritance_modifier, $._soft_keywords],
-    [$.parameter_modifier, $._soft_keywords],
-    [$.class_modifier, $._soft_keywords],
-    [$.use_site_target, $._soft_keywords],
-    [$.import_header, $._soft_keywords],
-    [$.variance_modifier, $._soft_keywords],
-    [$.reification_modifier, $._soft_keywords],
-    [$.getter, $._soft_keywords],
-    [$.setter, $._soft_keywords],
-
     [$.type_parameter_modifiers],
     [$.type_projection_modifiers],
     [$.modifiers],
@@ -178,9 +161,7 @@ module.exports = grammar({
     [$.assignment, $.annotated_expression],
     [$.annotated_expression],
     [$._class_member_declaration, $.enum_class_body],
-    [$.secondary_constructor, $._soft_keywords],
     [$.class_body, $.enum_class_body],
-    [$.anonymous_initializer, $._soft_keywords]
   ],
 
   extras: $ => [
@@ -1394,7 +1375,7 @@ module.exports = grammar({
 
     simple_identifier: $ => choice($._lexical_identifier, $._soft_keywords),
 
-    _soft_keywords: $ => choice(
+    _soft_keywords: $ => prec(-1, choice(
       "by",
       "catch",
       "constructor",
@@ -1439,7 +1420,7 @@ module.exports = grammar({
       "sealed",
       "suspend",
       "tailrec",
-      "vararg"),
+      "vararg")),
 
     identifier: $ => sep1($.simple_identifier, "."),
 
