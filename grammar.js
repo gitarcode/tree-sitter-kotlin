@@ -169,7 +169,9 @@ module.exports = grammar({
     [$.function_declaration_no_body, $.function_declaration],
     [$.statements],
     [$.statements, $._semi],
-    [$.annotated_expression, $.value_argument]
+    [$.annotated_expression, $.value_argument],
+    [$._annotated_delegation_specifier, $._type_modifier],
+    [$._annotated_delegation_specifier]
   ],
 
   extras: $ => [
@@ -330,14 +332,14 @@ module.exports = grammar({
 
     binding_pattern_kind: $ => choice("val", "var"),
 
-    _delegation_specifiers: $ => seq(
-      sep1(
-        $.delegation_specifier, 
-        repeat($._NL),
-        ",",
-        repeat($._NL),
-      )
+    _delegation_specifiers: $ => sep1(
+      $._annotated_delegation_specifier, 
+      repeat($._NL),
+      ",",
+      repeat($._NL),
     ),
+
+    _annotated_delegation_specifier: $ => seq(repeat($.annotation), repeat($._NL), $.delegation_specifier),
 
     delegation_specifier: $ => prec.right(choice(
       $.constructor_invocation,
@@ -350,8 +352,6 @@ module.exports = grammar({
       $.user_type,
       $.value_arguments
     ),
-
-    _annotated_delegation_specifier: $ => seq(repeat($.annotation), repeat($._NL), $.delegation_specifier),
 
     explicit_delegation: $ => seq(
       choice(

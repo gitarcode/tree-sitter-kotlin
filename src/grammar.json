@@ -1112,43 +1112,61 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "delegation_specifier"
-            },
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "REPEAT",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_NL"
-                    }
-                  },
-                  {
-                    "type": "STRING",
-                    "value": ","
-                  },
-                  {
-                    "type": "REPEAT",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_NL"
-                    }
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "delegation_specifier"
-                  }
-                ]
+          "type": "SYMBOL",
+          "name": "_annotated_delegation_specifier"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_NL"
+                }
+              },
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_NL"
+                }
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_annotated_delegation_specifier"
               }
-            }
-          ]
+            ]
+          }
+        }
+      ]
+    },
+    "_annotated_delegation_specifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "annotation"
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "delegation_specifier"
         }
       ]
     },
@@ -1187,29 +1205,6 @@
         {
           "type": "SYMBOL",
           "name": "value_arguments"
-        }
-      ]
-    },
-    "_annotated_delegation_specifier": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "annotation"
-          }
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_NL"
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "delegation_specifier"
         }
       ]
     },
@@ -8938,6 +8933,13 @@
     [
       "annotated_expression",
       "value_argument"
+    ],
+    [
+      "_annotated_delegation_specifier",
+      "_type_modifier"
+    ],
+    [
+      "_annotated_delegation_specifier"
     ]
   ],
   "precedences": [],
