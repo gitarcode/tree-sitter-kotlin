@@ -939,3 +939,40 @@ val lambdaParameterNP: (@A C) -> C
             (type_identifier)))
         type: (user_type
             (type_identifier))))))
+
+
+================================================================================
+Annotations on parenthesized types
+================================================================================
+
+fun foo() {
+
+    when (e) {
+      is @[a] T -> d
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+    (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+        (block
+        (statements
+            (statement
+            (when_expression
+                (when_subject
+                (simple_identifier))
+                (when_entries
+                (when_entry
+                    (when_condition
+                    (type_test
+                        (type_modifiers
+                        (annotation
+                            (user_type
+                            (type_identifier))))
+                        type: (user_type
+                        (type_identifier))))
+                    (simple_identifier))))))))))

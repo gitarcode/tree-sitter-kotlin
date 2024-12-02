@@ -6379,40 +6379,85 @@
           ]
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "STRING",
           "value": "}"
         }
       ]
     },
     "when_entries": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "_when_entry"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_semi"
-            }
-          }
-        ]
-      }
-    },
-    "_when_entry": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "when_entry"
+          "name": "_when_entry"
         },
         {
-          "type": "SYMBOL",
-          "name": "else_entry"
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_NL"
+                }
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_when_entry"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "_when_entry": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "when_entry"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "else_entry"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
+                  }
+                },
+                {
+                  "type": "STRING",
+                  "value": ";"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -8699,10 +8744,6 @@
       "function_type_parameters"
     ],
     [
-      "type_constraints",
-      "property_declaration"
-    ],
-    [
       "enum_class_body"
     ],
     [
@@ -8768,6 +8809,15 @@
     [
       "class_body",
       "enum_class_body"
+    ],
+    [
+      "_when_entry"
+    ],
+    [
+      "when_entries"
+    ],
+    [
+      "when_expression"
     ]
   ],
   "precedences": [],

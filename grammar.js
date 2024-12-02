@@ -161,6 +161,9 @@ module.exports = grammar({
     [$.annotated_expression],
     [$._class_member_declaration, $.enum_class_body],
     [$.class_body, $.enum_class_body],
+    [$._when_entry],
+    [$.when_entries],
+    [$.when_expression]
   ],
 
   extras: $ => [
@@ -1136,14 +1139,18 @@ module.exports = grammar({
       "{",
       repeat($._NL),
       optional($.when_entries),
+      repeat($._NL),
       "}"
     ),
 
-    when_entries: $ => repeat1(seq($._when_entry, repeat($._semi))),
+    when_entries: $ => sep1($._when_entry, repeat($._NL)),
 
-    _when_entry: $ => choice(
-      $.when_entry,
-      $.else_entry
+    _when_entry: $ => seq(
+      choice(
+        $.when_entry,
+        $.else_entry
+      ),
+      optional(seq(repeat($._NL), ";"))
     ),
 
     when_entry: $ => seq(
