@@ -367,3 +367,246 @@ fun foo() {
                 (simple_identifier)
                 type: (user_type
                     (type_identifier))))))))))
+
+================================================================================
+Block level expressions no newline
+================================================================================
+
+fun foo() {
+    @ann0 var x0 = foo0()
+
+    @ann1 x1 = foo1()
+
+    @ann2 @ann22 x2 += foo2()
+
+    for (i in 1..100) {
+        @ann3 x3 += foo3()
+    }
+
+    for (i in 1..100)
+        @ann4 x4 += foo4()
+
+    if (1 > 2)
+        @ann41 x41 += foo41()
+
+    if (3 > 4)
+        @ann42 x42 += foo42()
+    else
+        @ann43 x43 += foo43()
+
+    while (true)
+        @ann44 x44 += foo44()
+
+    do
+        @ann x45 += foo45()
+    while (true)
+
+    when (1) {
+        1 ->
+            @ann46 x46 += foo46()
+    }
+
+    a.filter {
+        @ann5 x5 += foo5()
+    }
+
+    @ann6 x6 ?: x7 infix x9 + 10
+
+    @ann7 return 1
+
+    @ann8 x as Type
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+    (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+        (block
+        (statements
+            (statement
+            (property_declaration
+                modifiers: (modifiers
+                (annotation
+                    (user_type
+                    (type_identifier))))
+                (binding_pattern_kind)
+                var_decl: (variable_declaration
+                id: (simple_identifier))
+                initializer: (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments))))
+            (statement
+            (assignment
+                (annotation
+                (user_type
+                    (type_identifier)))
+                left: (simple_identifier)
+                right: (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments))))
+            (statement
+            (assignment
+                (annotation
+                (user_type
+                    (type_identifier)))
+                (annotation
+                (user_type
+                    (type_identifier)))
+                left: (simple_identifier)
+                right: (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments))))
+            (statement
+            (for_statement
+                var_decl: (variable_declaration
+                id: (simple_identifier))
+                expression: (range_expression
+                (integer_literal)
+                (integer_literal))
+                body: (block
+                (statements
+                    (statement
+                    (assignment
+                        (annotation
+                        (user_type
+                            (type_identifier)))
+                        left: (simple_identifier)
+                        right: (call_expression
+                        expression: (simple_identifier)
+                        args: (value_arguments))))))))
+            (statement
+            (for_statement
+                var_decl: (variable_declaration
+                id: (simple_identifier))
+                expression: (range_expression
+                (integer_literal)
+                (integer_literal))
+                body: (assignment
+                (annotation
+                    (user_type
+                    (type_identifier)))
+                left: (simple_identifier)
+                right: (call_expression
+                    expression: (simple_identifier)
+                    args: (value_arguments)))))
+            (statement
+            (if_expression
+                condition: (comparison_expression
+                (integer_literal)
+                (integer_literal))
+                consequence: (assignment
+                (annotation
+                    (user_type
+                    (type_identifier)))
+                left: (simple_identifier)
+                right: (call_expression
+                    expression: (simple_identifier)
+                    args: (value_arguments)))))
+            (statement
+            (if_expression
+                condition: (comparison_expression
+                (integer_literal)
+                (integer_literal))
+                consequence: (assignment
+                (annotation
+                    (user_type
+                    (type_identifier)))
+                left: (simple_identifier)
+                right: (call_expression
+                    expression: (simple_identifier)
+                    args: (value_arguments)))
+                alternative: (assignment
+                (annotation
+                    (user_type
+                    (type_identifier)))
+                left: (simple_identifier)
+                right: (call_expression
+                    expression: (simple_identifier)
+                    args: (value_arguments)))))
+            (statement
+            (while_statement
+                (boolean_literal)
+                (assignment
+                (annotation
+                    (user_type
+                    (type_identifier)))
+                left: (simple_identifier)
+                right: (call_expression
+                    expression: (simple_identifier)
+                    args: (value_arguments)))))
+            (statement
+            (do_while_statement
+                (assignment
+                (annotation
+                    (user_type
+                    (type_identifier)))
+                left: (simple_identifier)
+                right: (call_expression
+                    expression: (simple_identifier)
+                    args: (value_arguments)))
+                (boolean_literal)))
+            (statement
+            (when_expression
+                (when_subject
+                (integer_literal))
+                (when_entries
+                (when_entry
+                    (when_condition
+                    (integer_literal))
+                    (assignment
+                    (annotation
+                        (user_type
+                        (type_identifier)))
+                    left: (simple_identifier)
+                    right: (call_expression
+                        expression: (simple_identifier)
+                        args: (value_arguments)))))))
+            (statement
+            (call_expression
+                expression: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier))
+                lambda_arg: (annotated_lambda
+                (lambda_literal
+                    body: (statements
+                    (statement
+                        (assignment
+                        (annotation
+                            (user_type
+                            (type_identifier)))
+                        left: (simple_identifier)
+                        right: (call_expression
+                            expression: (simple_identifier)
+                            args: (value_arguments)))))))))
+            (statement
+            (annotated_expression
+                (annotation
+                (user_type
+                    (type_identifier)))
+                (elvis_expression
+                (simple_identifier)
+                (infix_expression
+                    (simple_identifier)
+                    (simple_identifier)
+                    (additive_expression
+                    (simple_identifier)
+                    (integer_literal))))))
+            (statement
+            (annotated_expression
+                (annotation
+                (user_type
+                    (type_identifier)))
+                (return_expression
+                (integer_literal))))
+            (statement
+            (annotated_expression
+                (annotation
+                (user_type
+                    (type_identifier)))
+                (as_expression
+                (simple_identifier)
+                type: (user_type
+                    (type_identifier))))))))))
