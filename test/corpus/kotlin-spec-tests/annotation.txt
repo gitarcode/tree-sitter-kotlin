@@ -633,9 +633,11 @@ enum class A {
 --------------------------------------------------------------------------------
 
 (source_file
-    (enum_class_declaration
+    (class_declaration
+        modifiers: (modifiers
+            (class_modifier))
     name: (simple_identifier)
-    body: (enum_class_body
+    body: (class_body
         (enum_entry
         modifiers: (modifiers
             (annotation

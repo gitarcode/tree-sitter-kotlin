@@ -681,7 +681,7 @@
           "named": true
         },
         {
-          "type": "enum_class_declaration",
+          "type": "enum_entry",
           "named": true
         },
         {
@@ -1181,119 +1181,6 @@
       "types": [
         {
           "type": "expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "enum_class_body",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "anonymous_initializer",
-          "named": true
-        },
-        {
-          "type": "class_declaration",
-          "named": true
-        },
-        {
-          "type": "companion_object",
-          "named": true
-        },
-        {
-          "type": "enum_class_declaration",
-          "named": true
-        },
-        {
-          "type": "enum_entry",
-          "named": true
-        },
-        {
-          "type": "function_declaration",
-          "named": true
-        },
-        {
-          "type": "object_declaration",
-          "named": true
-        },
-        {
-          "type": "property_declaration",
-          "named": true
-        },
-        {
-          "type": "secondary_constructor",
-          "named": true
-        },
-        {
-          "type": "type_alias",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "enum_class_declaration",
-    "named": true,
-    "fields": {
-      "body": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "enum_class_body",
-            "named": true
-          }
-        ]
-      },
-      "modifiers": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "modifiers",
-            "named": true
-          }
-        ]
-      },
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "simple_identifier",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "delegation_specifier",
-          "named": true
-        },
-        {
-          "type": "primary_constructor",
-          "named": true
-        },
-        {
-          "type": "type_constraints",
-          "named": true
-        },
-        {
-          "type": "type_parameters",
           "named": true
         }
       ]
@@ -3159,10 +3046,6 @@
           "named": true
         },
         {
-          "type": "enum_class_declaration",
-          "named": true
-        },
-        {
           "type": "file_annotation",
           "named": true
         },
@@ -3219,10 +3102,6 @@
         },
         {
           "type": "do_while_statement",
-          "named": true
-        },
-        {
-          "type": "enum_class_declaration",
           "named": true
         },
         {
