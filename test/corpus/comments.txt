@@ -344,3 +344,39 @@ val x: Int
       id: (simple_identifier)
       type: (user_type
         (type_identifier)))))
+
+================================================================================
+Comments in when expression
+================================================================================
+
+when (e) {
+  // comment 	
+  is S -> d
+  // comment
+  is T -> d
+  // comment
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (when_expression
+      (when_subject
+        (simple_identifier))
+      (line_comment)
+      (when_entries
+        (when_entry
+          (when_condition
+            (type_test
+              type: (user_type
+                (type_identifier))))
+          (simple_identifier))
+        (line_comment)
+        (when_entry
+          (when_condition
+            (type_test
+              type: (user_type
+                (type_identifier))))
+          (simple_identifier)))
+      (line_comment))))
