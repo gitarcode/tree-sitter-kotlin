@@ -695,3 +695,37 @@ enum class A {
         parameters: (function_value_parameters)
         body: (function_body
             (block))))))
+
+================================================================================
+Annotated Expressions
+================================================================================
+
+fun foo() {
+    @[a] foo
+    1
+    @[a] this
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+    (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+        (block
+        (statements
+            (statement
+            (annotated_expression
+                (annotation
+                (user_type
+                    (type_identifier)))
+                (simple_identifier)))
+            (statement
+            (integer_literal))
+            (statement
+            (annotated_expression
+                (annotation
+                (user_type
+                    (type_identifier)))
+                (this_expression))))))))
