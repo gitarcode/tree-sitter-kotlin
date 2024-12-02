@@ -1240,11 +1240,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_common_primary_expression"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "parenthesized_expression"
+              "name": "_primary_expression"
             },
             {
               "type": "ALIAS",
@@ -4256,14 +4252,6 @@
         {
           "type": "SYMBOL",
           "name": "is_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "annotated_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "labeled_expression"
         }
       ]
     },
@@ -4570,37 +4558,34 @@
           "name": "annotation"
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_NL"
-          }
-        },
-        {
           "type": "SYMBOL",
           "name": "expression"
         }
       ]
     },
     "labeled_expression": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "label"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
+      "type": "PREC",
+      "value": 14,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
             "type": "SYMBOL",
-            "name": "_NL"
+            "name": "label"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expression"
           }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "expression"
-        }
-      ]
+        ]
+      }
     },
     "prefix_expression": {
       "type": "PREC",
@@ -5323,23 +5308,6 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_common_primary_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "call_expression"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "parenthesized_expression"
-        }
-      ]
-    },
-    "_common_primary_expression": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
           "name": "simple_identifier"
         },
         {
@@ -5393,6 +5361,22 @@
         {
           "type": "SYMBOL",
           "name": "if_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "annotated_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "parenthesized_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "call_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "labeled_expression"
         }
       ]
     },
@@ -8757,7 +8741,7 @@
     ],
     [
       "_simple_user_type",
-      "_common_primary_expression"
+      "_primary_expression"
     ],
     [
       "_simple_user_type"
@@ -8784,11 +8768,11 @@
     ],
     [
       "value_argument",
-      "_common_primary_expression"
+      "_primary_expression"
     ],
     [
       "variable_declaration",
-      "_common_primary_expression"
+      "_primary_expression"
     ],
     [
       "variable_declaration",
@@ -8811,10 +8795,6 @@
     ],
     [
       "_delegation_specifiers"
-    ],
-    [
-      "explicit_delegation",
-      "_primary_expression"
     ],
     [
       "function_value_parameters"
@@ -8940,6 +8920,15 @@
     ],
     [
       "_annotated_delegation_specifier"
+    ],
+    [
+      "explicit_delegation",
+      "expression"
+    ],
+    [
+      "call_expression",
+      "labeled_expression",
+      "comparison_expression"
     ]
   ],
   "precedences": [],

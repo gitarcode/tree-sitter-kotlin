@@ -30,6 +30,7 @@ const PREC = {
   DOT: 16,
   POSTFIX: 16,
   PREFIX: 15,
+  LABEL: 14,
   AS: 13,
   MULTIPLICATIVE: 12,
   ADDITIVE: 11,
@@ -118,7 +119,7 @@ module.exports = grammar({
     // eventually dies if there is no '.'
     [$.identifier],
 
-    [$._simple_user_type, $._common_primary_expression],
+    [$._simple_user_type, $._primary_expression],
 
     [$._simple_user_type],
 
@@ -129,8 +130,8 @@ module.exports = grammar({
     [$.class_parameter],
     [$.collection_literal],
     // becuase of $._NL after simple_identifier, all can reduce
-    [$.value_argument, $._common_primary_expression],
-    [$.variable_declaration, $._common_primary_expression],
+    [$.value_argument, $._primary_expression],
+    [$.variable_declaration, $._primary_expression],
     [$.variable_declaration, $._simple_user_type],
     [$.value_argument],
     [$.property_declaration],
@@ -138,7 +139,6 @@ module.exports = grammar({
     [$.type_constraints],
     [$.do_while_statement],
     [$._delegation_specifiers],
-    [$.explicit_delegation, $._primary_expression],
     [$.function_value_parameters],
     [$.class_parameters],
     [$.source_file],
@@ -171,7 +171,9 @@ module.exports = grammar({
     [$.statements, $._semi],
     [$.annotated_expression, $.value_argument],
     [$._annotated_delegation_specifier, $._type_modifier],
-    [$._annotated_delegation_specifier]
+    [$._annotated_delegation_specifier],
+    [$.explicit_delegation, $.expression],
+    [$.call_expression, $.labeled_expression, $.comparison_expression]
   ],
 
   extras: $ => [
@@ -361,8 +363,7 @@ module.exports = grammar({
       "by",
       repeat($._NL),
       choice(
-        $._common_primary_expression,
-        $.parenthesized_expression,
+        $._primary_expression,
         alias($.simple_call_expression, $.call_expression),
         $.as_expression
       )
@@ -796,8 +797,6 @@ module.exports = grammar({
       $.postfix_expression,
       $.as_expression,
       $.is_expression,
-      $.annotated_expression,
-      $.labeled_expression,
     ),
 
     jump_expression: $ => choice(
@@ -865,9 +864,9 @@ module.exports = grammar({
     // We cannot beforehand decide whether `()` is part of th annotation or not. To resolve this ambiguity
     // is to exclude paranethesized expression to be able to be part of an annotation. All annotations that are function-call-lik
     // should be parsed as a single annotation, and not an annotated expression on parenthesized expressions.
-    annotated_expression: $ => seq($.annotation, repeat($._NL), $.expression),
+    annotated_expression: $ => seq($.annotation, $.expression),
 
-    labeled_expression: $ => seq($.label, repeat($._NL), $.expression),
+    labeled_expression: $ => prec(PREC.LABEL, seq($.label, repeat($._NL), $.expression)),
 
     prefix_expression: $ => prec(PREC.PREFIX, seq(
       field('op', $._prefix_unary_operator), 
@@ -966,12 +965,6 @@ module.exports = grammar({
     ),
 
     _primary_expression: $ => choice(
-      $._common_primary_expression,
-      $.call_expression,
-      $.parenthesized_expression,
-    ),
-
-    _common_primary_expression: $ => choice(
       $.simple_identifier,
       $._literal_constant,
       $.string_literal,
@@ -985,7 +978,11 @@ module.exports = grammar({
       $.try_expression,
       $.dot_qualified_expression,
       $.index_access_expression,
-      $.if_expression
+      $.if_expression,
+      $.annotated_expression,
+      $.parenthesized_expression,
+      $.call_expression,
+      $.labeled_expression
     ),
 
     parenthesized_expression: $ => seq("(", repeat($._NL), $.expression, repeat($._NL), ")"),

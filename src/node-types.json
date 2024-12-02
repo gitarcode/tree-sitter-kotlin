@@ -1378,6 +1378,10 @@
       "required": true,
       "types": [
         {
+          "type": "annotated_expression",
+          "named": true
+        },
+        {
           "type": "anonymous_function",
           "named": true
         },
@@ -1431,6 +1435,10 @@
         },
         {
           "type": "integer_literal",
+          "named": true
+        },
+        {
+          "type": "labeled_expression",
           "named": true
         },
         {
