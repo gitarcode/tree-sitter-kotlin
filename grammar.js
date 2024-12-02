@@ -140,7 +140,6 @@ module.exports = grammar({
     [$.explicit_delegation, $._unary_expression],
     [$.parameter, $._simple_user_type],
     [$.function_type_parameters],
-    [$.type_constraints, $.property_declaration],
     [$.enum_class_body],
     [$.package_header],
     [$.when_entry],
@@ -469,11 +468,12 @@ module.exports = grammar({
       optional(seq(field('receiver_type', $.receiver_type), choice($._dot, '.'))),
       field('var_decl', choice($.variable_declaration, $.multi_variable_declaration)),
       optional(field('type_constraints', $.type_constraints)),
-      repeat($._NL),
-      optional(choice(
-        seq("=", repeat($._NL), field('initializer', $.expression)),
-        $.property_delegate
-      )),
+      optional(seq(
+        repeat($._NL),
+        choice(
+          seq("=", repeat($._NL), field('initializer', $.expression)),
+          $.property_delegate
+      ))),
       optional(
         seq(      
           repeat($._NL),
