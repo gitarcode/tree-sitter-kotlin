@@ -166,12 +166,10 @@ module.exports = grammar({
     [$.when_entry],
     [$.receiver_type, $._type],
     [$.receiver_type],
-    [$._unary_expression, $.annotated_expression],
-    [$.annotated_expression, $._primary_expression],
-    [$.expression, $.annotated_expression],
     [$.function_declaration_no_body, $.function_declaration],
     [$.statements],
-    [$.statements, $._semi]
+    [$.statements, $._semi],
+    [$.annotated_expression, $.value_argument]
   ],
 
   extras: $ => [
@@ -867,7 +865,7 @@ module.exports = grammar({
     // We cannot beforehand decide whether `()` is part of th annotation or not. To resolve this ambiguity
     // is to exclude paranethesized expression to be able to be part of an annotation. All annotations that are function-call-lik
     // should be parsed as a single annotation, and not an annotated expression on parenthesized expressions.
-    annotated_expression: $ => seq($.annotation, repeat($._NL), choice($._common_primary_expression, $.call_expression, $.postfix_expression, $.jump_expression)),
+    annotated_expression: $ => seq($.annotation, repeat($._NL), $.expression),
 
     labeled_expression: $ => seq($.label, repeat($._NL), $.expression),
 

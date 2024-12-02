@@ -4582,25 +4582,8 @@
           }
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_common_primary_expression"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "call_expression"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "postfix_expression"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "jump_expression"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "expression"
         }
       ]
     },
@@ -8942,18 +8925,6 @@
       "receiver_type"
     ],
     [
-      "_unary_expression",
-      "annotated_expression"
-    ],
-    [
-      "annotated_expression",
-      "_primary_expression"
-    ],
-    [
-      "expression",
-      "annotated_expression"
-    ],
-    [
       "function_declaration_no_body",
       "function_declaration"
     ],
@@ -8963,6 +8934,10 @@
     [
       "statements",
       "_semi"
+    ],
+    [
+      "annotated_expression",
+      "value_argument"
     ]
   ],
   "precedences": [],
