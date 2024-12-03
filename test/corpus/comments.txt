@@ -380,3 +380,58 @@ when (e) {
                 (type_identifier))))
           (simple_identifier)))
       (line_comment))))
+
+================================================================================
+Comment after properties with getter/setters
+================================================================================
+
+// comment
+val foo = foo
+   get() {}
+   set(it) {}
+// comment
+val foo = foo
+   get() {}
+//comment   
+val foo = foo
+   set(it) {}   
+// comment
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (property_declaration
+    (binding_pattern_kind)
+    var_decl: (variable_declaration
+      id: (simple_identifier))
+    initializer: (simple_identifier)
+    (getter
+      (function_body
+        (block)))
+    (setter
+      (parameter_with_optional_type
+        (simple_identifier))
+      (function_body
+        (block))))
+  (line_comment)
+  (property_declaration
+    (binding_pattern_kind)
+    var_decl: (variable_declaration
+      id: (simple_identifier))
+    initializer: (simple_identifier)
+    (getter
+      (function_body
+        (block))))
+  (line_comment)
+  (property_declaration
+    (binding_pattern_kind)
+    var_decl: (variable_declaration
+      id: (simple_identifier))
+    initializer: (simple_identifier)
+    (setter
+      (parameter_with_optional_type
+        (simple_identifier))
+      (function_body
+        (block))))
+  (line_comment))
