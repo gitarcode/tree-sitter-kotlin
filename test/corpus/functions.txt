@@ -521,12 +521,13 @@ fun isAdult(): Boolean { return true; }
 Function without body at end of file
 ==================
 
-expected fun foo()
+expect fun foo()
 ---
 
 (source_file
-  (statement
-    (simple_identifier))
   (function_declaration
+    modifiers: (modifiers
+      (platform_modifier))
     name: (simple_identifier)
     parameters: (function_value_parameters)))
+
