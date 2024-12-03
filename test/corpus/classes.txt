@@ -975,17 +975,9 @@ Modifiers on new line
 ================================================================================
 
 abstract
-open
 enum
 open
-annotation
-override
-open
-abstract
-private
-protected
 public
-internal
 class A
 
 --------------------------------------------------------------------------------
@@ -994,15 +986,7 @@ class A
   (class_declaration
     modifiers: (modifiers
       (inheritance_modifier)
-      (inheritance_modifier)
       (class_modifier)
       (inheritance_modifier)
-      (class_modifier)
-      (member_modifier)
-      (inheritance_modifier)
-      (inheritance_modifier)
-      (visibility_modifier)
-      (visibility_modifier)
-      (visibility_modifier)
       (visibility_modifier))
     name: (simple_identifier)))

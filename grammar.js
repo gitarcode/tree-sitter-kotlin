@@ -168,7 +168,25 @@ module.exports = grammar({
     [$.variable_declaration, $.assignment, $.annotated_expression],
     [$.variable_declaration, $._type_modifier],
     [$.variable_declaration, $.annotated_expression],
-    [$.lambda_parameters]
+    [$.lambda_parameters],
+
+    [$.import_header, $._soft_keywords],
+    [$.function_modifier, $._soft_keywords],
+    [$.class_modifier, $._soft_keywords],
+    [$.member_modifier, $._soft_keywords],
+    [$.visibility_modifier, $._soft_keywords],
+    [$.property_modifier, $._soft_keywords],
+    [$.inheritance_modifier, $._soft_keywords],
+    [$.parameter_modifier, $._soft_keywords],
+    [$.platform_modifier, $._soft_keywords],
+    [$.use_site_target, $._soft_keywords],
+    [$._type_modifier, $._soft_keywords],
+    [$.variance_modifier, $._soft_keywords],
+    [$.reification_modifier, $._soft_keywords],
+    [$.secondary_constructor, $._soft_keywords],
+    [$.anonymous_initializer, $._soft_keywords],
+    [$.getter, $._soft_keywords],
+    [$.setter, $._soft_keywords]
   ],
 
   extras: $ => [
@@ -1390,7 +1408,7 @@ module.exports = grammar({
 
     simple_identifier: $ => choice($._lexical_identifier, $._soft_keywords),
 
-    _soft_keywords: $ => prec(-1, choice(
+    _soft_keywords: $ => choice(
       "by",
       "catch",
       "constructor",
@@ -1435,7 +1453,8 @@ module.exports = grammar({
       "sealed",
       "suspend",
       "tailrec",
-      "vararg")),
+      "vararg"
+    ),
 
     identifier: $ => sep1($.simple_identifier, "."),
 
