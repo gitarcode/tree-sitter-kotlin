@@ -516,3 +516,17 @@ fun isAdult(): Boolean { return true; }
           (statement
             (return_expression
               (boolean_literal))))))))
+
+==================
+Function without body at end of file
+==================
+
+expected fun foo()
+---
+
+(source_file
+  (statement
+    (simple_identifier))
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)))

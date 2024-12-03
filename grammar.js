@@ -431,7 +431,7 @@ module.exports = grammar({
 
     _function_declaration: $ => choice(
       $.function_declaration,
-      seq(alias($.function_declaration_no_body, $.function_declaration), $._semi)
+      alias($.function_declaration_no_body, $.function_declaration)
     ),
 
     function_declaration_no_body: $ => seq(
@@ -694,11 +694,13 @@ module.exports = grammar({
     )),
 
     block: $ => seq(
-      "{",
+      // This is to disabmiguate between function declarations with and without bodies.
+      // Function declarations with bodies should always win.
+      prec.dynamic(1, "{"),
       repeat($._NL),
       optional($._statements),
-      "}")
-    ,
+      "}"
+    ),
 
     _loop_statement: $ => choice(
       $.for_statement,

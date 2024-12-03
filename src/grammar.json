@@ -1686,22 +1686,13 @@
           "name": "function_declaration"
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "function_declaration_no_body"
-              },
-              "named": true,
-              "value": "function_declaration"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_semi"
-            }
-          ]
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "function_declaration_no_body"
+          },
+          "named": true,
+          "value": "function_declaration"
         }
       ]
     },
@@ -3744,8 +3735,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "{"
+          "type": "PREC_DYNAMIC",
+          "value": 1,
+          "content": {
+            "type": "STRING",
+            "value": "{"
+          }
         },
         {
           "type": "REPEAT",
