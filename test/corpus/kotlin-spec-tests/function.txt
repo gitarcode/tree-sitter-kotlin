@@ -375,3 +375,194 @@ typealias f = @[a] (@[a] ((S).() -> S).() -> S)
         (function_type_parameters)
         type: (user_type
             (type_identifier))))))
+
+================================================================================
+Properties with function receivers
+================================================================================
+
+val ((Unit) -> Unit).foo
+val (foo.bar.() -> Unit).foo
+
+val (foo.bar.() -> Unit).foo = foo
+   get() {}
+   set(it) {}
+
+val (foo.bar.() -> Unit).foo = foo
+   get() : Foo {}
+   set(it) {}
+
+
+val (foo.bar.() -> Unit).foo : bar = foo
+   @[a] public get() {}
+   open set(a : b) {}
+
+
+val (foo.bar.() -> Unit).foo : bar = foo
+   open set(a : b) {}
+
+
+val (foo.bar.() -> Unit).foo : bar = foo
+   @[a] public get() {}
+
+--------------------------------------------------------------------------------
+
+(source_file
+    (property_declaration
+    (binding_pattern_kind)
+    receiver_type: (receiver_type
+        (parenthesized_type
+        (function_type
+            (function_type_parameters
+            type: (user_type
+                (type_identifier)))
+            type: (user_type
+            (type_identifier)))))
+    var_decl: (variable_declaration
+        id: (simple_identifier)))
+    (property_declaration
+    (binding_pattern_kind)
+    receiver_type: (receiver_type
+        (parenthesized_type
+        (function_type
+            (receiver_type
+            type: (user_type
+                (type_identifier)
+                (type_identifier)))
+            (function_type_parameters)
+            type: (user_type
+            (type_identifier)))))
+    var_decl: (variable_declaration
+        id: (simple_identifier)))
+    (property_declaration
+    (binding_pattern_kind)
+    receiver_type: (receiver_type
+        (parenthesized_type
+        (function_type
+            (receiver_type
+            type: (user_type
+                (type_identifier)
+                (type_identifier)))
+            (function_type_parameters)
+            type: (user_type
+            (type_identifier)))))
+    var_decl: (variable_declaration
+        id: (simple_identifier))
+    initializer: (simple_identifier)
+    (getter
+        (function_body
+        (block)))
+    (setter
+        (parameter_with_optional_type
+        (simple_identifier))
+        (function_body
+        (block))))
+    (property_declaration
+    (binding_pattern_kind)
+    receiver_type: (receiver_type
+        (parenthesized_type
+        (function_type
+            (receiver_type
+            type: (user_type
+                (type_identifier)
+                (type_identifier)))
+            (function_type_parameters)
+            type: (user_type
+            (type_identifier)))))
+    var_decl: (variable_declaration
+        id: (simple_identifier))
+    initializer: (simple_identifier)
+    (getter
+        type: (user_type
+        (type_identifier))
+        (function_body
+        (block)))
+    (setter
+        (parameter_with_optional_type
+        (simple_identifier))
+        (function_body
+        (block))))
+    (property_declaration
+    (binding_pattern_kind)
+    receiver_type: (receiver_type
+        (parenthesized_type
+        (function_type
+            (receiver_type
+            type: (user_type
+                (type_identifier)
+                (type_identifier)))
+            (function_type_parameters)
+            type: (user_type
+            (type_identifier)))))
+    var_decl: (variable_declaration
+        id: (simple_identifier)
+        type: (user_type
+        (type_identifier)))
+    initializer: (simple_identifier)
+    (getter
+        modifiers: (modifiers
+        (annotation
+            (user_type
+            (type_identifier)))
+        (visibility_modifier))
+        (function_body
+        (block)))
+    (setter
+        modifiers: (modifiers
+        (inheritance_modifier))
+        (parameter_with_optional_type
+        (simple_identifier)
+        type: (user_type
+            (type_identifier)))
+        (function_body
+        (block))))
+    (property_declaration
+    (binding_pattern_kind)
+    receiver_type: (receiver_type
+        (parenthesized_type
+        (function_type
+            (receiver_type
+            type: (user_type
+                (type_identifier)
+                (type_identifier)))
+            (function_type_parameters)
+            type: (user_type
+            (type_identifier)))))
+    var_decl: (variable_declaration
+        id: (simple_identifier)
+        type: (user_type
+        (type_identifier)))
+    initializer: (simple_identifier)
+    (setter
+        modifiers: (modifiers
+        (inheritance_modifier))
+        (parameter_with_optional_type
+        (simple_identifier)
+        type: (user_type
+            (type_identifier)))
+        (function_body
+        (block))))
+    (property_declaration
+    (binding_pattern_kind)
+    receiver_type: (receiver_type
+        (parenthesized_type
+        (function_type
+            (receiver_type
+            type: (user_type
+                (type_identifier)
+                (type_identifier)))
+            (function_type_parameters)
+            type: (user_type
+            (type_identifier)))))
+    var_decl: (variable_declaration
+        id: (simple_identifier)
+        type: (user_type
+        (type_identifier)))
+    initializer: (simple_identifier)
+    (getter
+        modifiers: (modifiers
+        (annotation
+            (user_type
+            (type_identifier)))
+        (visibility_modifier))
+        (function_body
+        (block)))))
