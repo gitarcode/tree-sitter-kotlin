@@ -1224,3 +1224,58 @@ fun foo() {
                 (variable_declaration
                     id: (simple_identifier)))
                 initializer: (integer_literal))))))))
+
+================================================================================
+Short annotations
+================================================================================
+
+fun test() {
+  when (@foo @bar(1) @buzz<T>(1) @zoo val a = 1) {
+    1 -> 1
+  }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+    (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+        (block
+        (statements
+            (statement
+            (when_expression
+                (when_subject
+                (annotation
+                    (user_type
+                    (type_identifier)))
+                (annotation
+                    (constructor_invocation
+                    (user_type
+                        (type_identifier))
+                    (value_arguments
+                        (value_argument
+                        (integer_literal)))))
+                (annotation
+                    (constructor_invocation
+                    (user_type
+                        (type_identifier)
+                        (type_arguments
+                        (type_projection
+                            type: (user_type
+                            (type_identifier)))))
+                    (value_arguments
+                        (value_argument
+                        (integer_literal)))))
+                (annotation
+                    (user_type
+                    (type_identifier)))
+                (variable_declaration
+                    id: (simple_identifier))
+                (integer_literal))
+                (when_entries
+                (when_entry
+                    (when_condition
+                    (integer_literal))
+                    (integer_literal))))))))))
