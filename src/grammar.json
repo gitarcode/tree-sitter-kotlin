@@ -2105,6 +2105,20 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_annotation"
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "FIELD",
           "name": "id",
           "content": {
@@ -8818,6 +8832,28 @@
     ],
     [
       "when_expression"
+    ],
+    [
+      "variable_declaration",
+      "assignment",
+      "annotated_expression",
+      "modifiers"
+    ],
+    [
+      "variable_declaration",
+      "assignment",
+      "annotated_expression"
+    ],
+    [
+      "variable_declaration",
+      "_type_modifier"
+    ],
+    [
+      "variable_declaration",
+      "annotated_expression"
+    ],
+    [
+      "lambda_parameters"
     ]
   ],
   "precedences": [],

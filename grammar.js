@@ -163,7 +163,12 @@ module.exports = grammar({
     [$.class_body, $.enum_class_body],
     [$._when_entry],
     [$.when_entries],
-    [$.when_expression]
+    [$.when_expression],
+    [$.variable_declaration, $.assignment, $.annotated_expression, $.modifiers],
+    [$.variable_declaration, $.assignment, $.annotated_expression],
+    [$.variable_declaration, $._type_modifier],
+    [$.variable_declaration, $.annotated_expression],
+    [$.lambda_parameters]
   ],
 
   extras: $ => [
@@ -459,7 +464,8 @@ module.exports = grammar({
     ),
 
     variable_declaration: $ => seq(
-      // repeat($._annotation), TODO
+      repeat($._annotation),
+      repeat($._NL),
       field('id', $.simple_identifier),
       optional(field('type', seq(repeat($._NL), ":", repeat($._NL), $._type)))
     ),

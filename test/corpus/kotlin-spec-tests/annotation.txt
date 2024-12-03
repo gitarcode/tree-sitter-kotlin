@@ -1159,3 +1159,68 @@ fun foo() {
                     (user_type
                         (type_identifier)))
                     (lambda_literal))))))))))
+
+
+================================================================================
+Annotated multi variable
+================================================================================
+
+fun foo() {
+    val (x, @ann @[ann] y) = pair
+    val (@[ann] a, b) = pair
+
+    @Volatile val (@ann x, y) = 1
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+    (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+        (block
+        (statements
+            (statement
+            (property_declaration
+                (binding_pattern_kind)
+                var_decl: (multi_variable_declaration
+                (variable_declaration
+                    id: (simple_identifier))
+                (variable_declaration
+                    (annotation
+                    (user_type
+                        (type_identifier)))
+                    (annotation
+                    (user_type
+                        (type_identifier)))
+                    id: (simple_identifier)))
+                initializer: (simple_identifier)))
+            (statement
+            (property_declaration
+                (binding_pattern_kind)
+                var_decl: (multi_variable_declaration
+                (variable_declaration
+                    (annotation
+                    (user_type
+                        (type_identifier)))
+                    id: (simple_identifier))
+                (variable_declaration
+                    id: (simple_identifier)))
+                initializer: (simple_identifier)))
+            (statement
+            (property_declaration
+                modifiers: (modifiers
+                (annotation
+                    (user_type
+                    (type_identifier))))
+                (binding_pattern_kind)
+                var_decl: (multi_variable_declaration
+                (variable_declaration
+                    (annotation
+                    (user_type
+                        (type_identifier)))
+                    id: (simple_identifier))
+                (variable_declaration
+                    id: (simple_identifier)))
+                initializer: (integer_literal))))))))
