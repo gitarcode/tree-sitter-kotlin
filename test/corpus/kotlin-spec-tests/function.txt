@@ -1,0 +1,158 @@
+================================================================================
+Function with receivers
+================================================================================
+
+fun (@[a] T<T>.(A<B>) -> Unit).foo()
+fun (@[a] T<T>.(A<B>) ->  C<D, E>).foo();
+fun @[a] (@[a] T<T>.(A<B>) -> R).foo() {}
+fun <A, B> @[a] ((A, B) -> Unit).foo()
+fun ((T) -> G)?.foo()
+fun ((T) -> G)??.foo()
+fun <T> f()
+
+--------------------------------------------------------------------------------
+
+(source_file
+    (function_declaration
+    receiver_type: (receiver_type
+        (parenthesized_type
+        (function_type
+            (receiver_type
+            modifiers: (type_modifiers
+                (annotation
+                (user_type
+                    (type_identifier))))
+            type: (user_type
+                (type_identifier)
+                (type_arguments
+                (type_projection
+                    type: (user_type
+                    (type_identifier))))))
+            (function_type_parameters
+            type: (user_type
+                (type_identifier)
+                (type_arguments
+                (type_projection
+                    type: (user_type
+                    (type_identifier))))))
+            type: (user_type
+            (type_identifier)))))
+    name: (simple_identifier)
+    parameters: (function_value_parameters))
+    (function_declaration
+    receiver_type: (receiver_type
+        (parenthesized_type
+        (function_type
+            (receiver_type
+            modifiers: (type_modifiers
+                (annotation
+                (user_type
+                    (type_identifier))))
+            type: (user_type
+                (type_identifier)
+                (type_arguments
+                (type_projection
+                    type: (user_type
+                    (type_identifier))))))
+            (function_type_parameters
+            type: (user_type
+                (type_identifier)
+                (type_arguments
+                (type_projection
+                    type: (user_type
+                    (type_identifier))))))
+            type: (user_type
+            (type_identifier)
+            (type_arguments
+                (type_projection
+                type: (user_type
+                    (type_identifier)))
+                (type_projection
+                type: (user_type
+                    (type_identifier))))))))
+    name: (simple_identifier)
+    parameters: (function_value_parameters))
+    (function_declaration
+    receiver_type: (receiver_type
+        modifiers: (type_modifiers
+        (annotation
+            (user_type
+            (type_identifier))))
+        (parenthesized_type
+        (function_type
+            (receiver_type
+            modifiers: (type_modifiers
+                (annotation
+                (user_type
+                    (type_identifier))))
+            type: (user_type
+                (type_identifier)
+                (type_arguments
+                (type_projection
+                    type: (user_type
+                    (type_identifier))))))
+            (function_type_parameters
+            type: (user_type
+                (type_identifier)
+                (type_arguments
+                (type_projection
+                    type: (user_type
+                    (type_identifier))))))
+            type: (user_type
+            (type_identifier)))))
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+        (block)))
+    (function_declaration
+    (type_parameters
+        (type_parameter
+        (type_identifier))
+        (type_parameter
+        (type_identifier)))
+    receiver_type: (receiver_type
+        modifiers: (type_modifiers
+        (annotation
+            (user_type
+            (type_identifier))))
+        (parenthesized_type
+        (function_type
+            (function_type_parameters
+            type: (user_type
+                (type_identifier))
+            type: (user_type
+                (type_identifier)))
+            type: (user_type
+            (type_identifier)))))
+    name: (simple_identifier)
+    parameters: (function_value_parameters))
+    (function_declaration
+    receiver_type: (receiver_type
+        (nullable_type
+        (parenthesized_type
+            (function_type
+            (function_type_parameters
+                type: (user_type
+                (type_identifier)))
+            type: (user_type
+                (type_identifier))))))
+    name: (simple_identifier)
+    parameters: (function_value_parameters))
+    (function_declaration
+    receiver_type: (receiver_type
+        (nullable_type
+        (parenthesized_type
+            (function_type
+            (function_type_parameters
+                type: (user_type
+                (type_identifier)))
+            type: (user_type
+                (type_identifier))))))
+    name: (simple_identifier)
+    parameters: (function_value_parameters))
+    (function_declaration
+    (type_parameters
+        (type_parameter
+        (type_identifier)))
+    name: (simple_identifier)
+    parameters: (function_value_parameters)))
