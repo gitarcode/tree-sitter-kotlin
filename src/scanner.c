@@ -77,6 +77,12 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
             if (match(lexer, "&&", 2)) {
                 return true;
             }
+            if (match(lexer, "+", 1)) {
+                return true;
+            }
+            if (match(lexer, "-", 1)) {
+                return true;
+            }
             // while (!lexer->eof(lexer)) {
             //     if (lexer->lookahead == '&') {
             //         advance(lexer);
