@@ -22,9 +22,7 @@ Comments
       (integer_literal)
       (integer_literal)))
   (line_comment)
-  (multiline_comment
-    (multiline_comment
-      (multiline_comment)))
+  (multiline_comment)
   (line_comment)
   (multiline_comment))
 

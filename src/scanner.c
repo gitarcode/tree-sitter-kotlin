@@ -63,6 +63,11 @@ static bool multiline_comment_body(TSLexer *lexer) {
         if (lookahead_operator(lexer, "*/", 2)) {
             return true;
         }
+        if (lookahead_operator(lexer, "/*", 2)) {
+            if (!multiline_comment_body(lexer)) {
+                return false;
+            }
+        }
         advance(lexer);
     }
     return false;
