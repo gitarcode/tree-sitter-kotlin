@@ -202,7 +202,8 @@ module.exports = grammar({
 
   externals: $ => [
     $._ELVIS,
-    $._external_nl
+    $._external_nl,
+    $.multiline_comment
   ],
 
   supertypes: $ => [
@@ -1557,11 +1558,11 @@ module.exports = grammar({
     // We need to consume all the newlines after the commend, otherwise, the comments
     // may be inserted in unwanted places. Comments (and other extra) nodes are inserted
     // after tokens.
-    multiline_comment: $ => seq(
-      token("/*"), 
-      repeat(choice($._NL, /./)), 
-      token("*/"),
-    )
+    // multiline_comment: $ => seq(
+    //   token("/*"), 
+    //   repeat(choice($._NL, /./)), 
+    //   token("*/"),
+    // )
   }
 });
 

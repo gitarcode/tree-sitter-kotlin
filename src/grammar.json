@@ -8546,41 +8546,6 @@
           }
         ]
       }
-    },
-    "multiline_comment": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "/*"
-          }
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_NL"
-              },
-              {
-                "type": "PATTERN",
-                "value": "."
-              }
-            ]
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "*/"
-          }
-        }
-      ]
     }
   },
   "extras": [
@@ -9003,6 +8968,10 @@
     {
       "type": "SYMBOL",
       "name": "_external_nl"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "multiline_comment"
     }
   ],
   "inline": [],

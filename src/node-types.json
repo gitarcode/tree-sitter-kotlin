@@ -2251,11 +2251,6 @@
     }
   },
   {
-    "type": "multiline_comment",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "multiplicative_expression",
     "named": true,
     "fields": {},
@@ -4018,10 +4013,6 @@
     "named": false
   },
   {
-    "type": "*/",
-    "named": false
-  },
-  {
     "type": "*=",
     "named": false
   },
@@ -4071,10 +4062,6 @@
   },
   {
     "type": "/",
-    "named": false
-  },
-  {
-    "type": "/*",
     "named": false
   },
   {
@@ -4347,6 +4334,10 @@
   },
   {
     "type": "line_comment",
+    "named": true
+  },
+  {
+    "type": "multiline_comment",
     "named": true
   },
   {

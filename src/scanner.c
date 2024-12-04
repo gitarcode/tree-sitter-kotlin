@@ -6,6 +6,7 @@
 enum TokenType {
     ELVIS,
     EXTERNAL_NEWLINE,
+    MULTILINE_COMMENT,
 };
 
 static inline void advance(TSLexer *lexer) { 
@@ -41,6 +42,9 @@ static bool line_comment(TSLexer *lexer) {
     return false;
 }
 
+/*
+ * After this function ends, the lexer is advanced at least 0 and at most length times.
+ */
 static bool lookahead_operator(TSLexer *lexer, const char *operator, int length) {
     for (int i = 0; i < length; i++) {
         if (lexer->lookahead != operator[i]) {
@@ -54,7 +58,32 @@ static bool lookahead_operator(TSLexer *lexer, const char *operator, int length)
     return true;
 }
 
+static bool multiline_comment(TSLexer *lexer) {
+    if (lexer->lookahead == '/') {
+        advance(lexer);
+        if (lexer->lookahead == '*') {
+            advance(lexer);
+            while (!lexer->eof(lexer)) {
+                if (lookahead_operator(lexer, "*/", 2)) {
+                    return true;
+                }
+                advance(lexer);
+            }
+        }
+    }
+    return false;
+}
+
 bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
+    if (valid_symbols[MULTILINE_COMMENT]) {
+        if (lexer->lookahead == '/') {
+            if (multiline_comment(lexer)) {
+                lexer->result_symbol = MULTILINE_COMMENT;
+                return true;
+            }
+            return false;
+        }
+    }
     if (valid_symbols[EXTERNAL_NEWLINE] || valid_symbols[ELVIS]) {
         switch(lexer->lookahead) {
             case '\n':
