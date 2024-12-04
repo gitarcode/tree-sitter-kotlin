@@ -201,6 +201,7 @@ module.exports = grammar({
   ],
 
   externals: $ => [
+    $._ELVIS,
     $.external_nl
   ],
 
@@ -901,7 +902,7 @@ module.exports = grammar({
 
     infix_expression: $ => prec.left(PREC.INFIX, seq($.expression, repeat($.external_nl), $.simple_identifier, repeat($._NL), $.expression)),
 
-    elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, repeat($.external_nl), "?:", repeat($._NL), $.expression)),
+    elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, repeat($.external_nl), $._ELVIS, repeat($._NL), $.expression)),
 
     in_expression: $ => prec.left(PREC.CHECK, seq($.expression, repeat($.external_nl), $._in_operator, repeat($._NL), $.expression)),
 
@@ -1547,8 +1548,6 @@ module.exports = grammar({
 
     _backtick_identifier: $ => /`[^\r\n`]+`/,
 
-    _CONJ: $ => /\s*&&/,
-    _DISJ: $ => /\s*\|\|/,
     _ws: $ => NON_NL_WHITESPACE,
     _NL: $ => token(/\n/),
     _semi: $ => choice(";", $._NL),

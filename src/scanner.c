@@ -4,6 +4,7 @@
 #include <wctype.h>
 
 enum TokenType {
+    ELVIS,
     EXTERNAL_NEWLINE,
 };
 
@@ -88,20 +89,30 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
             if (lookahead_operator(lexer, ".", 1)) {
                 return true;
             }
-            // while (!lexer->eof(lexer)) {
-            //     if (lexer->lookahead == '&') {
-            //         advance(lexer);
-            //         if (lexer->lookahead == '&') {
-            //             lexer->result_symbol = EXTERNAL_NEWLINE;
-            //             return true;
-            //         }
-            //     } else {
-            //         advance(lexer);
-            //     }
-            // }
         }
         return false;
     }
+    if (valid_symbols[ELVIS]) {
+        if (lexer->lookahead == '?') {
+            advance(lexer);
+        } else {
+            return false;
+        }
+        // Elvis
+        if (lexer->lookahead == ':') {
+            advance(lexer);
+        } else {
+            return false;
+        }
+        // ?:: should be tokenized as ? ::, so we should not emit an elvis operator here
+        if (lexer -> lookahead != ':') {
+            lexer->mark_end(lexer);
+            lexer->result_symbol = ELVIS;
+            return true;
+        }
+        return false;
+    }
+
     // if (valid_symbols[BIN_MIN]) {
     //     lexer->result_symbol = BIN_MIN;
     //     lexer->mark_end(lexer);
