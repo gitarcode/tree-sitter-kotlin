@@ -268,7 +268,7 @@ module.exports = grammar({
     _top_level_object: $ => seq($._declaration, repeat($._semi)),
 
     _top_level_statements: $ =>
-      repeat1(seq(alias($._top_level_statement, $.statement), repeat1($._semi))),
+      repeat1(seq(alias($._top_level_statement, $.statement), repeat($._semi))),
 
     _top_level_statement: $ => choice(
       $.assignment,
