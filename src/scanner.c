@@ -4,11 +4,6 @@
 #include <wctype.h>
 
 enum TokenType {
-    BIN_MIN,
-    BIN_PLUS,
-    SAFE_DOT,
-    ELVIS,
-    DOT,
     EXTERNAL_NEWLINE,
 };
 
@@ -46,6 +41,7 @@ static bool line_comment(TSLexer *lexer) {
 }
 
 static bool lookahead_operator(TSLexer *lexer, const char *operator, int length) {
+    // printf("lookahead '%c'\n", lexer->lookahead);
     for (int i = 0; i < length; i++) {
         if (lexer->lookahead != operator[i]) {
             return false;
@@ -83,7 +79,10 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
             if (lookahead_operator(lexer, "-", 1)) {
                 return true;
             }
-            if (lookahead_operator(lexer, ".?", 2)) {
+            if (lookahead_operator(lexer, "?:", 2)) {
+                return true;
+            }
+            if (lookahead_operator(lexer, "?.", 2)) {
                 return true;
             }
             if (lookahead_operator(lexer, ".", 1)) {

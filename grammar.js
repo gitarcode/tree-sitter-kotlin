@@ -201,11 +201,6 @@ module.exports = grammar({
   ],
 
   externals: $ => [
-    $._bin_min,
-    $._bin_plus,
-    $._safe_dot,
-    $._elvis,
-    $._dot,
     $.external_nl
   ],
 
@@ -462,7 +457,7 @@ module.exports = grammar({
       optional(field('modifiers', $.modifiers)),
       "fun",
       optional($.type_parameters),
-      optional(seq(repeat($._NL), field('receiver_type', $.receiver_type), repeat($._NL), optional(choice($._dot, '.')))),
+      optional(seq(repeat($._NL), field('receiver_type', $.receiver_type), repeat($._NL), '.')),
       field('name', $.simple_identifier),
       field('parameters', $.function_value_parameters),
       optional(seq(repeat($._NL), ":", repeat($._NL), field('type', $._type))),
@@ -473,7 +468,7 @@ module.exports = grammar({
       optional(field('modifiers', $.modifiers)),
       "fun",
       optional($.type_parameters),
-      optional(seq(repeat($._NL), field('receiver_type', $.receiver_type), repeat($._NL), optional(choice($._dot, '.')))),
+      optional(seq(repeat($._NL), field('receiver_type', $.receiver_type), repeat($._NL), optional('.'))),
       field('name', $.simple_identifier),
       field('parameters', $.function_value_parameters),
       optional(seq(repeat($._NL), ":", repeat($._NL), field('type', $._type))),
@@ -498,7 +493,7 @@ module.exports = grammar({
       optional(field('modifiers', $.modifiers)),
       $.binding_pattern_kind,
       optional(field('type_parameters', $.type_parameters)),
-      optional(seq(field('receiver_type', $.receiver_type), choice($._dot, '.'))),
+      optional(seq(field('receiver_type', $.receiver_type), '.')),
       field('var_decl', choice($.variable_declaration, $.multi_variable_declaration)),
       optional(field('type_constraints', $.type_constraints)),
       optional(seq(
@@ -652,7 +647,7 @@ module.exports = grammar({
     ),
 
     user_type: $ => seq(
-      $._simple_user_type, repeat(seq(choice($._dot, "."), repeat($._NL), $._simple_user_type))
+      $._simple_user_type, repeat(seq(".", repeat($._NL), $._simple_user_type))
     ),
 
     _simple_user_type: $ => seq(
@@ -670,7 +665,7 @@ module.exports = grammar({
     _type_projection_modifier: $ => $.variance_modifier,
 
     function_type: $ => seq(
-      optional(seq($.receiver_type, choice($._dot, "."), repeat($._NL))), 
+      optional(seq($.receiver_type, ".", repeat($._NL))), 
       $.function_type_parameters,
       repeat($._NL),
       "->",
@@ -821,7 +816,7 @@ module.exports = grammar({
     postfix_expression: $ => prec(PREC.POSTFIX, seq(field('expression', $.expression), field('operator', $._postfix_unary_operator))),
 
     dot_qualified_expression: $ => prec(PREC.DOT, seq(
-      field('receiver', choice($.expression)),
+      field('receiver', $.expression),
       repeat($.external_nl),
       choice(".", "?."),
       repeat($._NL),
