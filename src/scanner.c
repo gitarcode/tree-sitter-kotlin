@@ -55,150 +55,62 @@ static bool lookahead_operator(TSLexer *lexer, const char *operator, int length)
 }
 
 bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
-    if (valid_symbols[EXTERNAL_NEWLINE]) {
-        if (lexer->lookahead == '\n') {
-            while (lexer->lookahead == '\n') {
-                advance(lexer);
-            }
-            lexer->result_symbol = EXTERNAL_NEWLINE;
-            lexer->mark_end(lexer);
-            while (iswspace(lexer->lookahead) || lexer->lookahead == '/') {
-                skip_whitespace(lexer);
-                if (lexer->lookahead == '/') {
-                    if (!line_comment(lexer)) {
-                        return false;
+    if (valid_symbols[EXTERNAL_NEWLINE] || valid_symbols[ELVIS]) {
+        switch(lexer->lookahead) {
+            case '\n':
+                while (lexer->lookahead == '\n') {
+                    advance(lexer);
+                }
+                lexer->result_symbol = EXTERNAL_NEWLINE;
+                lexer->mark_end(lexer);
+                while (iswspace(lexer->lookahead) || lexer->lookahead == '/') {
+                    skip_whitespace(lexer);
+                    if (lexer->lookahead == '/') {
+                        if (!line_comment(lexer)) {
+                            return false;
+                        }
                     }
                 }
-            }
-            if (lookahead_operator(lexer, "&&", 2)) {
-                return true;
-            }
-            if (lookahead_operator(lexer, "+", 1)) {
-                if (lexer->lookahead != '+') {
+                if (lookahead_operator(lexer, "&&", 2)) {
                     return true;
                 }
-            }
-            if (lookahead_operator(lexer, "-", 1)) {
-                if (lexer->lookahead != '-') {
+                if (lookahead_operator(lexer, "+", 1)) {
+                    if (lexer->lookahead != '+') {
+                        return true;
+                    }
+                }
+                if (lookahead_operator(lexer, "-", 1)) {
+                    if (lexer->lookahead != '-') {
+                        return true;
+                    }
+                }
+                if (lookahead_operator(lexer, "?:", 2)) {
                     return true;
                 }
-            }
-            if (lookahead_operator(lexer, "?:", 2)) {
+                if (lookahead_operator(lexer, "?.", 2)) {
+                    return true;
+                }
+                if (lookahead_operator(lexer, ".", 1)) {
+                    return true;
+                }
+                return false;
+
+            case '?':
+                advance(lexer);
+                if (lexer->lookahead != ':') {
+                    return false;
+                }
+                advance(lexer);
+                // ?:: should be tokenized as ? ::, so we should not emit an elvis operator here
+                if (lexer->lookahead == ':') {
+                    return false;
+                }
+                lexer->result_symbol = ELVIS;
                 return true;
-            }
-            if (lookahead_operator(lexer, "?.", 2)) {
-                return true;
-            }
-            if (lookahead_operator(lexer, ".", 1)) {
-                return true;
-            }
+
+            default:
+                return false;    
         }
-        return false;
     }
-    if (valid_symbols[ELVIS]) {
-        if (lexer->lookahead == '?') {
-            advance(lexer);
-        } else {
-            return false;
-        }
-        // Elvis
-        if (lexer->lookahead != ':') {
-            return false;
-        }
-        advance(lexer);
-        // ?:: should be tokenized as ? ::, so we should not emit an elvis operator here
-        if (lexer -> lookahead != ':') {
-            lexer->result_symbol = ELVIS;
-            return true;
-        }
-        return false;
-    }
-    // if (valid_symbols[BIN_MIN]) {
-    //     lexer->result_symbol = BIN_MIN;
-    //     lexer->mark_end(lexer);
-    //     skip_whitespace(lexer);
-    //     if (lexer->lookahead == '-') {
-    //         advance(lexer);
-    //         lexer->mark_end(lexer);
-    //         // do not recognize --, ->, -=
-    //         if (lexer -> lookahead != '-' && lexer -> lookahead != '>' && lexer -> lookahead != '=') {
-    //             return true;
-    //         }
-    //     }
-    // }
-    // if (valid_symbols[LINE_COMMENT]) {
-    //     if (line_comment(lexer)) {
-    //         lexer->result_symbol = LINE_COMMENT;
-    //         return true;
-    //     }
-    // }
-    // if (valid_symbols[BIN_PLUS]) {
-    //     lexer->mark_end(lexer);
-    //     while (iswspace(lexer->lookahead) || lexer->lookahead == '/') {
-    //         skip_whitespace(lexer);
-    //         if (lexer->lookahead == '/') {
-    //             if (line_comment(lexer)) {
-    //                 return false;
-    //             }
-    //         }
-    //     }
-    //     if (lexer->lookahead == '+') {
-    //         advance(lexer);
-    //         lexer->mark_end(lexer);
-    //         // do not recognize ++, +=
-    //         if (lexer -> lookahead != '+' && lexer -> lookahead != '=') {
-    //             lexer->result_symbol = BIN_PLUS;
-    //             return true;
-    //         }
-    //     }
-    // }
-    // if (valid_symbols[DOT]) {
-    //     lexer->mark_end(lexer);
-    //     while (iswspace(lexer->lookahead) || lexer->lookahead == '/') {
-    //         skip_whitespace(lexer);
-    //         if (lexer->lookahead == '/') {
-    //             if (!line_comment(lexer)) {
-    //                 return false;
-    //             }
-    //         }
-    //     }
-    //     if (lexer->lookahead == '.') {
-    //         advance(lexer);
-    //         lexer->mark_end(lexer);
-    //         if (lexer -> lookahead != '.') {
-    //             lexer->result_symbol = DOT;
-    //             lexer->mark_end(lexer);
-    //             return true;
-    //         }
-    //     }
-    // }
-    // if (valid_symbols[SAFE_DOT] || valid_symbols[ELVIS]) {
-    //     lexer->mark_end(lexer);
-    //     skip_whitespace(lexer);
-    //     if (lexer->lookahead == '?') {
-    //         advance(lexer);
-    //     } else {
-    //         return false;
-    //     }
-    //     // Safe dot
-    //     if (lexer->lookahead == '.') {
-    //         advance(lexer);
-    //         lexer->mark_end(lexer);
-    //         lexer->result_symbol = SAFE_DOT;
-    //         return true;
-    //     }
-    //     // Elvis
-    //     if (lexer->lookahead == ':') {
-    //         advance(lexer);
-    //     } else {
-    //         return false;
-    //     }
-    //     // ?:: should be tokenized as ? ::, so we should not emit an elvis operator here
-    //     if (lexer -> lookahead != ':') {
-    //         lexer->mark_end(lexer);
-    //         lexer->result_symbol = ELVIS;
-    //         return true;
-    //     }
-    // }
     return false;
 }
