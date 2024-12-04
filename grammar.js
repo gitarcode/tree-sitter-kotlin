@@ -188,7 +188,10 @@ module.exports = grammar({
     [$.getter, $._soft_keywords],
     [$.setter, $._soft_keywords],
 
-    [$.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression]
+    [$.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.labeled_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.prefix_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression]
   ],
 
   extras: $ => [
@@ -819,7 +822,8 @@ module.exports = grammar({
 
     dot_qualified_expression: $ => prec(PREC.DOT, seq(
       field('receiver', choice($.expression)),
-      choice(choice($._dot, "."), $._safe_dot),
+      repeat($.external_nl),
+      choice(".", "?."),
       repeat($._NL),
       field('selector', choice(
         $.simple_identifier,

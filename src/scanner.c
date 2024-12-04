@@ -45,9 +45,9 @@ static bool line_comment(TSLexer *lexer) {
     return false;
 }
 
-bool match(TSLexer *lexer, const char *symbol, int length) {
+static bool lookahead_operator(TSLexer *lexer, const char *operator, int length) {
     for (int i = 0; i < length; i++) {
-        if (lexer->lookahead != symbol[i]) {
+        if (lexer->lookahead != operator[i]) {
             return false;
         }
         advance(lexer);
@@ -74,13 +74,19 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                     }
                 }
             }
-            if (match(lexer, "&&", 2)) {
+            if (lookahead_operator(lexer, "&&", 2)) {
                 return true;
             }
-            if (match(lexer, "+", 1)) {
+            if (lookahead_operator(lexer, "+", 1)) {
                 return true;
             }
-            if (match(lexer, "-", 1)) {
+            if (lookahead_operator(lexer, "-", 1)) {
+                return true;
+            }
+            if (lookahead_operator(lexer, ".?", 2)) {
+                return true;
+            }
+            if (lookahead_operator(lexer, ".", 1)) {
                 return true;
             }
             // while (!lexer->eof(lexer)) {

@@ -4206,24 +4206,22 @@
             }
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "external_nl"
+            }
+          },
+          {
             "type": "CHOICE",
             "members": [
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "_dot"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": "."
-                  }
-                ]
+                "type": "STRING",
+                "value": "."
               },
               {
-                "type": "SYMBOL",
-                "name": "_safe_dot"
+                "type": "STRING",
+                "value": "?."
               }
             ]
           },
@@ -9005,6 +9003,50 @@
       "_soft_keywords"
     ],
     [
+      "multiplicative_expression",
+      "additive_expression",
+      "range_expression",
+      "infix_expression",
+      "elvis_expression",
+      "in_expression",
+      "is_expression",
+      "comparison_expression",
+      "equality_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "labeled_expression",
+      "multiplicative_expression",
+      "additive_expression",
+      "range_expression",
+      "infix_expression",
+      "elvis_expression",
+      "in_expression",
+      "is_expression",
+      "comparison_expression",
+      "equality_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "prefix_expression",
+      "multiplicative_expression",
+      "additive_expression",
+      "range_expression",
+      "infix_expression",
+      "elvis_expression",
+      "in_expression",
+      "is_expression",
+      "comparison_expression",
+      "equality_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
       "multiplicative_expression",
       "additive_expression",
       "range_expression",

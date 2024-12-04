@@ -1162,6 +1162,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "external_nl",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4179,6 +4189,10 @@
   },
   {
     "type": "?",
+    "named": false
+  },
+  {
+    "type": "?.",
     "named": false
   },
   {
