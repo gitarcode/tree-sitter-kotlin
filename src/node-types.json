@@ -973,6 +973,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "external_nl",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3998,6 +4008,10 @@
     "named": false
   },
   {
+    "type": "&&",
+    "named": false
+  },
+  {
     "type": "'",
     "named": false
   },
@@ -4248,6 +4262,10 @@
   {
     "type": "external",
     "named": false
+  },
+  {
+    "type": "external_nl",
+    "named": true
   },
   {
     "type": "false",

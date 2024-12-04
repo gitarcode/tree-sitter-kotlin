@@ -200,7 +200,8 @@ module.exports = grammar({
     $._bin_plus,
     $._safe_dot,
     $._elvis,
-    $._dot
+    $._dot,
+    $.external_nl
   ],
 
   supertypes: $ => [
@@ -911,7 +912,8 @@ module.exports = grammar({
 
     conjunction_expression: $ => prec.left(PREC.CONJUNCTION, seq(
       field('left', $.expression), 
-      $._CONJ,
+      repeat($.external_nl),
+      "&&",
       repeat($._NL),
       field('right', $.expression))
     ),
@@ -1546,7 +1548,7 @@ module.exports = grammar({
     _CONJ: $ => /\s*&&/,
     _DISJ: $ => /\s*\|\|/,
     _ws: $ => NON_NL_WHITESPACE,
-    _NL: $ => /\r?\n/,
+    _NL: $ => token(/\n/),
     _semi: $ => choice(";", $._NL),
 
     line_comment: $ => token(seq('//', /[^\r\n]*/)),

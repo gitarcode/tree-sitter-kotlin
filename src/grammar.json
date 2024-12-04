@@ -4848,8 +4848,15 @@
             }
           },
           {
-            "type": "SYMBOL",
-            "name": "_CONJ"
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "external_nl"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "&&"
           },
           {
             "type": "REPEAT",
@@ -8503,8 +8510,11 @@
       "value": "[ \\t\\v\\f\\u00a0\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u200b\\u2028\\u2029\\u3000]"
     },
     "_NL": {
-      "type": "PATTERN",
-      "value": "\\r?\\n"
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "\\n"
+      }
     },
     "_semi": {
       "type": "CHOICE",
@@ -8946,6 +8956,10 @@
     {
       "type": "SYMBOL",
       "name": "_dot"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "external_nl"
     }
   ],
   "inline": [],
