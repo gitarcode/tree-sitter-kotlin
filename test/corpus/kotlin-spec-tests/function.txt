@@ -16,12 +16,12 @@ fun <T> f()
     (function_declaration
     receiver_type: (receiver_type
         (parenthesized_type
+        (type_modifiers
+            (annotation
+            (user_type
+                (type_identifier))))
         (function_type
             (receiver_type
-            modifiers: (type_modifiers
-                (annotation
-                (user_type
-                    (type_identifier))))
             type: (user_type
                 (type_identifier)
                 (type_arguments
@@ -42,12 +42,12 @@ fun <T> f()
     (function_declaration
     receiver_type: (receiver_type
         (parenthesized_type
+        (type_modifiers
+            (annotation
+            (user_type
+                (type_identifier))))
         (function_type
             (receiver_type
-            modifiers: (type_modifiers
-                (annotation
-                (user_type
-                    (type_identifier))))
             type: (user_type
                 (type_identifier)
                 (type_arguments
@@ -79,12 +79,12 @@ fun <T> f()
             (user_type
             (type_identifier))))
         (parenthesized_type
+        (type_modifiers
+            (annotation
+            (user_type
+                (type_identifier))))
         (function_type
             (receiver_type
-            modifiers: (type_modifiers
-                (annotation
-                (user_type
-                    (type_identifier))))
             type: (user_type
                 (type_identifier)
                 (type_arguments
@@ -277,12 +277,12 @@ typealias f = @[a] (@[a] ((S).() -> S).() -> S)
         (user_type
             (type_identifier))))
     (parenthesized_type
+        (type_modifiers
+        (annotation
+            (user_type
+            (type_identifier))))
         (function_type
         (receiver_type
-            modifiers: (type_modifiers
-            (annotation
-                (user_type
-                (type_identifier))))
             (parenthesized_type
             (function_type
                 (receiver_type
@@ -302,12 +302,12 @@ typealias f = @[a] (@[a] ((S).() -> S).() -> S)
         (user_type
             (type_identifier))))
     (parenthesized_type
+        (type_modifiers
+        (annotation
+            (user_type
+            (type_identifier))))
         (function_type
         (receiver_type
-            modifiers: (type_modifiers
-            (annotation
-                (user_type
-                (type_identifier))))
             (parenthesized_type
             (function_type
                 (receiver_type
@@ -326,12 +326,12 @@ typealias f = @[a] (@[a] ((S).() -> S).() -> S)
         (user_type
             (type_identifier))))
     (parenthesized_type
+        (type_modifiers
+        (annotation
+            (user_type
+            (type_identifier))))
         (function_type
         (receiver_type
-            modifiers: (type_modifiers
-            (annotation
-                (user_type
-                (type_identifier))))
             (parenthesized_type
             (function_type
                 (receiver_type
@@ -357,12 +357,12 @@ typealias f = @[a] (@[a] ((S).() -> S).() -> S)
         (user_type
             (type_identifier))))
     (parenthesized_type
+        (type_modifiers
+        (annotation
+            (user_type
+            (type_identifier))))
         (function_type
         (receiver_type
-            modifiers: (type_modifiers
-            (annotation
-                (user_type
-                (type_identifier))))
             (parenthesized_type
             (function_type
                 (receiver_type

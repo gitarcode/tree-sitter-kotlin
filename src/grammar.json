@@ -1085,7 +1085,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_primary_expression"
+              "name": "_non_call_primary_expression"
             },
             {
               "type": "ALIAS",
@@ -5205,7 +5205,7 @@
         }
       ]
     },
-    "_primary_expression": {
+    "_non_call_primary_expression": {
       "type": "CHOICE",
       "members": [
         {
@@ -5274,11 +5274,20 @@
         },
         {
           "type": "SYMBOL",
+          "name": "labeled_expression"
+        }
+      ]
+    },
+    "_primary_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
           "name": "call_expression"
         },
         {
           "type": "SYMBOL",
-          "name": "labeled_expression"
+          "name": "_non_call_primary_expression"
         }
       ]
     },
@@ -8957,6 +8966,22 @@
       "equality_expression",
       "conjunction_expression",
       "disjunction_expression"
+    ],
+    [
+      "_simple_user_type",
+      "_non_call_primary_expression"
+    ],
+    [
+      "variable_declaration",
+      "_non_call_primary_expression"
+    ],
+    [
+      "value_argument",
+      "_non_call_primary_expression"
+    ],
+    [
+      "explicit_delegation",
+      "_primary_expression"
     ]
   ],
   "precedences": [],

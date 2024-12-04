@@ -191,7 +191,12 @@ module.exports = grammar({
     [$.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
     [$.dot_qualified_expression, $.labeled_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
     [$.dot_qualified_expression, $.prefix_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
-    [$.dot_qualified_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression]
+    [$.dot_qualified_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
+
+    [$._simple_user_type, $._non_call_primary_expression],
+    [$.variable_declaration, $._non_call_primary_expression],
+    [$.value_argument, $._non_call_primary_expression],
+    [$.explicit_delegation, $._primary_expression]
   ],
 
   extras: $ => [
@@ -367,7 +372,7 @@ module.exports = grammar({
       "by",
       repeat($._NL),
       choice(
-        $._primary_expression,
+        $._non_call_primary_expression,
         alias($.simple_call_expression, $.call_expression),
         $.as_expression
       )
@@ -970,7 +975,7 @@ module.exports = grammar({
       $.expression
     ),
 
-    _primary_expression: $ => choice(
+    _non_call_primary_expression: $ => choice(
       $.simple_identifier,
       $._literal_constant,
       $.string_literal,
@@ -987,8 +992,12 @@ module.exports = grammar({
       $.if_expression,
       $.annotated_expression,
       $.parenthesized_expression,
-      $.call_expression,
       $.labeled_expression
+    ),
+
+    _primary_expression: $ => choice(
+      $.call_expression,
+      $._non_call_primary_expression
     ),
 
     // we need to give parenthesized expression a lower dymanic precedence to resolve ambiguities like
