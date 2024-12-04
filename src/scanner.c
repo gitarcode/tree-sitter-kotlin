@@ -42,7 +42,6 @@ static bool line_comment(TSLexer *lexer) {
 }
 
 static bool lookahead_operator(TSLexer *lexer, const char *operator, int length) {
-    // printf("lookahead '%c'\n", lexer->lookahead);
     for (int i = 0; i < length; i++) {
         if (lexer->lookahead != operator[i]) {
             return false;
@@ -103,20 +102,17 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
             return false;
         }
         // Elvis
-        if (lexer->lookahead == ':') {
-            advance(lexer);
-        } else {
+        if (lexer->lookahead != ':') {
             return false;
         }
+        advance(lexer);
         // ?:: should be tokenized as ? ::, so we should not emit an elvis operator here
         if (lexer -> lookahead != ':') {
-            lexer->mark_end(lexer);
             lexer->result_symbol = ELVIS;
             return true;
         }
         return false;
     }
-
     // if (valid_symbols[BIN_MIN]) {
     //     lexer->result_symbol = BIN_MIN;
     //     lexer->mark_end(lexer);
