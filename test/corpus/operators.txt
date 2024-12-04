@@ -50,3 +50,23 @@ b
             right: (simple_identifier))))
 
 
+================================================================================
+. on separate line with multiline comment
+================================================================================
+
+a
+// comment
+/* aaaa */
+// comment
+. b
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (dot_qualified_expression
+      receiver: (simple_identifier)
+      (line_comment)
+      (multiline_comment)
+      (line_comment)
+      selector: (simple_identifier))))

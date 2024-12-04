@@ -28,15 +28,19 @@ unsigned tree_sitter_kotlin_external_scanner_serialize(void *payload, char *buff
 
 void tree_sitter_kotlin_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {}
 
+static bool line_comment_body(TSLexer *lexer) {
+    while (lexer->lookahead != '\n') {
+        advance(lexer);
+    }
+    return true;
+}
+
 static bool line_comment(TSLexer *lexer) {
     if (lexer->lookahead == '/') {
         advance(lexer);
         if (lexer->lookahead == '/') {
             advance(lexer);
-            while (lexer->lookahead != '\n') {
-                advance(lexer);
-            }
-            return true;
+            return line_comment_body(lexer);
         }
     }
     return false;
@@ -105,8 +109,20 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                 while (iswspace(lexer->lookahead) || lexer->lookahead == '/') {
                     skip_whitespace(lexer);
                     if (lexer->lookahead == '/') {
-                        if (!line_comment(lexer)) {
-                            return false;
+                        advance(lexer);
+                        switch (lexer->lookahead) {
+                            case '/':
+                                if (!line_comment_body(lexer)) {
+                                    return false;
+                                }
+                                break;
+                             case '*':
+                                if (!multiline_comment_body(lexer)) {
+                                    return false;
+                                }
+                                break;
+                            default:
+                                return false; 
                         }
                     }
                 }
