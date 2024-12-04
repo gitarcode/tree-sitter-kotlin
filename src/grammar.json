@@ -730,8 +730,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "{"
+          "type": "PREC_DYNAMIC",
+          "value": 1,
+          "content": {
+            "type": "STRING",
+            "value": "{"
+          }
         },
         {
           "type": "REPEAT",

@@ -317,7 +317,7 @@ module.exports = grammar({
     ),
 
     class_body: $ => seq(
-      "{",
+      prec.dynamic(1, "{"),
       repeat($._NL),
       optional($._class_member_declarations),
       "}"
