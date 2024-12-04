@@ -66,6 +66,14 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
             }
             lexer->result_symbol = EXTERNAL_NEWLINE;
             lexer->mark_end(lexer);
+            while (iswspace(lexer->lookahead) || lexer->lookahead == '/') {
+                skip_whitespace(lexer);
+                if (lexer->lookahead == '/') {
+                    if (!line_comment(lexer)) {
+                        return false;
+                    }
+                }
+            }
             if (match(lexer, "&&", 2)) {
                 return true;
             }
