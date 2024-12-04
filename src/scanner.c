@@ -58,17 +58,22 @@ static bool lookahead_operator(TSLexer *lexer, const char *operator, int length)
     return true;
 }
 
+static bool multiline_comment_body(TSLexer *lexer) {
+    while (!lexer->eof(lexer)) {
+        if (lookahead_operator(lexer, "*/", 2)) {
+            return true;
+        }
+        advance(lexer);
+    }
+    return false;
+}
+
 static bool multiline_comment(TSLexer *lexer) {
     if (lexer->lookahead == '/') {
         advance(lexer);
         if (lexer->lookahead == '*') {
             advance(lexer);
-            while (!lexer->eof(lexer)) {
-                if (lookahead_operator(lexer, "*/", 2)) {
-                    return true;
-                }
-                advance(lexer);
-            }
+            return multiline_comment_body(lexer);
         }
     }
     return false;
