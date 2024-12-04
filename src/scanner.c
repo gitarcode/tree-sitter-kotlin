@@ -64,15 +64,26 @@ static bool lookahead_operator(TSLexer *lexer, const char *operator, int length)
 
 static bool multiline_comment_body(TSLexer *lexer) {
     while (!lexer->eof(lexer)) {
-        if (lookahead_operator(lexer, "*/", 2)) {
-            return true;
+        switch (lexer->lookahead) {
+            case '*':
+                advance(lexer);
+                if (lexer->lookahead == '/') {
+                    advance(lexer);
+                    return true;
+                }
+                break;
+            case '/':
+                advance(lexer);
+                if (lexer->lookahead == '*') {
+                    advance(lexer);
+                    if (!multiline_comment_body(lexer)) {
+                        return false;
+                    } 
+                }
+                break;
+            default:  
+                advance(lexer);  
         }
-        if (lookahead_operator(lexer, "/*", 2)) {
-            if (!multiline_comment_body(lexer)) {
-                return false;
-            }
-        }
-        advance(lexer);
     }
     return false;
 }
