@@ -206,10 +206,6 @@
         {
           "type": "expression",
           "named": true
-        },
-        {
-          "type": "external_nl",
-          "named": true
         }
       ]
     }
@@ -949,10 +945,6 @@
         {
           "type": "expression",
           "named": true
-        },
-        {
-          "type": "external_nl",
-          "named": true
         }
       ]
     }
@@ -981,16 +973,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "external_nl",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1083,16 +1065,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "external_nl",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1162,16 +1134,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "external_nl",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1219,10 +1181,6 @@
       "types": [
         {
           "type": "expression",
-          "named": true
-        },
-        {
-          "type": "external_nl",
           "named": true
         }
       ]
@@ -1307,10 +1265,6 @@
       "types": [
         {
           "type": "expression",
-          "named": true
-        },
-        {
-          "type": "external_nl",
           "named": true
         }
       ]
@@ -2027,10 +1981,6 @@
         {
           "type": "expression",
           "named": true
-        },
-        {
-          "type": "external_nl",
-          "named": true
         }
       ]
     }
@@ -2082,10 +2032,6 @@
         {
           "type": "expression",
           "named": true
-        },
-        {
-          "type": "external_nl",
-          "named": true
         }
       ]
     }
@@ -2121,10 +2067,6 @@
       "types": [
         {
           "type": "expression",
-          "named": true
-        },
-        {
-          "type": "external_nl",
           "named": true
         },
         {
@@ -2323,10 +2265,6 @@
       "types": [
         {
           "type": "expression",
-          "named": true
-        },
-        {
-          "type": "external_nl",
           "named": true
         }
       ]
@@ -2898,10 +2836,6 @@
       "types": [
         {
           "type": "expression",
-          "named": true
-        },
-        {
-          "type": "external_nl",
           "named": true
         }
       ]
@@ -4322,10 +4256,6 @@
   {
     "type": "external",
     "named": false
-  },
-  {
-    "type": "external_nl",
-    "named": true
   },
   {
     "type": "false",

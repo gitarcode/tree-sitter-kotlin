@@ -202,7 +202,7 @@ module.exports = grammar({
 
   externals: $ => [
     $._ELVIS,
-    $.external_nl
+    $._external_nl
   ],
 
   supertypes: $ => [
@@ -818,7 +818,7 @@ module.exports = grammar({
 
     dot_qualified_expression: $ => prec(PREC.DOT, seq(
       field('receiver', $.expression),
-      repeat($.external_nl),
+      repeat($._external_nl),
       choice(".", "?."),
       repeat($._NL),
       field('selector', choice(
@@ -894,27 +894,27 @@ module.exports = grammar({
       $.in_expression,
     ),
 
-    multiplicative_expression: $ => prec.left(PREC.MULTIPLICATIVE, seq($.expression, repeat($.external_nl), $._multiplicative_operator, repeat($._NL), $.expression)),
+    multiplicative_expression: $ => prec.left(PREC.MULTIPLICATIVE, seq($.expression, repeat($._external_nl), $._multiplicative_operator, repeat($._NL), $.expression)),
 
-    additive_expression: $ => prec.left(PREC.ADDITIVE, seq($.expression, repeat($.external_nl), $._additive_operator, repeat($._NL), $.expression)),
+    additive_expression: $ => prec.left(PREC.ADDITIVE, seq($.expression, repeat($._external_nl), $._additive_operator, repeat($._NL), $.expression)),
 
-    range_expression: $ => prec.left(PREC.RANGE, seq($.expression, repeat($.external_nl), $._range_opeartor, repeat($._NL), $.expression)),
+    range_expression: $ => prec.left(PREC.RANGE, seq($.expression, repeat($._external_nl), $._range_opeartor, repeat($._NL), $.expression)),
 
-    infix_expression: $ => prec.left(PREC.INFIX, seq($.expression, repeat($.external_nl), $.simple_identifier, repeat($._NL), $.expression)),
+    infix_expression: $ => prec.left(PREC.INFIX, seq($.expression, repeat($._external_nl), $.simple_identifier, repeat($._NL), $.expression)),
 
-    elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, repeat($.external_nl), $._ELVIS, repeat($._NL), $.expression)),
+    elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, repeat($._external_nl), $._ELVIS, repeat($._NL), $.expression)),
 
-    in_expression: $ => prec.left(PREC.CHECK, seq($.expression, repeat($.external_nl), $._in_operator, repeat($._NL), $.expression)),
+    in_expression: $ => prec.left(PREC.CHECK, seq($.expression, repeat($._external_nl), $._in_operator, repeat($._NL), $.expression)),
 
-    is_expression: $ => prec(PREC.CHECK, seq($.expression, repeat($.external_nl), $._is_operator, repeat($._NL), $._type)),
+    is_expression: $ => prec(PREC.CHECK, seq($.expression, repeat($._external_nl), $._is_operator, repeat($._NL), $._type)),
 
-    comparison_expression: $ => prec.left(PREC.COMPARISON, seq($.expression, repeat($.external_nl), $._comparison_operator, repeat($._NL), $.expression)),
+    comparison_expression: $ => prec.left(PREC.COMPARISON, seq($.expression, repeat($._external_nl), $._comparison_operator, repeat($._NL), $.expression)),
 
-    equality_expression: $ => prec.left(PREC.EQUALITY, seq($.expression, repeat($.external_nl), field('op', $._equality_operator), repeat($._NL), $.expression)),
+    equality_expression: $ => prec.left(PREC.EQUALITY, seq($.expression, repeat($._external_nl), field('op', $._equality_operator), repeat($._NL), $.expression)),
 
     conjunction_expression: $ => prec.left(PREC.CONJUNCTION, seq(
       field('left', $.expression), 
-      repeat($.external_nl),
+      repeat($._external_nl),
       "&&",
       repeat($._NL),
       field('right', $.expression))
@@ -922,7 +922,7 @@ module.exports = grammar({
 
     disjunction_expression: $ => prec.left(PREC.DISJUNCTION, seq(
       field('left', $.expression), 
-      repeat($.external_nl),
+      repeat($._external_nl),
       "||",
       repeat($._NL),
       field('right', $.expression))
