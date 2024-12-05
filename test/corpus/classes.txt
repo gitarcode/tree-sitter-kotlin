@@ -634,6 +634,30 @@ abstract private class Test
       (visibility_modifier))
     name: (simple_identifier)))
 
+
+================================================================================
+Class without body with modifiers on the same line
+================================================================================
+
+abstract class A private class B public abstract class c
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    modifiers: (modifiers
+      (inheritance_modifier))
+    name: (simple_identifier))
+  (class_declaration
+    modifiers: (modifiers
+      (visibility_modifier))
+    name: (simple_identifier))
+  (class_declaration
+    modifiers: (modifiers
+      (visibility_modifier)
+      (inheritance_modifier))
+    name: (simple_identifier)))
+
 ================================================================================
 Enum with semicolon after last entry
 ================================================================================

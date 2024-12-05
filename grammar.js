@@ -73,6 +73,7 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.class_declaration],
+    [$.class_declaration, $.type_constraints],
 
     // @Type(... could either be an annotation constructor invocation or an annotated expression
     [$.constructor_invocation, $._unescaped_annotation],
@@ -260,7 +261,7 @@ module.exports = grammar({
     _top_level_object: $ => seq($._declaration, repeat($._semi)),
 
     _top_level_statements: $ =>
-      repeat1(seq(alias($._top_level_statement, $.statement), repeat($._semi))),
+      repeat1(seq(alias($._top_level_statement, $.statement), repeat1($._semi))),
 
     _top_level_statement: $ => choice(
       $.assignment,
@@ -292,7 +293,7 @@ module.exports = grammar({
     // Classes
     // ==========
 
-    class_declaration: $ => seq(
+    class_declaration: $ => prec.dynamic(100, seq(
       optional(field('modifiers', $.modifiers)),
       choice("class", seq(optional(seq("fun", repeat($._NL))), "interface")),
       repeat($._NL),
@@ -300,11 +301,10 @@ module.exports = grammar({
       optional(seq(repeat($._NL), $.type_parameters)),
       optional(seq(repeat($._NL), $.primary_constructor)),
       optional(seq(repeat($._NL), ":", repeat($._NL),  $._delegation_specifiers)),
-      prec.right(seq(
       optional(seq(repeat($._NL), $.type_constraints)),
       repeat($._NL),
-      optional(field('body', choice($.class_body, alias($.enum_class_body, $.class_body)))))),
-    ),
+      optional(field('body', choice($.class_body, alias($.enum_class_body, $.class_body)))),
+    )),
 
     primary_constructor: $ => seq(
       optional(seq(optional(field('modifiers', $.modifiers)), "constructor", repeat($._NL))),
