@@ -1544,10 +1544,6 @@
             {
               "type": "SYMBOL",
               "name": "secondary_constructor"
-            },
-            {
-              "type": "STRING",
-              "value": ";"
             }
           ]
         },
@@ -1555,7 +1551,7 @@
           "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
-            "name": "_NL"
+            "name": "_semi"
           }
         }
       ]
@@ -8786,10 +8782,6 @@
     ],
     [
       "annotated_expression"
-    ],
-    [
-      "_class_member_declaration",
-      "enum_class_body"
     ],
     [
       "class_body",

@@ -153,7 +153,6 @@ module.exports = grammar({
     [$.assignment, $.annotated_expression, $.modifiers],
     [$.assignment, $.annotated_expression],
     [$.annotated_expression],
-    [$._class_member_declaration, $.enum_class_body],
     [$.class_body, $.enum_class_body],
     [$._when_entry],
     [$.when_entries],
@@ -419,8 +418,7 @@ module.exports = grammar({
       $.companion_object,
       $.anonymous_initializer,
       $.secondary_constructor,
-      ";"
-    ), repeat($._NL)),
+    ), repeat($._semi)),
 
     anonymous_initializer: $ => seq("init", $.block),
 
