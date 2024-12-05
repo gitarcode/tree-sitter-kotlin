@@ -926,16 +926,11 @@
           }
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_class_member_declarations"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_class_member_declaration"
+          }
         },
         {
           "type": "STRING",
@@ -1528,47 +1523,40 @@
         }
       ]
     },
-    "_class_member_declarations": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "_class_member_declaration"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_NL"
-            }
-          }
-        ]
-      }
-    },
     "_class_member_declaration": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_declaration"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_declaration"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "companion_object"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "anonymous_initializer"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "secondary_constructor"
+            },
+            {
+              "type": "STRING",
+              "value": ";"
+            }
+          ]
         },
         {
-          "type": "SYMBOL",
-          "name": "companion_object"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "anonymous_initializer"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "secondary_constructor"
-        },
-        {
-          "type": "STRING",
-          "value": ";"
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
         }
       ]
     },
@@ -2989,16 +2977,11 @@
                   }
                 },
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "_class_member_declarations"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_class_member_declaration"
+                  }
                 }
               ]
             },
