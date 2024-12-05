@@ -73,7 +73,6 @@ module.exports = grammar({
 
   conflicts: $ => [
     [$.class_declaration],
-    [$.class_declaration, $.type_constraints],
 
     [$.function_declaration_no_body, $.function_declaration],
 
