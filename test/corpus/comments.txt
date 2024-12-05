@@ -528,3 +528,34 @@ fun f() // comment
     parameters: (function_value_parameters))
   (line_comment)
   (line_comment))
+
+================================================================================
+Comment between classes without body
+================================================================================
+
+class A
+// comment
+class B() : C
+// comment
+class C {
+}
+// commment
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    name: (simple_identifier))
+  (line_comment)
+  (class_declaration
+    name: (simple_identifier)
+    (primary_constructor
+      (class_parameters))
+    (delegation_specifier
+      (user_type
+        (type_identifier))))
+  (line_comment)
+  (class_declaration
+    name: (simple_identifier)
+    body: (class_body))
+  (line_comment))

@@ -284,7 +284,6 @@ module.exports = grammar({
 
     _declaration: $ => choice(
       $.class_declaration,
-      $.class_declaration,
       $.object_declaration,
       choice($.function_declaration, alias($.function_declaration_no_body, $.function_declaration)),
       $.property_declaration,
@@ -294,7 +293,7 @@ module.exports = grammar({
     // ==========
     // Classes
     // ==========
-
+    
     class_declaration: $ => prec.dynamic(100, seq(
       optional(field('modifiers', $.modifiers)),
       choice("class", seq(optional(seq("fun", repeat($._NL))), "interface")),
@@ -304,8 +303,7 @@ module.exports = grammar({
       optional(seq(repeat($._NL), $.primary_constructor)),
       optional(seq(repeat($._NL), ":", repeat($._NL),  $._delegation_specifiers)),
       optional(seq(repeat($._NL), $.type_constraints)),
-      repeat($._NL),
-      optional(field('body', choice($.class_body, alias($.enum_class_body, $.class_body)))),
+      optional(seq(repeat($._NL), field('body', choice($.class_body, alias($.enum_class_body, $.class_body))))),
     )),
 
     primary_constructor: $ => seq(
