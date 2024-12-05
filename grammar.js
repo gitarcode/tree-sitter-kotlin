@@ -72,7 +72,7 @@ module.exports = grammar({
   name: "kotlin",
 
   conflicts: $ => [
-    [$.class_declaration],
+    [$.class_declaration, $.class_declaration_no_body],
 
     // @Type(... could either be an annotation constructor invocation or an annotated expression
     [$.constructor_invocation, $._unescaped_annotation],
@@ -100,8 +100,6 @@ module.exports = grammar({
     // eventually dies if there is no '.'
     [$.identifier],
 
-    [$._simple_user_type, $._primary_expression],
-
     [$._simple_user_type],
 
     [$.annotated_expression, $.when_subject],
@@ -109,9 +107,6 @@ module.exports = grammar({
     [$.variable_declaration],
     [$.class_parameter],
     [$.collection_literal],
-    // becuase of $._NL after simple_identifier, all can reduce
-    [$.value_argument, $._primary_expression],
-    [$.variable_declaration, $._primary_expression],
     [$.variable_declaration, $._simple_user_type],
     [$.value_argument],
     [$.property_declaration],
@@ -154,7 +149,6 @@ module.exports = grammar({
     [$.annotated_expression, $.value_argument],
     [$._annotated_delegation_specifier, $._type_modifier],
     [$._annotated_delegation_specifier],
-    [$.explicit_delegation, $.expression],
     [$.call_expression, $.labeled_expression, $.comparison_expression],
     [$.assignment, $.annotated_expression, $.modifiers],
     [$.assignment, $.annotated_expression],
@@ -188,7 +182,6 @@ module.exports = grammar({
     [$.getter, $._soft_keywords],
     [$.setter, $._soft_keywords],
 
-    [$.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
     [$.dot_qualified_expression, $.labeled_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
     [$.dot_qualified_expression, $.prefix_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
     [$.dot_qualified_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
@@ -288,6 +281,7 @@ module.exports = grammar({
     )),
 
     _declaration: $ => choice(
+      alias($.class_declaration_no_body, $.class_declaration),
       $.class_declaration,
       $.object_declaration,
       $._function_declaration,
@@ -299,7 +293,7 @@ module.exports = grammar({
     // Classes
     // ==========
 
-    class_declaration: $ => seq(
+    class_declaration: $ => prec.right(seq(
       optional(field('modifiers', $.modifiers)),
       choice("class", seq(optional(seq("fun", repeat($._NL))), "interface")),
       repeat($._NL),
@@ -308,7 +302,18 @@ module.exports = grammar({
       optional(seq(repeat($._NL), $.primary_constructor)),
       optional(seq(repeat($._NL), ":", repeat($._NL),  $._delegation_specifiers)),
       optional(seq(repeat($._NL), $.type_constraints)),
-      optional(seq(repeat($._NL), field('body', choice($.class_body, alias($.enum_class_body, $.class_body))))),
+     seq(repeat($._NL), field('body', choice($.class_body, alias($.enum_class_body, $.class_body)))),
+    )),
+
+    class_declaration_no_body: $ => seq(
+      optional(field('modifiers', $.modifiers)),
+      choice("class", seq(optional(seq("fun", repeat($._NL))), "interface")),
+      repeat($._NL),
+      field('name', $.simple_identifier),
+      optional(seq(repeat($._NL), $.type_parameters)),
+      optional(seq(repeat($._NL), $.primary_constructor)),
+      optional(seq(repeat($._NL), ":", repeat($._NL),  $._delegation_specifiers)),
+      optional(seq(repeat($._NL), $.type_constraints)),
     ),
 
     primary_constructor: $ => seq(
@@ -317,7 +322,7 @@ module.exports = grammar({
     ),
 
     class_body: $ => seq(
-      prec.dynamic(1, "{"),
+      "{",
       repeat($._NL),
       optional($._class_member_declarations),
       "}"
@@ -705,7 +710,7 @@ module.exports = grammar({
 
     _statements: $ => seq($.statements, repeat($._semi)),
 
-    statements: $ => seq(sep1($.statement, repeat1($._semi)), optional(seq(repeat($._NL), prec.dynamic(1, ";")))),
+    statements: $ => seq(sep1($.statement, repeat1($._semi)), optional(seq(repeat($._NL), ";"))),
 
     statement: $ => choice(
       $._declaration,
