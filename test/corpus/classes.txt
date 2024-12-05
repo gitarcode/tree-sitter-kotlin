@@ -588,7 +588,7 @@ class Foo private constructor(a: Int) {
 Class without body followed by function modifiers
 ================================================================================
 
-expect class AnimatedImage
+abstract class AnimatedImage
 
 expect fun loadAnimatedImage(path: String): AnimatedImage
 
@@ -597,7 +597,7 @@ expect fun loadAnimatedImage(path: String): AnimatedImage
 (source_file
   (class_declaration
     modifiers: (modifiers
-      (platform_modifier))
+      (inheritance_modifier))
     name: (simple_identifier))
   (function_declaration
     modifiers: (modifiers
@@ -611,6 +611,28 @@ expect fun loadAnimatedImage(path: String): AnimatedImage
             (type_identifier)))))
     type: (user_type
       (type_identifier))))
+
+
+================================================================================
+Class without body followed by class modifiers
+================================================================================
+
+abstract class AnimatedImage
+
+abstract private class Test
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    modifiers: (modifiers
+      (inheritance_modifier))
+    name: (simple_identifier))
+  (class_declaration
+    modifiers: (modifiers
+      (inheritance_modifier)
+      (visibility_modifier))
+    name: (simple_identifier)))
 
 ================================================================================
 Enum with semicolon after last entry

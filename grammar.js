@@ -72,7 +72,7 @@ module.exports = grammar({
   name: "kotlin",
 
   conflicts: $ => [
-    [$.class_declaration, $.class_declaration_no_body],
+    [$.class_declaration],
 
     // @Type(... could either be an annotation constructor invocation or an annotated expression
     [$.constructor_invocation, $._unescaped_annotation],
@@ -280,7 +280,7 @@ module.exports = grammar({
     )),
 
     _declaration: $ => choice(
-      alias($.class_declaration_no_body, $.class_declaration),
+      $.class_declaration,
       $.class_declaration,
       $.object_declaration,
       $.function_declaration,
@@ -292,7 +292,7 @@ module.exports = grammar({
     // Classes
     // ==========
 
-    class_declaration: $ => prec.right(seq(
+    class_declaration: $ => seq(
       optional(field('modifiers', $.modifiers)),
       choice("class", seq(optional(seq("fun", repeat($._NL))), "interface")),
       repeat($._NL),
@@ -300,19 +300,10 @@ module.exports = grammar({
       optional(seq(repeat($._NL), $.type_parameters)),
       optional(seq(repeat($._NL), $.primary_constructor)),
       optional(seq(repeat($._NL), ":", repeat($._NL),  $._delegation_specifiers)),
+      prec.right(seq(
       optional(seq(repeat($._NL), $.type_constraints)),
-     seq(repeat($._NL), field('body', choice($.class_body, alias($.enum_class_body, $.class_body)))),
-    )),
-
-    class_declaration_no_body: $ => seq(
-      optional(field('modifiers', $.modifiers)),
-      choice("class", seq(optional(seq("fun", repeat($._NL))), "interface")),
       repeat($._NL),
-      field('name', $.simple_identifier),
-      optional(seq(repeat($._NL), $.type_parameters)),
-      optional(seq(repeat($._NL), $.primary_constructor)),
-      optional(seq(repeat($._NL), ":", repeat($._NL),  $._delegation_specifiers)),
-      optional(seq(repeat($._NL), $.type_constraints)),
+      optional(field('body', choice($.class_body, alias($.enum_class_body, $.class_body)))))),
     ),
 
     primary_constructor: $ => seq(
