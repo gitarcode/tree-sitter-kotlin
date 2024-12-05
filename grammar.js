@@ -463,7 +463,7 @@ module.exports = grammar({
       optional(seq(repeat($._NL), $.type_constraints)),
     ),
 
-    function_declaration: $ => prec.right(seq(
+    function_declaration: $ => seq(
       optional(field('modifiers', $.modifiers)),
       "fun",
       optional($.type_parameters),
@@ -473,8 +473,8 @@ module.exports = grammar({
       optional(seq(repeat($._NL), ":", repeat($._NL), field('type', $._type))),
       optional(seq(repeat($._NL), $.type_constraints)),
       repeat($._NL), 
-      field('body', $.function_body)
-    )),
+      field('body', prec.dynamic(10, $.function_body))
+    ),
 
     function_body: $ => choice(
       $.block, 

@@ -531,3 +531,24 @@ expect fun foo()
     name: (simple_identifier)
     parameters: (function_value_parameters)))
 
+
+==================
+Functions with empty bodies on the same line
+==================
+
+fun foo() {}
+fun bar() {}
+
+---
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block)))
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block))))
