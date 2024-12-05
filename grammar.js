@@ -140,7 +140,6 @@ module.exports = grammar({
     [$.when_entry],
     [$.receiver_type, $._type],
     [$.receiver_type],
-    [$.function_declaration_no_body, $.function_declaration],
     [$.statements],
     [$.statements, $._semi],
     // There is an inherent ambiguity between annotated expressions and annotated function types:
@@ -284,7 +283,7 @@ module.exports = grammar({
       alias($.class_declaration_no_body, $.class_declaration),
       $.class_declaration,
       $.object_declaration,
-      $._function_declaration,
+      $.function_declaration,
       $.property_declaration,
       $.type_alias
     ),
@@ -460,22 +459,6 @@ module.exports = grammar({
       )
     ),
 
-    _function_declaration: $ => choice(
-      $.function_declaration,
-      alias($.function_declaration_no_body, $.function_declaration)
-    ),
-
-    function_declaration_no_body: $ => seq(
-      optional(field('modifiers', $.modifiers)),
-      "fun",
-      optional($.type_parameters),
-      optional(seq(repeat($._NL), field('receiver_type', $.receiver_type), repeat($._NL), '.')),
-      field('name', $.simple_identifier),
-      field('parameters', $.function_value_parameters),
-      optional(seq(repeat($._NL), ":", repeat($._NL), field('type', $._type))),
-      optional(seq(repeat($._NL), $.type_constraints)),
-    ),
-
     function_declaration: $ => prec.right(seq(
       optional(field('modifiers', $.modifiers)),
       "fun",
@@ -486,7 +469,7 @@ module.exports = grammar({
       optional(seq(repeat($._NL), ":", repeat($._NL), field('type', $._type))),
       optional(seq(repeat($._NL), $.type_constraints)),
       repeat($._NL), 
-      field('body', $.function_body)
+      optional(field('body', $.function_body))
     )),
 
     function_body: $ => choice(
@@ -725,9 +708,7 @@ module.exports = grammar({
     )),
 
     block: $ => seq(
-      // This is to disabmiguate between function declarations with and without bodies.
-      // Function declarations with bodies should always win.
-      prec.dynamic(1, "{"),
+      "{",
       repeat($._NL),
       optional($._statements),
       "}"

@@ -1279,3 +1279,165 @@ fun test() {
                     (when_condition
                     (integer_literal))
                     (integer_literal))))))))))
+
+================================================================================
+Properties with function receivers annotations
+================================================================================
+
+val (@[a] T<T>.(A<B>) -> Unit).foo: P
+val (@[a] T<T>.(A<B>) ->  C<D, E>).foo: P
+val @[a] (@[a] T<T>.(A<B>) -> R).foo: P
+val <A, B> @[a] (() -> Unit).foo: P
+@[a] val <A, B> @[a] ((A, B) -> Unit).foo: P
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    receiver_type: (receiver_type
+      (parenthesized_type
+        (type_modifiers
+          (annotation
+            (user_type
+              (type_identifier))))
+        (function_type
+          (receiver_type
+            type: (user_type
+              (type_identifier)
+              (type_arguments
+                (type_projection
+                  type: (user_type
+                    (type_identifier))))))
+          (function_type_parameters
+            type: (user_type
+              (type_identifier)
+              (type_arguments
+                (type_projection
+                  type: (user_type
+                    (type_identifier))))))
+          type: (user_type
+            (type_identifier)))))
+    var_decl: (variable_declaration
+      id: (simple_identifier)
+      type: (user_type
+        (type_identifier))))
+  (property_declaration
+    (binding_pattern_kind)
+    receiver_type: (receiver_type
+      (parenthesized_type
+        (type_modifiers
+          (annotation
+            (user_type
+              (type_identifier))))
+        (function_type
+          (receiver_type
+            type: (user_type
+              (type_identifier)
+              (type_arguments
+                (type_projection
+                  type: (user_type
+                    (type_identifier))))))
+          (function_type_parameters
+            type: (user_type
+              (type_identifier)
+              (type_arguments
+                (type_projection
+                  type: (user_type
+                    (type_identifier))))))
+          type: (user_type
+            (type_identifier)
+            (type_arguments
+              (type_projection
+                type: (user_type
+                  (type_identifier)))
+              (type_projection
+                type: (user_type
+                  (type_identifier))))))))
+    var_decl: (variable_declaration
+      id: (simple_identifier)
+      type: (user_type
+        (type_identifier))))
+  (property_declaration
+    (binding_pattern_kind)
+    receiver_type: (receiver_type
+      modifiers: (type_modifiers
+        (annotation
+          (user_type
+            (type_identifier))))
+      (parenthesized_type
+        (type_modifiers
+          (annotation
+            (user_type
+              (type_identifier))))
+        (function_type
+          (receiver_type
+            type: (user_type
+              (type_identifier)
+              (type_arguments
+                (type_projection
+                  type: (user_type
+                    (type_identifier))))))
+          (function_type_parameters
+            type: (user_type
+              (type_identifier)
+              (type_arguments
+                (type_projection
+                  type: (user_type
+                    (type_identifier))))))
+          type: (user_type
+            (type_identifier)))))
+    var_decl: (variable_declaration
+      id: (simple_identifier)
+      type: (user_type
+        (type_identifier))))
+  (property_declaration
+    (binding_pattern_kind)
+    type_parameters: (type_parameters
+      (type_parameter
+        (type_identifier))
+      (type_parameter
+        (type_identifier)))
+    receiver_type: (receiver_type
+      modifiers: (type_modifiers
+        (annotation
+          (user_type
+            (type_identifier))))
+      (parenthesized_type
+        (function_type
+          (function_type_parameters)
+          type: (user_type
+            (type_identifier)))))
+    var_decl: (variable_declaration
+      id: (simple_identifier)
+      type: (user_type
+        (type_identifier))))
+  (property_declaration
+    modifiers: (modifiers
+      (annotation
+        (user_type
+          (type_identifier))))
+    (binding_pattern_kind)
+    type_parameters: (type_parameters
+      (type_parameter
+        (type_identifier))
+      (type_parameter
+        (type_identifier)))
+    receiver_type: (receiver_type
+      modifiers: (type_modifiers
+        (annotation
+          (user_type
+            (type_identifier))))
+      (parenthesized_type
+        (function_type
+          (function_type_parameters
+            type: (user_type
+              (type_identifier))
+            type: (user_type
+              (type_identifier)))
+          type: (user_type
+            (type_identifier)))))
+    var_decl: (variable_declaration
+      id: (simple_identifier)
+      type: (user_type
+        (type_identifier)))))
