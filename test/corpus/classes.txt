@@ -1036,3 +1036,59 @@ class A
       (inheritance_modifier)
       (visibility_modifier))
     name: (simple_identifier)))
+
+
+================================================================================
+Class with annotated property
+================================================================================
+
+abstract class AbstractNativeMacApplicationPackageAppDirTask : AbstractNativeMacApplicationPackageTask() {
+    @get:InputFile
+    @get:Optional
+    @get:PathSensitive(PathSensitivity.ABSOLUTE)
+    val iconFile: RegularFileProperty = objects.fileProperty()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    modifiers: (modifiers
+      (inheritance_modifier))
+    name: (simple_identifier)
+    (delegation_specifier
+      (constructor_invocation
+        (user_type
+          (type_identifier))
+        (value_arguments)))
+    body: (class_body
+      (property_declaration
+        modifiers: (modifiers
+          (annotation
+            (use_site_target)
+            (user_type
+              (type_identifier)))
+          (annotation
+            (use_site_target)
+            (user_type
+              (type_identifier)))
+          (annotation
+            (use_site_target)
+            (constructor_invocation
+              (user_type
+                (type_identifier))
+              (value_arguments
+                (value_argument
+                  (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier)))))))
+        (binding_pattern_kind)
+        var_decl: (variable_declaration
+          id: (simple_identifier)
+          type: (user_type
+            (type_identifier)))
+        initializer: (call_expression
+          expression: (dot_qualified_expression
+            receiver: (simple_identifier)
+            selector: (simple_identifier))
+          args: (value_arguments))))))
