@@ -72,8 +72,8 @@ module.exports = grammar({
   name: "kotlin",
 
   conflicts: $ => [
-    [$.class_declaration],
     [$.function_declaration],
+    [$.class_declaration_no_body, $.class_declaration],
 
     // @Type(... could either be an annotation constructor invocation or an annotated expression
     [$.constructor_invocation, $._unescaped_annotation],
@@ -282,6 +282,7 @@ module.exports = grammar({
 
     _declaration: $ => choice(
       $.class_declaration,
+      alias($.class_declaration_no_body, $.class_declaration),
       $.object_declaration,
       $.function_declaration,
       $.property_declaration,
@@ -291,8 +292,8 @@ module.exports = grammar({
     // ==========
     // Classes
     // ==========
-    
-    class_declaration: $ => prec.dynamic(100, seq(
+
+    class_declaration_no_body: $ => prec.dynamic(-1, seq(
       optional(field('modifiers', $.modifiers)),
       choice("class", seq(optional(seq("fun", repeat($._NL))), "interface")),
       repeat($._NL),
@@ -301,8 +302,20 @@ module.exports = grammar({
       optional(seq(repeat($._NL), $.primary_constructor)),
       optional(seq(repeat($._NL), ":", repeat($._NL),  $._delegation_specifiers)),
       optional(seq(repeat($._NL), $.type_constraints)),
-      optional(seq(repeat($._NL), field('body', choice($.class_body, alias($.enum_class_body, $.class_body))))),
     )),
+    
+    class_declaration: $ => seq(
+      optional(field('modifiers', $.modifiers)),
+      choice("class", seq(optional(seq("fun", repeat($._NL))), "interface")),
+      repeat($._NL),
+      field('name', $.simple_identifier),
+      optional(seq(repeat($._NL), $.type_parameters)),
+      optional(seq(repeat($._NL), $.primary_constructor)),
+      optional(seq(repeat($._NL), ":", repeat($._NL),  $._delegation_specifiers)),
+      optional(seq(repeat($._NL), $.type_constraints)),
+      repeat($._NL), 
+      field('body', choice($.class_body, alias($.enum_class_body, $.class_body))),
+    ),
 
     primary_constructor: $ => seq(
       optional(seq(optional(field('modifiers', $.modifiers)), "constructor", repeat($._NL))),
