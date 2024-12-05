@@ -494,3 +494,37 @@ fun f() {
       (block)))
   (line_comment)
   (line_comment))
+
+================================================================================
+Comment between functions without body
+================================================================================
+
+// comment
+fun f(): T
+// comment
+/***/
+fun f()
+// comment    
+fun f() // comment
+// comment
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (line_comment)
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    type: (user_type
+      (type_identifier)))
+  (line_comment)
+  (multiline_comment)
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters))
+  (line_comment)
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters))
+  (line_comment)
+  (line_comment))
