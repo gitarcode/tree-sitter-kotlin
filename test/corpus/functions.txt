@@ -552,3 +552,40 @@ fun bar() {}
     parameters: (function_value_parameters)
     body: (function_body
       (block))))
+
+==================
+Class with a function with if-else body
+==================
+
+class FormatterTags {
+  fun from(editorConfig: EditorConfig): FormatterTags =
+    if (a) {
+    } else {
+      a
+    }
+}
+
+---
+
+(source_file
+  (class_declaration
+    name: (simple_identifier)
+    body: (class_body
+      (function_declaration
+        name: (simple_identifier)
+        parameters: (function_value_parameters
+          (function_value_parameter
+            parameter: (parameter
+              name: (simple_identifier)
+              type: (user_type
+                (type_identifier)))))
+        type: (user_type
+          (type_identifier))
+        body: (function_body
+          expression: (if_expression
+            condition: (simple_identifier)
+            consequence: (block)
+            alternative: (block
+              (statements
+                (statement
+                  (simple_identifier))))))))))
