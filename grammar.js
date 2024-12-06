@@ -80,7 +80,6 @@ module.exports = grammar({
 
     [$.type_parameter_modifiers],
     [$.type_projection_modifiers],
-    [$.modifiers],
 
     // ambiguity between multiple user types and class property/function declarations
     [$.user_type],
@@ -141,7 +140,6 @@ module.exports = grammar({
     [$.receiver_type, $._type],
     [$.receiver_type],
     [$.statements],
-    [$.statements, $._semi],
     // There is an inherent ambiguity between annotated expressions and annotated function types:
     // `@Annotation() f` should be parsed as an annotated expression while
     // `@Annotation () -> Int` should be parsed as a function type
@@ -1281,7 +1279,7 @@ module.exports = grammar({
     // Modifiers
     // ==========
 
-    modifiers: $ => repeat1(choice($._annotation, $._modifier)),
+    modifiers: $ => prec.right(repeat1(choice($._annotation, $._modifier))),
 
     parameter_modifiers: $ => prec.right(repeat1(choice($._annotation, $.parameter_modifier))),
 

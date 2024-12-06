@@ -7204,19 +7204,23 @@
       ]
     },
     "modifiers": {
-      "type": "REPEAT1",
+      "type": "PREC_RIGHT",
+      "value": 0,
       "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "_annotation"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_modifier"
-          }
-        ]
+        "type": "REPEAT1",
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_annotation"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_modifier"
+            }
+          ]
+        }
       }
     },
     "parameter_modifiers": {
@@ -8587,9 +8591,6 @@
       "type_projection_modifiers"
     ],
     [
-      "modifiers"
-    ],
-    [
       "user_type"
     ],
     [
@@ -8748,10 +8749,6 @@
     ],
     [
       "statements"
-    ],
-    [
-      "statements",
-      "_semi"
     ],
     [
       "annotated_expression",
