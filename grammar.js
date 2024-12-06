@@ -187,7 +187,8 @@ module.exports = grammar({
     [$.explicit_delegation, $._primary_expression],
 
     [$._annotated_delegation_specifier],
-    [$._top_level_statements]
+    [$._top_level_statements],
+    [$.statements, $._semi]
   ],
 
   extras: $ => [
@@ -687,7 +688,7 @@ module.exports = grammar({
 
     _statements: $ => seq($.statements, repeat($._semi)),
 
-    statements: $ => sep1($.statement, repeat1($._semi)),
+    statements: $ => seq(sep1($.statement, repeat1($._semi)), optional(seq(repeat($._NL), ";"))),
 
     statement: $ => choice(
       $._declaration,
