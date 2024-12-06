@@ -1007,7 +1007,7 @@ private val property: Boolean
     initializer: (boolean_literal)))
 
 ================================================================================
-Setter { on newline
+Setter with { on newline
 ================================================================================
 
 var stringRepresentation: String
@@ -1047,3 +1047,23 @@ var stringRepresentation: String
                     (simple_identifier))))))
           (line_comment))))))
 
+
+================================================================================
+When entry with newline before ->
+================================================================================
+
+when {
+        a 
+        -> true
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (when_expression
+      (when_entries
+        (when_entry
+          (when_condition
+            (simple_identifier))
+          (boolean_literal))))))
