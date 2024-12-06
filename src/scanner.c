@@ -144,13 +144,14 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                     return true;
                 }
                 if (lookahead_operator(lexer, "+", 1)) {
-                    if (lexer->lookahead != '+') {
+                    // Do not match '++' and '+='
+                    if (lexer->lookahead != '+' && lexer->lookahead != '=') {
                         return true;
                     }
                 }
                 if (lookahead_operator(lexer, "-", 1)) {
-                    // Do not match -- and ->
-                    if (lexer->lookahead != '-' && lexer->lookahead != '>' && lexer->lookahead != "=") {
+                    // Do not match '--', '->', and '-='
+                    if (lexer->lookahead != '-' && lexer->lookahead != '>' && lexer->lookahead != '=') {
                         return true;
                     }
                 }
@@ -161,7 +162,10 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                     return true;
                 }
                 if (lookahead_operator(lexer, ".", 1)) {
-                    return true;
+                    // Do not match '.;'
+                    if (lexer->lookahead != '.') {
+                        return true;
+                    }
                 }
                 return false;
 
