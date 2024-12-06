@@ -415,3 +415,37 @@ internal val ImageBitmap.isEmptyPlaceholder: Boolean
         expression: (equality_expression
           (this_expression)
           (simple_identifier))))))
+
+
+================================================================================
+Last top-level statement without newline after
+================================================================================
+
+!!a
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (prefix_expression
+      expression: (prefix_expression
+        expression: (simple_identifier)))))
+            
+================================================================================
+Last top-level statement without newline
+================================================================================
+
+a;
+b
+!!a
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (simple_identifier))
+  (statement
+    (simple_identifier))
+  (statement
+    (prefix_expression
+      expression: (prefix_expression
+        expression: (simple_identifier)))))
+                        

@@ -188,7 +188,8 @@ module.exports = grammar({
     [$.value_argument, $._non_call_primary_expression],
     [$.explicit_delegation, $._primary_expression],
 
-    [$._annotated_delegation_specifier]
+    [$._annotated_delegation_specifier],
+    [$._top_level_statements]
   ],
 
   extras: $ => [
@@ -259,8 +260,10 @@ module.exports = grammar({
 
     _top_level_object: $ => seq($._declaration, repeat($._semi)),
 
-    _top_level_statements: $ =>
-      repeat1(seq(alias($._top_level_statement, $.statement), repeat1($._semi))),
+    _top_level_statements: $ => seq(
+      sep1(alias($._top_level_statement, $.statement), repeat1($._semi)),
+      repeat($._semi)
+    ),
 
     _top_level_statement: $ => choice(
       $.assignment,

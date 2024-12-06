@@ -313,28 +313,54 @@
       ]
     },
     "_top_level_statements": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "ALIAS",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_top_level_statement"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_top_level_statement"
+              },
+              "named": true,
+              "value": "statement"
             },
-            "named": true,
-            "value": "statement"
-          },
-          {
-            "type": "REPEAT1",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_semi"
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "REPEAT1",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_semi"
+                    }
+                  },
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "_top_level_statement"
+                    },
+                    "named": true,
+                    "value": "statement"
+                  }
+                ]
+              }
             }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_semi"
           }
-        ]
-      }
+        }
+      ]
     },
     "_top_level_statement": {
       "type": "CHOICE",
@@ -8946,6 +8972,9 @@
     ],
     [
       "_annotated_delegation_specifier"
+    ],
+    [
+      "_top_level_statements"
     ]
   ],
   "precedences": [],
