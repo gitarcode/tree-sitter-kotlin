@@ -584,15 +584,14 @@ module.exports = grammar({
       repeat($._NL),
       optional($._enum_entries),
       repeat($._NL),
+      optional(","),
+      repeat($._NL),
       optional(seq(";", repeat($._NL), repeat($._class_member_declaration))),
       "}"
     ),
 
-    _enum_entries: $ => seq(
-      $.enum_entry,
-      repeat(seq(repeat($._NL), ",", repeat($._NL), $.enum_entry)),
-      repeat($._NL),
-      optional(","),
+    _enum_entries: $ => sep1(
+      $.enum_entry, repeat($._NL), ",", repeat($._NL),
     ),
 
     enum_entry: $ => seq(

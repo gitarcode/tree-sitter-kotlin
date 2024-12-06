@@ -1114,3 +1114,33 @@ class EditorConfigGeneratorTest {
         (delegation_specifier
           (user_type
             (type_identifier)))))))
+
+
+================================================================================
+Enum with annoation and modifiers
+================================================================================
+
+@Suppress("EnumEntryName")
+public enum class CodeStyleValue {
+    android_studio,
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    modifiers: (modifiers
+      (annotation
+        (constructor_invocation
+          (user_type
+            (type_identifier))
+          (value_arguments
+            (value_argument
+              (string_literal
+                (string_content))))))
+      (visibility_modifier)
+      (class_modifier))
+    name: (simple_identifier)
+    body: (class_body
+      (enum_entry
+        name: (simple_identifier)))))
