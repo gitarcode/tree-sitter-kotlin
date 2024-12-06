@@ -1092,3 +1092,25 @@ abstract class AbstractNativeMacApplicationPackageAppDirTask : AbstractNativeMac
             receiver: (simple_identifier)
             selector: (simple_identifier))
           args: (value_arguments))))))
+
+================================================================================
+Class member with explicit delegate on new line
+================================================================================
+
+class EditorConfigGeneratorTest {
+
+    class TestRule :
+        Rule
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    name: (simple_identifier)
+    body: (class_body
+      (class_declaration
+        name: (simple_identifier)
+        (delegation_specifier
+          (user_type
+            (type_identifier)))))))

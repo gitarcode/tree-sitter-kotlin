@@ -1146,13 +1146,6 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "REPEAT",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_NL"
-                }
-              },
-              {
                 "type": "STRING",
                 "value": ","
               },
@@ -1173,27 +1166,38 @@
       ]
     },
     "_annotated_delegation_specifier": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "REPEAT",
-          "content": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_annotation"
+            }
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
             "type": "SYMBOL",
-            "name": "_annotation"
+            "name": "delegation_specifier"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
           }
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_NL"
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "delegation_specifier"
-        }
-      ]
+        ]
+      }
     },
     "delegation_specifier": {
       "type": "PREC_RIGHT",
@@ -8764,9 +8768,6 @@
       "_type_modifier"
     ],
     [
-      "_annotated_delegation_specifier"
-    ],
-    [
       "call_expression",
       "labeled_expression",
       "comparison_expression"
@@ -8945,6 +8946,9 @@
     [
       "explicit_delegation",
       "_primary_expression"
+    ],
+    [
+      "_annotated_delegation_specifier"
     ]
   ],
   "precedences": [],

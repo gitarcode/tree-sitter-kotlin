@@ -148,7 +148,6 @@ module.exports = grammar({
     // `@Annotation () -> Int` should be parsed as a function type
     [$.annotated_expression, $.value_argument],
     [$._annotated_delegation_specifier, $._type_modifier],
-    [$._annotated_delegation_specifier],
     [$.call_expression, $.labeled_expression, $.comparison_expression],
     [$.assignment, $.annotated_expression, $.modifiers],
     [$.assignment, $.annotated_expression],
@@ -188,7 +187,9 @@ module.exports = grammar({
     [$._simple_user_type, $._non_call_primary_expression],
     [$.variable_declaration, $._non_call_primary_expression],
     [$.value_argument, $._non_call_primary_expression],
-    [$.explicit_delegation, $._primary_expression]
+    [$.explicit_delegation, $._primary_expression],
+
+    [$._annotated_delegation_specifier]
   ],
 
   extras: $ => [
@@ -350,12 +351,11 @@ module.exports = grammar({
 
     _delegation_specifiers: $ => sep1(
       $._annotated_delegation_specifier, 
-      repeat($._NL),
       ",",
       repeat($._NL),
     ),
 
-    _annotated_delegation_specifier: $ => seq(repeat($._annotation), repeat($._NL), $.delegation_specifier),
+    _annotated_delegation_specifier: $ => prec.left(seq(repeat($._annotation), repeat($._NL), $.delegation_specifier, repeat($._NL))),
 
     delegation_specifier: $ => prec.right(choice(
       $.constructor_invocation,
