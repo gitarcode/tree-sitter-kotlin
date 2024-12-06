@@ -114,7 +114,6 @@ module.exports = grammar({
     [$._enum_entries],
     [$.type_constraints],
     [$.do_while_statement],
-    [$._delegation_specifiers],
     [$.function_value_parameters],
     [$.class_parameters],
     [$.source_file],
@@ -506,7 +505,7 @@ module.exports = grammar({
 
     _setter_getter: $ => choice(
       seq($.getter, optional(seq(repeat($._NL), $.setter))),
-      seq($.setter, optional(seq($.getter, repeat($._NL))))
+      seq($.setter, optional(seq(repeat($._NL), $.getter)))
     ),
 
     getter: $ => prec.right(seq(

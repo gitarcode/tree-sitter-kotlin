@@ -2410,15 +2410,15 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "SYMBOL",
-                      "name": "getter"
-                    },
-                    {
                       "type": "REPEAT",
                       "content": {
                         "type": "SYMBOL",
                         "name": "_NL"
                       }
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "getter"
                     }
                   ]
                 },
@@ -8649,9 +8649,6 @@
     ],
     [
       "do_while_statement"
-    ],
-    [
-      "_delegation_specifiers"
     ],
     [
       "function_value_parameters"

@@ -238,6 +238,46 @@ var positionPercentage: Float
                       (real_literal))))))))))))
 
 ================================================================================
+getter after setter
+================================================================================
+
+var stringRepresentation: String
+    set(value) {
+        setDataFromString(value) // parses the string and assigns values to other properties
+    }
+    get() = this.toString()
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    var_decl: (variable_declaration
+      id: (simple_identifier)
+      type: (user_type
+        (type_identifier)))
+    (setter
+      (parameter_with_optional_type
+        (simple_identifier))
+      (function_body
+        (block
+          (statements
+            (statement
+              (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments
+                  (value_argument
+                    (simple_identifier))))))
+          (line_comment))))
+    (getter
+      (function_body
+        expression: (call_expression
+          expression: (dot_qualified_expression
+            receiver: (this_expression)
+            selector: (simple_identifier))
+          args: (value_arguments))))))
+
+================================================================================
 For statement in if expression
 ================================================================================
 
