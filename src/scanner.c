@@ -150,7 +150,7 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                 }
                 if (lookahead_operator(lexer, "-", 1)) {
                     // Do not match -- and ->
-                    if (lexer->lookahead != '-' && lexer -> lookahead != '>') {
+                    if (lexer->lookahead != '-' && lexer->lookahead != '>' && lexer->lookahead != "=") {
                         return true;
                     }
                 }
