@@ -61,7 +61,6 @@ static bool is_inside_parentheses(Scanner *scanner) {
 }
 
 static inline void advance(TSLexer *lexer) { 
-    // printf("advance '%c'\n", lexer->lookahead);
     lexer->advance(lexer, false); 
 }
 
@@ -204,15 +203,19 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                     return true;
                 }
                 if (lookahead_operator(lexer, "+", 1)) {
-                    // Do not match '++' and '+='
-                    if (lexer->lookahead != '+' && lexer->lookahead != '=') {
-                        return true;
+                    if (is_inside_parentheses(scanner)) {
+                        // Do not match '++' and '+='
+                        if (lexer->lookahead != '+' && lexer->lookahead != '=') {
+                            return true;
+                        }
                     }
                 }
                 if (lookahead_operator(lexer, "-", 1)) {
-                    // Do not match '--', '->', and '-='
-                    if (lexer->lookahead != '-' && lexer->lookahead != '>' && lexer->lookahead != '=') {
-                        return true;
+                    if (is_inside_parentheses(scanner)) {
+                        // Do not match '--', '->', and '-='
+                        if (lexer->lookahead != '-' && lexer->lookahead != '>' && lexer->lookahead != '=') {
+                            return true;
+                        }
                     }
                 }
                 if (lookahead_operator(lexer, "?:", 2)) {

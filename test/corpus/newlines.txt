@@ -310,9 +310,37 @@ fun foo() {
               (binding_pattern_kind)
               var_decl: (variable_declaration
                 id: (simple_identifier))
-              initializer: (additive_expression
-                (simple_identifier)
-                (simple_identifier)))))))))
+              initializer: (simple_identifier)))
+          (statement
+            (prefix_expression
+              expression: (simple_identifier))))))))
+
+================================================================================
+Newline before additive expression in parentheses
+================================================================================
+
+fun foo() {
+   f(a 
+   + b)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block
+        (statements
+          (statement
+            (call_expression
+              expression: (simple_identifier)
+              args: (value_arguments
+                (value_argument
+                  (additive_expression
+                    (simple_identifier)
+                    (simple_identifier)))))))))))
 
 ================================================================================
 Newline after additive expression
