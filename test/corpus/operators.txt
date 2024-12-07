@@ -124,3 +124,39 @@ Range on separate line in parentheses
       (range_expression
         (simple_identifier)
         (simple_identifier)))))
+
+================================================================================
+Three identifiers on separate lines
+================================================================================
+
+a
+b
+c
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (simple_identifier))
+  (statement
+    (simple_identifier))
+  (statement
+    (simple_identifier)))
+
+================================================================================
+Three identifiers on separate lines inside parentheses
+================================================================================
+
+(a
+b
+c)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (parenthesized_expression
+      (infix_expression
+        (simple_identifier)
+        (simple_identifier)
+        (simple_identifier)))))

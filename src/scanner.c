@@ -251,6 +251,13 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                         }
                     }
                 }
+                // infix operators, if the next character is either `_` or an alphanumeric, corresponding to
+                // the beginning of an identifier
+                if (lexer->lookahead == '_' || iswalnum(lexer->lookahead)) {
+                    if (is_inside_parentheses(scanner)) {
+                        return true;
+                    }
+                }
                 
                 return false;
 
