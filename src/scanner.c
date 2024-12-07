@@ -269,6 +269,16 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                         }
                     }
                 }
+                if (lookahead_operator(lexer, "<", 1)) {
+                    if (is_inside_parentheses(scanner)) {
+                        return true;
+                    }
+                }
+                if (lookahead_operator(lexer, ">", 1)) {
+                    if (is_inside_parentheses(scanner)) {
+                        return true;
+                    }
+                }
                 // infix operators, if the next character is either `_` or an alphanumeric, corresponding to
                 // the beginning of an identifier
                 if (is_valid_identifier_char(lexer)) {

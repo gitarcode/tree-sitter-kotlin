@@ -194,3 +194,29 @@ c)
       (in_expression
         (simple_identifier)
         (simple_identifier)))))
+
+
+================================================================================
+Comparison operator in parentheses
+================================================================================
+
+(a
+<
+b)
+(a
+>=
+b)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (parenthesized_expression
+      (comparison_expression
+        (simple_identifier)
+        (simple_identifier))))
+  (statement
+    (parenthesized_expression
+      (comparison_expression
+        (simple_identifier)
+        (simple_identifier)))))
