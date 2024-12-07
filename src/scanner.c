@@ -45,6 +45,19 @@ void tree_sitter_kotlin_external_scanner_deserialize(void *payload, const char *
   }
 }
 
+static void push_parenthesis(Scanner *scanner) {
+    array_push(&scanner->parenthesis, '(');
+}
+
+static char pop_parenthesis(Scanner *scanner) {
+    if (scanner->parenthesis.size == 0) abort();
+    return array_pop(&scanner->parenthesis);
+}
+
+static bool is_inside_parentheses(Scanner *scanner) {
+    return scanner->parenthesis.size > 0;
+}
+
 static inline void advance(TSLexer *lexer) { 
     // printf("advance '%c'\n", lexer->lookahead);
     lexer->advance(lexer, false); 
@@ -128,6 +141,8 @@ static bool multiline_comment(TSLexer *lexer) {
 }
 
 bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
+    Scanner *scanner = (Scanner *)payload;
+
     if (valid_symbols[MULTILINE_COMMENT]) {
         if (lexer->lookahead == '/') {
             if (multiline_comment(lexer)) {
