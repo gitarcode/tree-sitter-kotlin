@@ -241,11 +241,17 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                     return true;
                 }
                 if (lookahead_operator(lexer, ".", 1)) {
-                    // Do not match '.;'
+                    // Do not match '..'
                     if (lexer->lookahead != '.') {
                         return true;
+                    } else {
+                        // Range operators: '..' '..<'
+                        if (is_inside_parentheses(scanner)) {
+                            return true;
+                        }
                     }
                 }
+                
                 return false;
 
             case '?':

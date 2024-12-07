@@ -101,3 +101,26 @@ a
       (multiplicative_expression
         (simple_identifier)
         (simple_identifier)))))
+
+================================================================================
+Range on separate line in parentheses
+================================================================================
+
+(a
+.. b)
+(a 
+..< b)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (parenthesized_expression
+      (range_expression
+        (simple_identifier)
+        (simple_identifier))))
+  (statement
+    (parenthesized_expression
+      (range_expression
+        (simple_identifier)
+        (simple_identifier)))))
