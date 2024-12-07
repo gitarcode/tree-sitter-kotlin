@@ -9,6 +9,42 @@ enum TokenType {
     MULTILINE_COMMENT,
 };
 
+typedef struct {
+    Array(char) parenthesis;
+} Scanner;
+
+void *tree_sitter_kotlin_external_scanner_create() { 
+    Scanner *scanner = ts_calloc(1, sizeof(Scanner));
+    array_init(&scanner->parenthesis);
+    return scanner;
+ }
+
+void tree_sitter_kotlin_external_scanner_destroy(void *payload) {
+    Scanner *scanner = (Scanner *)payload;
+    array_delete(&scanner->parenthesis);
+    ts_free(scanner);
+}
+
+unsigned tree_sitter_kotlin_external_scanner_serialize(void *payload, char *buffer) { 
+  Scanner *scanner = (Scanner *)payload;
+  int size = scanner->parenthesis.size;
+  if (size > 0) {
+    memcpy(buffer, scanner->parenthesis.contents, size);
+  }
+  return size;
+ }
+
+void tree_sitter_kotlin_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
+  Scanner *scanner = (Scanner *)payload;
+  if (length > 0) {
+    array_reserve(&scanner->parenthesis, length);
+    memcpy(scanner->parenthesis.contents, buffer, length);
+    scanner->parenthesis.size = length;
+  } else {
+    array_clear(&scanner->parenthesis);
+  }
+}
+
 static inline void advance(TSLexer *lexer) { 
     // printf("advance '%c'\n", lexer->lookahead);
     lexer->advance(lexer, false); 
@@ -19,14 +55,6 @@ static inline void skip_whitespace(TSLexer *lexer) {
         advance(lexer);
     }
 }
-
-void *tree_sitter_kotlin_external_scanner_create() { return NULL; }
-
-void tree_sitter_kotlin_external_scanner_destroy(void *payload) {}
-
-unsigned tree_sitter_kotlin_external_scanner_serialize(void *payload, char *buffer) { return 0; }
-
-void tree_sitter_kotlin_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {}
 
 static bool line_comment_body(TSLexer *lexer) {
     while (lexer->lookahead != '\n') {
