@@ -177,3 +177,20 @@ c)
       (in_expression
         (simple_identifier)
         (simple_identifier)))))
+
+================================================================================
+!In operator in parentheses
+================================================================================
+
+(a
+!in
+c)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (parenthesized_expression
+      (in_expression
+        (simple_identifier)
+        (simple_identifier)))))
