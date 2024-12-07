@@ -7,6 +7,8 @@ enum TokenType {
     ELVIS,
     EXTERNAL_NEWLINE,
     MULTILINE_COMMENT,
+    LPAR,
+    RPAR,
 };
 
 typedef struct {
@@ -142,7 +144,6 @@ static bool multiline_comment(TSLexer *lexer) {
 
 bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
     Scanner *scanner = (Scanner *)payload;
-
     if (valid_symbols[MULTILINE_COMMENT]) {
         if (lexer->lookahead == '/') {
             if (multiline_comment(lexer)) {
@@ -150,6 +151,22 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                 return true;
             }
             return false;
+        }
+    }
+    if (valid_symbols[LPAR]) {
+        if (lexer->lookahead == '(') {
+            push_parenthesis(scanner);
+            lexer->result_symbol = LPAR;
+            advance(lexer);
+            return true;
+        }
+    }
+    if (valid_symbols[RPAR]) {
+        if (lexer->lookahead == ')') {
+            pop_parenthesis(scanner);
+            lexer->result_symbol = RPAR;
+            advance(lexer);
+            return true;
         }
     }
     if (valid_symbols[EXTERNAL_NEWLINE] || valid_symbols[ELVIS]) {
