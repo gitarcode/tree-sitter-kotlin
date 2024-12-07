@@ -87,11 +87,14 @@ a
   (ERROR))
 
 ================================================================================
-* on separate line in parentheses
+multiplicative operator on separate line in parentheses
 ================================================================================
 
 (a
 * b)
+(a
+/
+b)
 
 --------------------------------------------------------------------------------
 
@@ -100,7 +103,12 @@ a
     (parenthesized_expression
       (multiplicative_expression
         (simple_identifier)
-        (simple_identifier)))))
+        (simple_identifier))))
+  (statement
+    (parenthesized_expression
+      (multiplicative_expression
+        (simple_identifier)
+        (simple_identifier)))))      
 
 ================================================================================
 Range on separate line in parentheses
@@ -218,5 +226,46 @@ b)
   (statement
     (parenthesized_expression
       (comparison_expression
+        (simple_identifier)
+        (simple_identifier)))))
+
+================================================================================
+Equality operator in parentheses
+================================================================================
+
+(a
+==
+b)
+(a
+===
+b)
+(a
+!=
+b)
+(a
+!==
+b)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (parenthesized_expression
+      (equality_expression
+        (simple_identifier)
+        (simple_identifier))))
+  (statement
+    (parenthesized_expression
+      (equality_expression
+        (simple_identifier)
+        (simple_identifier))))
+  (statement
+    (parenthesized_expression
+      (equality_expression
+        (simple_identifier)
+        (simple_identifier))))
+  (statement
+    (parenthesized_expression
+      (equality_expression
         (simple_identifier)
         (simple_identifier)))))

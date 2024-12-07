@@ -196,7 +196,9 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                                 }
                                 break;
                             default:
-                                return false; 
+                                if (is_inside_parentheses(scanner)) {
+                                        return true;
+                                }
                         }
                     }
                 }
@@ -225,24 +227,15 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                 if (lookahead_operator(lexer, "*", 1)) {
                     if (is_inside_parentheses(scanner)) {
                         // Do not match '*='
-                        if (lexer->lookahead != '*') {
+                        if (lexer->lookahead != '=') {
                             return true;
                         }
                     }
                 }
-                if (lookahead_operator(lexer, "/", 1)) {
-                    if (is_inside_parentheses(scanner)) {
-                        // Do not match '/*', '/=', '//'
-                        if (lexer->lookahead != '*' && lexer->lookahead != '=' && lexer->lookahead != '/') {
-                            return true;
-                        }
+                if (lookahead_operator(lexer, "?", 1)) {
+                    if (lexer->lookahead == ':' || lexer->lookahead == '.') {
+                        return true;
                     }
-                }
-                if (lookahead_operator(lexer, "?:", 2)) {
-                    return true;
-                }
-                if (lookahead_operator(lexer, "?.", 2)) {
-                    return true;
                 }
                 if (lookahead_operator(lexer, ".", 1)) {
                     // Do not match '..'
@@ -255,14 +248,20 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                         }
                     }
                 }
-                if (lookahead_operator(lexer, "in", 2)) {
-                    if (!is_valid_identifier_char(lexer)) {
-                        if (is_inside_parentheses(scanner)) {
-                            return true;
+                if (lookahead_operator(lexer, "!", 1)) {
+                    if (is_inside_parentheses(scanner)) {
+                        switch (lexer->lookahead) {
+                            case 'i':
+                                advance(lexer);
+                                if (lexer->lookahead == 'n' || lexer->lookahead == 's') {
+                                    return true;
+                                }
+                            case '=':
+                                return true;
                         }
                     }
                 }
-                if (lookahead_operator(lexer, "!in", 3)) {
+                if (lookahead_operator(lexer, "in", 2)) {
                     if (!is_valid_identifier_char(lexer)) {
                         if (is_inside_parentheses(scanner)) {
                             return true;
@@ -279,6 +278,13 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                         return true;
                     }
                 }
+                if (lookahead_operator(lexer, "=", 1)) {
+                    if (lexer->lookahead == '=') {
+                        if (is_inside_parentheses(scanner)) {
+                            return true;
+                        }                        
+                    }
+                }
                 // infix operators, if the next character is either `_` or an alphanumeric, corresponding to
                 // the beginning of an identifier
                 if (is_valid_identifier_char(lexer)) {
@@ -286,9 +292,8 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                         return true;
                     }
                 }
+                break;
                 
-                return false;
-
             case '?':
                 advance(lexer);
                 if (lexer->lookahead != ':') {
