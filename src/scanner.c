@@ -218,6 +218,22 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                         }
                     }
                 }
+                if (lookahead_operator(lexer, "*", 1)) {
+                    if (is_inside_parentheses(scanner)) {
+                        // Do not match '*='
+                        if (lexer->lookahead != '*') {
+                            return true;
+                        }
+                    }
+                }
+                if (lookahead_operator(lexer, "/", 1)) {
+                    if (is_inside_parentheses(scanner)) {
+                        // Do not match '/*', '/=', '//'
+                        if (lexer->lookahead != '*' && lexer->lookahead != '=' && lexer->lookahead != '/') {
+                            return true;
+                        }
+                    }
+                }
                 if (lookahead_operator(lexer, "?:", 2)) {
                     return true;
                 }
