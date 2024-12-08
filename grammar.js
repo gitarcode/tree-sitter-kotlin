@@ -776,6 +776,7 @@ module.exports = grammar({
       $.index_access_expression,
       $.simple_identifier,
       $.postfix_expression,
+      $.this_expression
     ),
 
     // ==========

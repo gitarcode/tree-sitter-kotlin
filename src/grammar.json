@@ -4068,6 +4068,10 @@
         {
           "type": "SYMBOL",
           "name": "postfix_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "this_expression"
         }
       ]
     },

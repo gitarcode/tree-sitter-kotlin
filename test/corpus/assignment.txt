@@ -1,5 +1,5 @@
 ================================================================================
-This Assignment
+Field Assignment
 ================================================================================
 
 class Foo(){
@@ -74,3 +74,51 @@ fun main(){
                 index: (integer_literal))
               right: (string_literal
                 (string_content)))))))))
+
+
+================================================================================
+This expression assignment
+================================================================================
+
+override fun handleTestExecutionException(context: ExtensionContext?, throwable: Throwable?) {
+    throwable?.let {
+        this@ErrorCollector += throwable
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    modifiers: (modifiers
+      (member_modifier))
+    name: (simple_identifier)
+    parameters: (function_value_parameters
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (nullable_type
+            type: (user_type
+              (type_identifier)))))
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (nullable_type
+            type: (user_type
+              (type_identifier))))))
+    body: (function_body
+      (block
+        (statements
+          (statement
+            (call_expression
+              expression: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier))
+              lambda_arg: (annotated_lambda
+                (lambda_literal
+                  body: (statements
+                    (statement
+                      (assignment
+                        left: (this_expression
+                          (type_identifier))
+                        right: (simple_identifier)))))))))))))
