@@ -1156,6 +1156,7 @@ module.exports = grammar({
         repeat($._NL),
       )),
       $.expression,
+      repeat($._NL),
       $._RPAR,
     ),
 

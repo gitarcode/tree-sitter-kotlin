@@ -1095,3 +1095,41 @@ when {
           (when_condition
             (simple_identifier))
           (boolean_literal))))))
+
+================================================================================
+Newline after when subject
+================================================================================
+
+when (
+	val content =
+	  serialize(defaultContentType, Charsets.UTF_8, typeInfo<T>(), data)
+) {
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (when_expression
+      (when_subject
+        (variable_declaration
+          id: (simple_identifier))
+        (call_expression
+          expression: (simple_identifier)
+          args: (value_arguments
+            (value_argument
+              (simple_identifier))
+            (value_argument
+              (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier)))
+            (value_argument
+              (call_expression
+                expression: (simple_identifier)
+                (type_arguments
+                  (type_projection
+                    type: (user_type
+                      (type_identifier))))
+                args: (value_arguments)))
+            (value_argument
+              (simple_identifier))))))))
