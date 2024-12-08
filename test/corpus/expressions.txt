@@ -1329,3 +1329,69 @@ list)
       args: (value_arguments
         (value_argument
           (simple_identifier))))))
+
+
+================================================================================
+Curlies inside parentheses
+================================================================================
+
+f(listOf(0.01, 0.02, 0.05, 0.1, 0.25, 0.5).map { percentile ->
+    val average = percentileAverageFrameTime(percentile, BenchmarkFrameTimeKind.CPU)
+	BenchmarkPercentileAverage(percentile, average)
+  }
+)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (call_expression
+      expression: (simple_identifier)
+      args: (value_arguments
+        (value_argument
+          (call_expression
+            expression: (dot_qualified_expression
+              receiver: (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments
+                  (value_argument
+                    (real_literal))
+                  (value_argument
+                    (real_literal))
+                  (value_argument
+                    (real_literal))
+                  (value_argument
+                    (real_literal))
+                  (value_argument
+                    (real_literal))
+                  (value_argument
+                    (real_literal))))
+              selector: (simple_identifier))
+            lambda_arg: (annotated_lambda
+              (lambda_literal
+                parameters: (lambda_parameters
+                  (variable_declaration
+                    id: (simple_identifier)))
+                body: (statements
+                  (statement
+                    (property_declaration
+                      (binding_pattern_kind)
+                      var_decl: (variable_declaration
+                        id: (simple_identifier))
+                      initializer: (call_expression
+                        expression: (simple_identifier)
+                        args: (value_arguments
+                          (value_argument
+                            (simple_identifier))
+                          (value_argument
+                            (dot_qualified_expression
+                              receiver: (simple_identifier)
+                              selector: (simple_identifier)))))))
+                  (statement
+                    (call_expression
+                      expression: (simple_identifier)
+                      args: (value_arguments
+                        (value_argument
+                          (simple_identifier))
+                        (value_argument
+                          (simple_identifier))))))))))))))

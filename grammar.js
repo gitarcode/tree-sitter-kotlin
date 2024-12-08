@@ -202,7 +202,9 @@ module.exports = grammar({
     $._external_nl,
     $.multiline_comment,
     $._LPAR,
-    $._RPAR
+    $._RPAR,
+    $._LCUR,
+    $._RCUR
   ],
 
   supertypes: $ => [
@@ -326,10 +328,10 @@ module.exports = grammar({
     ),
 
     class_body: $ => seq(
-      "{",
+      $._LCUR,
       repeat($._NL),
       repeat($._class_member_declaration),
-      "}"
+      $._RCUR
     ),
 
     class_parameters: $ => seq(
@@ -583,14 +585,14 @@ module.exports = grammar({
     // ==========
 
     enum_class_body: $ => seq(
-      "{",
+      $._LCUR,
       repeat($._NL),
       optional($._enum_entries),
       repeat($._NL),
       optional(","),
       repeat($._NL),
       optional(seq(";", repeat($._NL), repeat($._class_member_declaration))),
-      "}"
+      $._RCUR
     ),
 
     _enum_entries: $ => sep1(
@@ -705,10 +707,10 @@ module.exports = grammar({
     )),
 
     block: $ => seq(
-      "{",
+      $._LCUR,
       repeat($._NL),
       optional($._statements),
-      "}"
+      $._RCUR
     ),
 
     _loop_statement: $ => choice(
@@ -1055,11 +1057,11 @@ module.exports = grammar({
     ),
 
     lambda_literal: $ => prec(-1, seq(
-      "{",
+      $._LCUR,
       repeat($._NL),
       optional(seq(optional(field("parameters", $.lambda_parameters)), repeat($._NL), "->", repeat($._NL))),
       optional(field("body", $._statements)),
-      "}"
+      $._RCUR
     )),
 
     multi_variable_declaration: $ => seq(
@@ -1160,11 +1162,11 @@ module.exports = grammar({
       "when",
       repeat($._NL),
       optional($.when_subject),
-      "{",
+      $._LCUR,
       repeat($._NL),
       optional($.when_entries),
       repeat($._NL),
-      "}"
+      $._RCUR
     ),
 
     when_entries: $ => sep1($._when_entry, repeat($._NL)),

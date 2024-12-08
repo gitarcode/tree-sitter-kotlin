@@ -9,6 +9,8 @@ enum TokenType {
     MULTILINE_COMMENT,
     LPAR,
     RPAR,
+    LCURL,
+    RCURL,
 };
 
 typedef struct {
@@ -47,17 +49,24 @@ void tree_sitter_kotlin_external_scanner_deserialize(void *payload, const char *
   }
 }
 
-static void push_parenthesis(Scanner *scanner) {
-    array_push(&scanner->parenthesis, '(');
+static void push(Scanner *scanner, const char c) {
+    array_push(&scanner->parenthesis, c);
 }
 
-static char pop_parenthesis(Scanner *scanner) {
-    if (scanner->parenthesis.size == 0) abort();
-    return array_pop(&scanner->parenthesis);
+static void pop(Scanner *scanner, const char c) {
+    if (scanner->parenthesis.size == 0) {
+        // printf("empty parentheses stack\n");
+        abort();
+    }
+    char popped_char = array_pop(&scanner->parenthesis);
+    if (popped_char != c) {
+        // printf("popped_char: '%c', expected: '%c'\n", popped_char, c);
+        abort();
+    }
 }
 
 static bool is_inside_parentheses(Scanner *scanner) {
-    return scanner->parenthesis.size > 0;
+    return scanner->parenthesis.size > 0 && *array_back(&scanner->parenthesis) != '{';
 }
 
 static inline void advance(TSLexer *lexer) { 
@@ -158,7 +167,7 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
     }
     if (valid_symbols[LPAR]) {
         if (lexer->lookahead == '(') {
-            push_parenthesis(scanner);
+            push(scanner, '(');
             lexer->result_symbol = LPAR;
             advance(lexer);
             return true;
@@ -166,8 +175,24 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
     }
     if (valid_symbols[RPAR]) {
         if (lexer->lookahead == ')') {
-            pop_parenthesis(scanner);
+            pop(scanner, '(');
             lexer->result_symbol = RPAR;
+            advance(lexer);
+            return true;
+        }
+    }
+    if (valid_symbols[LCURL]) {
+        if (lexer->lookahead == '{') {
+            push(scanner, '{');
+            lexer->result_symbol = LCURL;
+            advance(lexer);
+            return true;
+        }
+    }
+    if (valid_symbols[RCURL]) {
+        if (lexer->lookahead == '}') {
+            pop(scanner, '{');
+            lexer->result_symbol = RCURL;
             advance(lexer);
             return true;
         }

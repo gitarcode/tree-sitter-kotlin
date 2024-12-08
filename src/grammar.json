@@ -941,8 +941,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "{"
+          "type": "SYMBOL",
+          "name": "_LCUR"
         },
         {
           "type": "REPEAT",
@@ -959,8 +959,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "}"
+          "type": "SYMBOL",
+          "name": "_RCUR"
         }
       ]
     },
@@ -2956,8 +2956,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "{"
+          "type": "SYMBOL",
+          "name": "_LCUR"
         },
         {
           "type": "REPEAT",
@@ -3036,8 +3036,8 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "}"
+          "type": "SYMBOL",
+          "name": "_RCUR"
         }
       ]
     },
@@ -3712,8 +3712,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "{"
+          "type": "SYMBOL",
+          "name": "_LCUR"
         },
         {
           "type": "REPEAT",
@@ -3735,8 +3735,8 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "}"
+          "type": "SYMBOL",
+          "name": "_RCUR"
         }
       ]
     },
@@ -5773,8 +5773,8 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
-            "value": "{"
+            "type": "SYMBOL",
+            "name": "_LCUR"
           },
           {
             "type": "REPEAT",
@@ -5847,8 +5847,8 @@
             ]
           },
           {
-            "type": "STRING",
-            "value": "}"
+            "type": "SYMBOL",
+            "name": "_RCUR"
           }
         ]
       }
@@ -6427,8 +6427,8 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "{"
+          "type": "SYMBOL",
+          "name": "_LCUR"
         },
         {
           "type": "REPEAT",
@@ -6457,8 +6457,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "}"
+          "type": "SYMBOL",
+          "name": "_RCUR"
         }
       ]
     },
@@ -8999,6 +8999,14 @@
     {
       "type": "SYMBOL",
       "name": "_RPAR"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_LCUR"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_RCUR"
     }
   ],
   "inline": [],
