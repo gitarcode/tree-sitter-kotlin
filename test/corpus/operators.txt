@@ -269,3 +269,41 @@ b)
       (equality_expression
         (simple_identifier)
         (simple_identifier)))))
+
+
+================================================================================
+Additive operator in square brackets
+================================================================================
+
+a[1
++ 2]
+
+@Ann([1, 2 
++ 3])
+fun f() {}
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (index_access_expression
+      expression: (simple_identifier)
+      index: (additive_expression
+        (integer_literal)
+        (integer_literal))))
+  (function_declaration
+    modifiers: (modifiers
+      (annotation
+        (constructor_invocation
+          (user_type
+            (type_identifier))
+          (value_arguments
+            (value_argument
+              (collection_literal
+                (integer_literal)
+                (additive_expression
+                  (integer_literal)
+                  (integer_literal))))))))
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block))))

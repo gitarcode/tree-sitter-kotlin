@@ -147,8 +147,8 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "STRING",
-                  "value": "["
+                  "type": "SYMBOL",
+                  "name": "_LSQR"
                 },
                 {
                   "type": "REPEAT1",
@@ -158,8 +158,8 @@
                   }
                 },
                 {
-                  "type": "STRING",
-                  "value": "]"
+                  "type": "SYMBOL",
+                  "name": "_RSQR"
                 }
               ]
             },
@@ -4359,8 +4359,8 @@
             }
           },
           {
-            "type": "STRING",
-            "value": "["
+            "type": "SYMBOL",
+            "name": "_LSQR"
           },
           {
             "type": "FIELD",
@@ -4399,8 +4399,8 @@
             ]
           },
           {
-            "type": "STRING",
-            "value": "]"
+            "type": "SYMBOL",
+            "name": "_RSQR"
           }
         ]
       }
@@ -5360,8 +5360,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "["
+          "type": "SYMBOL",
+          "name": "_LSQR"
         },
         {
           "type": "REPEAT",
@@ -5449,8 +5449,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "]"
+          "type": "SYMBOL",
+          "name": "_RSQR"
         }
       ]
     },
@@ -7610,8 +7610,8 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "["
+          "type": "SYMBOL",
+          "name": "_LSQR"
         },
         {
           "type": "REPEAT1",
@@ -7621,8 +7621,8 @@
           }
         },
         {
-          "type": "STRING",
-          "value": "]"
+          "type": "SYMBOL",
+          "name": "_RSQR"
         }
       ]
     },
@@ -9018,6 +9018,14 @@
     {
       "type": "SYMBOL",
       "name": "_RCUR"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_LSQR"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_RSQR"
     }
   ],
   "inline": [],

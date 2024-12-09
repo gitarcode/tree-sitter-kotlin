@@ -350,11 +350,11 @@
 ;;	"->"
 ] @operator
 
-[
+;;[
 ;;	"(" ")"
-	"[" "]"
+;;	"[" "]"
 ;;	"{" "}"
-] @punctuation.bracket
+;;] @punctuation.bracket
 
 [
 	"."

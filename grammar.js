@@ -204,7 +204,9 @@ module.exports = grammar({
     $._LPAR,
     $._RPAR,
     $._LCUR,
-    $._RCUR
+    $._RCUR,
+    $._LSQR,
+    $._RSQR,
   ],
 
   supertypes: $ => [
@@ -243,7 +245,7 @@ module.exports = grammar({
     file_annotation: $ => seq(
       "@", "file", ":",
       choice(
-        seq("[", repeat1($._unescaped_annotation), "]"),
+        seq($._LSQR, repeat1($._unescaped_annotation), $._RSQR),
         $._unescaped_annotation
       ),
       $._semi,
@@ -852,11 +854,11 @@ module.exports = grammar({
     
     index_access_expression: $ => prec(PREC.INDEX, seq(
       field("expression", $.expression), 
-      "[",
+      $._LSQR,
       field("index", $.expression),
       repeat(seq(",", $.expression)),
       optional(","),
-      "]")
+      $._RSQR)
     ),
 
     annotated_expression: $ => seq($._annotation, $.expression),
@@ -991,7 +993,7 @@ module.exports = grammar({
     parenthesized_expression: $ => prec.dynamic(-1, seq($._LPAR, repeat($._NL), $.expression, repeat($._NL), $._RPAR)),
 
     collection_literal: $ => seq(
-      "[", 
+      $._LSQR, 
       repeat($._NL),
       optional(seq(
         sep1($.expression, repeat($._NL), ",", repeat($._NL)),
@@ -999,7 +1001,7 @@ module.exports = grammar({
         optional(","),
       )),
       repeat($._NL),
-      "]"
+      $._RSQR
     ),
 
     _literal_constant: $ => choice(
@@ -1388,9 +1390,9 @@ module.exports = grammar({
     _multi_annotation: $ => seq(
       "@",
       optional($.use_site_target),
-      "[",
+      $._LSQR,
       repeat1($._unescaped_annotation),
-      "]"
+      $._RSQR
     ),
 
     use_site_target: $ => seq(

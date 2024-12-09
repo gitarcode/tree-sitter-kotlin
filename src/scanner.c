@@ -11,6 +11,8 @@ enum TokenType {
     RPAR,
     LCURL,
     RCURL,
+    LSQR,
+    RSQR,
 };
 
 typedef struct {
@@ -193,6 +195,22 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
         if (lexer->lookahead == '}') {
             pop(scanner, '{');
             lexer->result_symbol = RCURL;
+            advance(lexer);
+            return true;
+        }
+    }
+    if (valid_symbols[LSQR]) {
+        if (lexer->lookahead == '[') {
+            push(scanner, '[');
+            lexer->result_symbol = LSQR;
+            advance(lexer);
+            return true;
+        }
+    }
+    if (valid_symbols[RSQR]) {
+        if (lexer->lookahead == ']') {
+            pop(scanner, '[');
+            lexer->result_symbol = RSQR;
             advance(lexer);
             return true;
         }
