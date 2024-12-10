@@ -449,3 +449,105 @@ b
       expression: (prefix_expression
         expression: (simple_identifier)))))
                         
+
+================================================================================
+Loop label
+================================================================================
+
+loop@
+while (true) when (val frame = input.readFrame(Long.MAX_VALUE, 0)) {
+    is Frame.Ping -> continue@loop
+    is Frame.Close -> {
+        assertEquals(closeCode, frame.readReason()?.code)
+        if (replyCloseFrame) socket.close()
+        break@loop
+    }
+
+    else -> fail("Unexpected frame $frame: \n${hex(frame.data)}")
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (labeled_expression
+      (label)
+      (call_expression
+        expression: (simple_identifier)
+        args: (value_arguments
+          (value_argument
+            (boolean_literal))))))
+  (statement
+    (when_expression
+      (when_subject
+        (variable_declaration
+          id: (simple_identifier))
+        (call_expression
+          expression: (dot_qualified_expression
+            receiver: (simple_identifier)
+            selector: (simple_identifier))
+          args: (value_arguments
+            (value_argument
+              (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier)))
+            (value_argument
+              (integer_literal)))))
+      (when_entries
+        (when_entry
+          (when_condition
+            (type_test
+              type: (user_type
+                (type_identifier)
+                (type_identifier))))
+          (continue_expression))
+        (when_entry
+          (when_condition
+            (type_test
+              type: (user_type
+                (type_identifier)
+                (type_identifier))))
+          (block
+            (statements
+              (statement
+                (call_expression
+                  expression: (simple_identifier)
+                  args: (value_arguments
+                    (value_argument
+                      (simple_identifier))
+                    (value_argument
+                      (dot_qualified_expression
+                        receiver: (call_expression
+                          expression: (dot_qualified_expression
+                            receiver: (simple_identifier)
+                            selector: (simple_identifier))
+                          args: (value_arguments))
+                        selector: (simple_identifier))))))
+              (statement
+                (if_expression
+                  condition: (simple_identifier)
+                  consequence: (call_expression
+                    expression: (dot_qualified_expression
+                      receiver: (simple_identifier)
+                      selector: (simple_identifier))
+                    args: (value_arguments))))
+              (statement
+                (break_expression)))))
+        (else_entry
+          (call_expression
+            expression: (simple_identifier)
+            args: (value_arguments
+              (value_argument
+                (string_literal
+                  (string_content)
+                  (interpolated_identifier)
+                  (string_content)
+                  (string_content)
+                  (interpolated_expression
+                    (call_expression
+                      expression: (simple_identifier)
+                      args: (value_arguments
+                        (value_argument
+                          (dot_qualified_expression
+                            receiver: (simple_identifier)
+                            selector: (simple_identifier)))))))))))))))

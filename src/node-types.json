@@ -1080,6 +1080,10 @@
       "required": true,
       "types": [
         {
+          "type": "annotation",
+          "named": true
+        },
+        {
           "type": "assignment",
           "named": true
         },
@@ -1097,6 +1101,10 @@
         },
         {
           "type": "for_statement",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         },
         {
@@ -1145,9 +1153,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "annotation",
+          "named": true
+        },
         {
           "type": "assignment",
           "named": true
@@ -1166,6 +1178,10 @@
         },
         {
           "type": "for_statement",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         },
         {
@@ -1444,9 +1460,13 @@
     "named": true,
     "fields": {
       "body": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "annotation",
+            "named": true
+          },
           {
             "type": "assignment",
             "named": true
@@ -1465,6 +1485,10 @@
           },
           {
             "type": "for_statement",
+            "named": true
+          },
+          {
+            "type": "label",
             "named": true
           },
           {
@@ -1867,9 +1891,13 @@
     "named": true,
     "fields": {
       "alternative": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "annotation",
+            "named": true
+          },
           {
             "type": "assignment",
             "named": true
@@ -1888,6 +1916,10 @@
           },
           {
             "type": "for_statement",
+            "named": true
+          },
+          {
+            "type": "label",
             "named": true
           },
           {
@@ -1907,9 +1939,13 @@
         ]
       },
       "consequence": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
+          {
+            "type": "annotation",
+            "named": true
+          },
           {
             "type": "assignment",
             "named": true
@@ -1928,6 +1964,10 @@
           },
           {
             "type": "for_statement",
+            "named": true
+          },
+          {
+            "type": "label",
             "named": true
           },
           {
@@ -3088,9 +3128,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "annotation",
+          "named": true
+        },
         {
           "type": "assignment",
           "named": true
@@ -3113,6 +3157,10 @@
         },
         {
           "type": "function_declaration",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         },
         {
@@ -3828,6 +3876,10 @@
       "required": true,
       "types": [
         {
+          "type": "annotation",
+          "named": true
+        },
+        {
           "type": "assignment",
           "named": true
         },
@@ -3845,6 +3897,10 @@
         },
         {
           "type": "for_statement",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         },
         {
@@ -3909,6 +3965,10 @@
       "required": true,
       "types": [
         {
+          "type": "annotation",
+          "named": true
+        },
+        {
           "type": "assignment",
           "named": true
         },
@@ -3926,6 +3986,10 @@
         },
         {
           "type": "for_statement",
+          "named": true
+        },
+        {
+          "type": "label",
           "named": true
         },
         {

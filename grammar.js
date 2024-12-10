@@ -188,7 +188,12 @@ module.exports = grammar({
 
     [$._annotated_delegation_specifier],
     [$._top_level_statements],
-    [$.statements, $._semi]
+    [$.statements, $._semi],
+
+    [$._loop_statement, $.assignment, $.annotated_expression, $.modifiers],
+    [$._loop_statement, $.assignment, $.annotated_expression],
+    [$.variable_declaration, $._loop_statement, $.assignment, $.annotated_expression, $.modifiers],
+    [$.variable_declaration, $._loop_statement, $.assignment, $.annotated_expression]
   ],
 
   extras: $ => [
@@ -715,11 +720,13 @@ module.exports = grammar({
       $._RCUR
     ),
 
-    _loop_statement: $ => choice(
-      $.for_statement,
-      $.while_statement,
-      $.do_while_statement
-    ),
+    _loop_statement: $ => seq(
+      repeat(choice($.label, $._annotation)),
+      choice(
+        $.for_statement,
+        $.while_statement,
+        $.do_while_statement
+    )),
 
     for_statement: $ => prec.right(seq(
       "for",

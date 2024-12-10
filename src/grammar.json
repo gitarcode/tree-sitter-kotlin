@@ -3749,19 +3749,40 @@
       ]
     },
     "_loop_statement": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "for_statement"
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "label"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_annotation"
+              }
+            ]
+          }
         },
         {
-          "type": "SYMBOL",
-          "name": "while_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "do_while_statement"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "for_statement"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "while_statement"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "do_while_statement"
+            }
+          ]
         }
       ]
     },
@@ -8992,6 +9013,30 @@
     [
       "statements",
       "_semi"
+    ],
+    [
+      "_loop_statement",
+      "assignment",
+      "annotated_expression",
+      "modifiers"
+    ],
+    [
+      "_loop_statement",
+      "assignment",
+      "annotated_expression"
+    ],
+    [
+      "variable_declaration",
+      "_loop_statement",
+      "assignment",
+      "annotated_expression",
+      "modifiers"
+    ],
+    [
+      "variable_declaration",
+      "_loop_statement",
+      "assignment",
+      "annotated_expression"
     ]
   ],
   "precedences": [],
