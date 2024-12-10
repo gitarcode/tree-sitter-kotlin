@@ -215,6 +215,7 @@ module.exports = grammar({
     "}",
     "[",
     "]",
+    "${"
   ],
 
   supertypes: $ => [

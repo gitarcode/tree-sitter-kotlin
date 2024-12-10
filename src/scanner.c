@@ -13,6 +13,7 @@ enum TokenType {
     RCURL,
     LSQR,
     RSQR,
+    DOLLAR_CURL, // ${
 };
 
 typedef struct {
@@ -194,6 +195,17 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
             lexer->result_symbol = LCURL;
             advance(lexer);
             return true;
+        }
+    }
+    if (valid_symbols[DOLLAR_CURL]) {
+        if (lexer->lookahead == '$') {
+            advance(lexer);
+            if (lexer->lookahead == '{') {
+                push(scanner, '{');
+                lexer->result_symbol = DOLLAR_CURL;
+                advance(lexer);
+                return true;
+            }
         }
     }
     if (valid_symbols[RCURL]) {
