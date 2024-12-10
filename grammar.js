@@ -1129,13 +1129,12 @@ module.exports = grammar({
       repeat($._NL),
       $._if_condition,
       repeat($._NL),
-      choice(
-        field("consequence", $._control_body_structure),
+      optional(field("consequence", $._control_body_structure)),
+      repeat($._NL),
+      optional(
         seq(
-          optional(field("consequence", $._control_body_structure)),
-          repeat($._NL),
           // We need to give else a higher precedence to extend the if-expression to the right
-          prec.dynamic(1, "else"),
+          "else",
           repeat($._NL),
           field("alternative", $._control_body_structure)
         )
