@@ -944,7 +944,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "_LCUR"
+            "name": "LCUR"
           },
           "named": false,
           "value": "{"
@@ -967,7 +967,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "_RCUR"
+            "name": "RCUR"
           },
           "named": false,
           "value": "}"
@@ -2977,7 +2977,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "_LCUR"
+            "name": "LCUR"
           },
           "named": false,
           "value": "{"
@@ -3062,7 +3062,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "_RCUR"
+            "name": "RCUR"
           },
           "named": false,
           "value": "}"
@@ -3743,7 +3743,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "_LCUR"
+            "name": "LCUR"
           },
           "named": false,
           "value": "{"
@@ -3771,7 +3771,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "_RCUR"
+            "name": "RCUR"
           },
           "named": false,
           "value": "}"
@@ -5846,7 +5846,7 @@
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
-              "name": "_LCUR"
+              "name": "LCUR"
             },
             "named": false,
             "value": "{"
@@ -5925,7 +5925,7 @@
             "type": "ALIAS",
             "content": {
               "type": "SYMBOL",
-              "name": "_RCUR"
+              "name": "RCUR"
             },
             "named": false,
             "value": "}"
@@ -6517,7 +6517,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "_LCUR"
+            "name": "LCUR"
           },
           "named": false,
           "value": "{"
@@ -6552,7 +6552,7 @@
           "type": "ALIAS",
           "content": {
             "type": "SYMBOL",
-            "name": "_RCUR"
+            "name": "RCUR"
           },
           "named": false,
           "value": "}"
@@ -9176,11 +9176,11 @@
     },
     {
       "type": "SYMBOL",
-      "name": "_LCUR"
+      "name": "LCUR"
     },
     {
       "type": "SYMBOL",
-      "name": "_RCUR"
+      "name": "RCUR"
     },
     {
       "type": "SYMBOL",
