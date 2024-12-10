@@ -76,10 +76,8 @@ static inline void advance(TSLexer *lexer) {
     lexer->advance(lexer, false); 
 }
 
-static inline void skip_whitespace(TSLexer *lexer) {
-    while (iswspace(lexer->lookahead)) {
-        advance(lexer);
-    }
+static inline void advance_and_skip(TSLexer *lexer) { 
+    lexer->advance(lexer, true); 
 }
 
 static bool line_comment_body(TSLexer *lexer) {
@@ -160,7 +158,7 @@ static inline bool is_valid_identifier_char(TSLexer *lexer) {
 bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
     Scanner *scanner = (Scanner *)payload;
     while (iswspace(lexer->lookahead) && lexer->lookahead != '\n') {
-        lexer->advance(lexer, true);
+        advance_and_skip(lexer);
     }
     if (valid_symbols[MULTILINE_COMMENT]) {
         if (lexer->lookahead == '/') {
@@ -235,7 +233,9 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                 lexer->result_symbol = EXTERNAL_NEWLINE;
                 lexer->mark_end(lexer);
                 while (iswspace(lexer->lookahead) || lexer->lookahead == '/') {
-                    skip_whitespace(lexer);
+                    while (iswspace(lexer->lookahead)) {
+                        advance(lexer);
+                    }
                     if (lexer->lookahead == '/') {
                         advance(lexer);
                         switch (lexer->lookahead) {
