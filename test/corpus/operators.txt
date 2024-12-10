@@ -84,7 +84,9 @@ a
 (source_file
   (statement
     (simple_identifier))
-  (ERROR))
+  (ERROR)
+  (statement
+    (simple_identifier)))
 
 ================================================================================
 multiplicative operator on separate line in parentheses

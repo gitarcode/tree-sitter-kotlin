@@ -158,6 +158,9 @@ static inline bool is_valid_identifier_char(TSLexer *lexer) {
 
 bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
     Scanner *scanner = (Scanner *)payload;
+    while (iswspace(lexer->lookahead) && lexer->lookahead != '\n') {
+        lexer->advance(lexer, true);
+    }
     if (valid_symbols[MULTILINE_COMMENT]) {
         if (lexer->lookahead == '/') {
             if (multiline_comment(lexer)) {
@@ -176,11 +179,13 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
         }
     }
     if (valid_symbols[RPAR]) {
-        if (lexer->lookahead == ')') {
-            pop(scanner, '(');
-            lexer->result_symbol = RPAR;
-            advance(lexer);
-            return true;
+        if (scanner->parenthesis.size > 0) {
+            if (lexer->lookahead == ')') {
+                pop(scanner, '(');
+                lexer->result_symbol = RPAR;
+                advance(lexer);
+                return true;
+            }
         }
     }
     if (valid_symbols[LCURL]) {
@@ -192,11 +197,13 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
         }
     }
     if (valid_symbols[RCURL]) {
-        if (lexer->lookahead == '}') {
-            pop(scanner, '{');
-            lexer->result_symbol = RCURL;
-            advance(lexer);
-            return true;
+        if (scanner->parenthesis.size > 0) {
+            if (lexer->lookahead == '}') {
+                pop(scanner, '{');
+                lexer->result_symbol = RCURL;
+                advance(lexer);
+                return true;
+            }
         }
     }
     if (valid_symbols[LSQR]) {

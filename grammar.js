@@ -194,7 +194,7 @@ module.exports = grammar({
   extras: $ => [
     $.line_comment,
     $.multiline_comment,
-    $._ws
+    NON_NL_WHITESPACE
   ],
 
   externals: $ => [
@@ -1032,7 +1032,7 @@ module.exports = grammar({
       choice('"', seq(alias("$", $.string_content), '"'))
     ),
 
-    line_string_content: $ => token(prec(PREC.STRING_CONTENT, choice(
+    line_string_content: $ => token.immediate(prec(PREC.STRING_CONTENT, choice(
       /[^\\"$]+/,
       repeat1(uni_character_literal),
       escaped_identifier
@@ -1548,7 +1548,7 @@ module.exports = grammar({
     _backtick_identifier: $ => /`[^\r\n`]+`/,
 
     _ws: $ => NON_NL_WHITESPACE,
-    _NL: $ => token(/\n/),
+    _NL: $ => /\n/,
     _semi: $ => choice(";", $._NL),
 
     line_comment: $ => token(seq("//", /[^\r\n]*/)),
