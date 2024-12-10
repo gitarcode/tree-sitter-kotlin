@@ -1263,7 +1263,7 @@ module.exports = grammar({
     ),
 
     callable_reference: $ => prec(PREC.DOT, seq(
-      optional(choice(seq($.user_type, optional("?")), $.this_expression)),
+      optional(choice(seq($.user_type, optional(choice("?", "!!"))), $.this_expression)),
       "::",
       choice($.simple_identifier, "class")
     )),
