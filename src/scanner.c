@@ -151,7 +151,7 @@ static bool multiline_comment(TSLexer *lexer) {
     return false;
 }
 
-static inline bool is_valid_identifier_char(TSLexer *lexer) {
+static inline bool is_lookahead_valid_identifier_char(TSLexer *lexer) {
     return lexer->lookahead == '_' || iswalnum(lexer->lookahead);
 }
 
@@ -316,10 +316,15 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                     }
                 }
                 if (lookahead_operator(lexer, "in", 2)) {
-                    if (!is_valid_identifier_char(lexer)) {
+                    if (!is_lookahead_valid_identifier_char(lexer)) {
                         if (is_inside_parentheses(scanner)) {
                             return true;
                         }
+                    }
+                }
+                if (lookahead_operator(lexer, "as", 2)) {
+                    if (!is_lookahead_valid_identifier_char(lexer)) {
+                        return true;
                     }
                 }
                 if (lookahead_operator(lexer, "<", 1)) {
@@ -341,7 +346,7 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                 }
                 // infix operators, if the next character is either `_` or an alphanumeric, corresponding to
                 // the beginning of an identifier
-                if (is_valid_identifier_char(lexer)) {
+                if (is_lookahead_valid_identifier_char(lexer)) {
                     if (is_inside_parentheses(scanner)) {
                         return true;
                     }

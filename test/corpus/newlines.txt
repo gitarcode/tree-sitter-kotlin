@@ -1133,3 +1133,32 @@ when (
                 args: (value_arguments)))
             (value_argument
               (simple_identifier))))))))
+
+
+================================================================================
+Newline before as
+================================================================================
+
+Class.forName("leakcanary.internal.activity.LeakActivity")
+    as Class<Activity>
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (as_expression
+      (call_expression
+        expression: (dot_qualified_expression
+          receiver: (simple_identifier)
+          selector: (simple_identifier))
+        args: (value_arguments
+          (value_argument
+            (string_literal
+              (string_content)))))
+      type: (user_type
+        (type_identifier)
+        (type_arguments
+          (type_projection
+            type: (user_type
+              (type_identifier))))))))
+              

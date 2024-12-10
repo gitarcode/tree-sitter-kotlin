@@ -4544,6 +4544,13 @@
             "name": "expression"
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_external_nl"
+            }
+          },
+          {
             "type": "SYMBOL",
             "name": "_as_operator"
           },
@@ -9035,6 +9042,53 @@
     ],
     [
       "dot_qualified_expression",
+      "multiplicative_expression",
+      "additive_expression",
+      "range_expression",
+      "infix_expression",
+      "elvis_expression",
+      "in_expression",
+      "is_expression",
+      "comparison_expression",
+      "equality_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "labeled_expression",
+      "as_expression",
+      "multiplicative_expression",
+      "additive_expression",
+      "range_expression",
+      "infix_expression",
+      "elvis_expression",
+      "in_expression",
+      "is_expression",
+      "comparison_expression",
+      "equality_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "prefix_expression",
+      "as_expression",
+      "multiplicative_expression",
+      "additive_expression",
+      "range_expression",
+      "infix_expression",
+      "elvis_expression",
+      "in_expression",
+      "is_expression",
+      "comparison_expression",
+      "equality_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "as_expression",
       "multiplicative_expression",
       "additive_expression",
       "range_expression",
