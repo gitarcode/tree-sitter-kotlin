@@ -941,8 +941,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_LCUR"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_LCUR"
+          },
+          "named": false,
+          "value": "{"
         },
         {
           "type": "REPEAT",
@@ -959,8 +964,13 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "_RCUR"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_RCUR"
+          },
+          "named": false,
+          "value": "}"
         }
       ]
     },
@@ -2964,8 +2974,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_LCUR"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_LCUR"
+          },
+          "named": false,
+          "value": "{"
         },
         {
           "type": "REPEAT",
@@ -3044,8 +3059,13 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_RCUR"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_RCUR"
+          },
+          "named": false,
+          "value": "}"
         }
       ]
     },
@@ -3720,8 +3740,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_LCUR"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_LCUR"
+          },
+          "named": false,
+          "value": "{"
         },
         {
           "type": "REPEAT",
@@ -3743,8 +3768,13 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_RCUR"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_RCUR"
+          },
+          "named": false,
+          "value": "}"
         }
       ]
     },
@@ -5806,8 +5836,13 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "SYMBOL",
-            "name": "_LCUR"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_LCUR"
+            },
+            "named": false,
+            "value": "{"
           },
           {
             "type": "REPEAT",
@@ -5880,8 +5915,13 @@
             ]
           },
           {
-            "type": "SYMBOL",
-            "name": "_RCUR"
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_RCUR"
+            },
+            "named": false,
+            "value": "}"
           }
         ]
       }
@@ -6467,8 +6507,13 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_LCUR"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_LCUR"
+          },
+          "named": false,
+          "value": "{"
         },
         {
           "type": "REPEAT",
@@ -6497,8 +6542,13 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "_RCUR"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_RCUR"
+          },
+          "named": false,
+          "value": "}"
         }
       ]
     },
