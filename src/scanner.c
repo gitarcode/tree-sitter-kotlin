@@ -55,16 +55,17 @@ static void push(Scanner *scanner, const char c) {
     array_push(&scanner->parenthesis, c);
 }
 
-static void pop(Scanner *scanner, const char c) {
+static bool pop(TSLexer *lexer, Scanner *scanner, const char c) {
     if (scanner->parenthesis.size == 0) {
-        // printf("empty parentheses stack\n");
-        abort();
+        lexer->log(lexer, "empty parentheses stack\n");
+        return false;
     }
     char popped_char = array_pop(&scanner->parenthesis);
     if (popped_char != c) {
-        // printf("popped_char: '%c', expected: '%c'\n", popped_char, c);
-        abort();
+        lexer->log(lexer, "Unexpected top of stack\n");
+        return false;
     }
+    return true;
 }
 
 static bool is_inside_parentheses(Scanner *scanner) {
@@ -181,10 +182,11 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
     if (valid_symbols[RPAR]) {
         if (scanner->parenthesis.size > 0) {
             if (lexer->lookahead == ')') {
-                pop(scanner, '(');
-                lexer->result_symbol = RPAR;
-                advance(lexer);
-                return true;
+                if (pop(lexer, scanner, '(')) {
+                    lexer->result_symbol = RPAR;
+                    advance(lexer);
+                    return true;
+                }
             }
         }
     }
@@ -199,10 +201,11 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
     if (valid_symbols[RCURL]) {
         if (scanner->parenthesis.size > 0) {
             if (lexer->lookahead == '}') {
-                pop(scanner, '{');
-                lexer->result_symbol = RCURL;
-                advance(lexer);
-                return true;
+                if (pop(lexer, scanner, '{')) {
+                    lexer->result_symbol = RCURL;
+                    advance(lexer);
+                    return true;
+                }
             }
         }
     }
@@ -216,10 +219,11 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
     }
     if (valid_symbols[RSQR]) {
         if (lexer->lookahead == ']') {
-            pop(scanner, '[');
-            lexer->result_symbol = RSQR;
-            advance(lexer);
-            return true;
+            if (pop(lexer, scanner, '[')) {
+                lexer->result_symbol = RSQR;
+                advance(lexer);
+                return true;
+            }
         }
     }
     if (valid_symbols[EXTERNAL_NEWLINE] || valid_symbols[ELVIS]) {
