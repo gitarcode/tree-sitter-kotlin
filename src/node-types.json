@@ -4069,6 +4069,14 @@
     "named": false
   },
   {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
     "type": "*",
     "named": false
   },
@@ -4182,6 +4190,14 @@
   },
   {
     "type": "L",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
     "named": false
   },
   {
@@ -4546,6 +4562,10 @@
   },
   {
     "type": "while",
+    "named": false
+  },
+  {
+    "type": "{",
     "named": false
   },
   {
