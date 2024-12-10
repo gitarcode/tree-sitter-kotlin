@@ -2480,8 +2480,12 @@
             ]
           },
           {
-            "type": "STRING",
-            "value": "get"
+            "type": "PREC_DYNAMIC",
+            "value": 1,
+            "content": {
+              "type": "STRING",
+              "value": "get"
+            }
           },
           {
             "type": "CHOICE",
@@ -2562,8 +2566,12 @@
             ]
           },
           {
-            "type": "STRING",
-            "value": "set"
+            "type": "PREC_DYNAMIC",
+            "value": 1,
+            "content": {
+              "type": "STRING",
+              "value": "set"
+            }
           },
           {
             "type": "CHOICE",

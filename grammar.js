@@ -518,7 +518,7 @@ module.exports = grammar({
 
     getter: $ => prec.right(seq(
       optional(field("modifiers", $.modifiers)),
-      "get",
+      prec.dynamic(1, "get"),
       optional(seq(
         $._LPAR,
         repeat($._NL),
@@ -530,7 +530,7 @@ module.exports = grammar({
 
     setter: $ => prec.right(seq(
       optional(field("modifiers", $.modifiers)),
-      "set",
+      prec.dynamic(1, "set"),
       optional(seq(
         $._LPAR,
         repeat($._NL),
