@@ -8891,15 +8891,6 @@
       "comparison_expression"
     ],
     [
-      "assignment",
-      "annotated_expression",
-      "modifiers"
-    ],
-    [
-      "assignment",
-      "annotated_expression"
-    ],
-    [
       "annotated_expression"
     ],
     [
@@ -8914,17 +8905,6 @@
     ],
     [
       "when_expression"
-    ],
-    [
-      "variable_declaration",
-      "assignment",
-      "annotated_expression",
-      "modifiers"
-    ],
-    [
-      "variable_declaration",
-      "assignment",
-      "annotated_expression"
     ],
     [
       "variable_declaration",
@@ -9004,50 +8984,6 @@
     [
       "setter",
       "_soft_keywords"
-    ],
-    [
-      "dot_qualified_expression",
-      "labeled_expression",
-      "multiplicative_expression",
-      "additive_expression",
-      "range_expression",
-      "infix_expression",
-      "elvis_expression",
-      "in_expression",
-      "is_expression",
-      "comparison_expression",
-      "equality_expression",
-      "conjunction_expression",
-      "disjunction_expression"
-    ],
-    [
-      "dot_qualified_expression",
-      "prefix_expression",
-      "multiplicative_expression",
-      "additive_expression",
-      "range_expression",
-      "infix_expression",
-      "elvis_expression",
-      "in_expression",
-      "is_expression",
-      "comparison_expression",
-      "equality_expression",
-      "conjunction_expression",
-      "disjunction_expression"
-    ],
-    [
-      "dot_qualified_expression",
-      "multiplicative_expression",
-      "additive_expression",
-      "range_expression",
-      "infix_expression",
-      "elvis_expression",
-      "in_expression",
-      "is_expression",
-      "comparison_expression",
-      "equality_expression",
-      "conjunction_expression",
-      "disjunction_expression"
     ],
     [
       "dot_qualified_expression",
