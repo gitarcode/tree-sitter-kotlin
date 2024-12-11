@@ -5571,7 +5571,7 @@
                   "type": "TOKEN",
                   "content": {
                     "type": "PATTERN",
-                    "value": "\\$[^\\p{L}_{\"]+"
+                    "value": "\\$[^\\p{L}_{\"]"
                   }
                 },
                 "named": true,
@@ -5685,7 +5685,7 @@
                     "type": "TOKEN",
                     "content": {
                       "type": "PATTERN",
-                      "value": "\\$[^\\p{L}_{\"]+"
+                      "value": "\\$[^\\p{L}_{\"]"
                     }
                   },
                   "named": true,

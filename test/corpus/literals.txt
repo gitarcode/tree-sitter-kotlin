@@ -133,6 +133,7 @@ More string interpolation
 "$ $ $"
 "\$foo"
 "\$"
+"!@#$%^&*()\""
 
 --------------------------------------------------------------------------------
 
@@ -140,18 +141,26 @@ More string interpolation
   (statement
     (string_literal
       (string_content)))
-  (statement    
+  (statement
     (string_literal
       (string_content)))
-  (statement    
+  (statement
     (string_literal
+      (string_content)
+      (string_content)
       (string_content)))
-  (statement    
+  (statement
     (string_literal
       (string_content)
       (string_content)))
-  (statement    
+  (statement
     (string_literal
+      (string_content)))
+  (statement
+    (string_literal
+      (string_content)
+      (string_content)
+      (string_content)
       (string_content))))
 
 ================================================================================

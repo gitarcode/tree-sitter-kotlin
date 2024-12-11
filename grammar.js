@@ -63,7 +63,7 @@ const escaped_identifier = token(/\\[tbrn'"\\$]/);
 
 // Here, we should only match the '$' character if it's not followed by an alpha character
 // If it is, it should be matched as part of the _interpolation rule.
-const DOLLAR_IN_STRING_CONTENT = token(/\$[^\p{L}_{"]+/);
+const DOLLAR_IN_STRING_CONTENT = token(/\$[^\p{L}_{"]/);
 
 const QUOTE_IN_MULTI_LINE_STRING_CONTENT = token(/"[^"]|""[^"]/);
 
