@@ -50,7 +50,8 @@ const PREC = {
 };
 const DEC_DIGITS = token(sep1(/[0-9]+/, /_+/));
 const HEX_DIGITS = token(sep1(/[0-9a-fA-F]+/, /_+/));
-const BIN_DIGITS = token(sep1(/[01]/, /_+/));
+const BIN_DIGIT = /[01]/;
+const BIN_DIGIT_OR_SEPARATOR = /[01_]/;
 const REAL_EXPONENT = token(seq(/[eE]/, optional(/[+-]/), DEC_DIGITS));
 
 const uni_character_literal = token(seq(
@@ -1518,7 +1519,10 @@ module.exports = grammar({
 
     hex_literal: $ => token(seq("0", /[xX]/, HEX_DIGITS)),
 
-    bin_literal: $ => token(seq("0", /[bB]/, BIN_DIGITS)),
+    bin_literal: $ => token(choice(
+      seq("0", /[bB]/, BIN_DIGIT, repeat(BIN_DIGIT_OR_SEPARATOR), BIN_DIGIT),
+      seq("0", /[bB]/, BIN_DIGIT)
+    )),
 
     unsigned_literal: $ => seq(
       choice($.integer_literal, $.hex_literal, $.bin_literal),
