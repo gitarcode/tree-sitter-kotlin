@@ -5568,11 +5568,32 @@
               {
                 "type": "ALIAS",
                 "content": {
-                  "type": "TOKEN",
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "\\$[^\\p{L}_{\"]"
-                  }
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "TOKEN",
+                      "content": {
+                        "type": "PATTERN",
+                        "value": "\\$[^\\p{L}_{\"]"
+                      }
+                    },
+                    {
+                      "type": "TOKEN",
+                      "content": {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "STRING",
+                            "value": "$"
+                          },
+                          {
+                            "type": "PATTERN",
+                            "value": "\\\\[tbrn'\"\\\\$]"
+                          }
+                        ]
+                      }
+                    }
+                  ]
                 },
                 "named": true,
                 "value": "string_content"
@@ -5645,11 +5666,8 @@
               }
             },
             {
-              "type": "TOKEN",
-              "content": {
-                "type": "PATTERN",
-                "value": "\\\\[tbrn'\"\\\\$]"
-              }
+              "type": "PATTERN",
+              "value": "\\\\[tbrn'\"\\\\$]"
             }
           ]
         }
@@ -5682,11 +5700,32 @@
                 {
                   "type": "ALIAS",
                   "content": {
-                    "type": "TOKEN",
-                    "content": {
-                      "type": "PATTERN",
-                      "value": "\\$[^\\p{L}_{\"]"
-                    }
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "TOKEN",
+                        "content": {
+                          "type": "PATTERN",
+                          "value": "\\$[^\\p{L}_{\"]"
+                        }
+                      },
+                      {
+                        "type": "TOKEN",
+                        "content": {
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "STRING",
+                              "value": "$"
+                            },
+                            {
+                              "type": "PATTERN",
+                              "value": "\\\\[tbrn'\"\\\\$]"
+                            }
+                          ]
+                        }
+                      }
+                    ]
                   },
                   "named": true,
                   "value": "string_content"
@@ -8577,11 +8616,8 @@
             }
           },
           {
-            "type": "TOKEN",
-            "content": {
-              "type": "PATTERN",
-              "value": "\\\\[tbrn'\"\\\\$]"
-            }
+            "type": "PATTERN",
+            "value": "\\\\[tbrn'\"\\\\$]"
           }
         ]
       }

@@ -134,6 +134,7 @@ More string interpolation
 "\$foo"
 "\$"
 "!@#$%^&*()\""
+"$\""
 
 --------------------------------------------------------------------------------
 
@@ -161,7 +162,10 @@ More string interpolation
       (string_content)
       (string_content)
       (string_content)
-      (string_content))))
+      (string_content)))
+  (statement
+    (string_literal
+      (string_content))))     
 
 ================================================================================
 Integer literals

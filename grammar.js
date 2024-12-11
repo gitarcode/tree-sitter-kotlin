@@ -59,11 +59,14 @@ const uni_character_literal = token(seq(
   /[0-9a-fA-F]{4}/
 ));
 
-const escaped_identifier = token(/\\[tbrn'"\\$]/);
+const escaped_identifier = /\\[tbrn'"\\$]/;
 
 // Here, we should only match the '$' character if it's not followed by an alpha character
 // If it is, it should be matched as part of the _interpolation rule.
-const DOLLAR_IN_STRING_CONTENT = token(/\$[^\p{L}_{"]/);
+const DOLLAR_IN_STRING_CONTENT = choice(
+  token(/\$[^\p{L}_{"]/),
+  token(seq("$", escaped_identifier))
+);
 
 const QUOTE_IN_MULTI_LINE_STRING_CONTENT = token(/"[^"]|""[^"]/);
 
