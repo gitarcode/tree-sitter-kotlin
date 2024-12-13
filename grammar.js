@@ -679,7 +679,6 @@ module.exports = grammar({
       $._type
     ),
 
-    // A higher-than-default precedence resolves the ambiguity with 'parenthesized_type'
     function_type_parameters: $ => seq(
       "(",
       repeat($._NL),
@@ -1562,20 +1561,10 @@ module.exports = grammar({
 
     _backtick_identifier: $ => /`[^\r\n`]+`/,
 
-    _ws: $ => NON_NL_WHITESPACE,
     _NL: $ => /\n/,
     _semi: $ => choice(";", $._NL),
 
     line_comment: $ => token(seq("//", /[^\r\n]*/)),
-
-    // We need to consume all the newlines after the commend, otherwise, the comments
-    // may be inserted in unwanted places. Comments (and other extra) nodes are inserted
-    // after tokens.
-    // multiline_comment: $ => seq(
-    //   token("/*"), 
-    //   repeat(choice($._NL, /./)), 
-    //   token("*/"),
-    // )
   }
 });
 
