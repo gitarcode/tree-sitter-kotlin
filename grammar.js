@@ -193,7 +193,10 @@ module.exports = grammar({
     [$._loop_statement, $.assignment, $.annotated_expression, $.modifiers],
     [$._loop_statement, $.assignment, $.annotated_expression],
     [$.variable_declaration, $._loop_statement, $.assignment, $.annotated_expression, $.modifiers],
-    [$.variable_declaration, $._loop_statement, $.assignment, $.annotated_expression]
+    [$.variable_declaration, $._loop_statement, $.assignment, $.annotated_expression],
+
+    [$.delegation_specifier, $.constructor_invocation],
+    [$.delegation_specifier, $.explicit_delegation]
   ],
 
   extras: $ => [
@@ -370,15 +373,16 @@ module.exports = grammar({
 
     _annotated_delegation_specifier: $ => prec.left(seq(repeat($._annotation), repeat($._NL), $.delegation_specifier, repeat($._NL))),
 
-    delegation_specifier: $ => prec.right(choice(
+    delegation_specifier: $ => choice(
       $.constructor_invocation,
       $.explicit_delegation,
       $.user_type,
       $.function_type
-    )),
+    ),
 
     constructor_invocation: $ => seq(
       $.user_type,
+      repeat($._NL),
       $.value_arguments
     ),
 

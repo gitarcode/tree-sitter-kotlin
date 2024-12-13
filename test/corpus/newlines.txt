@@ -1161,4 +1161,31 @@ Class.forName("leakcanary.internal.activity.LeakActivity")
           (type_projection
             type: (user_type
               (type_identifier))))))))
-              
+
+
+================================================================================
+Delegation constructor parameters on next line
+================================================================================
+
+class A() : B
+(a, b) {
+    
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    name: (simple_identifier)
+    (primary_constructor
+      (class_parameters))
+    (delegation_specifier
+      (constructor_invocation
+        (user_type
+          (type_identifier))
+        (value_arguments
+          (value_argument
+            (simple_identifier))
+          (value_argument
+            (simple_identifier)))))
+    body: (class_body)))

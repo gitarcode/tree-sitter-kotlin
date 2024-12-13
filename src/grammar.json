@@ -1226,29 +1226,25 @@
       }
     },
     "delegation_specifier": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "constructor_invocation"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "explicit_delegation"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "user_type"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "function_type"
-          }
-        ]
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "constructor_invocation"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "explicit_delegation"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "user_type"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_type"
+        }
+      ]
     },
     "constructor_invocation": {
       "type": "SEQ",
@@ -1256,6 +1252,13 @@
         {
           "type": "SYMBOL",
           "name": "user_type"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
         },
         {
           "type": "SYMBOL",
@@ -9081,6 +9084,14 @@
       "_loop_statement",
       "assignment",
       "annotated_expression"
+    ],
+    [
+      "delegation_specifier",
+      "constructor_invocation"
+    ],
+    [
+      "delegation_specifier",
+      "explicit_delegation"
     ]
   ],
   "precedences": [],
