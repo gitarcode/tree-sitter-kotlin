@@ -1189,3 +1189,42 @@ class A() : B
           (value_argument
             (simple_identifier)))))
     body: (class_body)))
+
+================================================================================
+Newline before closing bracket in parenthesized type
+================================================================================
+
+var a: (
+    (
+        i: Int,
+        s: String,
+        b: Boolean
+    ) -> Unit
+)? = null
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (binding_pattern_kind)
+    var_decl: (variable_declaration
+      id: (simple_identifier)
+      type: (nullable_type
+        (parenthesized_type
+          (function_type
+            (function_type_parameters
+              (parameter
+                name: (simple_identifier)
+                type: (user_type
+                  (type_identifier)))
+              (parameter
+                name: (simple_identifier)
+                type: (user_type
+                  (type_identifier)))
+              (parameter
+                name: (simple_identifier)
+                type: (user_type
+                  (type_identifier))))
+            type: (user_type
+              (type_identifier))))))
+    initializer: (null_literal)))

@@ -687,7 +687,7 @@ module.exports = grammar({
       ")"
     ),
 
-    parenthesized_type: $ => seq("(", repeat($._NL), $._type, ")"),
+    parenthesized_type: $ => seq("(", repeat($._NL), $._type, repeat($._NL), ")"),
 
     parenthesized_user_type: $ => seq(
       "(",
