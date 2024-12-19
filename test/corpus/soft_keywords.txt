@@ -25,7 +25,7 @@ fun foo() {
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    (simple_identifier))))))
+                    expression: (simple_identifier))))))
           (statement
             (postfix_expression
               expression: (index_access_expression

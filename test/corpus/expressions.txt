@@ -68,16 +68,16 @@ sum(1, 2)
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (string_literal
+          expression: (string_literal
             (string_content))))))
   (statement          
     (call_expression
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (integer_literal))
+          expression: (integer_literal))
         (value_argument
-          (integer_literal))))))
+          expression: (integer_literal))))))
 
 ================================================================================
 When expression
@@ -179,7 +179,7 @@ val x = expect(1)
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (integer_literal))))))
+          expression: (integer_literal))))))
 
 ================================================================================
 Expect as a top-level expression
@@ -195,7 +195,7 @@ expect(1)
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (integer_literal))))))
+          expression: (integer_literal))))))
 
 ================================================================================
 Expect as a platform modifier
@@ -233,9 +233,9 @@ foo<Int>(1)
             (type_identifier))))
       args: (value_arguments
         (value_argument
-          (integer_literal))
+          expression: (integer_literal))
         (value_argument
-          (integer_literal)))))
+          expression: (integer_literal)))))
   (statement
     (call_expression
       expression: (simple_identifier)
@@ -245,7 +245,7 @@ foo<Int>(1)
             (type_identifier))))
       args: (value_arguments
         (value_argument
-          (integer_literal))))))
+          expression: (integer_literal))))))
 
 ================================================================================
 Less than for comparison
@@ -297,7 +297,7 @@ val a = a<2>(3)
             (type_identifier))))
       args: (value_arguments
         (value_argument
-          (simple_identifier)))))
+          expression: (simple_identifier)))))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration
@@ -349,7 +349,7 @@ with(s) { length }
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (simple_identifier)))
+          expression: (simple_identifier)))
       lambda_arg: (annotated_lambda
         (lambda_literal
           body: (statements
@@ -456,7 +456,7 @@ val comments = """ // and here """
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (string_literal
+          expression: (string_literal
             (string_content))))))
   (property_declaration
     (binding_pattern_kind)
@@ -466,7 +466,7 @@ val comments = """ // and here """
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (string_literal
+          expression: (string_literal
             (string_content))))))
   (property_declaration
     (binding_pattern_kind)
@@ -476,7 +476,7 @@ val comments = """ // and here """
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (string_literal
+          expression: (string_literal
             (string_content))))))
   (property_declaration
     (binding_pattern_kind)
@@ -486,7 +486,7 @@ val comments = """ // and here """
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (string_literal
+          expression: (string_literal
             (string_content))))))
   (property_declaration
     (binding_pattern_kind)
@@ -595,7 +595,7 @@ if (cond1) {
               expression: (simple_identifier)
               args: (value_arguments
                 (value_argument
-                  (string_literal
+                  expression: (string_literal
                     (string_content))))))))
       alternative: (if_expression
         condition: (simple_identifier)
@@ -606,7 +606,7 @@ if (cond1) {
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    (string_literal
+                    expression: (string_literal
                       (string_content))))))))
         alternative: (block
           (statements
@@ -615,7 +615,7 @@ if (cond1) {
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    (string_literal
+                    expression: (string_literal
                       (string_content))))))))))))
 
 ================================================================================
@@ -722,7 +722,7 @@ configurationElements[0].substringBefore("?")
         selector: (simple_identifier))
       args: (value_arguments
         (value_argument
-          (string_literal
+          expression: (string_literal
             (string_content)))))))
 
 ================================================================================
@@ -742,7 +742,7 @@ input!!.copyTo(it)
         selector: (simple_identifier))
       args: (value_arguments
         (value_argument
-          (simple_identifier))))))
+          expression: (simple_identifier))))))
 
 ================================================================================
 Call expressions on lambdas
@@ -813,24 +813,24 @@ suppressions
                             selector: (simple_identifier))
                           args: (value_arguments
                             (value_argument
-                              (dot_qualified_expression
+                              expression: (dot_qualified_expression
                                 receiver: (simple_identifier)
                                 selector: (simple_identifier)))))
                         selector: (simple_identifier))
                       args: (value_arguments
                         (value_argument
-                          (dot_qualified_expression
+                          expression: (dot_qualified_expression
                             receiver: (simple_identifier)
                             selector: (simple_identifier)))
                         (value_argument
-                          (simple_identifier))))
+                          expression: (simple_identifier))))
                     selector: (simple_identifier))
                   (throw_expression
                     (call_expression
                       expression: (simple_identifier)
                       args: (value_arguments
                         (value_argument
-                          (string_literal
+                          expression: (string_literal
                             (string_content)
                             (interpolated_identifier)
                             (string_content))))))))))))
@@ -950,7 +950,7 @@ when (x) {
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    (string_literal
+                    expression: (string_literal
                       (string_content))))))))))
 
 ================================================================================
@@ -968,7 +968,7 @@ it.sliceArray(1..<it.size)
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (in_expression
+          expression: (in_expression
             (integer_literal)
             (range_expression
               (integer_literal)
@@ -980,7 +980,7 @@ it.sliceArray(1..<it.size)
         selector: (simple_identifier))
       args: (value_arguments
         (value_argument
-          (range_expression
+          expression: (range_expression
             (integer_literal)
             (dot_qualified_expression
               receiver: (simple_identifier)
@@ -1310,7 +1310,7 @@ f(*list)
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (simple_identifier))))))
+          expression: (simple_identifier))))))
 
 ================================================================================
 Spread expression with newline
@@ -1328,7 +1328,7 @@ list)
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (simple_identifier))))))
+          expression: (simple_identifier))))))
 
 
 ================================================================================
@@ -1349,23 +1349,23 @@ f(listOf(0.01, 0.02, 0.05, 0.1, 0.25, 0.5).map { percentile ->
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (call_expression
+          expression: (call_expression
             expression: (dot_qualified_expression
               receiver: (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    (real_literal))
+                    expression: (real_literal))
                   (value_argument
-                    (real_literal))
+                    expression: (real_literal))
                   (value_argument
-                    (real_literal))
+                    expression: (real_literal))
                   (value_argument
-                    (real_literal))
+                    expression: (real_literal))
                   (value_argument
-                    (real_literal))
+                    expression: (real_literal))
                   (value_argument
-                    (real_literal))))
+                    expression: (real_literal))))
               selector: (simple_identifier))
             lambda_arg: (annotated_lambda
               (lambda_literal
@@ -1382,9 +1382,9 @@ f(listOf(0.01, 0.02, 0.05, 0.1, 0.25, 0.5).map { percentile ->
                         expression: (simple_identifier)
                         args: (value_arguments
                           (value_argument
-                            (simple_identifier))
+                            expression: (simple_identifier))
                           (value_argument
-                            (dot_qualified_expression
+                            expression: (dot_qualified_expression
                               receiver: (simple_identifier)
                               selector: (simple_identifier)))))))
                   (statement
@@ -1392,6 +1392,6 @@ f(listOf(0.01, 0.02, 0.05, 0.1, 0.25, 0.5).map { percentile ->
                       expression: (simple_identifier)
                       args: (value_arguments
                         (value_argument
-                          (simple_identifier))
+                          expression: (simple_identifier))
                         (value_argument
-                          (simple_identifier))))))))))))))
+                          expression: (simple_identifier))))))))))))))

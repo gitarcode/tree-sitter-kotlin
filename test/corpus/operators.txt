@@ -300,7 +300,7 @@ fun f() {}
             (type_identifier))
           args: (value_arguments
             (value_argument
-              (collection_literal
+              expression: (collection_literal
                 (integer_literal)
                 (additive_expression
                   (integer_literal)

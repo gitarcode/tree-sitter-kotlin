@@ -189,9 +189,9 @@ fun test() {
               expression: (simple_identifier)
               args: (value_arguments
                 (value_argument
-                  (simple_identifier))
+                  expression: (simple_identifier))
                 (value_argument
-                  (simple_identifier))))))))))
+                  expression: (simple_identifier))))))))))
 
 ==================
 Anonymous function
@@ -294,7 +294,7 @@ val anon = fun() { assert(true) }
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    (boolean_literal))))))))))
+                    expression: (boolean_literal))))))))))
   (property_declaration
     (binding_pattern_kind)
     var_decl: (variable_declaration
@@ -317,7 +317,7 @@ val anon = fun() { assert(true) }
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    (boolean_literal)))))))))))
+                    expression: (boolean_literal)))))))))))
 
 ==================
 Function with backticked name
@@ -448,7 +448,7 @@ private fun Route.staticContentRoute(
         expression: (simple_identifier)
         args: (value_arguments
           (value_argument
-            (simple_identifier)))
+            expression: (simple_identifier)))
         lambda_arg: (annotated_lambda
           (lambda_literal))))))
 

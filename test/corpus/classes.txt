@@ -199,7 +199,7 @@ class D : SomeInterface
           (type_identifier))
         args: (value_arguments
           (value_argument
-            (simple_identifier))))))
+            expression: (simple_identifier))))))
   (class_declaration
     name: (simple_identifier)
     (delegation_specifier
@@ -285,9 +285,9 @@ class Test(x: Int, y: Int) {
           (constructor_delegation_call
             (value_arguments
               (value_argument
-                (integer_literal))
+                expression: (integer_literal))
               (value_argument
-                (integer_literal))))))))
+                expression: (integer_literal))))))))
 
 ================================================================================
 Enum classes
@@ -352,17 +352,17 @@ enum class Enum {
         name: (simple_identifier)
         arguments: (value_arguments
           (value_argument
-            (hex_literal))))
+            expression: (hex_literal))))
       (enum_entry
         name: (simple_identifier)
         arguments: (value_arguments
           (value_argument
-            (hex_literal))))
+            expression: (hex_literal))))
       (enum_entry
         name: (simple_identifier)
         arguments: (value_arguments
           (value_argument
-            (hex_literal))))
+            expression: (hex_literal))))
       (function_declaration
         modifiers: (modifiers
           (member_modifier))
@@ -375,7 +375,7 @@ enum class Enum {
               selector: (simple_identifier))
             args: (value_arguments
               (value_argument
-                (integer_literal))))))))
+                expression: (integer_literal))))))))
   (class_declaration
     modifiers: (modifiers
       (class_modifier))
@@ -421,7 +421,7 @@ enum class Enum {
                 (type_identifier))
               args: (value_arguments
                 (value_argument
-                  (string_literal
+                  expression: (string_literal
                     (string_content)))))))
         name: (simple_identifier)))))
 
@@ -506,7 +506,7 @@ fun interface Authenticator {
                 (type_identifier))
               args: (value_arguments
                 (value_argument
-                  (callable_reference
+                  expression: (callable_reference
                     (user_type
                       (type_identifier))))))))
         name: (simple_identifier)
@@ -746,7 +746,7 @@ class Derived(b: Base) : Base by b {
                   expression: (simple_identifier)
                   args: (value_arguments
                     (value_argument
-                      (string_literal
+                      expression: (string_literal
                         (string_content)))))))))))))
 
 ================================================================================
@@ -1079,7 +1079,7 @@ abstract class AbstractNativeMacApplicationPackageAppDirTask : AbstractNativeMac
                 (type_identifier))
               args: (value_arguments
                 (value_argument
-                  (dot_qualified_expression
+                  expression: (dot_qualified_expression
                     receiver: (simple_identifier)
                     selector: (simple_identifier)))))))
         (binding_pattern_kind)
@@ -1136,7 +1136,7 @@ public enum class CodeStyleValue {
             (type_identifier))
           args: (value_arguments
             (value_argument
-              (string_literal
+              expression: (string_literal
                 (string_content))))))
       (visibility_modifier)
       (class_modifier))

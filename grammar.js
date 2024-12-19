@@ -381,9 +381,9 @@ module.exports = grammar({
     ),
 
     constructor_invocation: $ => seq(
-      field('type', $.user_type),
+      field("type", $.user_type),
       repeat($._NL),
-      field('args', $.value_arguments)
+      field("args", $.value_arguments)
     ),
 
     explicit_delegation: $ => seq(
@@ -968,10 +968,10 @@ module.exports = grammar({
     value_argument: $ => seq(
       optional($._annotation),
       repeat($._NL),
-      optional(seq($.simple_identifier, repeat($._NL), "=", repeat($._NL))),
+      optional(seq(field("name", $.simple_identifier), repeat($._NL), "=", repeat($._NL))),
       optional("*"),
       repeat($._NL),
-      $.expression
+      field("expression", $.expression)
     ),
 
     _non_call_primary_expression: $ => choice(

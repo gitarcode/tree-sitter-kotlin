@@ -163,7 +163,7 @@ fun foo() {
                       selector: (simple_identifier))
                     args: (value_arguments
                       (value_argument
-                        (boolean_literal))))
+                        expression: (boolean_literal))))
                   (call_expression
                     expression: (dot_qualified_expression
                       receiver: (simple_identifier)
@@ -219,9 +219,9 @@ foo(1,
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (integer_literal))
+          expression: (integer_literal))
         (value_argument
-          (integer_literal))))))
+          expression: (integer_literal))))))
 
 ================================================================================
 Else after newline
@@ -281,11 +281,11 @@ f(
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (simple_identifier)
-          (integer_literal))
+          name: (simple_identifier)
+          expression: (integer_literal))
         (value_argument
-          (simple_identifier)
-          (integer_literal))))))
+          name: (simple_identifier)
+          expression: (integer_literal))))))
 
 ================================================================================
 Newline before additive expression
@@ -338,7 +338,7 @@ fun foo() {
               expression: (simple_identifier)
               args: (value_arguments
                 (value_argument
-                  (additive_expression
+                  expression: (additive_expression
                     (simple_identifier)
                     (simple_identifier)))))))))))
 
@@ -460,8 +460,8 @@ val current =
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (simple_identifier)
-          (multiplicative_expression
+          name: (simple_identifier)
+          expression: (multiplicative_expression
             (parenthesized_expression
               (additive_expression
                 (parenthesized_expression
@@ -480,8 +480,8 @@ val current =
                   selector: (simple_identifier))
                 (integer_literal)))))
         (value_argument
-          (simple_identifier)
-          (additive_expression
+          name: (simple_identifier)
+          expression: (additive_expression
             (dot_qualified_expression
               receiver: (simple_identifier)
               selector: (simple_identifier))
@@ -645,13 +645,13 @@ fun <TValue> CSSStyleVariable<TValue>.value(fallback: TValue? = null)
               (type_identifier))))
         args: (value_arguments
           (value_argument
-            (call_expression
+            expression: (call_expression
               expression: (simple_identifier)
               args: (value_arguments
                 (value_argument
-                  (simple_identifier))
+                  expression: (simple_identifier))
                 (value_argument
-                  (simple_identifier))))))))))
+                  expression: (simple_identifier))))))))))
 
 ================================================================================
 Newline in interpolated expression
@@ -669,7 +669,7 @@ error("Found references to atomicfu in jar file $name in the following class fil
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (string_literal
+          expression: (string_literal
             (string_content)
             (interpolated_identifier)
             (string_content)
@@ -680,7 +680,7 @@ error("Found references to atomicfu in jar file $name in the following class fil
                   selector: (simple_identifier))
                 args: (value_arguments
                   (value_argument
-                    (string_literal)))
+                    expression: (string_literal)))
                 lambda_arg: (annotated_lambda
                   (lambda_literal
                     body: (statements
@@ -779,8 +779,8 @@ when (val animatedImage = state) {
             expression: (simple_identifier)
             args: (value_arguments
               (value_argument
-                (simple_identifier)
-                (call_expression
+                name: (simple_identifier)
+                expression: (call_expression
                   expression: (dot_qualified_expression
                     receiver: (dot_qualified_expression
                       receiver: (simple_identifier)
@@ -788,8 +788,8 @@ when (val animatedImage = state) {
                     selector: (simple_identifier))
                   args: (value_arguments)))
               (value_argument
-                (simple_identifier)
-                (null_literal)))))
+                name: (simple_identifier)
+                expression: (null_literal)))))
         (when_entry
           (when_condition
             (type_test
@@ -809,7 +809,7 @@ when (val animatedImage = state) {
             expression: (simple_identifier)
             args: (value_arguments
               (value_argument
-                (string_literal
+                expression: (string_literal
                   (string_content))))))))))
 
 ================================================================================
@@ -837,7 +837,7 @@ class A {
         (constructor_delegation_call
           (value_arguments
             (value_argument
-              (simple_identifier))))))))
+              expression: (simple_identifier))))))))
 
 ================================================================================
 Newline in type parameters
@@ -894,7 +894,7 @@ abstract class UserTypeBuilder<
                 (type_identifier)))))
         args: (value_arguments
           (value_argument
-            (dot_qualified_expression
+            expression: (dot_qualified_expression
               receiver: (simple_identifier)
               selector: (simple_identifier))))))))
 
@@ -960,7 +960,7 @@ fun f(
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    (string_literal
+                    expression: (string_literal
                       (string_content))))))))))
     body: (function_body
       (block))))
@@ -1072,7 +1072,7 @@ var stringRepresentation: String
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    (simple_identifier))))))
+                    expression: (simple_identifier))))))
           (line_comment))))))
 
 
@@ -1118,13 +1118,13 @@ when (
           expression: (simple_identifier)
           args: (value_arguments
             (value_argument
-              (simple_identifier))
+              expression: (simple_identifier))
             (value_argument
-              (dot_qualified_expression
+              expression: (dot_qualified_expression
                 receiver: (simple_identifier)
                 selector: (simple_identifier)))
             (value_argument
-              (call_expression
+              expression: (call_expression
                 expression: (simple_identifier)
                 (type_arguments
                   (type_projection
@@ -1132,7 +1132,7 @@ when (
                       (type_identifier))))
                 args: (value_arguments)))
             (value_argument
-              (simple_identifier))))))))
+              expression: (simple_identifier))))))))
 
 
 ================================================================================
@@ -1153,7 +1153,7 @@ Class.forName("leakcanary.internal.activity.LeakActivity")
           selector: (simple_identifier))
         args: (value_arguments
           (value_argument
-            (string_literal
+            expression: (string_literal
               (string_content)))))
       type: (user_type
         (type_identifier)
@@ -1185,9 +1185,9 @@ class A() : B
           (type_identifier))
         args: (value_arguments
           (value_argument
-            (simple_identifier))
+            expression: (simple_identifier))
           (value_argument
-            (simple_identifier)))))
+            expression: (simple_identifier)))))
     body: (class_body)))
 
 ================================================================================

@@ -150,12 +150,12 @@ const val BAZ = "baz"
             (type_identifier))
           args: (value_arguments
             (value_argument
-              (simple_identifier)
-              (string_literal
+              name: (simple_identifier)
+              expression: (string_literal
                 (string_content)))
             (value_argument
-              (simple_identifier)
-              (collection_literal
+              name: (simple_identifier)
+              expression: (collection_literal
                 (simple_identifier))))))
       (property_modifier))
     (binding_pattern_kind)
@@ -185,12 +185,12 @@ const val BAZ = "baz"
             (type_identifier))
           args: (value_arguments
             (value_argument
-              (simple_identifier)
-              (string_literal
+              name: (simple_identifier)
+              expression: (string_literal
                 (string_content)))
             (value_argument
-              (simple_identifier)
-              (collection_literal)))))
+              name: (simple_identifier)
+              expression: (collection_literal)))))
       (property_modifier))
     (binding_pattern_kind)
     var_decl: (variable_declaration
@@ -217,8 +217,8 @@ class SaneFlowPlaysScrabble : ShakespearePlaysScrabble() {
             (type_identifier))
           args: (value_arguments
             (value_argument
-              (simple_identifier)
-              (integer_literal))))))
+              name: (simple_identifier)
+              expression: (integer_literal))))))
     name: (simple_identifier)
     (delegation_specifier
       (constructor_invocation
@@ -270,7 +270,7 @@ fun parse(xml: String): Element {
                     (type_identifier))
                   args: (value_arguments
                     (value_argument
-                      (string_literal
+                      expression: (string_literal
                         (string_content))))))
               (call_expression
                 expression: (dot_qualified_expression
@@ -332,7 +332,7 @@ return a
             (type_identifier))
           args: (value_arguments
             (value_argument
-              (callable_reference
+              expression: (callable_reference
                 (user_type
                   (type_identifier)))))))
       (return_expression
@@ -356,7 +356,7 @@ if (it.isCanceled) deferred.cancel() else deferred.complete(it.result as T)
             (type_identifier))
           args: (value_arguments
             (value_argument
-              (string_literal
+              expression: (string_literal
                 (string_content))))))
       (if_expression
         condition: (dot_qualified_expression
@@ -373,7 +373,7 @@ if (it.isCanceled) deferred.cancel() else deferred.complete(it.result as T)
             selector: (simple_identifier))
           args: (value_arguments
             (value_argument
-              (as_expression
+              expression: (as_expression
                 (dot_qualified_expression
                   receiver: (simple_identifier)
                   selector: (simple_identifier))

@@ -228,10 +228,10 @@ assertEquals("\u214E\uA7B5\u2CEF", "\u2132\uA7B4\u2CEF".lowercase())
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          (string_literal
+          expression: (string_literal
             (string_content)))
         (value_argument
-          (call_expression
+          expression: (call_expression
             expression: (dot_qualified_expression
               receiver: (string_literal
                 (string_content))

@@ -45,21 +45,21 @@ fun foo() {
                         (type_identifier))
                     args: (value_arguments
                         (value_argument
-                            (lambda_literal
-                            parameters: (lambda_parameters
-                                (variable_declaration
-                                id: (simple_identifier)))
-                            body: (statements
-                                (statement
-                                (additive_expression
-                                    (simple_identifier)
-                                    (integer_literal)))))))))
+                            expression: (lambda_literal
+                                parameters: (lambda_parameters
+                                    (variable_declaration
+                                    id: (simple_identifier)))
+                                body: (statements
+                                    (statement
+                                    (additive_expression
+                                        (simple_identifier)
+                                        (integer_literal)))))))))
                 (line_comment)
                 (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments
                     (value_argument
-                    (integer_literal))))))
+                        expression: (integer_literal))))))
             (statement
             (annotated_expression
                 (annotation
@@ -83,7 +83,7 @@ fun foo() {
                 expression: (simple_identifier)
                 args: (value_arguments
                 (value_argument
-                    (integer_literal))))))))))
+                    expression: (integer_literal))))))))))
 
 ================================================================================
 Block level expressions
@@ -649,7 +649,7 @@ enum class A {
                     (type_identifier))
                 args: (value_arguments
                     (value_argument
-                        (integer_literal))))))
+                        expression: (integer_literal))))))
         name: (simple_identifier)
         arguments: (value_arguments))
         (enum_entry
@@ -1041,7 +1041,7 @@ fun foo() {
                         expression: (simple_identifier)
                         args: (value_arguments
                             (value_argument
-                            (integer_literal))))))))))
+                                expression: (integer_literal))))))))))
             (statement
             (call_expression
                 expression: (index_access_expression
@@ -1056,7 +1056,7 @@ fun foo() {
                         expression: (simple_identifier)
                         args: (value_arguments
                             (value_argument
-                            (integer_literal))))))))))
+                                expression: (integer_literal))))))))))
             (statement
             (call_expression
                 expression: (simple_identifier)
@@ -1074,23 +1074,7 @@ fun foo() {
                         expression: (simple_identifier)
                         args: (value_arguments
                             (value_argument
-                            (integer_literal))))))))))
-            (statement
-            (call_expression
-                expression: (simple_identifier)
-                args: (value_arguments)
-                lambda_arg: (annotated_lambda
-                (annotation
-                    (user_type
-                    (type_identifier)))
-                (lambda_literal
-                    body: (statements
-                    (statement
-                        (call_expression
-                        expression: (simple_identifier)
-                        args: (value_arguments
-                            (value_argument
-                            (integer_literal))))))))))
+                                expression: (integer_literal))))))))))
             (statement
             (call_expression
                 expression: (simple_identifier)
@@ -1106,59 +1090,75 @@ fun foo() {
                         expression: (simple_identifier)
                         args: (value_arguments
                             (value_argument
-                            (integer_literal))))))))))
+                                expression: (integer_literal))))))))))
             (statement
-            (call_expression
-                expression: (simple_identifier)
-                args: (value_arguments)
-                lambda_arg: (annotated_lambda
-                (annotation
-                    (user_type
-                    (type_identifier)))
-                (annotation
-                    (user_type
-                    (type_identifier)))
-                (lambda_literal
-                    body: (statements
-                    (statement
-                        (call_expression
-                        expression: (simple_identifier)
-                        args: (value_arguments
-                            (value_argument
-                            (integer_literal))))))))))
+                (call_expression
+                    expression: (simple_identifier)
+                    args: (value_arguments)
+                    lambda_arg: (annotated_lambda
+                    (annotation
+                        (user_type
+                        (type_identifier)))
+                    (lambda_literal
+                        body: (statements
+                        (statement
+                            (call_expression
+                            expression: (simple_identifier)
+                            args: (value_arguments
+                                (value_argument
+                                    expression: (integer_literal))))))))))
+            (statement
+                (call_expression
+                    expression: (simple_identifier)
+                    args: (value_arguments)
+                    lambda_arg: (annotated_lambda
+                    (annotation
+                        (user_type
+                        (type_identifier)))
+                    (annotation
+                        (user_type
+                        (type_identifier)))
+                    (lambda_literal
+                        body: (statements
+                        (statement
+                            (call_expression
+                            expression: (simple_identifier)
+                            args: (value_arguments
+                                (value_argument
+                                    expression: (integer_literal))))))))))
             (statement
             (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments
                 (value_argument
-                    (annotated_expression
+                    expression: (annotated_expression
+                        (annotation
+                            (user_type
+                            (type_identifier)))
+                        (lambda_literal
+                            parameters: (lambda_parameters
+                            (variable_declaration
+                                id: (simple_identifier)))
+                            body: (statements
+                            (statement
+                                (simple_identifier)))))))))
+                (statement
+                (if_expression
+                    condition: (boolean_literal)
+                    consequence: (annotated_expression
                     (annotation
                         (user_type
                         (type_identifier)))
-                    (lambda_literal
-                        parameters: (lambda_parameters
-                        (variable_declaration
-                            id: (simple_identifier)))
-                        body: (statements
-                        (statement
-                            (simple_identifier)))))))))
-            (statement
-            (if_expression
-                condition: (boolean_literal)
-                consequence: (annotated_expression
-                (annotation
-                    (user_type
-                    (type_identifier)))
-                (lambda_literal))
-                alternative: (annotated_expression
-                (annotation
-                    (user_type
-                    (type_identifier)))
-                (annotated_expression
+                    (lambda_literal))
+                    alternative: (annotated_expression
                     (annotation
-                    (user_type
+                        (user_type
                         (type_identifier)))
-                    (lambda_literal))))))))))
+                    (annotated_expression
+                        (annotation
+                            (user_type
+                                (type_identifier)))
+                            (lambda_literal))))))))))
 
 
 ================================================================================
@@ -1256,7 +1256,7 @@ fun test() {
                         (type_identifier))
                     args: (value_arguments
                         (value_argument
-                        (integer_literal)))))
+                            expression: (integer_literal)))))
                 (annotation
                     (constructor_invocation
                     type: (user_type
@@ -1267,7 +1267,7 @@ fun test() {
                             (type_identifier)))))
                     args: (value_arguments
                         (value_argument
-                            (integer_literal)))))
+                            expression: (integer_literal)))))
                 (annotation
                     (user_type
                     (type_identifier)))
@@ -1277,8 +1277,8 @@ fun test() {
                 (when_entries
                 (when_entry
                     (when_condition
-                    (integer_literal))
-                    (integer_literal))))))))))
+                        (integer_literal))
+                        (integer_literal))))))))))
 
 ================================================================================
 Properties with function receivers annotations

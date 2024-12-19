@@ -131,7 +131,7 @@ try {
                 expression: (simple_identifier)
                   args: (value_arguments
                     (value_argument
-                      (simple_identifier)))))))))))
+                      expression: (simple_identifier)))))))))))
 
 ================================================================================
 Parenthesized expression after function call
@@ -167,7 +167,7 @@ val foo = Foo()
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    (simple_identifier)))))))))))
+                    expression: (simple_identifier)))))))))))
 
 ================================================================================
 empty statements
@@ -233,9 +233,9 @@ var positionPercentage: Float
                     selector: (simple_identifier))
                   args: (value_arguments
                     (value_argument
-                      (real_literal))
+                      expression: (real_literal))
                     (value_argument
-                      (real_literal))))))))))))
+                      expression: (real_literal))))))))))))
 
 ================================================================================
 getter after setter
@@ -267,7 +267,7 @@ var stringRepresentation: String
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    (simple_identifier))))))
+                    expression: (simple_identifier))))))
           (line_comment))))
     (getter
       (function_body
@@ -305,7 +305,7 @@ if (x > 0)
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    (simple_identifier)))))))))))
+                    expression: (simple_identifier)))))))))))
 
 ================================================================================
 Statements after return
@@ -396,9 +396,9 @@ internal val ImageBitmap.isEmptyPlaceholder: Boolean
                   expression: (simple_identifier)
                   args: (value_arguments
                     (value_argument
-                      (integer_literal))
+                      expression: (integer_literal))
                     (value_argument
-                      (integer_literal)))))))))))
+                      expression: (integer_literal)))))))))))
   (property_declaration
     modifiers: (modifiers
       (visibility_modifier))
@@ -476,7 +476,7 @@ while (true) when (val frame = input.readFrame(Long.MAX_VALUE, 0)) {
         expression: (simple_identifier)
         args: (value_arguments
           (value_argument
-            (boolean_literal))))))
+            expression: (boolean_literal))))))
   (statement
     (when_expression
       (when_subject
@@ -488,11 +488,11 @@ while (true) when (val frame = input.readFrame(Long.MAX_VALUE, 0)) {
             selector: (simple_identifier))
           args: (value_arguments
             (value_argument
-              (dot_qualified_expression
+              expression: (dot_qualified_expression
                 receiver: (simple_identifier)
                 selector: (simple_identifier)))
             (value_argument
-              (integer_literal)))))
+              expression: (integer_literal)))))
       (when_entries
         (when_entry
           (when_condition
@@ -514,9 +514,9 @@ while (true) when (val frame = input.readFrame(Long.MAX_VALUE, 0)) {
                   expression: (simple_identifier)
                   args: (value_arguments
                     (value_argument
-                      (simple_identifier))
+                      expression: (simple_identifier))
                     (value_argument
-                      (dot_qualified_expression
+                      expression: (dot_qualified_expression
                         receiver: (call_expression
                           expression: (dot_qualified_expression
                             receiver: (simple_identifier)
@@ -538,7 +538,7 @@ while (true) when (val frame = input.readFrame(Long.MAX_VALUE, 0)) {
             expression: (simple_identifier)
             args: (value_arguments
               (value_argument
-                (string_literal
+                expression: (string_literal
                   (string_content)
                   (interpolated_identifier)
                   (string_content)
@@ -548,6 +548,6 @@ while (true) when (val frame = input.readFrame(Long.MAX_VALUE, 0)) {
                       expression: (simple_identifier)
                       args: (value_arguments
                         (value_argument
-                          (dot_qualified_expression
+                          expression: (dot_qualified_expression
                             receiver: (simple_identifier)
                             selector: (simple_identifier)))))))))))))))
