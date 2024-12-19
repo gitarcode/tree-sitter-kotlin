@@ -41,19 +41,19 @@ fun foo() {
             (annotated_expression
                 (annotation
                 (constructor_invocation
-                    (user_type
-                    (type_identifier))
-                    (value_arguments
-                    (value_argument
-                        (lambda_literal
-                        parameters: (lambda_parameters
-                            (variable_declaration
-                            id: (simple_identifier)))
-                        body: (statements
-                            (statement
-                            (additive_expression
-                                (simple_identifier)
-                                (integer_literal)))))))))
+                    type: (user_type
+                        (type_identifier))
+                    args: (value_arguments
+                        (value_argument
+                            (lambda_literal
+                            parameters: (lambda_parameters
+                                (variable_declaration
+                                id: (simple_identifier)))
+                            body: (statements
+                                (statement
+                                (additive_expression
+                                    (simple_identifier)
+                                    (integer_literal)))))))))
                 (line_comment)
                 (call_expression
                 expression: (simple_identifier)
@@ -64,9 +64,9 @@ fun foo() {
             (annotated_expression
                 (annotation
                 (constructor_invocation
-                    (user_type
-                    (type_identifier))
-                    (value_arguments)))
+                    type: (user_type
+                        (type_identifier))
+                    args: (value_arguments)))
                 (parenthesized_expression
                 (lambda_literal
                     parameters: (lambda_parameters
@@ -645,11 +645,11 @@ enum class A {
                 (type_identifier)))
             (annotation
             (constructor_invocation
-                (user_type
-                (type_identifier))
-                (value_arguments
-                (value_argument
-                    (integer_literal))))))
+                type: (user_type
+                    (type_identifier))
+                args: (value_arguments
+                    (value_argument
+                        (integer_literal))))))
         name: (simple_identifier)
         arguments: (value_arguments))
         (enum_entry
@@ -665,9 +665,9 @@ enum class A {
             (visibility_modifier)
             (annotation
             (constructor_invocation
-                (user_type
-                (type_identifier))
-                (value_arguments))))
+                type: (user_type
+                    (type_identifier))
+                args: (value_arguments))))
         name: (simple_identifier)
         arguments: (value_arguments))
         (enum_entry
@@ -684,9 +684,9 @@ enum class A {
         modifiers: (modifiers
             (annotation
             (constructor_invocation
-                (user_type
-                (type_identifier))
-                (value_arguments))))
+                type: (user_type
+                    (type_identifier))
+                args: (value_arguments))))
         name: (simple_identifier))
         (function_declaration
         modifiers: (modifiers
@@ -859,9 +859,9 @@ val lambdaParameterNP: (@A C) -> C
         (type_modifiers
             (annotation
             (constructor_invocation
-                (user_type
-                (type_identifier))
-                (value_arguments))))
+                type: (user_type
+                    (type_identifier))
+                args: (value_arguments))))
         (parenthesized_type
             (function_type
             (function_type_parameters)
@@ -1252,22 +1252,22 @@ fun test() {
                     (type_identifier)))
                 (annotation
                     (constructor_invocation
-                    (user_type
+                    type: (user_type
                         (type_identifier))
-                    (value_arguments
+                    args: (value_arguments
                         (value_argument
                         (integer_literal)))))
                 (annotation
                     (constructor_invocation
-                    (user_type
+                    type: (user_type
                         (type_identifier)
-                        (type_arguments
+                            (type_arguments
                         (type_projection
                             type: (user_type
                             (type_identifier)))))
-                    (value_arguments
+                    args: (value_arguments
                         (value_argument
-                        (integer_literal)))))
+                            (integer_literal)))))
                 (annotation
                     (user_type
                     (type_identifier)))

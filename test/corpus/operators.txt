@@ -296,9 +296,9 @@ fun f() {}
     modifiers: (modifiers
       (annotation
         (constructor_invocation
-          (user_type
+          type: (user_type
             (type_identifier))
-          (value_arguments
+          args: (value_arguments
             (value_argument
               (collection_literal
                 (integer_literal)

@@ -523,9 +523,9 @@ class Square() : Rectangle(), Polygon {
       (class_parameters))
     (delegation_specifier
       (constructor_invocation
-        (user_type
+        type: (user_type
           (type_identifier))
-        (value_arguments)))
+        args: (value_arguments)))
     (delegation_specifier
       (user_type
         (type_identifier)))

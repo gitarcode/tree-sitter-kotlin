@@ -146,9 +146,9 @@ const val BAZ = "baz"
     modifiers: (modifiers
       (annotation
         (constructor_invocation
-          (user_type
+          type: (user_type
             (type_identifier))
-          (value_arguments
+          args: (value_arguments
             (value_argument
               (simple_identifier)
               (string_literal
@@ -181,9 +181,9 @@ const val BAZ = "baz"
     modifiers: (modifiers
       (annotation
         (constructor_invocation
-          (user_type
+          type: (user_type
             (type_identifier))
-          (value_arguments
+          args: (value_arguments
             (value_argument
               (simple_identifier)
               (string_literal
@@ -213,18 +213,18 @@ class SaneFlowPlaysScrabble : ShakespearePlaysScrabble() {
     modifiers: (modifiers
       (annotation
         (constructor_invocation
-          (user_type
+          type: (user_type
             (type_identifier))
-          (value_arguments
+          args: (value_arguments
             (value_argument
               (simple_identifier)
               (integer_literal))))))
     name: (simple_identifier)
     (delegation_specifier
       (constructor_invocation
-        (user_type
+        type: (user_type
           (type_identifier))
-        (value_arguments)))
+        args: (value_arguments)))
     body: (class_body)))
 
 
@@ -266,9 +266,9 @@ fun parse(xml: String): Element {
             (annotated_expression
               (annotation
                 (constructor_invocation
-                  (user_type
+                  type: (user_type
                     (type_identifier))
-                  (value_arguments
+                  args: (value_arguments
                     (value_argument
                       (string_literal
                         (string_content))))))
@@ -328,9 +328,9 @@ return a
     (annotated_expression
       (annotation
         (constructor_invocation
-          (user_type
+          type: (user_type
             (type_identifier))
-          (value_arguments
+          args: (value_arguments
             (value_argument
               (callable_reference
                 (user_type
@@ -352,9 +352,9 @@ if (it.isCanceled) deferred.cancel() else deferred.complete(it.result as T)
     (annotated_expression
       (annotation
         (constructor_invocation
-          (user_type
+          type: (user_type
             (type_identifier))
-          (value_arguments
+          args: (value_arguments
             (value_argument
               (string_literal
                 (string_content))))))

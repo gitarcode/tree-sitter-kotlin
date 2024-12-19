@@ -202,9 +202,9 @@ public data class PluginName(
             (type_identifier)))))
     (delegation_specifier
       (constructor_invocation
-        (user_type
+        type: (user_type
           (type_identifier))
-        (value_arguments
+        args: (value_arguments
           (value_argument
             (simple_identifier)))))
     body: (class_body)))

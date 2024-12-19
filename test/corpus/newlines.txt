@@ -883,7 +883,7 @@ abstract class UserTypeBuilder<
             (type_identifier)))))
     (delegation_specifier
       (constructor_invocation
-        (user_type
+        type: (user_type
           (type_identifier)
           (type_arguments
             (type_projection
@@ -892,7 +892,7 @@ abstract class UserTypeBuilder<
             (type_projection
               type: (user_type
                 (type_identifier)))))
-        (value_arguments
+        args: (value_arguments
           (value_argument
             (dot_qualified_expression
               receiver: (simple_identifier)
@@ -1181,9 +1181,9 @@ class A() : B
       (class_parameters))
     (delegation_specifier
       (constructor_invocation
-        (user_type
+        type: (user_type
           (type_identifier))
-        (value_arguments
+        args: (value_arguments
           (value_argument
             (simple_identifier))
           (value_argument

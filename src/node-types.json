@@ -997,20 +997,27 @@
   {
     "type": "constructor_invocation",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "user_type",
-          "named": true
-        },
-        {
-          "type": "value_arguments",
-          "named": true
-        }
-      ]
+    "fields": {
+      "args": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "value_arguments",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "user_type",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {

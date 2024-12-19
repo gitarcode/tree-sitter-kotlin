@@ -381,9 +381,9 @@ module.exports = grammar({
     ),
 
     constructor_invocation: $ => seq(
-      $.user_type,
+      field('type', $.user_type),
       repeat($._NL),
-      $.value_arguments
+      field('args', $.value_arguments)
     ),
 
     explicit_delegation: $ => seq(

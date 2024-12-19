@@ -181,9 +181,9 @@ class D : SomeInterface
     name: (simple_identifier)
     (delegation_specifier
       (constructor_invocation
-        (user_type
+        type: (user_type
           (type_identifier))
-        (value_arguments)))
+        args: (value_arguments)))
     body: (class_body))
   (class_declaration
     name: (simple_identifier)
@@ -195,9 +195,9 @@ class D : SomeInterface
             (type_identifier)))))
     (delegation_specifier
       (constructor_invocation
-        (user_type
+        type: (user_type
           (type_identifier))
-        (value_arguments
+        args: (value_arguments
           (value_argument
             (simple_identifier))))))
   (class_declaration
@@ -417,9 +417,9 @@ enum class Enum {
         modifiers: (modifiers
           (annotation
             (constructor_invocation
-              (user_type
+              type: (user_type
                 (type_identifier))
-              (value_arguments
+              args: (value_arguments
                 (value_argument
                   (string_literal
                     (string_content)))))))
@@ -502,9 +502,9 @@ fun interface Authenticator {
         modifiers: (modifiers
           (annotation
             (constructor_invocation
-              (user_type
+              type: (user_type
                 (type_identifier))
-              (value_arguments
+              args: (value_arguments
                 (value_argument
                   (callable_reference
                     (user_type
@@ -918,9 +918,9 @@ private data class Cancelled(val job: TestJob) : Action()
             (type_identifier)))))
     (delegation_specifier
       (constructor_invocation
-        (user_type
+        type: (user_type
           (type_identifier))
-        (value_arguments))))
+        args: (value_arguments))))
   (class_declaration
     modifiers: (modifiers
       (visibility_modifier)
@@ -941,9 +941,9 @@ private data class Cancelled(val job: TestJob) : Action()
               (type_identifier))))))
     (delegation_specifier
       (constructor_invocation
-        (user_type
+        type: (user_type
           (type_identifier))
-        (value_arguments))))
+        args: (value_arguments))))
   (class_declaration
     modifiers: (modifiers
       (visibility_modifier)
@@ -958,9 +958,9 @@ private data class Cancelled(val job: TestJob) : Action()
             (type_identifier)))))
     (delegation_specifier
       (constructor_invocation
-        (user_type
+        type: (user_type
           (type_identifier))
-        (value_arguments))))
+        args: (value_arguments))))
   (class_declaration
     modifiers: (modifiers
       (visibility_modifier)
@@ -975,9 +975,9 @@ private data class Cancelled(val job: TestJob) : Action()
             (type_identifier)))))
     (delegation_specifier
       (constructor_invocation
-        (user_type
+        type: (user_type
           (type_identifier))
-        (value_arguments)))))
+        args: (value_arguments)))))
 
 
 ================================================================================
@@ -1058,9 +1058,9 @@ abstract class AbstractNativeMacApplicationPackageAppDirTask : AbstractNativeMac
     name: (simple_identifier)
     (delegation_specifier
       (constructor_invocation
-        (user_type
+        type: (user_type
           (type_identifier))
-        (value_arguments)))
+        args: (value_arguments)))
     body: (class_body
       (property_declaration
         modifiers: (modifiers
@@ -1075,9 +1075,9 @@ abstract class AbstractNativeMacApplicationPackageAppDirTask : AbstractNativeMac
           (annotation
             (use_site_target)
             (constructor_invocation
-              (user_type
+              type: (user_type
                 (type_identifier))
-              (value_arguments
+              args: (value_arguments
                 (value_argument
                   (dot_qualified_expression
                     receiver: (simple_identifier)
@@ -1132,9 +1132,9 @@ public enum class CodeStyleValue {
     modifiers: (modifiers
       (annotation
         (constructor_invocation
-          (user_type
+          type: (user_type
             (type_identifier))
-          (value_arguments
+          args: (value_arguments
             (value_argument
               (string_literal
                 (string_content))))))
