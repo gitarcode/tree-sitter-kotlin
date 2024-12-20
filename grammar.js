@@ -1272,7 +1272,7 @@ module.exports = grammar({
         field("receiver", $.this_expression)
       )),
       "::",
-      choice($.simple_identifier, "class")
+      choice(field("name", $.simple_identifier), "class")
     )),
 
     _assignment_operator: $ => choice("=", "+=", "-=", "*=", "/=", "%="),

@@ -560,6 +560,16 @@
     "type": "callable_reference",
     "named": true,
     "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "simple_identifier",
+            "named": true
+          }
+        ]
+      },
       "receiver": {
         "multiple": false,
         "required": false,
@@ -574,16 +584,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "simple_identifier",
-          "named": true
-        }
-      ]
     }
   },
   {

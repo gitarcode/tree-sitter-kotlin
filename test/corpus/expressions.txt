@@ -1059,7 +1059,7 @@ BufferedChannel<*>::registerSelectForSend as RegistrationFunction
           (type_identifier)
           (type_arguments
             (type_projection)))
-        (simple_identifier))
+        name: (simple_identifier))
       type: (user_type
         (type_identifier)))))
 
@@ -1279,7 +1279,7 @@ String?::plus
     (callable_reference
       receiver: (user_type
         (type_identifier))
-      (simple_identifier))))
+      name: (simple_identifier))))
 
 ================================================================================
 Null-safe callable expression with space in between
@@ -1294,7 +1294,7 @@ String? ::plus
     (callable_reference
       receiver: (user_type
         (type_identifier))
-      (simple_identifier))))
+      name: (simple_identifier))))
 
 ================================================================================
 Spread expression

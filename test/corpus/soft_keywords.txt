@@ -74,4 +74,4 @@ class  A {
           (callable_reference
             receiver: (user_type
               (type_identifier))
-            (simple_identifier)))))))
+            name: (simple_identifier)))))))

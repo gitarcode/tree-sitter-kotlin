@@ -7154,8 +7154,12 @@
             "type": "CHOICE",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "simple_identifier"
+                "type": "FIELD",
+                "name": "name",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "simple_identifier"
+                }
               },
               {
                 "type": "STRING",
