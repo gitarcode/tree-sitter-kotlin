@@ -7101,8 +7101,12 @@
                     "type": "SEQ",
                     "members": [
                       {
-                        "type": "SYMBOL",
-                        "name": "user_type"
+                        "type": "FIELD",
+                        "name": "receiver",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "user_type"
+                        }
                       },
                       {
                         "type": "CHOICE",
@@ -7128,8 +7132,12 @@
                     ]
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "this_expression"
+                    "type": "FIELD",
+                    "name": "receiver",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "this_expression"
+                    }
                   }
                 ]
               },

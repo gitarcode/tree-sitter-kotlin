@@ -848,7 +848,7 @@ SceneStateParameters::class.java
   (statement
     (dot_qualified_expression
       receiver: (callable_reference
-        (user_type
+        receiver: (user_type
           (type_identifier)))
       selector: (simple_identifier))))
 
@@ -891,12 +891,12 @@ this@A::class.simpleName
   (statement
     (dot_qualified_expression
       receiver: (callable_reference
-        (this_expression))
+        receiver: (this_expression))
       selector: (simple_identifier)))
   (statement
     (dot_qualified_expression
       receiver: (callable_reference
-        (this_expression
+        receiver: (this_expression
           (type_identifier)))
       selector: (simple_identifier))))
 
@@ -1055,7 +1055,7 @@ BufferedChannel<*>::registerSelectForSend as RegistrationFunction
   (statement
     (as_expression
       (callable_reference
-        (user_type
+        receiver: (user_type
           (type_identifier)
           (type_arguments
             (type_projection)))
@@ -1277,7 +1277,7 @@ String?::plus
 (source_file
   (statement
     (callable_reference
-      (user_type
+      receiver: (user_type
         (type_identifier))
       (simple_identifier))))
 
@@ -1292,7 +1292,7 @@ String? ::plus
 (source_file
   (statement
     (callable_reference
-      (user_type
+      receiver: (user_type
         (type_identifier))
       (simple_identifier))))
 

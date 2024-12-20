@@ -72,6 +72,6 @@ class  A {
               (type_identifier))))
         (property_delegate
           (callable_reference
-            (user_type
+            receiver: (user_type
               (type_identifier))
             (simple_identifier)))))))

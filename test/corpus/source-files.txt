@@ -50,7 +50,7 @@ Multiple file annotations
       args: (value_arguments
         (value_argument
           expression: (callable_reference
-            (user_type
+            receiver: (user_type
               (type_identifier))))))))
 
 ================================================================================
