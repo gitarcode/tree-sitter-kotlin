@@ -905,7 +905,7 @@ module.exports = grammar({
 
     range_expression: $ => prec.left(PREC.RANGE, seq($.expression, repeat($._external_nl), $._range_opeartor, repeat($._NL), $.expression)),
 
-    infix_expression: $ => prec.left(PREC.INFIX, seq($.expression, repeat($._external_nl), $.simple_identifier, repeat($._NL), $.expression)),
+    infix_expression: $ => prec.left(PREC.INFIX, seq($.expression, repeat($._external_nl), field("op", $.simple_identifier), repeat($._NL), $.expression)),
 
     elvis_expression: $ => prec.left(PREC.ELVIS, seq($.expression, repeat($._external_nl), $._ELVIS, repeat($._NL), $.expression)),
 

@@ -1249,7 +1249,7 @@ slideInHorizontally { w -> multiplier * w } with
                 (multiplicative_expression
                   (simple_identifier)
                   (simple_identifier)))))))
-      (simple_identifier)
+      op: (simple_identifier)
       (call_expression
         expression: (simple_identifier)
         lambda_arg: (annotated_lambda

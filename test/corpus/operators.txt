@@ -168,7 +168,7 @@ c)
     (parenthesized_expression
       (infix_expression
         (simple_identifier)
-        (simple_identifier)
+        op: (simple_identifier)
         (simple_identifier)))))
 
 ================================================================================

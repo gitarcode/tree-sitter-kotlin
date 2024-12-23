@@ -347,10 +347,10 @@ fun foo() {
                 (simple_identifier)
                 (infix_expression
                     (simple_identifier)
-                    (simple_identifier)
+                    op: (simple_identifier)
                     (additive_expression
-                    (simple_identifier)
-                    (integer_literal))))))
+                        (simple_identifier)
+                        (integer_literal))))))
             (statement
             (annotated_expression
                 (annotation
@@ -590,10 +590,10 @@ fun foo() {
                 (simple_identifier)
                 (infix_expression
                     (simple_identifier)
-                    (simple_identifier)
+                    op: (simple_identifier)
                     (additive_expression
-                    (simple_identifier)
-                    (integer_literal))))))
+                        (simple_identifier)
+                        (integer_literal))))))
             (statement
             (annotated_expression
                 (annotation
