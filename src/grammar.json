@@ -4329,7 +4329,7 @@
       }
     },
     "simple_call_expression": {
-      "type": "PREC_RIGHT",
+      "type": "PREC",
       "value": "call",
       "content": {
         "type": "SEQ",
