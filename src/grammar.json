@@ -8878,9 +8878,6 @@
       "comparison_expression"
     ],
     [
-      "annotated_expression"
-    ],
-    [
       "class_body",
       "enum_class_body"
     ],
@@ -9046,30 +9043,6 @@
       "_semi"
     ],
     [
-      "_loop_statement",
-      "assignment",
-      "annotated_expression",
-      "modifiers"
-    ],
-    [
-      "_loop_statement",
-      "assignment",
-      "annotated_expression"
-    ],
-    [
-      "variable_declaration",
-      "_loop_statement",
-      "assignment",
-      "annotated_expression",
-      "modifiers"
-    ],
-    [
-      "variable_declaration",
-      "_loop_statement",
-      "assignment",
-      "annotated_expression"
-    ],
-    [
       "delegation_specifier",
       "constructor_invocation"
     ],
@@ -9078,42 +9051,10 @@
       "explicit_delegation"
     ],
     [
-      "_loop_statement",
-      "assignment",
-      "labeled_expression"
-    ],
-    [
-      "labeled_expression"
-    ],
-    [
       "simple_call_expression",
       "_call_arguments"
     ],
     [
-      "annotated_expression",
-      "modifiers"
-    ],
-    [
-      "statement",
-      "labeled_expression"
-    ],
-    [
-      "statement",
-      "annotated_expression"
-    ],
-    [
-      "variable_declaration",
-      "statement",
-      "annotated_expression",
-      "modifiers"
-    ],
-    [
-      "variable_declaration",
-      "statement",
-      "annotated_expression"
-    ],
-    [
-      "statement",
       "annotated_expression",
       "modifiers"
     ],
