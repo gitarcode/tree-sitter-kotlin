@@ -182,37 +182,42 @@ fun foo() {
                 args: (value_arguments))))
             (statement
             (assignment
+                left: (annotated_expression
                 (annotation
-                (user_type
+                    (user_type
                     (type_identifier)))
                 (line_comment)
                 (multiline_comment)
-                left: (simple_identifier)
+                (simple_identifier))
                 right: (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments))))
             (line_comment)
             (statement
             (assignment
+                left: (annotated_expression
                 (annotation
-                (user_type
+                    (user_type
                     (type_identifier)))
-                left: (simple_identifier)
+                (simple_identifier))
                 right: (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments))))
             (statement
             (assignment
+                left: (annotated_expression
                 (annotation
-                (user_type
+                    (user_type
                     (type_identifier)))
-                (annotation
-                (user_type
-                    (type_identifier)))
-                (annotation
-                (user_type
-                    (type_identifier)))
-                left: (simple_identifier)
+                (annotated_expression
+                    (annotation
+                    (user_type
+                        (type_identifier)))
+                    (annotated_expression
+                    (annotation
+                        (user_type
+                        (type_identifier)))
+                    (simple_identifier))))
                 right: (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments))))
@@ -227,10 +232,11 @@ fun foo() {
                 (statements
                     (statement
                     (assignment
+                        left: (annotated_expression
                         (annotation
-                        (user_type
+                            (user_type
                             (type_identifier)))
-                        left: (simple_identifier)
+                        (simple_identifier))
                         right: (call_expression
                         expression: (simple_identifier)
                         args: (value_arguments))))))))
@@ -242,10 +248,11 @@ fun foo() {
                 (integer_literal)
                 (integer_literal))
                 body: (assignment
-                (annotation
+                left: (annotated_expression
+                    (annotation
                     (user_type
-                    (type_identifier)))
-                left: (simple_identifier)
+                        (type_identifier)))
+                    (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))))
@@ -255,10 +262,11 @@ fun foo() {
                 (integer_literal)
                 (integer_literal))
                 consequence: (assignment
-                (annotation
+                left: (annotated_expression
+                    (annotation
                     (user_type
-                    (type_identifier)))
-                left: (simple_identifier)
+                        (type_identifier)))
+                    (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))))
@@ -268,18 +276,20 @@ fun foo() {
                 (integer_literal)
                 (integer_literal))
                 consequence: (assignment
-                (annotation
+                left: (annotated_expression
+                    (annotation
                     (user_type
-                    (type_identifier)))
-                left: (simple_identifier)
+                        (type_identifier)))
+                    (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))
                 alternative: (assignment
-                (annotation
+                left: (annotated_expression
+                    (annotation
                     (user_type
-                    (type_identifier)))
-                left: (simple_identifier)
+                        (type_identifier)))
+                    (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))))
@@ -287,20 +297,22 @@ fun foo() {
             (while_statement
                 (boolean_literal)
                 (assignment
-                (annotation
+                left: (annotated_expression
+                    (annotation
                     (user_type
-                    (type_identifier)))
-                left: (simple_identifier)
+                        (type_identifier)))
+                    (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))))
             (statement
             (do_while_statement
                 (assignment
-                (annotation
+                left: (annotated_expression
+                    (annotation
                     (user_type
-                    (type_identifier)))
-                left: (simple_identifier)
+                        (type_identifier)))
+                    (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))
@@ -314,10 +326,11 @@ fun foo() {
                     (when_condition
                     (integer_literal))
                     (assignment
-                    (annotation
+                    left: (annotated_expression
+                        (annotation
                         (user_type
-                        (type_identifier)))
-                    left: (simple_identifier)
+                            (type_identifier)))
+                        (simple_identifier))
                     right: (call_expression
                         expression: (simple_identifier)
                         args: (value_arguments)))))))
@@ -331,10 +344,11 @@ fun foo() {
                     body: (statements
                     (statement
                         (assignment
-                        (annotation
+                        left: (annotated_expression
+                            (annotation
                             (user_type
-                            (type_identifier)))
-                        left: (simple_identifier)
+                                (type_identifier)))
+                            (simple_identifier))
                         right: (call_expression
                             expression: (simple_identifier)
                             args: (value_arguments)))))))))
@@ -349,8 +363,8 @@ fun foo() {
                     (simple_identifier)
                     op: (simple_identifier)
                     (additive_expression
-                        (simple_identifier)
-                        (integer_literal))))))
+                    (simple_identifier)
+                    (integer_literal))))))
             (statement
             (annotated_expression
                 (annotation
@@ -440,22 +454,25 @@ fun foo() {
                 args: (value_arguments))))
             (statement
             (assignment
+                left: (annotated_expression
                 (annotation
-                (user_type
+                    (user_type
                     (type_identifier)))
-                left: (simple_identifier)
+                (simple_identifier))
                 right: (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments))))
             (statement
             (assignment
+                left: (annotated_expression
                 (annotation
-                (user_type
+                    (user_type
                     (type_identifier)))
-                (annotation
-                (user_type
-                    (type_identifier)))
-                left: (simple_identifier)
+                (annotated_expression
+                    (annotation
+                    (user_type
+                        (type_identifier)))
+                    (simple_identifier)))
                 right: (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments))))
@@ -470,10 +487,11 @@ fun foo() {
                 (statements
                     (statement
                     (assignment
+                        left: (annotated_expression
                         (annotation
-                        (user_type
+                            (user_type
                             (type_identifier)))
-                        left: (simple_identifier)
+                        (simple_identifier))
                         right: (call_expression
                         expression: (simple_identifier)
                         args: (value_arguments))))))))
@@ -485,10 +503,11 @@ fun foo() {
                 (integer_literal)
                 (integer_literal))
                 body: (assignment
-                (annotation
+                left: (annotated_expression
+                    (annotation
                     (user_type
-                    (type_identifier)))
-                left: (simple_identifier)
+                        (type_identifier)))
+                    (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))))
@@ -498,10 +517,11 @@ fun foo() {
                 (integer_literal)
                 (integer_literal))
                 consequence: (assignment
-                (annotation
+                left: (annotated_expression
+                    (annotation
                     (user_type
-                    (type_identifier)))
-                left: (simple_identifier)
+                        (type_identifier)))
+                    (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))))
@@ -511,18 +531,20 @@ fun foo() {
                 (integer_literal)
                 (integer_literal))
                 consequence: (assignment
-                (annotation
+                left: (annotated_expression
+                    (annotation
                     (user_type
-                    (type_identifier)))
-                left: (simple_identifier)
+                        (type_identifier)))
+                    (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))
                 alternative: (assignment
-                (annotation
+                left: (annotated_expression
+                    (annotation
                     (user_type
-                    (type_identifier)))
-                left: (simple_identifier)
+                        (type_identifier)))
+                    (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))))
@@ -530,20 +552,22 @@ fun foo() {
             (while_statement
                 (boolean_literal)
                 (assignment
-                (annotation
+                left: (annotated_expression
+                    (annotation
                     (user_type
-                    (type_identifier)))
-                left: (simple_identifier)
+                        (type_identifier)))
+                    (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))))
             (statement
             (do_while_statement
                 (assignment
-                (annotation
+                left: (annotated_expression
+                    (annotation
                     (user_type
-                    (type_identifier)))
-                left: (simple_identifier)
+                        (type_identifier)))
+                    (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))
@@ -557,10 +581,11 @@ fun foo() {
                     (when_condition
                     (integer_literal))
                     (assignment
-                    (annotation
+                    left: (annotated_expression
+                        (annotation
                         (user_type
-                        (type_identifier)))
-                    left: (simple_identifier)
+                            (type_identifier)))
+                        (simple_identifier))
                     right: (call_expression
                         expression: (simple_identifier)
                         args: (value_arguments)))))))
@@ -574,10 +599,11 @@ fun foo() {
                     body: (statements
                     (statement
                         (assignment
-                        (annotation
+                        left: (annotated_expression
+                            (annotation
                             (user_type
-                            (type_identifier)))
-                        left: (simple_identifier)
+                                (type_identifier)))
+                            (simple_identifier))
                         right: (call_expression
                             expression: (simple_identifier)
                             args: (value_arguments)))))))))
@@ -592,8 +618,8 @@ fun foo() {
                     (simple_identifier)
                     op: (simple_identifier)
                     (additive_expression
-                        (simple_identifier)
-                        (integer_literal))))))
+                    (simple_identifier)
+                    (integer_literal))))))
             (statement
             (annotated_expression
                 (annotation
