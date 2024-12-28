@@ -302,10 +302,7 @@ module.exports = grammar({
       repeat($._semi)
     ),
 
-    _top_level_statement: $ => choice(
-      $._loop_statement,
-      prec("top_level", $.expression)
-    ), 
+    _top_level_statement: $ => prec("top_level", $.expression), 
 
     type_alias: $ => prec.right(seq(
       optional(field("modifiers", $.modifiers)),
@@ -729,8 +726,6 @@ module.exports = grammar({
 
     statement: $ => choice(
       $._declaration,
-      // seq(repeat(choice($.label, $._annotation)), $.assignment),
-      seq(repeat(choice($.label, $._annotation)), $._loop_statement),
       $.expression
     ),
 
@@ -820,7 +815,8 @@ module.exports = grammar({
       $._binary_expression,
       $._primary_expression,
       $.jump_expression,
-      $.assignment
+      $.assignment,
+      $._loop_statement
     ),
 
     // Unary expressions
@@ -1200,9 +1196,7 @@ module.exports = grammar({
 
     _control_body_structure: $ => choice(
       prec("control", $.expression), 
-      // $.assignment, 
       $.block,
-      $._loop_statement,
     ),
 
     when_subject: $ => seq(

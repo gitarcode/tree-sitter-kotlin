@@ -379,3 +379,42 @@ if (it.isCanceled) deferred.cancel() else deferred.complete(it.result as T)
                   selector: (simple_identifier))
                 type: (user_type
                   (type_identifier))))))))))
+
+======================
+Method with two annotations
+======================
+
+class ExampleTest {
+    @OptIn(ExperimentalTestApi::class)
+    @Test
+    fun myTest() = runComposeUiTest {
+    }
+}
+
+---
+
+(source_file
+  (class_declaration
+    name: (simple_identifier)
+    body: (class_body
+      (function_declaration
+        modifiers: (modifiers
+          (annotation
+            (constructor_invocation
+              type: (user_type
+                (type_identifier))
+              args: (value_arguments
+                (value_argument
+                  expression: (callable_reference
+                    receiver: (user_type
+                      (type_identifier)))))))
+          (annotation
+            (user_type
+              (type_identifier))))
+        name: (simple_identifier)
+        parameters: (function_value_parameters)
+        body: (function_body
+          expression: (call_expression
+            expression: (simple_identifier)
+            lambda_arg: (annotated_lambda
+              (lambda_literal))))))))
