@@ -1282,6 +1282,13 @@
           ]
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_NL"
+          }
+        },
+        {
           "type": "STRING",
           "value": "by"
         },
@@ -9066,6 +9073,11 @@
     [
       "_non_call_primary_expression",
       "callable_reference"
+    ],
+    [
+      "delegation_specifier",
+      "constructor_invocation",
+      "explicit_delegation"
     ]
   ],
   "precedences": [

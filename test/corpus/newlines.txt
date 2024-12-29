@@ -1228,3 +1228,32 @@ var a: (
             type: (user_type
               (type_identifier))))))
     initializer: (null_literal)))
+
+================================================================================
+Newline before by in explicit delegation
+================================================================================
+
+application.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks
+    by noOpDelegate() {
+    }
+)
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (call_expression
+      expression: (dot_qualified_expression
+        receiver: (simple_identifier)
+        selector: (simple_identifier))
+      args: (value_arguments
+        (value_argument
+          expression: (object_literal
+            (delegation_specifier
+              (explicit_delegation
+                (user_type
+                  (type_identifier)
+                  (type_identifier))
+                (call_expression
+                  expression: (simple_identifier)
+                  args: (value_arguments))))
+            (class_body)))))))

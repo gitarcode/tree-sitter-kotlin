@@ -178,6 +178,7 @@ module.exports = grammar({
     [$.annotated_expression, $.modifiers],
     [$.variable_declaration, $.annotated_expression, $.modifiers],
     [$._non_call_primary_expression, $.callable_reference],
+    [$.delegation_specifier, $.constructor_invocation, $.explicit_delegation],
   ],
 
   precedences: $ => [
@@ -397,6 +398,7 @@ module.exports = grammar({
         $.user_type,
         $.function_type
       ),
+      repeat($._NL),
       "by",
       repeat($._NL),
       choice(
