@@ -169,7 +169,7 @@ import androidx.compose.desktop.initCompose
 
 (source_file
   (multiline_comment)
-  (package_header
+  package: (package_header
     (identifier
       (simple_identifier)))
   (line_comment)
@@ -190,7 +190,7 @@ package test import a.b.c import d.e.f
 --------------------------------------------------------------------------------
 
 (source_file
-  (package_header
+  package: (package_header
     (identifier
       (simple_identifier)))
   (import_header
@@ -219,7 +219,7 @@ import androidx.compose.desktop.initCompose
 --------------------------------------------------------------------------------
 
 (source_file
-  (package_header
+  package: (package_header
     (identifier
       (simple_identifier)))
   (line_comment)

@@ -251,7 +251,7 @@ module.exports = grammar({
       optional($.shebang_line),
       repeat($.file_annotation),
       repeat($._NL),
-      optional($.package_header),
+      optional(field("package", $.package_header)),
       repeat($._NL),
       repeat(seq($.import_header, optional(seq($._semi, repeat($._NL))))),
       // In principle, we either parse a Kotlin file (.kt) or a Kotlin script (.kts).

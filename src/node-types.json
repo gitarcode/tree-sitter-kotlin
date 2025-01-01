@@ -2966,7 +2966,18 @@
     "type": "source_file",
     "named": true,
     "root": true,
-    "fields": {},
+    "fields": {
+      "package": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "package_header",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": false,
@@ -2989,10 +3000,6 @@
         },
         {
           "type": "object_declaration",
-          "named": true
-        },
-        {
-          "type": "package_header",
           "named": true
         },
         {
