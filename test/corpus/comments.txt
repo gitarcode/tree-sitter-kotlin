@@ -192,7 +192,7 @@ public data class PluginName(
       (visibility_modifier)
       (class_modifier))
     name: (simple_identifier)
-    (primary_constructor
+    primary_constructor: (primary_constructor
       (class_parameters
         (multiline_comment)
         (class_parameter
@@ -549,7 +549,7 @@ class C {
   (line_comment)
   (class_declaration
     name: (simple_identifier)
-    (primary_constructor
+    primary_constructor: (primary_constructor
       (class_parameters))
     (delegation_specifier
       (user_type

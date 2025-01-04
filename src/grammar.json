@@ -597,8 +597,12 @@
                     }
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "primary_constructor"
+                    "type": "FIELD",
+                    "name": "primary_constructor",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "primary_constructor"
+                    }
                   }
                 ]
               },
@@ -783,8 +787,12 @@
                   }
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "primary_constructor"
+                  "type": "FIELD",
+                  "name": "primary_constructor",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "primary_constructor"
+                  }
                 }
               ]
             },

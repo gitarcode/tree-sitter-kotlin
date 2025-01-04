@@ -151,7 +151,7 @@ data class Vector2D(
     modifiers: (modifiers
       (class_modifier))
     name: (simple_identifier)
-    (primary_constructor
+    primary_constructor: (primary_constructor
       (class_parameters
         (class_parameter
           binding_pattern: (binding_pattern_kind)
@@ -187,7 +187,7 @@ class D : SomeInterface
     body: (class_body))
   (class_declaration
     name: (simple_identifier)
-    (primary_constructor
+    primary_constructor: (primary_constructor
       (class_parameters
         (class_parameter
           name: (simple_identifier)
@@ -269,7 +269,7 @@ class Test(x: Int, y: Int) {
 (source_file
   (class_declaration
     name: (simple_identifier)
-    (primary_constructor
+    primary_constructor: (primary_constructor
       (class_parameters
         (class_parameter
           name: (simple_identifier)
@@ -340,7 +340,7 @@ enum class Enum {
     modifiers: (modifiers
       (class_modifier))
     name: (simple_identifier)
-    (primary_constructor
+    primary_constructor: (primary_constructor
       (class_parameters
         (class_parameter
           binding_pattern: (binding_pattern_kind)
@@ -441,7 +441,7 @@ data class JwtConfiguration(
     modifiers: (modifiers
       (class_modifier))
     name: (simple_identifier)
-    (primary_constructor
+    primary_constructor: (primary_constructor
       (class_parameters
         (class_parameter
           binding_pattern: (binding_pattern_kind)
@@ -471,7 +471,7 @@ value class Password(private val s: String)
           (type_identifier)))
       (class_modifier))
     name: (simple_identifier)
-    (primary_constructor
+    primary_constructor: (primary_constructor
       (class_parameters
         (class_parameter
           modifiers: (modifiers
@@ -574,7 +574,7 @@ class Foo private constructor(a: Int) {
 (source_file
   (class_declaration
     name: (simple_identifier)
-    (primary_constructor
+    primary_constructor: (primary_constructor
       modifiers: (modifiers
         (visibility_modifier))
       (class_parameters
@@ -721,7 +721,7 @@ class Derived(b: Base) : Base by b {
 (source_file
   (class_declaration
     name: (simple_identifier)
-    (primary_constructor
+    primary_constructor: (primary_constructor
       (class_parameters
         (class_parameter
           name: (simple_identifier)
@@ -804,7 +804,7 @@ private class SendBroadcast(
     modifiers: (modifiers
       (visibility_modifier))
     name: (simple_identifier)
-    (primary_constructor
+    primary_constructor: (primary_constructor
       (class_parameters
         (class_parameter
           binding_pattern: (binding_pattern_kind)
@@ -909,7 +909,7 @@ private data class Cancelled(val job: TestJob) : Action()
       (visibility_modifier)
       (class_modifier))
     name: (simple_identifier)
-    (primary_constructor
+    primary_constructor: (primary_constructor
       (class_parameters
         (class_parameter
           binding_pattern: (binding_pattern_kind)
@@ -926,7 +926,7 @@ private data class Cancelled(val job: TestJob) : Action()
       (visibility_modifier)
       (class_modifier))
     name: (simple_identifier)
-    (primary_constructor
+    primary_constructor: (primary_constructor
       (class_parameters
         (class_parameter
           binding_pattern: (binding_pattern_kind)
@@ -949,7 +949,7 @@ private data class Cancelled(val job: TestJob) : Action()
       (visibility_modifier)
       (class_modifier))
     name: (simple_identifier)
-    (primary_constructor
+    primary_constructor: (primary_constructor
       (class_parameters
         (class_parameter
           binding_pattern: (binding_pattern_kind)
@@ -966,7 +966,7 @@ private data class Cancelled(val job: TestJob) : Action()
       (visibility_modifier)
       (class_modifier))
     name: (simple_identifier)
-    (primary_constructor
+    primary_constructor: (primary_constructor
       (class_parameters
         (class_parameter
           binding_pattern: (binding_pattern_kind)

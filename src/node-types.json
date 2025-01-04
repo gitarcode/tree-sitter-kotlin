@@ -737,6 +737,16 @@
             "named": true
           }
         ]
+      },
+      "primary_constructor": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "primary_constructor",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
@@ -749,10 +759,6 @@
         },
         {
           "type": "delegation_specifier",
-          "named": true
-        },
-        {
-          "type": "primary_constructor",
           "named": true
         },
         {

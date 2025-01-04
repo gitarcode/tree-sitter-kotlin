@@ -873,7 +873,7 @@ abstract class UserTypeBuilder<
             (type_projection
               type: (user_type
                 (type_identifier)))))))
-    (primary_constructor
+    primary_constructor: (primary_constructor
       modifiers: (modifiers
         (visibility_modifier))
       (class_parameters
@@ -1177,7 +1177,7 @@ class A() : B
 (source_file
   (class_declaration
     name: (simple_identifier)
-    (primary_constructor
+    primary_constructor: (primary_constructor
       (class_parameters))
     (delegation_specifier
       (constructor_invocation
