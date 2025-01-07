@@ -872,12 +872,17 @@ module.exports = grammar({
     
     index_access_expression: $ => prec("index", seq(
       field("expression", $.expression), 
-      "[",
-      field("index", $.expression),
-      repeat(seq(",", $.expression)),
-      optional(","),
-      "]")
+      field("open_bracket", $.open_bracket),
+      repeat($._NL),
+      sep1(field("index", $.expression), repeat($._NL), ",", repeat($._NL)),
+      repeat($._NL),
+      optional(seq(",", repeat($._NL))),
+      field("close_bracket", $.close_bracket),)
     ),
+
+    open_bracket: $ => "[",
+
+    close_bracket: $ => "]",
 
     annotated_expression: $ => prec("annotation", seq(
       $._annotation, $.expression

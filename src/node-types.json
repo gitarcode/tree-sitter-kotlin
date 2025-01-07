@@ -873,6 +873,11 @@
     }
   },
   {
+    "type": "close_bracket",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "collection_literal",
     "named": true,
     "fields": {},
@@ -1919,6 +1924,16 @@
     "type": "index_access_expression",
     "named": true,
     "fields": {
+      "close_bracket": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "close_bracket",
+            "named": true
+          }
+        ]
+      },
       "expression": {
         "multiple": false,
         "required": true,
@@ -1930,7 +1945,7 @@
         ]
       },
       "index": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
@@ -1938,17 +1953,17 @@
             "named": true
           }
         ]
+      },
+      "open_bracket": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "open_bracket",
+            "named": true
+          }
+        ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -2327,6 +2342,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "open_bracket",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "package_header",

@@ -71,7 +71,9 @@ fun main(){
             (assignment
               left: (index_access_expression
                 expression: (simple_identifier)
-                index: (integer_literal))
+                open_bracket: (open_bracket)
+                index: (integer_literal)
+                close_bracket: (close_bracket))
               right: (string_literal
                 (string_content)))))))))
 

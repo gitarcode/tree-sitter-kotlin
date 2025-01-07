@@ -289,9 +289,11 @@ fun f() {}
   (statement
     (index_access_expression
       expression: (simple_identifier)
+      open_bracket: (open_bracket)
       index: (additive_expression
         (integer_literal)
-        (integer_literal))))
+        (integer_literal))
+      close_bracket: (close_bracket)))
   (function_declaration
     modifiers: (modifiers
       (annotation

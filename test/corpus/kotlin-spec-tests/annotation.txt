@@ -1067,12 +1067,14 @@ fun foo() {
                         expression: (simple_identifier)
                         args: (value_arguments
                             (value_argument
-                                expression: (integer_literal))))))))))
+                            expression: (integer_literal))))))))))
             (statement
             (call_expression
                 expression: (index_access_expression
                 expression: (simple_identifier)
-                index: (simple_identifier))
+                open_bracket: (open_bracket)
+                index: (simple_identifier)
+                close_bracket: (close_bracket))
                 lambda_arg: (annotated_lambda
                 (lambda_literal
                     (line_comment)
@@ -1082,7 +1084,7 @@ fun foo() {
                         expression: (simple_identifier)
                         args: (value_arguments
                             (value_argument
-                                expression: (integer_literal))))))))))
+                            expression: (integer_literal))))))))))
             (statement
             (call_expression
                 expression: (simple_identifier)
@@ -1100,7 +1102,7 @@ fun foo() {
                         expression: (simple_identifier)
                         args: (value_arguments
                             (value_argument
-                                expression: (integer_literal))))))))))
+                            expression: (integer_literal))))))))))
             (statement
             (call_expression
                 expression: (simple_identifier)
@@ -1116,75 +1118,75 @@ fun foo() {
                         expression: (simple_identifier)
                         args: (value_arguments
                             (value_argument
-                                expression: (integer_literal))))))))))
+                            expression: (integer_literal))))))))))
             (statement
-                (call_expression
-                    expression: (simple_identifier)
-                    args: (value_arguments)
-                    lambda_arg: (annotated_lambda
-                    (annotation
-                        (user_type
-                        (type_identifier)))
-                    (lambda_literal
-                        body: (statements
-                        (statement
-                            (call_expression
-                            expression: (simple_identifier)
-                            args: (value_arguments
-                                (value_argument
-                                    expression: (integer_literal))))))))))
+            (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments)
+                lambda_arg: (annotated_lambda
+                (annotation
+                    (user_type
+                    (type_identifier)))
+                (lambda_literal
+                    body: (statements
+                    (statement
+                        (call_expression
+                        expression: (simple_identifier)
+                        args: (value_arguments
+                            (value_argument
+                            expression: (integer_literal))))))))))
             (statement
-                (call_expression
-                    expression: (simple_identifier)
-                    args: (value_arguments)
-                    lambda_arg: (annotated_lambda
-                    (annotation
-                        (user_type
-                        (type_identifier)))
-                    (annotation
-                        (user_type
-                        (type_identifier)))
-                    (lambda_literal
-                        body: (statements
-                        (statement
-                            (call_expression
-                            expression: (simple_identifier)
-                            args: (value_arguments
-                                (value_argument
-                                    expression: (integer_literal))))))))))
+            (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments)
+                lambda_arg: (annotated_lambda
+                (annotation
+                    (user_type
+                    (type_identifier)))
+                (annotation
+                    (user_type
+                    (type_identifier)))
+                (lambda_literal
+                    body: (statements
+                    (statement
+                        (call_expression
+                        expression: (simple_identifier)
+                        args: (value_arguments
+                            (value_argument
+                            expression: (integer_literal))))))))))
             (statement
             (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments
                 (value_argument
                     expression: (annotated_expression
-                        (annotation
-                            (user_type
-                            (type_identifier)))
-                        (lambda_literal
-                            parameters: (lambda_parameters
-                            (variable_declaration
-                                id: (simple_identifier)))
-                            body: (statements
-                            (statement
-                                (simple_identifier)))))))))
-                (statement
-                (if_expression
-                    condition: (boolean_literal)
-                    consequence: (annotated_expression
                     (annotation
                         (user_type
                         (type_identifier)))
-                    (lambda_literal))
-                    alternative: (annotated_expression
+                    (lambda_literal
+                        parameters: (lambda_parameters
+                        (variable_declaration
+                            id: (simple_identifier)))
+                        body: (statements
+                        (statement
+                            (simple_identifier)))))))))
+            (statement
+            (if_expression
+                condition: (boolean_literal)
+                consequence: (annotated_expression
+                (annotation
+                    (user_type
+                    (type_identifier)))
+                (lambda_literal))
+                alternative: (annotated_expression
+                (annotation
+                    (user_type
+                    (type_identifier)))
+                (annotated_expression
                     (annotation
-                        (user_type
+                    (user_type
                         (type_identifier)))
-                    (annotated_expression
-                        (annotation
-                            (user_type
-                                (type_identifier)))
-                            (lambda_literal))))))))))
+                    (lambda_literal))))))))))
 
 
 ================================================================================
