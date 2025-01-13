@@ -527,7 +527,15 @@ module.exports = grammar({
       )
     )),
 
-    property_delegate: $ => prec("property_delegate", seq("by", repeat($._NL), $.expression)),
+    property_delegate: $ => prec("property_delegate", 
+      seq(
+        field("by", $.by), 
+        repeat($._NL), 
+        $.expression
+      )
+    ),
+    
+    by: $ => "by",
 
     _setter_getter: $ => choice(
       seq($.getter, optional(seq(repeat($._NL), $.setter))),

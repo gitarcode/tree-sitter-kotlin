@@ -576,6 +576,7 @@ private object Object {
           type: (user_type
             (type_identifier)))
         (property_delegate
+          by: (by)
           (call_expression
             expression: (simple_identifier)
             lambda_arg: (annotated_lambda

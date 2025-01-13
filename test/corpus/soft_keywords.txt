@@ -73,6 +73,7 @@ class  A {
             type: (user_type
               (type_identifier))))
         (property_delegate
+          by: (by)
           (callable_reference
             receiver: (user_type
               (type_identifier))

@@ -2402,8 +2402,12 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
-            "value": "by"
+            "type": "FIELD",
+            "name": "by",
+            "content": {
+              "type": "SYMBOL",
+              "name": "by"
+            }
           },
           {
             "type": "REPEAT",
@@ -2418,6 +2422,10 @@
           }
         ]
       }
+    },
+    "by": {
+      "type": "STRING",
+      "value": "by"
     },
     "_setter_getter": {
       "type": "CHOICE",

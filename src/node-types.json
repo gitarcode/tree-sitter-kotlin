@@ -497,6 +497,11 @@
     "fields": {}
   },
   {
+    "type": "by",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "call_expression",
     "named": true,
     "fields": {
@@ -2765,7 +2770,18 @@
   {
     "type": "property_delegate",
     "named": true,
-    "fields": {},
+    "fields": {
+      "by": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "by",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": false,
       "required": true,
