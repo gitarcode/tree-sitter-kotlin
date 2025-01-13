@@ -342,7 +342,7 @@ val x: Int
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
       type: (type_modifiers
@@ -354,7 +354,7 @@ val x: Int
           (type_identifier)))))
   (line_comment)
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
       type: (user_type
@@ -417,7 +417,7 @@ val foo = foo
 (source_file
   (line_comment)
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (simple_identifier)
@@ -431,7 +431,7 @@ val foo = foo
         (block))))
   (line_comment)
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (simple_identifier)
@@ -440,7 +440,7 @@ val foo = foo
         (block))))
   (line_comment)
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (simple_identifier)

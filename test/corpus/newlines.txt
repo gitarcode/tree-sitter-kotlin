@@ -55,7 +55,7 @@ fun foo()  {
         (statements
           (statement
             (property_declaration
-              (binding_pattern_kind)
+              binding_pattern: (binding_pattern_kind)
               var_decl: (variable_declaration
                 id: (simple_identifier))
               initializer: (conjunction_expression
@@ -82,7 +82,7 @@ fun foo()  {
         (statements
           (statement
             (property_declaration
-              (binding_pattern_kind)
+              binding_pattern: (binding_pattern_kind)
               var_decl: (variable_declaration
                 id: (simple_identifier))
               initializer: (conjunction_expression
@@ -152,7 +152,7 @@ fun foo() {
         (statements
           (statement
             (property_declaration
-              (binding_pattern_kind)
+              binding_pattern: (binding_pattern_kind)
               var_decl: (variable_declaration
                 id: (simple_identifier))
               initializer: (elvis_expression
@@ -186,7 +186,7 @@ class Foo {
     name: (simple_identifier)
     body: (class_body
       (property_declaration
-        (binding_pattern_kind)
+        binding_pattern: (binding_pattern_kind)
         var_decl: (variable_declaration
           id: (simple_identifier)
           type: (user_type
@@ -307,7 +307,7 @@ fun foo() {
         (statements
           (statement
             (property_declaration
-              (binding_pattern_kind)
+              binding_pattern: (binding_pattern_kind)
               var_decl: (variable_declaration
                 id: (simple_identifier))
               initializer: (simple_identifier)))
@@ -362,7 +362,7 @@ fun foo() {
         (statements
           (statement
             (property_declaration
-              (binding_pattern_kind)
+              binding_pattern: (binding_pattern_kind)
               var_decl: (variable_declaration
                 id: (simple_identifier))
               initializer: (additive_expression
@@ -453,7 +453,7 @@ val current =
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (call_expression
@@ -518,7 +518,7 @@ val previewClasspathString =
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (call_expression
@@ -570,7 +570,7 @@ private object Object {
       (property_declaration
         modifiers: (modifiers
           (visibility_modifier))
-        (binding_pattern_kind)
+        binding_pattern: (binding_pattern_kind)
         var_decl: (variable_declaration
           id: (simple_identifier)
           type: (user_type
@@ -1028,7 +1028,7 @@ private val property: Boolean
   (property_declaration
     modifiers: (modifiers
       (visibility_modifier))
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
       type: (user_type
@@ -1050,7 +1050,7 @@ var stringRepresentation: String
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
       type: (user_type
@@ -1207,7 +1207,7 @@ var a: (
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
       type: (nullable_type

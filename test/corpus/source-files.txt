@@ -17,7 +17,7 @@ val x = 4
         (value_argument
           expression: (string_literal (string_content))))))
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (integer_literal)))

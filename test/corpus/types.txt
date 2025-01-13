@@ -223,7 +223,7 @@ var customRequest: (RequestConfig.Builder.() -> RequestConfig.Builder)
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
       type: (parenthesized_type

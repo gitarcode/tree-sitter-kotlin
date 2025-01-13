@@ -53,14 +53,14 @@ val Type.x get () = 3
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     (getter
       (function_body
         expression: (integer_literal))))
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     receiver_type: (receiver_type
       type: (user_type
         (type_identifier)))
@@ -88,7 +88,7 @@ fun foo() {
         (statements
           (statement 
             (property_declaration
-              (binding_pattern_kind)
+              binding_pattern: (binding_pattern_kind)
               var_decl: (multi_variable_declaration
                 (variable_declaration
                   id: (simple_identifier))
@@ -144,7 +144,7 @@ val foo = Foo()
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (call_expression
@@ -210,7 +210,7 @@ var positionPercentage: Float
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
       type: (user_type
@@ -251,7 +251,7 @@ var stringRepresentation: String
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
       type: (user_type
@@ -380,7 +380,7 @@ internal val ImageBitmap.isEmptyPlaceholder: Boolean
   (property_declaration
     modifiers: (modifiers
       (visibility_modifier))
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
       type: (user_type
@@ -403,7 +403,7 @@ internal val ImageBitmap.isEmptyPlaceholder: Boolean
   (property_declaration
     modifiers: (modifiers
       (visibility_modifier))
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     receiver_type: (receiver_type
       type: (user_type
         (type_identifier)))

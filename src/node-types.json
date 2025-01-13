@@ -2679,6 +2679,16 @@
     "type": "property_declaration",
     "named": true,
     "fields": {
+      "binding_pattern": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "binding_pattern_kind",
+            "named": true
+          }
+        ]
+      },
       "delegate": {
         "multiple": false,
         "required": false,
@@ -2756,12 +2766,8 @@
     },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
-        {
-          "type": "binding_pattern_kind",
-          "named": true
-        },
         {
           "type": "getter",
           "named": true

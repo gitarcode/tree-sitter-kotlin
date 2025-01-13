@@ -174,7 +174,7 @@ fun foo() {
                 (annotation
                     (user_type
                     (type_identifier))))
-                (binding_pattern_kind)
+                binding_pattern: (binding_pattern_kind)
                 var_decl: (variable_declaration
                 id: (simple_identifier))
                 initializer: (call_expression
@@ -446,7 +446,7 @@ fun foo() {
                 (annotation
                     (user_type
                     (type_identifier))))
-                (binding_pattern_kind)
+                binding_pattern: (binding_pattern_kind)
                 var_decl: (variable_declaration
                 id: (simple_identifier))
                 initializer: (call_expression
@@ -878,7 +878,7 @@ val lambdaParameterNP: (@A C) -> C
             type: (user_type
                 (type_identifier)))))))
     (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
         id: (simple_identifier)
         type: (parenthesized_type
@@ -894,7 +894,7 @@ val lambdaParameterNP: (@A C) -> C
             type: (user_type
                 (type_identifier)))))))
     (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
         id: (simple_identifier)
         type: (function_type
@@ -909,7 +909,7 @@ val lambdaParameterNP: (@A C) -> C
         type: (user_type
             (type_identifier)))))
     (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
         id: (simple_identifier)
         type: (function_type
@@ -923,7 +923,7 @@ val lambdaParameterNP: (@A C) -> C
         type: (user_type
             (type_identifier)))))
     (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
         id: (simple_identifier)
         type: (function_type
@@ -936,7 +936,7 @@ val lambdaParameterNP: (@A C) -> C
             type: (user_type
             (type_identifier))))))
     (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
         id: (simple_identifier)
         type: (function_type
@@ -952,7 +952,7 @@ val lambdaParameterNP: (@A C) -> C
         type: (user_type
             (type_identifier)))))
     (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
         id: (simple_identifier)
         type: (function_type
@@ -1211,7 +1211,7 @@ fun foo() {
         (statements
             (statement
             (property_declaration
-                (binding_pattern_kind)
+                binding_pattern: (binding_pattern_kind)
                 var_decl: (multi_variable_declaration
                 (variable_declaration
                     id: (simple_identifier))
@@ -1226,7 +1226,7 @@ fun foo() {
                 initializer: (simple_identifier)))
             (statement
             (property_declaration
-                (binding_pattern_kind)
+                binding_pattern: (binding_pattern_kind)
                 var_decl: (multi_variable_declaration
                 (variable_declaration
                     (annotation
@@ -1242,7 +1242,7 @@ fun foo() {
                 (annotation
                     (user_type
                     (type_identifier))))
-                (binding_pattern_kind)
+                binding_pattern: (binding_pattern_kind)
                 var_decl: (multi_variable_declaration
                 (variable_declaration
                     (annotation
@@ -1322,7 +1322,7 @@ val <A, B> @[a] (() -> Unit).foo: P
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     receiver_type: (receiver_type
       (parenthesized_type
         (type_modifiers
@@ -1351,7 +1351,7 @@ val <A, B> @[a] (() -> Unit).foo: P
       type: (user_type
         (type_identifier))))
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     receiver_type: (receiver_type
       (parenthesized_type
         (type_modifiers
@@ -1387,7 +1387,7 @@ val <A, B> @[a] (() -> Unit).foo: P
       type: (user_type
         (type_identifier))))
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     receiver_type: (receiver_type
       modifiers: (type_modifiers
         (annotation
@@ -1420,7 +1420,7 @@ val <A, B> @[a] (() -> Unit).foo: P
       type: (user_type
         (type_identifier))))
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     type_parameters: (type_parameters
       (type_parameter
         (type_identifier))
@@ -1445,7 +1445,7 @@ val <A, B> @[a] (() -> Unit).foo: P
       (annotation
         (user_type
           (type_identifier))))
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     type_parameters: (type_parameters
       (type_parameter
         (type_identifier))

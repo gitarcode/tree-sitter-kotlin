@@ -506,7 +506,7 @@ module.exports = grammar({
 
     property_declaration: $ => prec("property_declaration", seq(
       optional(field("modifiers", $.modifiers)),
-      $.binding_pattern_kind,
+      field("binding_pattern", $.binding_pattern_kind),
       optional(field("type_parameters", $.type_parameters)),
       optional(seq(field("receiver_type", $.receiver_type), ".")),
       field("var_decl", choice($.variable_declaration, $.multi_variable_declaration)),

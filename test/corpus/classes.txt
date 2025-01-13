@@ -224,7 +224,7 @@ class Something {
     name: (simple_identifier)
     body: (class_body
       (property_declaration
-        (binding_pattern_kind)
+        binding_pattern: (binding_pattern_kind)
         var_decl:
         (variable_declaration
           id: (simple_identifier)
@@ -232,7 +232,7 @@ class Something {
             (type_identifier)))
         initializer: (integer_literal))
       (property_declaration
-        (binding_pattern_kind)
+        binding_pattern: (binding_pattern_kind)
         var_decl:
         (variable_declaration
           id: (simple_identifier)
@@ -240,7 +240,7 @@ class Something {
             type: (user_type
               (type_identifier)))))
       (property_declaration
-        (binding_pattern_kind)
+        binding_pattern: (binding_pattern_kind)
         var_decl:
         (variable_declaration
           id: (simple_identifier)
@@ -250,7 +250,7 @@ class Something {
           (function_body
             expression: (simple_identifier))))
       (property_declaration
-        (binding_pattern_kind)
+        binding_pattern: (binding_pattern_kind)
         var_decl: (variable_declaration
           id: (simple_identifier))
         initializer: (string_literal
@@ -880,7 +880,7 @@ class A {
                   name: (simple_identifier)
                   body: (class_body
                     (property_declaration
-                      (binding_pattern_kind)
+                      binding_pattern: (binding_pattern_kind)
                       var_decl: (variable_declaration
                         id: (simple_identifier))
                       initializer: (integer_literal))))))))))))
@@ -1006,7 +1006,7 @@ class X {
             (statements
               (statement
                 (property_declaration
-                  (binding_pattern_kind)
+                  binding_pattern: (binding_pattern_kind)
                   var_decl: (variable_declaration
                     id: (simple_identifier))
                   initializer: (integer_literal)))
@@ -1082,7 +1082,7 @@ abstract class AbstractNativeMacApplicationPackageAppDirTask : AbstractNativeMac
                   expression: (dot_qualified_expression
                     receiver: (simple_identifier)
                     selector: (simple_identifier)))))))
-        (binding_pattern_kind)
+        binding_pattern: (binding_pattern_kind)
         var_decl: (variable_declaration
           id: (simple_identifier)
           type: (user_type

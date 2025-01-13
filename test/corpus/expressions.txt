@@ -93,12 +93,12 @@ val y = when(x) {
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (integer_literal))
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (when_expression
@@ -150,7 +150,7 @@ val MyDate.s: String get() = "hello"
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     receiver_type: (receiver_type
       type: (user_type
       (type_identifier)))
@@ -172,7 +172,7 @@ val x = expect(1)
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (call_expression
@@ -262,21 +262,21 @@ val a = a<2>(3)
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (comparison_expression
       (simple_identifier)
       (simple_identifier)))
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (comparison_expression
       (simple_identifier)
       (simple_identifier)))
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (comparison_expression
@@ -286,7 +286,7 @@ val a = a<2>(3)
       (simple_identifier)))
   (line_comment)    
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (call_expression
@@ -299,7 +299,7 @@ val a = a<2>(3)
         (value_argument
           expression: (simple_identifier)))))
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (comparison_expression
@@ -377,7 +377,7 @@ when (dir) {
         (statements
           (statement
             (property_declaration
-              (binding_pattern_kind)
+              binding_pattern: (binding_pattern_kind)
               var_decl: (variable_declaration
                 id: (simple_identifier))
               initializer: (dot_qualified_expression
@@ -409,7 +409,7 @@ when (dir) {
               (statements
                 (statement
                   (property_declaration
-                    (binding_pattern_kind)
+                    binding_pattern: (binding_pattern_kind)
                     var_decl: (variable_declaration
                       id: (simple_identifier))
                     initializer: (dot_qualified_expression
@@ -449,7 +449,7 @@ val comments = """ // and here """
 
 (source_file
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (call_expression
@@ -459,7 +459,7 @@ val comments = """ // and here """
           expression: (string_literal
             (string_content))))))
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (call_expression
@@ -469,7 +469,7 @@ val comments = """ // and here """
           expression: (string_literal
             (string_content))))))
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (call_expression
@@ -479,7 +479,7 @@ val comments = """ // and here """
           expression: (string_literal
             (string_content))))))
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (call_expression
@@ -489,13 +489,13 @@ val comments = """ // and here """
           expression: (string_literal
             (string_content))))))
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (string_literal
       (string_content)))
   (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (string_literal
@@ -1381,7 +1381,7 @@ f(listOf(0.01, 0.02, 0.05, 0.1, 0.25, 0.5).map { percentile ->
                 body: (statements
                   (statement
                     (property_declaration
-                      (binding_pattern_kind)
+                      binding_pattern: (binding_pattern_kind)
                       var_decl: (variable_declaration
                         id: (simple_identifier))
                       initializer: (call_expression

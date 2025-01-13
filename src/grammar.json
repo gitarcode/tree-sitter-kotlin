@@ -2219,8 +2219,12 @@
             ]
           },
           {
-            "type": "SYMBOL",
-            "name": "binding_pattern_kind"
+            "type": "FIELD",
+            "name": "binding_pattern",
+            "content": {
+              "type": "SYMBOL",
+              "name": "binding_pattern_kind"
+            }
           },
           {
             "type": "CHOICE",

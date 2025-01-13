@@ -408,7 +408,7 @@ val (foo.bar.() -> Unit).foo : bar = foo
 
 (source_file
     (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     receiver_type: (receiver_type
         (parenthesized_type
         (function_type
@@ -420,7 +420,7 @@ val (foo.bar.() -> Unit).foo : bar = foo
     var_decl: (variable_declaration
         id: (simple_identifier)))
     (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     receiver_type: (receiver_type
         (parenthesized_type
         (function_type
@@ -434,7 +434,7 @@ val (foo.bar.() -> Unit).foo : bar = foo
     var_decl: (variable_declaration
         id: (simple_identifier)))
     (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     receiver_type: (receiver_type
         (parenthesized_type
         (function_type
@@ -457,7 +457,7 @@ val (foo.bar.() -> Unit).foo : bar = foo
         (function_body
         (block))))
     (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     receiver_type: (receiver_type
         (parenthesized_type
         (function_type
@@ -482,7 +482,7 @@ val (foo.bar.() -> Unit).foo : bar = foo
         (function_body
         (block))))
     (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     receiver_type: (receiver_type
         (parenthesized_type
         (function_type
@@ -516,7 +516,7 @@ val (foo.bar.() -> Unit).foo : bar = foo
         (function_body
         (block))))
     (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     receiver_type: (receiver_type
         (parenthesized_type
         (function_type
@@ -542,7 +542,7 @@ val (foo.bar.() -> Unit).foo : bar = foo
         (function_body
         (block))))
     (property_declaration
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     receiver_type: (receiver_type
         (parenthesized_type
         (function_type

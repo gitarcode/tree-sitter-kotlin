@@ -43,7 +43,7 @@ var x: Int
 (source_file
     (property_declaration
         modifiers: (modifiers (annotation (use_site_target) (user_type (type_identifier)) (user_type (type_identifier))))
-        (binding_pattern_kind)
+        binding_pattern: (binding_pattern_kind)
         var_decl: (variable_declaration 
                     id: (simple_identifier) 
                     type: (user_type (type_identifier)))))
@@ -68,7 +68,7 @@ class X {
           (annotation (user_type (type_identifier)))
           (annotation (user_type (type_identifier)))
           (member_modifier))
-        (binding_pattern_kind)
+        binding_pattern: (binding_pattern_kind)
         var_decl: (variable_declaration 
           id: (simple_identifier) 
           type: (user_type (type_identifier)))
@@ -160,7 +160,7 @@ const val BAZ = "baz"
               expression: (collection_literal
                 (simple_identifier))))))
       (property_modifier))
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (string_literal
@@ -194,7 +194,7 @@ const val BAZ = "baz"
               name: (simple_identifier)
               expression: (collection_literal)))))
       (property_modifier))
-    (binding_pattern_kind)
+    binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (string_literal
@@ -258,7 +258,7 @@ fun parse(xml: String): Element {
         (statements
           (statement
             (property_declaration
-              (binding_pattern_kind)
+              binding_pattern: (binding_pattern_kind)
               var_decl: (variable_declaration
                 id: (simple_identifier))
               initializer: (call_expression

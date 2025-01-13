@@ -18,7 +18,7 @@ class Foo(){
       (class_parameters))
     body: (class_body
       (property_declaration
-        (binding_pattern_kind)
+        binding_pattern: (binding_pattern_kind)
         var_decl: (variable_declaration
           id: (simple_identifier))
         initializer: (null_literal))
@@ -58,7 +58,7 @@ fun main(){
         (statements
           (statement
             (property_declaration
-              (binding_pattern_kind)
+              binding_pattern: (binding_pattern_kind)
               var_decl: (variable_declaration
                 id: (simple_identifier)
                 type: (user_type
