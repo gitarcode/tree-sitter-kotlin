@@ -515,7 +515,7 @@ module.exports = grammar({
         repeat($._NL),
         choice(
           seq("=", repeat($._NL), field("initializer", $.expression)),
-          $.property_delegate
+          field("delegate", $.property_delegate)
       ))),
       optional(
         seq(      

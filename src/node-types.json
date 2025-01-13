@@ -2679,6 +2679,16 @@
     "type": "property_declaration",
     "named": true,
     "fields": {
+      "delegate": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "property_delegate",
+            "named": true
+          }
+        ]
+      },
       "initializer": {
         "multiple": false,
         "required": false,
@@ -2754,10 +2764,6 @@
         },
         {
           "type": "getter",
-          "named": true
-        },
-        {
-          "type": "property_delegate",
           "named": true
         },
         {

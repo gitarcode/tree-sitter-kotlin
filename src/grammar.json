@@ -2337,8 +2337,12 @@
                         ]
                       },
                       {
-                        "type": "SYMBOL",
-                        "name": "property_delegate"
+                        "type": "FIELD",
+                        "name": "delegate",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "property_delegate"
+                        }
                       }
                     ]
                   }

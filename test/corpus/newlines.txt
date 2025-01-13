@@ -575,7 +575,7 @@ private object Object {
           id: (simple_identifier)
           type: (user_type
             (type_identifier)))
-        (property_delegate
+        delegate: (property_delegate
           by: (by)
           (call_expression
             expression: (simple_identifier)
