@@ -160,7 +160,7 @@ val foo = Foo()
               (type_identifier))))
         selector: (simple_identifier))
       lambda_arg: (annotated_lambda
-        (lambda_literal
+        lambda_literal: (lambda_literal
           body: (statements
             (statement
               (call_expression
@@ -390,7 +390,7 @@ internal val ImageBitmap.isEmptyPlaceholder: Boolean
       (call_expression
         expression: (simple_identifier)
         lambda_arg: (annotated_lambda
-          (lambda_literal
+          lambda_literal: (lambda_literal
             body: (statements
               (statement
                 (call_expression

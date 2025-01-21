@@ -1020,7 +1020,7 @@ module.exports = grammar({
     annotated_lambda: $ => seq(
       repeat($._annotation),
       optional($.label),
-      $.lambda_literal
+      field("lambda_literal", $.lambda_literal)
     ),
 
     // Here we're defining a dynamic precedence for type arguments to resolve the ambiguity
@@ -1050,7 +1050,7 @@ module.exports = grammar({
     value_argument: $ => seq(
       optional($._annotation),
       repeat($._NL),
-      // dynamic precedece so that tree-sitter doesn't parse f(a = b) as an assignment...
+      // dynamic precedence so that tree-sitter doesn't parse f(a = b) as an assignment...
       optional(seq(field("name", $.simple_identifier), repeat($._NL), prec.dynamic(10, "="), repeat($._NL))),
       optional("*"),
       repeat($._NL),

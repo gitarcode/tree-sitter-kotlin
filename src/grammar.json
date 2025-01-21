@@ -5198,8 +5198,12 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "lambda_literal"
+          "type": "FIELD",
+          "name": "lambda_literal",
+          "content": {
+            "type": "SYMBOL",
+            "name": "lambda_literal"
+          }
         }
       ]
     },

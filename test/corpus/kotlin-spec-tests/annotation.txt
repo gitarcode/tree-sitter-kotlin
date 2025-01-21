@@ -340,7 +340,7 @@ fun foo() {
                 receiver: (simple_identifier)
                 selector: (simple_identifier))
                 lambda_arg: (annotated_lambda
-                (lambda_literal
+                lambda_literal: (lambda_literal
                     body: (statements
                     (statement
                         (assignment
@@ -595,7 +595,7 @@ fun foo() {
                 receiver: (simple_identifier)
                 selector: (simple_identifier))
                 lambda_arg: (annotated_lambda
-                (lambda_literal
+                lambda_literal: (lambda_literal
                     body: (statements
                     (statement
                         (assignment
@@ -1060,7 +1060,7 @@ fun foo() {
                 (annotation
                     (user_type
                     (type_identifier)))
-                (lambda_literal
+                lambda_literal: (lambda_literal
                     body: (statements
                     (statement
                         (call_expression
@@ -1076,7 +1076,7 @@ fun foo() {
                 index: (simple_identifier)
                 close_bracket: (close_bracket))
                 lambda_arg: (annotated_lambda
-                (lambda_literal
+                lambda_literal: (lambda_literal
                     (line_comment)
                     body: (statements
                     (statement
@@ -1095,7 +1095,7 @@ fun foo() {
                 (annotation
                     (user_type
                     (type_identifier)))
-                (lambda_literal
+                lambda_literal: (lambda_literal
                     body: (statements
                     (statement
                         (call_expression
@@ -1111,7 +1111,7 @@ fun foo() {
                 (annotation
                     (user_type
                     (type_identifier)))
-                (lambda_literal
+                lambda_literal: (lambda_literal
                     body: (statements
                     (statement
                         (call_expression
@@ -1127,7 +1127,7 @@ fun foo() {
                 (annotation
                     (user_type
                     (type_identifier)))
-                (lambda_literal
+                lambda_literal: (lambda_literal
                     body: (statements
                     (statement
                         (call_expression
@@ -1146,7 +1146,7 @@ fun foo() {
                 (annotation
                     (user_type
                     (type_identifier)))
-                (lambda_literal
+                lambda_literal: (lambda_literal
                     body: (statements
                     (statement
                         (call_expression
@@ -1187,7 +1187,6 @@ fun foo() {
                     (user_type
                         (type_identifier)))
                     (lambda_literal))))))))))
-
 
 ================================================================================
 Annotated multi variable

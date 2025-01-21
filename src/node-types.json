@@ -273,10 +273,21 @@
   {
     "type": "annotated_lambda",
     "named": true,
-    "fields": {},
+    "fields": {
+      "lambda_literal": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "lambda_literal",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "annotation",
@@ -284,10 +295,6 @@
         },
         {
           "type": "label",
-          "named": true
-        },
-        {
-          "type": "lambda_literal",
           "named": true
         }
       ]

@@ -126,7 +126,7 @@ fun foo() = bar {}
       expression: (call_expression
         expression: (simple_identifier)
         lambda_arg: (annotated_lambda
-          (lambda_literal))))))
+          lambda_literal: (lambda_literal))))))
 
 
 =====================
@@ -425,4 +425,4 @@ class ExampleTest {
           expression: (call_expression
             expression: (simple_identifier)
             lambda_arg: (annotated_lambda
-              (lambda_literal))))))))
+              lambda_literal: (lambda_literal))))))))

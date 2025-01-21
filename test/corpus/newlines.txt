@@ -395,7 +395,7 @@ toolWindows.forEach {
         receiver: (simple_identifier)
         selector: (simple_identifier))
       lambda_arg: (annotated_lambda
-        (lambda_literal
+        lambda_literal: (lambda_literal
           body: (statements
             (statement
               (if_expression
@@ -581,7 +581,7 @@ private object Object {
           (call_expression
             expression: (simple_identifier)
             lambda_arg: (annotated_lambda
-              (lambda_literal
+              lambda_literal: (lambda_literal
                 body: (statements
                   (statement
                     (call_expression
@@ -685,7 +685,7 @@ error("Found references to atomicfu in jar file $name in the following class fil
                     (value_argument
                       expression: (string_literal)))
                   lambda_arg: (annotated_lambda
-                    (lambda_literal
+                    lambda_literal: (lambda_literal
                       body: (statements
                         (statement
                           (additive_expression

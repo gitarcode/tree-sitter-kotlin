@@ -327,7 +327,7 @@ foo.forEach { (index, value) -> 2 }
         receiver: (simple_identifier)
         selector: (simple_identifier))
       lambda_arg: (annotated_lambda
-        (lambda_literal
+        lambda_literal: (lambda_literal
           parameters: (lambda_parameters
             (multi_variable_declaration
               (variable_declaration
@@ -354,7 +354,7 @@ with(s) { length }
         (value_argument
           expression: (simple_identifier)))
       lambda_arg: (annotated_lambda
-        (lambda_literal
+        lambda_literal: (lambda_literal
           body: (statements
             (statement
               (simple_identifier))))))))
@@ -799,7 +799,7 @@ suppressions
                 args: (value_arguments))
               selector: (simple_identifier))
             lambda_arg: (annotated_lambda
-              (lambda_literal
+              lambda_literal: (lambda_literal
                 parameters: (lambda_parameters
                   (variable_declaration
                     id: (simple_identifier)))
@@ -817,7 +817,7 @@ suppressions
                         (line_string_content_part))))))))
           selector: (simple_identifier))
         lambda_arg: (annotated_lambda
-          (lambda_literal
+          lambda_literal: (lambda_literal
             parameters: (lambda_parameters
               (variable_declaration
                 id: (simple_identifier)))
@@ -1265,7 +1265,7 @@ slideInHorizontally { w -> multiplier * w } with
       left: (call_expression
         expression: (simple_identifier)
         lambda_arg: (annotated_lambda
-          (lambda_literal
+          lambda_literal: (lambda_literal
             parameters: (lambda_parameters
               (variable_declaration
                 id: (simple_identifier)))
@@ -1278,7 +1278,7 @@ slideInHorizontally { w -> multiplier * w } with
       right: (call_expression
         expression: (simple_identifier)
         lambda_arg: (annotated_lambda
-          (lambda_literal
+          lambda_literal: (lambda_literal
             parameters: (lambda_parameters
               (variable_declaration
                 id: (simple_identifier)))
@@ -1393,7 +1393,7 @@ f(listOf(0.01, 0.02, 0.05, 0.1, 0.25, 0.5).map { percentile ->
                     expression: (real_literal))))
               selector: (simple_identifier))
             lambda_arg: (annotated_lambda
-              (lambda_literal
+              lambda_literal: (lambda_literal
                 parameters: (lambda_parameters
                   (variable_declaration
                     id: (simple_identifier)))
