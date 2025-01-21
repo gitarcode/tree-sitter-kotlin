@@ -53,21 +53,24 @@ string.
 
 (source_file
   (statement
-    (string_literal
-      (string_content)))
+    (line_string_literal
+      content: (line_string_content
+        (line_string_content_part))))
   (statement
-    (string_literal
-      (string_content)
-      (string_content)
-      (string_content)))
-  (statement    
-    (string_literal
-      (string_content)
-      (string_content)))
-  (statement    
-    (string_literal
-      (string_content)
-      (string_content))))
+    (multi_line_string_literal
+      content: (multi_line_string_content
+        (multi_line_string_content_part)
+        (multi_line_string_content_part)
+        (multi_line_string_content_part))))
+  (statement
+    (multi_line_string_literal
+      content: (multi_line_string_content
+        (multi_line_string_content_part))))
+  (statement
+    (multi_line_string_literal
+      content: (multi_line_string_content
+        (multi_line_string_content_part)
+        (multi_line_string_content_part)))))
 
 ================================================================================
 String literal with lots of repeated quotes
@@ -80,13 +83,14 @@ There's a lot of ""quotations"". Even at the "end""""
 
 (source_file
   (statement
-    (string_literal
-      (string_content)
-      (string_content)
-      (string_content)
-      (string_content)
-      (string_content)
-      (string_content))))
+    (multi_line_string_literal
+      content: (multi_line_string_content
+        (multi_line_string_content_part)
+        (multi_line_string_content_part)
+        (multi_line_string_content_part)
+        (multi_line_string_content_part)
+        (multi_line_string_content_part)
+        (multi_line_string_content_part)))))
 
 ================================================================================
 String interpolation
@@ -103,26 +107,31 @@ ${"""string interpolation"""} $literal
 
 (source_file
   (statement
-    (string_literal
-      (string_content)
-      (interpolated_identifier)
-      (string_content)))
-  (statement    
-    (string_literal
-      (string_content)
-      (interpolated_expression
-        (string_literal
-          (string_content)))
-      (string_content)))
-  (statement    
-    (string_literal
-      (string_content)
-      (interpolated_expression
-        (string_literal
-          (string_content)))
-    (string_content)
-    (interpolated_identifier)
-    (string_content))))
+    (line_string_literal
+      content: (line_string_content
+        (line_string_content_part)
+        (interpolated_identifier)
+        (line_string_content_part))))
+  (statement
+    (line_string_literal
+      content: (line_string_content
+        (line_string_content_part)
+        (interpolated_expression
+          (line_string_literal
+            content: (line_string_content
+              (line_string_content_part))))
+        (line_string_content_part))))
+  (statement
+    (multi_line_string_literal
+      content: (multi_line_string_content
+        (multi_line_string_content_part)
+        (interpolated_expression
+          (multi_line_string_literal
+            content: (multi_line_string_content
+              (multi_line_string_content_part))))
+        (multi_line_string_content_part)
+        (interpolated_identifier)
+        (multi_line_string_content_part)))))
 
 ================================================================================
 More string interpolation
@@ -140,32 +149,32 @@ More string interpolation
 
 (source_file
   (statement
-    (string_literal
-      (string_content)))
+    (line_string_literal
+      content: (line_string_content)))
   (statement
-    (string_literal
-      (string_content)))
+    (line_string_literal
+      content: (line_string_content)))
   (statement
-    (string_literal
-      (string_content)
-      (string_content)
-      (string_content)))
+    (line_string_literal
+      content: (line_string_content)))
   (statement
-    (string_literal
-      (string_content)
-      (string_content)))
+    (line_string_literal
+      content: (line_string_content
+        (line_string_content_part)
+        (line_string_content_part))))
   (statement
-    (string_literal
-      (string_content)))
+    (line_string_literal
+      content: (line_string_content
+        (line_string_content_part))))
   (statement
-    (string_literal
-      (string_content)
-      (string_content)
-      (string_content)
-      (string_content)))
+    (line_string_literal
+      content: (line_string_content
+        (line_string_content_part)
+        (line_string_content_part)
+        (line_string_content_part))))
   (statement
-    (string_literal
-      (string_content))))     
+    (line_string_literal
+      content: (line_string_content))))    
 
 ================================================================================
 Integer literals
@@ -228,13 +237,15 @@ assertEquals("\u214E\uA7B5\u2CEF", "\u2132\uA7B4\u2CEF".lowercase())
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          expression: (string_literal
-            (string_content)))
+          expression: (line_string_literal
+            content: (line_string_content
+              (line_string_content_part))))
         (value_argument
           expression: (call_expression
             expression: (dot_qualified_expression
-              receiver: (string_literal
-                (string_content))
+              receiver: (line_string_literal
+                content: (line_string_content
+                  (line_string_content_part)))
               selector: (simple_identifier))
             args: (value_arguments)))))))
 

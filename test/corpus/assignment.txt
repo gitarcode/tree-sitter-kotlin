@@ -50,33 +50,33 @@ fun main(){
 --------------------------------------------------------------------------------
 
 (source_file
-  (function_declaration
-    name: (simple_identifier)
-    parameters: (function_value_parameters)
-    body: (function_body
-      (block
-        (statements
-          (statement
-            (property_declaration
-              binding_pattern: (binding_pattern_kind)
-              var_decl: (variable_declaration
-                id: (simple_identifier)
-                type: (user_type
-                  (type_identifier)
-                  (type_arguments
-                    (type_projection
-                      type: (user_type
-                        (type_identifier))))))))
-          (statement
-            (assignment
-              left: (index_access_expression
-                expression: (simple_identifier)
-                open_bracket: (open_bracket)
-                index: (integer_literal)
-                close_bracket: (close_bracket))
-              right: (string_literal
-                (string_content)))))))))
-
+      (function_declaration
+        name: (simple_identifier)
+        parameters: (function_value_parameters)
+        body: (function_body
+          (block
+            (statements
+              (statement
+                (property_declaration
+                  binding_pattern: (binding_pattern_kind)
+                  var_decl: (variable_declaration
+                    id: (simple_identifier)
+                    type: (user_type
+                      (type_identifier)
+                      (type_arguments
+                        (type_projection
+                          type: (user_type
+                            (type_identifier))))))))
+              (statement
+                (assignment
+                  left: (index_access_expression
+                    expression: (simple_identifier)
+                    open_bracket: (open_bracket)
+                    index: (integer_literal)
+                    close_bracket: (close_bracket))
+                  right: (line_string_literal
+                    content: (line_string_content
+                      (line_string_content_part))))))))))
 
 ================================================================================
 This expression assignment

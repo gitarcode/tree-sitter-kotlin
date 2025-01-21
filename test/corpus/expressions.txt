@@ -68,9 +68,10 @@ sum(1, 2)
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          expression: (string_literal
-            (string_content))))))
-  (statement          
+          expression: (line_string_literal
+            content: (line_string_content
+              (line_string_content_part)))))))
+  (statement
     (call_expression
       expression: (simple_identifier)
       args: (value_arguments
@@ -153,14 +154,16 @@ val MyDate.s: String get() = "hello"
     binding_pattern: (binding_pattern_kind)
     receiver_type: (receiver_type
       type: (user_type
-      (type_identifier)))
+        (type_identifier)))
     var_decl: (variable_declaration
       id: (simple_identifier)
       type: (user_type
         (type_identifier)))
     (getter
       (function_body
-        expression: (string_literal (string_content))))))
+        expression: (line_string_literal
+          content: (line_string_content
+            (line_string_content_part)))))))
 
 ================================================================================
 Expect as an expression
@@ -456,8 +459,9 @@ val comments = """ // and here """
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          expression: (string_literal
-            (string_content))))))
+          expression: (line_string_literal
+            content: (line_string_content
+              (line_string_content_part)))))))
   (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
@@ -466,8 +470,9 @@ val comments = """ // and here """
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          expression: (string_literal
-            (string_content))))))
+          expression: (line_string_literal
+            content: (line_string_content
+              (line_string_content_part)))))))
   (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
@@ -476,8 +481,9 @@ val comments = """ // and here """
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          expression: (string_literal
-            (string_content))))))
+          expression: (line_string_literal
+            content: (line_string_content
+              (line_string_content_part)))))))
   (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
@@ -486,20 +492,23 @@ val comments = """ // and here """
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          expression: (string_literal
-            (string_content))))))
+          expression: (line_string_literal
+            content: (line_string_content
+              (line_string_content_part)))))))
   (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (string_literal
-      (string_content)))
+    initializer: (multi_line_string_literal
+      content: (multi_line_string_content
+        (multi_line_string_content_part))))
   (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (string_literal
-      (string_content))))
+    initializer: (multi_line_string_literal
+      content: (multi_line_string_content
+        (multi_line_string_content_part)))))
 
 ================================================================================
 Qualified this/super expressions
@@ -595,8 +604,9 @@ if (cond1) {
               expression: (simple_identifier)
               args: (value_arguments
                 (value_argument
-                  expression: (string_literal
-                    (string_content))))))))
+                  expression: (line_string_literal
+                    content: (line_string_content
+                      (line_string_content_part)))))))))
       alternative: (if_expression
         condition: (simple_identifier)
         consequence: (block
@@ -606,8 +616,9 @@ if (cond1) {
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    expression: (string_literal
-                      (string_content))))))))
+                    expression: (line_string_literal
+                      content: (line_string_content
+                        (line_string_content_part)))))))))
         alternative: (block
           (statements
             (statement
@@ -615,8 +626,9 @@ if (cond1) {
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    expression: (string_literal
-                      (string_content))))))))))))
+                    expression: (line_string_literal
+                      content: (line_string_content
+                        (line_string_content_part)))))))))))))
 
 ================================================================================
 If else expression with assignment
@@ -728,8 +740,9 @@ configurationElements[0].substringBefore("?")
         selector: (simple_identifier))
       args: (value_arguments
         (value_argument
-          expression: (string_literal
-            (string_content)))))))
+          expression: (line_string_literal
+            content: (line_string_content
+              (line_string_content_part))))))))
 
 ================================================================================
 Postfix expression call
@@ -792,15 +805,16 @@ suppressions
                     id: (simple_identifier)))
                 body: (statements
                   (statement
-                    (string_literal
-                      (string_content)
-                      (interpolated_expression
-                        (dot_qualified_expression
-                          receiver: (simple_identifier)
-                          selector: (simple_identifier)))
-                      (string_content)
-                      (interpolated_identifier)
-                      (string_content)))))))
+                    (line_string_literal
+                      content: (line_string_content
+                        (line_string_content_part)
+                        (interpolated_expression
+                          (dot_qualified_expression
+                            receiver: (simple_identifier)
+                            selector: (simple_identifier)))
+                        (line_string_content_part)
+                        (interpolated_identifier)
+                        (line_string_content_part))))))))
           selector: (simple_identifier))
         lambda_arg: (annotated_lambda
           (lambda_literal
@@ -836,10 +850,11 @@ suppressions
                       expression: (simple_identifier)
                       args: (value_arguments
                         (value_argument
-                          expression: (string_literal
-                            (string_content)
-                            (interpolated_identifier)
-                            (string_content))))))))))))
+                          expression: (line_string_literal
+                            content: (line_string_content
+                              (line_string_content_part)
+                              (interpolated_identifier)
+                              (line_string_content_part)))))))))))))
       selector: (simple_identifier))))
 
 ================================================================================
@@ -924,14 +939,15 @@ when (this) {
       (when_entries
         (else_entry
           (additive_expression
-            (string_literal
-              (interpolated_identifier)
-              (string_content)
-              (interpolated_identifier))
+            (line_string_literal
+              content: (line_string_content
+                (interpolated_identifier)
+                (line_string_content_part)
+                (interpolated_identifier)))
             (if_expression
               condition: (simple_identifier)
               consequence: (simple_identifier)
-              alternative: (string_literal))))))))
+              alternative: (line_string_literal))))))))
 
 ================================================================================
 When expression with trailing comma
@@ -948,16 +964,17 @@ when (x) {
     (when_expression
       (when_subject
         (simple_identifier))
-      (when_entries  
+      (when_entries
         (when_entry
           (when_condition
             (integer_literal))
-              (call_expression
-                expression: (simple_identifier)
-                args: (value_arguments
-                  (value_argument
-                    expression: (string_literal
-                      (string_content))))))))))
+          (call_expression
+            expression: (simple_identifier)
+            args: (value_arguments
+              (value_argument
+                expression: (line_string_literal
+                  content: (line_string_content
+                    (line_string_content_part)))))))))))
 
 ================================================================================
 Range expression
@@ -1128,10 +1145,12 @@ if (x == 1)
         condition: (equality_expression
           (simple_identifier)
           (integer_literal))
-        consequence: (string_literal
-          (string_content))
-        alternative: (string_literal
-          (string_content))))))
+        consequence: (line_string_literal
+          content: (line_string_content
+            (line_string_content_part)))
+        alternative: (line_string_literal
+          content: (line_string_content
+            (line_string_content_part)))))))
 
 ================================================================================
 if with single expression in else branch

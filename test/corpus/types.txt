@@ -252,12 +252,14 @@ Foo(x = "hi", y = "bar")
       args: (value_arguments
         (value_argument
           name: (simple_identifier)
-          expression: (string_literal
-            (string_content)))
+          expression: (line_string_literal
+            content: (line_string_content
+              (line_string_content_part))))
         (value_argument
           name: (simple_identifier)
-          expression: (string_literal
-            (string_content)))))))
+          expression: (line_string_literal
+            content: (line_string_content
+              (line_string_content_part))))))))
 
 ================================================================================
 Type constructor with trailing comma
@@ -274,12 +276,14 @@ Foo(x = "hi", y = "bar",)
       args: (value_arguments
         (value_argument
           name: (simple_identifier)
-          expression: (string_literal
-            (string_content)))
+          expression: (line_string_literal
+            content: (line_string_content
+              (line_string_content_part))))
         (value_argument
           name: (simple_identifier)
-          expression: (string_literal
-            (string_content)))))))
+          expression: (line_string_literal
+            content: (line_string_content
+              (line_string_content_part))))))))
 
 ================================================================================
 Type alias with type parameters

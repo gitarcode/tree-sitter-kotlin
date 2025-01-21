@@ -15,7 +15,9 @@ val x = 4
         (type_identifier))
       args: (value_arguments
         (value_argument
-          expression: (string_literal (string_content))))))
+          expression: (line_string_literal
+            content: (line_string_content
+              (line_string_content_part)))))))
   (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
@@ -38,11 +40,13 @@ Multiple file annotations
       (type_identifier)))
   (file_annotation
     (constructor_invocation
-     type: (user_type
+      type: (user_type
         (type_identifier))
       args: (value_arguments
         (value_argument
-         expression: (string_literal (string_content))))))
+          expression: (line_string_literal
+            content: (line_string_content
+              (line_string_content_part)))))))
   (file_annotation
     (constructor_invocation
       type: (user_type

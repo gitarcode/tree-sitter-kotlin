@@ -153,8 +153,9 @@ const val BAZ = "baz"
           args: (value_arguments
             (value_argument
               name: (simple_identifier)
-              expression: (string_literal
-                (string_content)))
+              expression: (line_string_literal
+                content: (line_string_content
+                  (line_string_content_part))))
             (value_argument
               name: (simple_identifier)
               expression: (collection_literal
@@ -163,8 +164,9 @@ const val BAZ = "baz"
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (string_literal
-      (string_content))))
+    initializer: (line_string_literal
+      content: (line_string_content
+        (line_string_content_part)))))
 
 =====================
 Annotation with empty collection literal 
@@ -188,8 +190,9 @@ const val BAZ = "baz"
           args: (value_arguments
             (value_argument
               name: (simple_identifier)
-              expression: (string_literal
-                (string_content)))
+              expression: (line_string_literal
+                content: (line_string_content
+                  (line_string_content_part))))
             (value_argument
               name: (simple_identifier)
               expression: (collection_literal)))))
@@ -197,8 +200,9 @@ const val BAZ = "baz"
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (string_literal
-      (string_content))))      
+    initializer: (line_string_literal
+      content: (line_string_content
+        (line_string_content_part)))))
 
 ======================
 Annotation with soft-keyword argument
@@ -272,8 +276,9 @@ fun parse(xml: String): Element {
                     (type_identifier))
                   args: (value_arguments
                     (value_argument
-                      expression: (string_literal
-                        (string_content))))))
+                      expression: (line_string_literal
+                        content: (line_string_content
+                          (line_string_content_part)))))))
               (call_expression
                 expression: (dot_qualified_expression
                   receiver: (simple_identifier)
@@ -358,8 +363,9 @@ if (it.isCanceled) deferred.cancel() else deferred.complete(it.result as T)
             (type_identifier))
           args: (value_arguments
             (value_argument
-              expression: (string_literal
-                (string_content))))))
+              expression: (line_string_literal
+                content: (line_string_content
+                  (line_string_content_part)))))))
       (if_expression
         condition: (dot_qualified_expression
           receiver: (simple_identifier)

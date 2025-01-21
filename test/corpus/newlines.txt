@@ -109,8 +109,9 @@ fun foo():String
         (statements
           (statement
             (return_expression
-              (string_literal
-                (string_content)))))))))
+              (line_string_literal
+                content: (line_string_content
+                  (line_string_content_part))))))))))
 
 ================================================================================
 Colon after newline
@@ -670,28 +671,30 @@ error("Found references to atomicfu in jar file $name in the following class fil
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          expression: (string_literal
-            (string_content)
-            (interpolated_identifier)
-            (string_content)
-            (interpolated_expression
-              (call_expression
-                expression: (dot_qualified_expression
-                  receiver: (simple_identifier)
-                  selector: (simple_identifier))
-                args: (value_arguments
-                  (value_argument
-                    expression: (string_literal)))
-                lambda_arg: (annotated_lambda
-                  (lambda_literal
-                    body: (statements
-                      (statement
-                        (additive_expression
-                          (string_literal
-                            (string_content)
-                            (string_content)
-                            (string_content))
-                          (simple_identifier))))))))))))))
+          expression: (line_string_literal
+            content: (line_string_content
+              (line_string_content_part)
+              (interpolated_identifier)
+              (line_string_content_part)
+              (interpolated_expression
+                (call_expression
+                  expression: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))
+                  args: (value_arguments
+                    (value_argument
+                      expression: (line_string_literal)))
+                  lambda_arg: (annotated_lambda
+                    (lambda_literal
+                      body: (statements
+                        (statement
+                          (additive_expression
+                            (line_string_literal
+                              content: (line_string_content
+                                (line_string_content_part)
+                                (line_string_content_part)
+                                (line_string_content_part)))
+                            (simple_identifier)))))))))))))))
 
 ================================================================================
 Try expression with catch on newline
@@ -769,7 +772,7 @@ when (val animatedImage = state) {
         (variable_declaration
           id: (simple_identifier))
         (simple_identifier))
-      (when_entries  
+      (when_entries
         (when_entry
           (when_condition
             (type_test
@@ -810,8 +813,9 @@ when (val animatedImage = state) {
             expression: (simple_identifier)
             args: (value_arguments
               (value_argument
-                expression: (string_literal
-                  (string_content))))))))))
+                expression: (line_string_literal
+                  content: (line_string_content
+                    (line_string_content_part)))))))))))
 
 ================================================================================
 Colon on newline after secondary constructor
@@ -961,11 +965,11 @@ fun f(
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    expression: (string_literal
-                      (string_content))))))))))
+                    expression: (line_string_literal
+                      content: (line_string_content
+                        (line_string_content_part)))))))))))
     body: (function_body
       (block))))
-
 
 ================================================================================
 Newline on type arguments
@@ -1154,15 +1158,15 @@ Class.forName("leakcanary.internal.activity.LeakActivity")
           selector: (simple_identifier))
         args: (value_arguments
           (value_argument
-            expression: (string_literal
-              (string_content)))))
+            expression: (line_string_literal
+              content: (line_string_content
+                (line_string_content_part))))))
       type: (user_type
         (type_identifier)
         (type_arguments
           (type_projection
             type: (user_type
               (type_identifier))))))))
-
 
 ================================================================================
 Delegation constructor parameters on next line
