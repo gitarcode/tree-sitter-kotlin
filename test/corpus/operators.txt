@@ -104,13 +104,13 @@ b)
   (statement
     (parenthesized_expression
       (multiplicative_expression
-        (simple_identifier)
-        (simple_identifier))))
+        left: (simple_identifier)
+        right: (simple_identifier))))
   (statement
     (parenthesized_expression
       (multiplicative_expression
-        (simple_identifier)
-        (simple_identifier)))))      
+        left: (simple_identifier)
+        right: (simple_identifier)))))      
 
 ================================================================================
 Range on separate line in parentheses
@@ -127,13 +127,13 @@ Range on separate line in parentheses
   (statement
     (parenthesized_expression
       (range_expression
-        (simple_identifier)
-        (simple_identifier))))
+        left: (simple_identifier)
+        right: (simple_identifier))))
   (statement
     (parenthesized_expression
       (range_expression
-        (simple_identifier)
-        (simple_identifier)))))
+        left: (simple_identifier)
+        right: (simple_identifier)))))
 
 ================================================================================
 Three identifiers on separate lines
@@ -167,9 +167,9 @@ c)
   (statement
     (parenthesized_expression
       (infix_expression
-        (simple_identifier)
-        op: (simple_identifier)
-        (simple_identifier)))))
+        left: (simple_identifier)
+        operator: (simple_identifier)
+        right: (simple_identifier)))))
 
 ================================================================================
 In operator in parentheses
@@ -185,8 +185,8 @@ c)
   (statement
     (parenthesized_expression
       (in_expression
-        (simple_identifier)
-        (simple_identifier)))))
+        left: (simple_identifier)
+        right: (simple_identifier)))))
 
 ================================================================================
 !In operator in parentheses
@@ -202,8 +202,8 @@ c)
   (statement
     (parenthesized_expression
       (in_expression
-        (simple_identifier)
-        (simple_identifier)))))
+        left: (simple_identifier)
+        right: (simple_identifier)))))
 
 
 ================================================================================
@@ -223,13 +223,13 @@ b)
   (statement
     (parenthesized_expression
       (comparison_expression
-        (simple_identifier)
-        (simple_identifier))))
+        left: (simple_identifier)
+        right: (simple_identifier))))
   (statement
     (parenthesized_expression
       (comparison_expression
-        (simple_identifier)
-        (simple_identifier)))))
+        left: (simple_identifier)
+        right: (simple_identifier)))))
 
 ================================================================================
 Equality operator in parentheses
@@ -254,23 +254,23 @@ b)
   (statement
     (parenthesized_expression
       (equality_expression
-        (simple_identifier)
-        (simple_identifier))))
+        left: (simple_identifier)
+        right: (simple_identifier))))
   (statement
     (parenthesized_expression
       (equality_expression
-        (simple_identifier)
-        (simple_identifier))))
+        left: (simple_identifier)
+        right: (simple_identifier))))
   (statement
     (parenthesized_expression
       (equality_expression
-        (simple_identifier)
-        (simple_identifier))))
+        left: (simple_identifier)
+        right: (simple_identifier))))
   (statement
     (parenthesized_expression
       (equality_expression
-        (simple_identifier)
-        (simple_identifier)))))
+        left: (simple_identifier)
+        right: (simple_identifier)))))
 
 
 ================================================================================
@@ -291,8 +291,8 @@ fun f() {}
       expression: (simple_identifier)
       open_bracket: (open_bracket)
       index: (additive_expression
-        (integer_literal)
-        (integer_literal))
+        left: (integer_literal)
+        right: (integer_literal))
       close_bracket: (close_bracket)))
   (function_declaration
     modifiers: (modifiers
@@ -305,8 +305,8 @@ fun f() {}
               expression: (collection_literal
                 (integer_literal)
                 (additive_expression
-                  (integer_literal)
-                  (integer_literal))))))))
+                  left: (integer_literal)
+                  right: (integer_literal))))))))
     name: (simple_identifier)
     parameters: (function_value_parameters)
     body: (function_body

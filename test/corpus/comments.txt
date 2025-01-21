@@ -19,8 +19,8 @@ Comments
 (source_file
   (statement
     (additive_expression
-      (integer_literal)
-      (integer_literal)))
+      left: (integer_literal)
+      right: (integer_literal)))
   (line_comment)
   (multiline_comment)
   (line_comment)
@@ -167,10 +167,10 @@ f(1 //line comment
       args: (value_arguments
         (value_argument
           expression: (additive_expression
-            (integer_literal)
+            left: (integer_literal)
             (line_comment)
             (multiline_comment)
-            (integer_literal)))))))
+            right: (integer_literal)))))))
 
 ================================================================================
 Comments before constructor parameter

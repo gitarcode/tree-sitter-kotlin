@@ -52,8 +52,8 @@ fun foo() {
                                 body: (statements
                                     (statement
                                     (additive_expression
-                                        (simple_identifier)
-                                        (integer_literal)))))))))
+                                        left: (simple_identifier)
+                                        right: (integer_literal)))))))))
                 (line_comment)
                 (call_expression
                 expression: (simple_identifier)
@@ -75,8 +75,8 @@ fun foo() {
                     body: (statements
                     (statement
                         (additive_expression
-                        (simple_identifier)
-                        (integer_literal))))))))
+                            left: (simple_identifier)
+                            right: (integer_literal))))))))
             (line_comment)
             (statement
             (call_expression
@@ -226,8 +226,8 @@ fun foo() {
                 var_decl: (variable_declaration
                 id: (simple_identifier))
                 expression: (range_expression
-                (integer_literal)
-                (integer_literal))
+                    left: (integer_literal)
+                    right: (integer_literal))
                 body: (block
                 (statements
                     (statement
@@ -245,8 +245,8 @@ fun foo() {
                 var_decl: (variable_declaration
                 id: (simple_identifier))
                 expression: (range_expression
-                (integer_literal)
-                (integer_literal))
+                    left: (integer_literal)
+                    right: (integer_literal))
                 body: (assignment
                 left: (annotated_expression
                     (annotation
@@ -259,8 +259,8 @@ fun foo() {
             (statement
             (if_expression
                 condition: (comparison_expression
-                (integer_literal)
-                (integer_literal))
+                    left: (integer_literal)
+                    right: (integer_literal))
                 consequence: (assignment
                 left: (annotated_expression
                     (annotation
@@ -273,8 +273,8 @@ fun foo() {
             (statement
             (if_expression
                 condition: (comparison_expression
-                (integer_literal)
-                (integer_literal))
+                    left: (integer_literal)
+                    right: (integer_literal))
                 consequence: (assignment
                 left: (annotated_expression
                     (annotation
@@ -358,13 +358,13 @@ fun foo() {
                 (user_type
                     (type_identifier)))
                 (elvis_expression
-                (simple_identifier)
-                (infix_expression
-                    (simple_identifier)
-                    op: (simple_identifier)
-                    (additive_expression
-                    (simple_identifier)
-                    (integer_literal))))))
+                    left: (simple_identifier)
+                    right: (infix_expression
+                        left: (simple_identifier)
+                        operator: (simple_identifier)
+                        right: (additive_expression
+                            left: (simple_identifier)
+                            right: (integer_literal))))))
             (statement
             (annotated_expression
                 (annotation
@@ -481,8 +481,8 @@ fun foo() {
                 var_decl: (variable_declaration
                 id: (simple_identifier))
                 expression: (range_expression
-                (integer_literal)
-                (integer_literal))
+                    left: (integer_literal)
+                    right: (integer_literal))
                 body: (block
                 (statements
                     (statement
@@ -500,8 +500,8 @@ fun foo() {
                 var_decl: (variable_declaration
                 id: (simple_identifier))
                 expression: (range_expression
-                (integer_literal)
-                (integer_literal))
+                    left: (integer_literal)
+                    right: (integer_literal))
                 body: (assignment
                 left: (annotated_expression
                     (annotation
@@ -514,8 +514,8 @@ fun foo() {
             (statement
             (if_expression
                 condition: (comparison_expression
-                (integer_literal)
-                (integer_literal))
+                    left: (integer_literal)
+                    right: (integer_literal))
                 consequence: (assignment
                 left: (annotated_expression
                     (annotation
@@ -528,8 +528,8 @@ fun foo() {
             (statement
             (if_expression
                 condition: (comparison_expression
-                (integer_literal)
-                (integer_literal))
+                    left: (integer_literal)
+                    right: (integer_literal))
                 consequence: (assignment
                 left: (annotated_expression
                     (annotation
@@ -613,13 +613,13 @@ fun foo() {
                 (user_type
                     (type_identifier)))
                 (elvis_expression
-                (simple_identifier)
-                (infix_expression
-                    (simple_identifier)
-                    op: (simple_identifier)
-                    (additive_expression
-                    (simple_identifier)
-                    (integer_literal))))))
+                    left: (simple_identifier)
+                    right: (infix_expression
+                        left: (simple_identifier)
+                        operator: (simple_identifier)
+                        right: (additive_expression
+                            left: (simple_identifier)
+                            right: (integer_literal))))))
             (statement
             (annotated_expression
                 (annotation

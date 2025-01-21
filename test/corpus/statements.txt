@@ -292,8 +292,8 @@ if (x > 0)
   (statement
     (if_expression
       condition: (comparison_expression
-        (simple_identifier)
-        (integer_literal))
+        left: (simple_identifier)
+        right: (integer_literal))
       consequence: (for_statement
         var_decl: (variable_declaration
           id: (simple_identifier))
@@ -414,8 +414,8 @@ internal val ImageBitmap.isEmptyPlaceholder: Boolean
     (getter
       (function_body
         expression: (equality_expression
-          (this_expression)
-          (simple_identifier))))))
+          left: (this_expression)
+          right: (simple_identifier))))))
 
 
 ================================================================================

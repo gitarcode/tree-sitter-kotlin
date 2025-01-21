@@ -214,16 +214,41 @@
   {
     "type": "additive_expression",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        }
-      ]
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "+",
+            "named": false
+          },
+          {
+            "type": "-",
+            "named": false
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -950,16 +975,49 @@
   {
     "type": "comparison_expression",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        }
-      ]
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "<",
+            "named": false
+          },
+          {
+            "type": "<=",
+            "named": false
+          },
+          {
+            "type": ">",
+            "named": false
+          },
+          {
+            "type": ">=",
+            "named": false
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -973,6 +1031,16 @@
           {
             "type": "expression",
             "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "&&",
+            "named": false
           }
         ]
       },
@@ -1075,6 +1143,16 @@
           }
         ]
       },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "||",
+            "named": false
+          }
+        ]
+      },
       "right": {
         "multiple": false,
         "required": true,
@@ -1162,16 +1240,27 @@
   {
     "type": "elvis_expression",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        }
-      ]
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1224,6 +1313,16 @@
     "type": "equality_expression",
     "named": true,
     "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
       "op": {
         "multiple": false,
         "required": true,
@@ -1245,17 +1344,17 @@
             "named": false
           }
         ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1913,16 +2012,41 @@
   {
     "type": "in_expression",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        }
-      ]
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "!in",
+            "named": false
+          },
+          {
+            "type": "in",
+            "named": false
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1975,7 +2099,17 @@
     "type": "infix_expression",
     "named": true,
     "fields": {
-      "op": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
         "multiple": false,
         "required": true,
         "types": [
@@ -1984,17 +2118,17 @@
             "named": true
           }
         ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -2011,6 +2145,64 @@
     "type": "is_expression",
     "named": true,
     "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "!is",
+            "named": false
+          },
+          {
+            "type": "is",
+            "named": false
+          }
+        ]
+      },
+      "right": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "dynamic",
+            "named": false
+          },
+          {
+            "type": "function_type",
+            "named": true
+          },
+          {
+            "type": "not_nullable_type",
+            "named": true
+          },
+          {
+            "type": "nullable_type",
+            "named": true
+          },
+          {
+            "type": "parenthesized_type",
+            "named": true
+          },
+          {
+            "type": "type_modifiers",
+            "named": true
+          },
+          {
+            "type": "user_type",
+            "named": true
+          }
+        ]
+      },
       "type": {
         "multiple": false,
         "required": false,
@@ -2021,36 +2213,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "function_type",
-          "named": true
-        },
-        {
-          "type": "not_nullable_type",
-          "named": true
-        },
-        {
-          "type": "nullable_type",
-          "named": true
-        },
-        {
-          "type": "parenthesized_type",
-          "named": true
-        },
-        {
-          "type": "type_modifiers",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -2214,16 +2376,45 @@
   {
     "type": "multiplicative_expression",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        }
-      ]
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "%",
+            "named": false
+          },
+          {
+            "type": "*",
+            "named": false
+          },
+          {
+            "type": "/",
+            "named": false
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2813,16 +3004,41 @@
   {
     "type": "range_expression",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        }
-      ]
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "..",
+            "named": false
+          },
+          {
+            "type": "..<",
+            "named": false
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {

@@ -85,14 +85,14 @@ class Strings {
         parameters: (function_value_parameters)
         body: (function_body
           expression: (additive_expression
-            (additive_expression
-              (string_literal
+            left: (additive_expression
+              left: (string_literal
                 content: (string_content
                   (line_string_content_part)))
-              (string_literal
+              right: (string_literal
                 content: (string_content
                   (line_string_content_part))))
-            (string_literal
+            right: (string_literal
               content: (string_content
                 (line_string_content_part)))))))))
 

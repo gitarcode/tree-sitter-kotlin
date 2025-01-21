@@ -91,8 +91,8 @@ fun sum(a: Int, b: Int) = a + b
           type: (user_type (type_identifier)))))
     body: (function_body
       expression: (additive_expression
-        (simple_identifier)
-        (simple_identifier)))))
+        left: (simple_identifier)
+        right: (simple_identifier)))))
 
 ==================
 Functions with return types

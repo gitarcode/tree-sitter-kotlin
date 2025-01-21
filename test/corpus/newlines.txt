@@ -157,20 +157,20 @@ fun foo() {
               var_decl: (variable_declaration
                 id: (simple_identifier))
               initializer: (elvis_expression
-                (elvis_expression
-                  (call_expression
+                left: (elvis_expression
+                  left: (call_expression
                     expression: (dot_qualified_expression
                       receiver: (simple_identifier)
                       selector: (simple_identifier))
                     args: (value_arguments
                       (value_argument
                         expression: (boolean_literal))))
-                  (call_expression
+                  right: (call_expression
                     expression: (dot_qualified_expression
                       receiver: (simple_identifier)
                       selector: (simple_identifier))
                     args: (value_arguments)))
-                (break_expression)))))))))
+                right: (break_expression)))))))))
 
 ================================================================================
 get after newline
@@ -195,10 +195,10 @@ class Foo {
         (getter
           (function_body
             expression: (multiplicative_expression
-              (call_expression
+              left: (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments))
-              (integer_literal))))))))
+              right: (integer_literal))))))))
 
 ================================================================================
 Newline in function call
@@ -340,8 +340,8 @@ fun foo() {
               args: (value_arguments
                 (value_argument
                   expression: (additive_expression
-                    (simple_identifier)
-                    (simple_identifier)))))))))))
+                    left: (simple_identifier)
+                    right: (simple_identifier)))))))))))
 
 ================================================================================
 Newline after additive expression
@@ -367,8 +367,8 @@ fun foo() {
               var_decl: (variable_declaration
                 id: (simple_identifier))
               initializer: (additive_expression
-                (simple_identifier)
-                (simple_identifier)))))))))
+                left: (simple_identifier)
+                right: (simple_identifier)))))))))
 
 ================================================================================
 Lambda Expressions with body on newline
@@ -463,30 +463,30 @@ val current =
         (value_argument
           name: (simple_identifier)
           expression: (multiplicative_expression
-            (parenthesized_expression
+            left: (parenthesized_expression
               (additive_expression
-                (parenthesized_expression
+                left: (parenthesized_expression
                   (multiplicative_expression
-                    (dot_qualified_expression
+                    left: (dot_qualified_expression
                       receiver: (simple_identifier)
                       selector: (simple_identifier))
-                    (dot_qualified_expression
+                    right: (dot_qualified_expression
                       receiver: (simple_identifier)
                       selector: (simple_identifier))))
-                (simple_identifier)))
-            (parenthesized_expression
+                right: (simple_identifier)))
+            right: (parenthesized_expression
               (additive_expression
-                (dot_qualified_expression
+                left: (dot_qualified_expression
                   receiver: (simple_identifier)
                   selector: (simple_identifier))
-                (integer_literal)))))
+                right: (integer_literal)))))
         (value_argument
           name: (simple_identifier)
           expression: (additive_expression
-            (dot_qualified_expression
+            left: (dot_qualified_expression
               receiver: (simple_identifier)
               selector: (simple_identifier))
-            (integer_literal)))))))
+            right: (integer_literal)))))))
 
 ================================================================================
 Class name on new line
@@ -526,22 +526,22 @@ val previewClasspathString =
       expression: (dot_qualified_expression
         receiver: (parenthesized_expression
           (additive_expression
-            (additive_expression
-              (call_expression
+            left: (additive_expression
+              left: (call_expression
                 expression: (dot_qualified_expression
                   receiver: (dot_qualified_expression
                     receiver: (simple_identifier)
                     selector: (simple_identifier))
                   selector: (simple_identifier))
                 args: (value_arguments))
-              (call_expression
+              right: (call_expression
                 expression: (dot_qualified_expression
                   receiver: (dot_qualified_expression
                     receiver: (simple_identifier)
                     selector: (simple_identifier))
                   selector: (simple_identifier))
                 args: (value_arguments)))
-            (call_expression
+            right: (call_expression
               expression: (dot_qualified_expression
                 receiver: (dot_qualified_expression
                   receiver: (simple_identifier)
@@ -689,12 +689,12 @@ error("Found references to atomicfu in jar file $name in the following class fil
                       body: (statements
                         (statement
                           (additive_expression
-                            (string_literal
+                            left: (string_literal
                               content: (string_content
                                 (line_string_content_part)
                                 (line_string_content_part)
                                 (line_string_content_part)))
-                            (simple_identifier)))))))))))))))
+                            right: (simple_identifier)))))))))))))))
 
 ================================================================================
 Try expression with catch on newline
