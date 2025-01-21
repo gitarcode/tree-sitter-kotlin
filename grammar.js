@@ -669,7 +669,7 @@ module.exports = grammar({
     ),
 
     user_type: $ => seq(
-      $._simple_user_type, repeat(seq(".", repeat($._NL), $._simple_user_type))
+      $._simple_user_type, repeat($._external_nl), repeat(seq(".", repeat($._NL), $._simple_user_type))
     ),
 
     _simple_user_type: $ => seq(

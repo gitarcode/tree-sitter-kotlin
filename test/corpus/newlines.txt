@@ -1323,3 +1323,38 @@ do {
                       receiver: (simple_identifier)
                       selector: (simple_identifier))
                     args: (value_arguments)))))))))))
+
+================================================================================
+Newline after dot in user_type
+================================================================================
+
+class A : B<C
+.D>
+
+class A : B<C
+.
+D>
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    name: (simple_identifier)
+    (delegation_specifier
+      (user_type
+        (type_identifier)
+        (type_arguments
+          (type_projection
+            type: (user_type
+              (type_identifier)
+              (type_identifier)))))))
+  (class_declaration
+    name: (simple_identifier)
+    (delegation_specifier
+      (user_type
+        (type_identifier)
+        (type_arguments
+          (type_projection
+            type: (user_type
+              (type_identifier)
+              (type_identifier))))))))
