@@ -1283,3 +1283,43 @@ a[
       index: (integer_literal)
       index: (integer_literal)
       close_bracket: (close_bracket))))
+
+================================================================================
+Newline in do while statement
+================================================================================
+
+do {
+    event = awaitPointerEvent()
+} while (
+    !event.changes.fastAll { it.changedToDown() }
+)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (do_while_statement
+      (block
+        (statements
+          (statement
+            (assignment
+              left: (simple_identifier)
+              right: (call_expression
+                expression: (simple_identifier)
+                args: (value_arguments))))))
+      (prefix_expression
+        expression: (call_expression
+          expression: (dot_qualified_expression
+            receiver: (dot_qualified_expression
+              receiver: (simple_identifier)
+              selector: (simple_identifier))
+            selector: (simple_identifier))
+          lambda_arg: (annotated_lambda
+            lambda_literal: (lambda_literal
+              body: (statements
+                (statement
+                  (call_expression
+                    expression: (dot_qualified_expression
+                      receiver: (simple_identifier)
+                      selector: (simple_identifier))
+                    args: (value_arguments)))))))))))

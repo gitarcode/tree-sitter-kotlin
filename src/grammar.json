@@ -4048,6 +4048,13 @@
             "name": "expression"
           },
           {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_NL"
+            }
+          },
+          {
             "type": "STRING",
             "value": ")"
           }
