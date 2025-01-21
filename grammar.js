@@ -1079,7 +1079,7 @@ module.exports = grammar({
 
     _line_string_literal: $ => seq(
       '"',
-      optional(field("content", $.line_string_content)),
+      optional(field("content", alias($.line_string_content, $.string_content))),
       '"'
     ),
 
@@ -1104,7 +1104,7 @@ module.exports = grammar({
 
     _multi_line_string_literal: $ => prec.right(seq(
       '"""',
-      optional(field("content", $.multi_line_string_content)),
+      optional(field("content", alias($.multi_line_string_content, $.string_content))),
       '"""',
       repeat('"')
     )),

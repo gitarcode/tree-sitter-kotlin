@@ -5641,8 +5641,13 @@
               "type": "FIELD",
               "name": "content",
               "content": {
-                "type": "SYMBOL",
-                "name": "line_string_content"
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "line_string_content"
+                },
+                "named": true,
+                "value": "string_content"
               }
             },
             {
@@ -5782,8 +5787,13 @@
                 "type": "FIELD",
                 "name": "content",
                 "content": {
-                  "type": "SYMBOL",
-                  "name": "multi_line_string_content"
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "multi_line_string_content"
+                  },
+                  "named": true,
+                  "value": "string_content"
                 }
               },
               {

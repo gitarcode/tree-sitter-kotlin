@@ -69,7 +69,7 @@ sum(1, 2)
       args: (value_arguments
         (value_argument
           expression: (string_literal
-            content: (line_string_content
+            content: (string_content
               (line_string_content_part)))))))
   (statement
     (call_expression
@@ -162,7 +162,7 @@ val MyDate.s: String get() = "hello"
     (getter
       (function_body
         expression: (string_literal
-          content: (line_string_content
+          content: (string_content
             (line_string_content_part)))))))
 
 ================================================================================
@@ -460,7 +460,7 @@ val comments = """ // and here """
       args: (value_arguments
         (value_argument
           expression: (string_literal
-            content: (line_string_content
+            content: (string_content
               (line_string_content_part)))))))
   (property_declaration
     binding_pattern: (binding_pattern_kind)
@@ -471,7 +471,7 @@ val comments = """ // and here """
       args: (value_arguments
         (value_argument
           expression: (string_literal
-            content: (line_string_content
+            content: (string_content
               (line_string_content_part)))))))
   (property_declaration
     binding_pattern: (binding_pattern_kind)
@@ -482,7 +482,7 @@ val comments = """ // and here """
       args: (value_arguments
         (value_argument
           expression: (string_literal
-            content: (line_string_content
+            content: (string_content
               (line_string_content_part)))))))
   (property_declaration
     binding_pattern: (binding_pattern_kind)
@@ -493,21 +493,21 @@ val comments = """ // and here """
       args: (value_arguments
         (value_argument
           expression: (string_literal
-            content: (line_string_content
+            content: (string_content
               (line_string_content_part)))))))
   (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (string_literal
-      content: (multi_line_string_content
+      content: (string_content
         (multi_line_string_content_part))))
   (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (string_literal
-      content: (multi_line_string_content
+      content: (string_content
         (multi_line_string_content_part)))))
 
 ================================================================================
@@ -605,7 +605,7 @@ if (cond1) {
               args: (value_arguments
                 (value_argument
                   expression: (string_literal
-                    content: (line_string_content
+                    content: (string_content
                       (line_string_content_part)))))))))
       alternative: (if_expression
         condition: (simple_identifier)
@@ -617,7 +617,7 @@ if (cond1) {
                 args: (value_arguments
                   (value_argument
                     expression: (string_literal
-                      content: (line_string_content
+                      content: (string_content
                         (line_string_content_part)))))))))
         alternative: (block
           (statements
@@ -627,7 +627,7 @@ if (cond1) {
                 args: (value_arguments
                   (value_argument
                     expression: (string_literal
-                      content: (line_string_content
+                      content: (string_content
                         (line_string_content_part)))))))))))))
 
 ================================================================================
@@ -741,7 +741,7 @@ configurationElements[0].substringBefore("?")
       args: (value_arguments
         (value_argument
           expression: (string_literal
-            content: (line_string_content
+            content: (string_content
               (line_string_content_part))))))))
 
 ================================================================================
@@ -806,7 +806,7 @@ suppressions
                 body: (statements
                   (statement
                     (string_literal
-                      content: (line_string_content
+                      content: (string_content
                         (line_string_content_part)
                         (interpolated_expression
                           (dot_qualified_expression
@@ -851,7 +851,7 @@ suppressions
                       args: (value_arguments
                         (value_argument
                           expression: (string_literal
-                            content: (line_string_content
+                            content: (string_content
                               (line_string_content_part)
                               (interpolated_identifier)
                               (line_string_content_part)))))))))))))
@@ -940,7 +940,7 @@ when (this) {
         (else_entry
           (additive_expression
             (string_literal
-              content: (line_string_content
+              content: (string_content
                 (interpolated_identifier)
                 (line_string_content_part)
                 (interpolated_identifier)))
@@ -973,7 +973,7 @@ when (x) {
             args: (value_arguments
               (value_argument
                 expression: (string_literal
-                  content: (line_string_content
+                  content: (string_content
                     (line_string_content_part)))))))))))
 
 ================================================================================
@@ -1146,10 +1146,10 @@ if (x == 1)
           (simple_identifier)
           (integer_literal))
         consequence: (string_literal
-          content: (line_string_content
+          content: (string_content
             (line_string_content_part)))
         alternative: (string_literal
-          content: (line_string_content
+          content: (string_content
             (line_string_content_part)))))))
 
 ================================================================================

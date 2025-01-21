@@ -2122,29 +2122,6 @@
     }
   },
   {
-    "type": "line_string_content",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "interpolated_expression",
-          "named": true
-        },
-        {
-          "type": "interpolated_identifier",
-          "named": true
-        },
-        {
-          "type": "line_string_content_part",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "long_literal",
     "named": true,
     "fields": {},
@@ -2214,29 +2191,6 @@
         },
         {
           "type": "visibility_modifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "multi_line_string_content",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "interpolated_expression",
-          "named": true
-        },
-        {
-          "type": "interpolated_identifier",
-          "named": true
-        },
-        {
-          "type": "multi_line_string_content_part",
           "named": true
         }
       ]
@@ -3172,6 +3126,33 @@
     }
   },
   {
+    "type": "string_content",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "interpolated_expression",
+          "named": true
+        },
+        {
+          "type": "interpolated_identifier",
+          "named": true
+        },
+        {
+          "type": "line_string_content_part",
+          "named": true
+        },
+        {
+          "type": "multi_line_string_content_part",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "string_literal",
     "named": true,
     "fields": {
@@ -3180,11 +3161,7 @@
         "required": false,
         "types": [
           {
-            "type": "line_string_content",
-            "named": true
-          },
-          {
-            "type": "multi_line_string_content",
+            "type": "string_content",
             "named": true
           }
         ]

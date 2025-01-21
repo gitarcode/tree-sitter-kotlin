@@ -54,21 +54,21 @@ string.
 (source_file
   (statement
     (string_literal
-      content: (line_string_content
+      content: (string_content
         (line_string_content_part))))
   (statement
     (string_literal
-      content: (multi_line_string_content
+      content: (string_content
         (multi_line_string_content_part)
         (multi_line_string_content_part)
         (multi_line_string_content_part))))
   (statement
     (string_literal
-      content: (multi_line_string_content
+      content: (string_content
         (multi_line_string_content_part))))
   (statement
     (string_literal
-      content: (multi_line_string_content
+      content: (string_content
         (multi_line_string_content_part)
         (multi_line_string_content_part)))))
 
@@ -84,7 +84,7 @@ There's a lot of ""quotations"". Even at the "end""""
 (source_file
   (statement
     (string_literal
-      content: (multi_line_string_content
+      content: (string_content
         (multi_line_string_content_part)
         (multi_line_string_content_part)
         (multi_line_string_content_part)
@@ -108,26 +108,26 @@ ${"""string interpolation"""} $literal
 (source_file
   (statement
     (string_literal
-      content: (line_string_content
+      content: (string_content
         (line_string_content_part)
         (interpolated_identifier)
         (line_string_content_part))))
   (statement
     (string_literal
-      content: (line_string_content
+      content: (string_content
         (line_string_content_part)
         (interpolated_expression
           (string_literal
-            content: (line_string_content
+            content: (string_content
               (line_string_content_part))))
         (line_string_content_part))))
   (statement
     (string_literal
-      content: (multi_line_string_content
+      content: (string_content
         (multi_line_string_content_part)
         (interpolated_expression
           (string_literal
-            content: (multi_line_string_content
+            content: (string_content
               (multi_line_string_content_part))))
         (multi_line_string_content_part)
         (interpolated_identifier)
@@ -150,31 +150,31 @@ More string interpolation
 (source_file
   (statement
     (string_literal
-      content: (line_string_content)))
+      content: (string_content)))
   (statement
     (string_literal
-      content: (line_string_content)))
+      content: (string_content)))
   (statement
     (string_literal
-      content: (line_string_content)))
+      content: (string_content)))
   (statement
     (string_literal
-      content: (line_string_content
+      content: (string_content
         (line_string_content_part)
         (line_string_content_part))))
   (statement
     (string_literal
-      content: (line_string_content
+      content: (string_content
         (line_string_content_part))))
   (statement
     (string_literal
-      content: (line_string_content
+      content: (string_content
         (line_string_content_part)
         (line_string_content_part)
         (line_string_content_part))))
   (statement
     (string_literal
-      content: (line_string_content))))    
+      content: (string_content))))    
 
 ================================================================================
 Integer literals
@@ -238,13 +238,13 @@ assertEquals("\u214E\uA7B5\u2CEF", "\u2132\uA7B4\u2CEF".lowercase())
       args: (value_arguments
         (value_argument
           expression: (string_literal
-            content: (line_string_content
+            content: (string_content
               (line_string_content_part))))
         (value_argument
           expression: (call_expression
             expression: (dot_qualified_expression
               receiver: (string_literal
-                content: (line_string_content
+                content: (string_content
                   (line_string_content_part)))
               selector: (simple_identifier))
             args: (value_arguments)))))))

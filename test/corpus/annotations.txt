@@ -154,7 +154,7 @@ const val BAZ = "baz"
             (value_argument
               name: (simple_identifier)
               expression: (string_literal
-                content: (line_string_content
+                content: (string_content
                   (line_string_content_part))))
             (value_argument
               name: (simple_identifier)
@@ -165,7 +165,7 @@ const val BAZ = "baz"
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (string_literal
-      content: (line_string_content
+      content: (string_content
         (line_string_content_part)))))
 
 =====================
@@ -191,7 +191,7 @@ const val BAZ = "baz"
             (value_argument
               name: (simple_identifier)
               expression: (string_literal
-                content: (line_string_content
+                content: (string_content
                   (line_string_content_part))))
             (value_argument
               name: (simple_identifier)
@@ -201,7 +201,7 @@ const val BAZ = "baz"
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (string_literal
-      content: (line_string_content
+      content: (string_content
         (line_string_content_part)))))
 
 ======================
@@ -277,7 +277,7 @@ fun parse(xml: String): Element {
                   args: (value_arguments
                     (value_argument
                       expression: (string_literal
-                        content: (line_string_content
+                        content: (string_content
                           (line_string_content_part)))))))
               (call_expression
                 expression: (dot_qualified_expression
@@ -364,7 +364,7 @@ if (it.isCanceled) deferred.cancel() else deferred.complete(it.result as T)
           args: (value_arguments
             (value_argument
               expression: (string_literal
-                content: (line_string_content
+                content: (string_content
                   (line_string_content_part)))))))
       (if_expression
         condition: (dot_qualified_expression

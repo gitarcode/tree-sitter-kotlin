@@ -110,7 +110,7 @@ fun foo():String
           (statement
             (return_expression
               (string_literal
-                content: (line_string_content
+                content: (string_content
                   (line_string_content_part))))))))))
 
 ================================================================================
@@ -672,7 +672,7 @@ error("Found references to atomicfu in jar file $name in the following class fil
       args: (value_arguments
         (value_argument
           expression: (string_literal
-            content: (line_string_content
+            content: (string_content
               (line_string_content_part)
               (interpolated_identifier)
               (line_string_content_part)
@@ -690,7 +690,7 @@ error("Found references to atomicfu in jar file $name in the following class fil
                         (statement
                           (additive_expression
                             (string_literal
-                              content: (line_string_content
+                              content: (string_content
                                 (line_string_content_part)
                                 (line_string_content_part)
                                 (line_string_content_part)))
@@ -814,7 +814,7 @@ when (val animatedImage = state) {
             args: (value_arguments
               (value_argument
                 expression: (string_literal
-                  content: (line_string_content
+                  content: (string_content
                     (line_string_content_part)))))))))))
 
 ================================================================================
@@ -966,7 +966,7 @@ fun f(
                 args: (value_arguments
                   (value_argument
                     expression: (string_literal
-                      content: (line_string_content
+                      content: (string_content
                         (line_string_content_part)))))))))))
     body: (function_body
       (block))))
@@ -1159,7 +1159,7 @@ Class.forName("leakcanary.internal.activity.LeakActivity")
         args: (value_arguments
           (value_argument
             expression: (string_literal
-              content: (line_string_content
+              content: (string_content
                 (line_string_content_part))))))
       type: (user_type
         (type_identifier)

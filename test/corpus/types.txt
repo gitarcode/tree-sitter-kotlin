@@ -253,12 +253,12 @@ Foo(x = "hi", y = "bar")
         (value_argument
           name: (simple_identifier)
           expression: (string_literal
-            content: (line_string_content
+            content: (string_content
               (line_string_content_part))))
         (value_argument
           name: (simple_identifier)
           expression: (string_literal
-            content: (line_string_content
+            content: (string_content
               (line_string_content_part))))))))
 
 ================================================================================
@@ -277,12 +277,12 @@ Foo(x = "hi", y = "bar",)
         (value_argument
           name: (simple_identifier)
           expression: (string_literal
-            content: (line_string_content
+            content: (string_content
               (line_string_content_part))))
         (value_argument
           name: (simple_identifier)
           expression: (string_literal
-            content: (line_string_content
+            content: (string_content
               (line_string_content_part))))))))
 
 ================================================================================
