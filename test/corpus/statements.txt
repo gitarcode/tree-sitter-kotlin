@@ -472,8 +472,8 @@ while (true) when (val frame = input.readFrame(Long.MAX_VALUE, 0)) {
 (source_file
   (statement
     (labeled_expression
-      (label)
-      (while_statement
+      label: (label)
+      expression: (while_statement
         (boolean_literal)
         (when_expression
           (when_subject

@@ -449,7 +449,7 @@
           }
         ]
       },
-      "op": {
+      "operator": {
         "multiple": false,
         "required": true,
         "types": [
@@ -1323,7 +1323,7 @@
           }
         ]
       },
-      "op": {
+      "operator": {
         "multiple": false,
         "required": true,
         "types": [
@@ -2218,20 +2218,27 @@
   {
     "type": "labeled_expression",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "label",
-          "named": true
-        }
-      ]
+    "fields": {
+      "expression": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "label": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "label",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2812,7 +2819,7 @@
           }
         ]
       },
-      "op": {
+      "operator": {
         "multiple": false,
         "required": true,
         "types": [

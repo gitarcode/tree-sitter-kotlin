@@ -790,7 +790,7 @@ module.exports = grammar({
 
     assignment: $ => prec.left("assignment", seq(
       field("left", $.expression),
-      field("op", $._assignment_operator),
+      field("operator", $._assignment_operator),
       repeat($._NL),
       field("right", $.expression)
     )),
@@ -897,11 +897,13 @@ module.exports = grammar({
     )),
 
     labeled_expression: $ => prec("label", seq(
-      $.label, repeat($._NL), $.expression)
-    ),
+      field("label", $.label), 
+      repeat($._NL), 
+      field("expression", $.expression)
+    )),
 
     prefix_expression: $ => prec("prefix", seq(
-      field("op", $._prefix_unary_operator), 
+      field("operator", $._prefix_unary_operator), 
       repeat($._NL),
       field("expression", $.expression))
     ),
@@ -992,7 +994,7 @@ module.exports = grammar({
     equality_expression: $ => prec.left("equality", seq(
       field("left", $.expression), 
       repeat($._external_nl), 
-      field("op", $._equality_operator), 
+      field("operator", $._equality_operator), 
       repeat($._NL), 
       field("right", $.expression)
     )),
