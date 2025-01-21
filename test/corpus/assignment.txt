@@ -74,7 +74,7 @@ fun main(){
                     open_bracket: (open_bracket)
                     index: (integer_literal)
                     close_bracket: (close_bracket))
-                  right: (line_string_literal
+                  right: (string_literal
                     content: (line_string_content
                       (line_string_content_part))))))))))
 

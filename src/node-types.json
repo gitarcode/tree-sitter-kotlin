@@ -212,20 +212,6 @@
     ]
   },
   {
-    "type": "string_literal",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "line_string_literal",
-        "named": true
-      },
-      {
-        "type": "multi_line_string_literal",
-        "named": true
-      }
-    ]
-  },
-  {
     "type": "additive_expression",
     "named": true,
     "fields": {},
@@ -2159,22 +2145,6 @@
     }
   },
   {
-    "type": "line_string_literal",
-    "named": true,
-    "fields": {
-      "content": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "line_string_content",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "long_literal",
     "named": true,
     "fields": {},
@@ -2270,22 +2240,6 @@
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "multi_line_string_literal",
-    "named": true,
-    "fields": {
-      "content": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "multi_line_string_content",
-            "named": true
-          }
-        ]
-      }
     }
   },
   {
@@ -3215,6 +3169,26 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "string_literal",
+    "named": true,
+    "fields": {
+      "content": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "line_string_content",
+            "named": true
+          },
+          {
+            "type": "multi_line_string_content",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {

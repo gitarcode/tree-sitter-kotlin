@@ -153,7 +153,7 @@ const val BAZ = "baz"
           args: (value_arguments
             (value_argument
               name: (simple_identifier)
-              expression: (line_string_literal
+              expression: (string_literal
                 content: (line_string_content
                   (line_string_content_part))))
             (value_argument
@@ -164,7 +164,7 @@ const val BAZ = "baz"
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (line_string_literal
+    initializer: (string_literal
       content: (line_string_content
         (line_string_content_part)))))
 
@@ -190,7 +190,7 @@ const val BAZ = "baz"
           args: (value_arguments
             (value_argument
               name: (simple_identifier)
-              expression: (line_string_literal
+              expression: (string_literal
                 content: (line_string_content
                   (line_string_content_part))))
             (value_argument
@@ -200,7 +200,7 @@ const val BAZ = "baz"
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (line_string_literal
+    initializer: (string_literal
       content: (line_string_content
         (line_string_content_part)))))
 
@@ -276,7 +276,7 @@ fun parse(xml: String): Element {
                     (type_identifier))
                   args: (value_arguments
                     (value_argument
-                      expression: (line_string_literal
+                      expression: (string_literal
                         content: (line_string_content
                           (line_string_content_part)))))))
               (call_expression
@@ -363,7 +363,7 @@ if (it.isCanceled) deferred.cancel() else deferred.complete(it.result as T)
             (type_identifier))
           args: (value_arguments
             (value_argument
-              expression: (line_string_literal
+              expression: (string_literal
                 content: (line_string_content
                   (line_string_content_part)))))))
       (if_expression

@@ -68,7 +68,7 @@ sum(1, 2)
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          expression: (line_string_literal
+          expression: (string_literal
             content: (line_string_content
               (line_string_content_part)))))))
   (statement
@@ -161,7 +161,7 @@ val MyDate.s: String get() = "hello"
         (type_identifier)))
     (getter
       (function_body
-        expression: (line_string_literal
+        expression: (string_literal
           content: (line_string_content
             (line_string_content_part)))))))
 
@@ -459,7 +459,7 @@ val comments = """ // and here """
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          expression: (line_string_literal
+          expression: (string_literal
             content: (line_string_content
               (line_string_content_part)))))))
   (property_declaration
@@ -470,7 +470,7 @@ val comments = """ // and here """
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          expression: (line_string_literal
+          expression: (string_literal
             content: (line_string_content
               (line_string_content_part)))))))
   (property_declaration
@@ -481,7 +481,7 @@ val comments = """ // and here """
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          expression: (line_string_literal
+          expression: (string_literal
             content: (line_string_content
               (line_string_content_part)))))))
   (property_declaration
@@ -492,21 +492,21 @@ val comments = """ // and here """
       expression: (simple_identifier)
       args: (value_arguments
         (value_argument
-          expression: (line_string_literal
+          expression: (string_literal
             content: (line_string_content
               (line_string_content_part)))))))
   (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (multi_line_string_literal
+    initializer: (string_literal
       content: (multi_line_string_content
         (multi_line_string_content_part))))
   (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
-    initializer: (multi_line_string_literal
+    initializer: (string_literal
       content: (multi_line_string_content
         (multi_line_string_content_part)))))
 
@@ -604,7 +604,7 @@ if (cond1) {
               expression: (simple_identifier)
               args: (value_arguments
                 (value_argument
-                  expression: (line_string_literal
+                  expression: (string_literal
                     content: (line_string_content
                       (line_string_content_part)))))))))
       alternative: (if_expression
@@ -616,7 +616,7 @@ if (cond1) {
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    expression: (line_string_literal
+                    expression: (string_literal
                       content: (line_string_content
                         (line_string_content_part)))))))))
         alternative: (block
@@ -626,7 +626,7 @@ if (cond1) {
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument
-                    expression: (line_string_literal
+                    expression: (string_literal
                       content: (line_string_content
                         (line_string_content_part)))))))))))))
 
@@ -740,7 +740,7 @@ configurationElements[0].substringBefore("?")
         selector: (simple_identifier))
       args: (value_arguments
         (value_argument
-          expression: (line_string_literal
+          expression: (string_literal
             content: (line_string_content
               (line_string_content_part))))))))
 
@@ -805,7 +805,7 @@ suppressions
                     id: (simple_identifier)))
                 body: (statements
                   (statement
-                    (line_string_literal
+                    (string_literal
                       content: (line_string_content
                         (line_string_content_part)
                         (interpolated_expression
@@ -850,7 +850,7 @@ suppressions
                       expression: (simple_identifier)
                       args: (value_arguments
                         (value_argument
-                          expression: (line_string_literal
+                          expression: (string_literal
                             content: (line_string_content
                               (line_string_content_part)
                               (interpolated_identifier)
@@ -939,7 +939,7 @@ when (this) {
       (when_entries
         (else_entry
           (additive_expression
-            (line_string_literal
+            (string_literal
               content: (line_string_content
                 (interpolated_identifier)
                 (line_string_content_part)
@@ -947,7 +947,7 @@ when (this) {
             (if_expression
               condition: (simple_identifier)
               consequence: (simple_identifier)
-              alternative: (line_string_literal))))))))
+              alternative: (string_literal))))))))
 
 ================================================================================
 When expression with trailing comma
@@ -972,7 +972,7 @@ when (x) {
             expression: (simple_identifier)
             args: (value_arguments
               (value_argument
-                expression: (line_string_literal
+                expression: (string_literal
                   content: (line_string_content
                     (line_string_content_part)))))))))))
 
@@ -1145,10 +1145,10 @@ if (x == 1)
         condition: (equality_expression
           (simple_identifier)
           (integer_literal))
-        consequence: (line_string_literal
+        consequence: (string_literal
           content: (line_string_content
             (line_string_content_part)))
-        alternative: (line_string_literal
+        alternative: (string_literal
           content: (line_string_content
             (line_string_content_part)))))))
 

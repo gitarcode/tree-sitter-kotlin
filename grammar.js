@@ -232,7 +232,6 @@ module.exports = grammar({
   supertypes: $ => [
     $.expression,
     $.jump_expression,
-    $.string_literal
   ],
 
   word: $ => $._alpha_identifier,
@@ -1074,11 +1073,11 @@ module.exports = grammar({
     ),
 
     string_literal: $ => choice(
-      $.line_string_literal,
-      $.multi_line_string_literal
+      $._line_string_literal,
+      $._multi_line_string_literal
     ),
 
-    line_string_literal: $ => seq(
+    _line_string_literal: $ => seq(
       '"',
       optional(field("content", $.line_string_content)),
       '"'
@@ -1103,7 +1102,7 @@ module.exports = grammar({
       escaped_identifier
     ))),
 
-    multi_line_string_literal: $ => prec.right(seq(
+    _multi_line_string_literal: $ => prec.right(seq(
       '"""',
       optional(field("content", $.multi_line_string_content)),
       '"""',

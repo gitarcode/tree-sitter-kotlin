@@ -5619,15 +5619,15 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "line_string_literal"
+          "name": "_line_string_literal"
         },
         {
           "type": "SYMBOL",
-          "name": "multi_line_string_literal"
+          "name": "_multi_line_string_literal"
         }
       ]
     },
-    "line_string_literal": {
+    "_line_string_literal": {
       "type": "SEQ",
       "members": [
         {
@@ -5765,7 +5765,7 @@
         }
       }
     },
-    "multi_line_string_literal": {
+    "_multi_line_string_literal": {
       "type": "PREC_RIGHT",
       "value": 0,
       "content": {
@@ -9346,7 +9346,6 @@
   "inline": [],
   "supertypes": [
     "expression",
-    "jump_expression",
-    "string_literal"
+    "jump_expression"
   ]
 }

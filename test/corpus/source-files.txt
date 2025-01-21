@@ -15,7 +15,7 @@ val x = 4
         (type_identifier))
       args: (value_arguments
         (value_argument
-          expression: (line_string_literal
+          expression: (string_literal
             content: (line_string_content
               (line_string_content_part)))))))
   (property_declaration
@@ -44,7 +44,7 @@ Multiple file annotations
         (type_identifier))
       args: (value_arguments
         (value_argument
-          expression: (line_string_literal
+          expression: (string_literal
             content: (line_string_content
               (line_string_content_part)))))))
   (file_annotation

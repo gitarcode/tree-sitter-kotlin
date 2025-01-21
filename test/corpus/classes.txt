@@ -77,7 +77,7 @@ class Strings {
         name: (simple_identifier)
         parameters: (function_value_parameters)
         body: (function_body
-          expression: (line_string_literal
+          expression: (string_literal
             content: (line_string_content
               (line_string_content_part)))))
       (function_declaration
@@ -86,13 +86,13 @@ class Strings {
         body: (function_body
           expression: (additive_expression
             (additive_expression
-              (line_string_literal
+              (string_literal
                 content: (line_string_content
                   (line_string_content_part)))
-              (line_string_literal
+              (string_literal
                 content: (line_string_content
                   (line_string_content_part))))
-            (line_string_literal
+            (string_literal
               content: (line_string_content
                 (line_string_content_part)))))))))
 
@@ -254,7 +254,7 @@ class Something {
         binding_pattern: (binding_pattern_kind)
         var_decl: (variable_declaration
           id: (simple_identifier))
-        initializer: (line_string_literal
+        initializer: (string_literal
           content: (line_string_content
             (line_string_content_part)))))))
 
@@ -423,7 +423,7 @@ enum class Enum {
                 (type_identifier))
               args: (value_arguments
                 (value_argument
-                  expression: (line_string_literal
+                  expression: (string_literal
                     content: (line_string_content
                       (line_string_content_part))))))))
         name: (simple_identifier)))))
@@ -749,7 +749,7 @@ class Derived(b: Base) : Base by b {
                   expression: (simple_identifier)
                   args: (value_arguments
                     (value_argument
-                      expression: (line_string_literal
+                      expression: (string_literal
                         content: (line_string_content
                           (line_string_content_part))))))))))))))
 
@@ -1140,7 +1140,7 @@ public enum class CodeStyleValue {
             (type_identifier))
           args: (value_arguments
             (value_argument
-              expression: (line_string_literal
+              expression: (string_literal
                 content: (line_string_content
                   (line_string_content_part)))))))
       (visibility_modifier)
