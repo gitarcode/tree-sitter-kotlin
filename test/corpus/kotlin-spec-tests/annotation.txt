@@ -24,7 +24,7 @@ fun foo() {
     @ann ({ it -> it + 1}) // lambda parsed as argument of annotation, and annotated expression is "print(1)"
     print(1)
 
-    @ann() ({ it -> it + 1}) // lambda in parenthesises annotated, "print(1)" is separated expression
+    @ann() ({ it -> it + 1}) // lambda in parenthesis's annotated, "print(1)" is separated expression
     print(1)
 }
 
@@ -39,35 +39,35 @@ fun foo() {
         (statements
             (statement
             (annotated_expression
-                (annotation
+                annotation: (annotation
                 (constructor_invocation
                     type: (user_type
-                        (type_identifier))
+                    (type_identifier))
                     args: (value_arguments
-                        (value_argument
-                            expression: (lambda_literal
-                                parameters: (lambda_parameters
-                                    (variable_declaration
-                                    id: (simple_identifier)))
-                                body: (statements
-                                    (statement
-                                    (additive_expression
-                                        left: (simple_identifier)
-                                        right: (integer_literal)))))))))
+                    (value_argument
+                        expression: (lambda_literal
+                        parameters: (lambda_parameters
+                            (variable_declaration
+                            id: (simple_identifier)))
+                        body: (statements
+                            (statement
+                            (additive_expression
+                                left: (simple_identifier)
+                                right: (integer_literal)))))))))
                 (line_comment)
-                (call_expression
+                expression: (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments
                     (value_argument
-                        expression: (integer_literal))))))
+                    expression: (integer_literal))))))
             (statement
             (annotated_expression
-                (annotation
+                annotation: (annotation
                 (constructor_invocation
                     type: (user_type
-                        (type_identifier))
+                    (type_identifier))
                     args: (value_arguments)))
-                (parenthesized_expression
+                expression: (parenthesized_expression
                 (lambda_literal
                     parameters: (lambda_parameters
                     (variable_declaration
@@ -75,8 +75,8 @@ fun foo() {
                     body: (statements
                     (statement
                         (additive_expression
-                            left: (simple_identifier)
-                            right: (integer_literal))))))))
+                        left: (simple_identifier)
+                        right: (integer_literal))))))))
             (line_comment)
             (statement
             (call_expression
@@ -183,12 +183,12 @@ fun foo() {
             (statement
             (assignment
                 left: (annotated_expression
-                (annotation
+                annotation: (annotation
                     (user_type
                     (type_identifier)))
                 (line_comment)
                 (multiline_comment)
-                (simple_identifier))
+                expression: (simple_identifier))
                 right: (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments))))
@@ -196,28 +196,28 @@ fun foo() {
             (statement
             (assignment
                 left: (annotated_expression
-                (annotation
+                annotation: (annotation
                     (user_type
                     (type_identifier)))
-                (simple_identifier))
+                expression: (simple_identifier))
                 right: (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments))))
             (statement
             (assignment
                 left: (annotated_expression
-                (annotation
+                annotation: (annotation
                     (user_type
                     (type_identifier)))
-                (annotated_expression
-                    (annotation
+                expression: (annotated_expression
+                    annotation: (annotation
                     (user_type
                         (type_identifier)))
-                    (annotated_expression
-                    (annotation
+                    expression: (annotated_expression
+                    annotation: (annotation
                         (user_type
                         (type_identifier)))
-                    (simple_identifier))))
+                    expression: (simple_identifier))))
                 right: (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments))))
@@ -226,17 +226,17 @@ fun foo() {
                 var_decl: (variable_declaration
                 id: (simple_identifier))
                 expression: (range_expression
-                    left: (integer_literal)
-                    right: (integer_literal))
+                left: (integer_literal)
+                right: (integer_literal))
                 body: (block
                 (statements
                     (statement
                     (assignment
                         left: (annotated_expression
-                        (annotation
+                        annotation: (annotation
                             (user_type
                             (type_identifier)))
-                        (simple_identifier))
+                        expression: (simple_identifier))
                         right: (call_expression
                         expression: (simple_identifier)
                         args: (value_arguments))))))))
@@ -245,51 +245,51 @@ fun foo() {
                 var_decl: (variable_declaration
                 id: (simple_identifier))
                 expression: (range_expression
-                    left: (integer_literal)
-                    right: (integer_literal))
+                left: (integer_literal)
+                right: (integer_literal))
                 body: (assignment
                 left: (annotated_expression
-                    (annotation
+                    annotation: (annotation
                     (user_type
                         (type_identifier)))
-                    (simple_identifier))
+                    expression: (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))))
             (statement
             (if_expression
                 condition: (comparison_expression
-                    left: (integer_literal)
-                    right: (integer_literal))
+                left: (integer_literal)
+                right: (integer_literal))
                 consequence: (assignment
                 left: (annotated_expression
-                    (annotation
+                    annotation: (annotation
                     (user_type
                         (type_identifier)))
-                    (simple_identifier))
+                    expression: (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))))
             (statement
             (if_expression
                 condition: (comparison_expression
-                    left: (integer_literal)
-                    right: (integer_literal))
+                left: (integer_literal)
+                right: (integer_literal))
                 consequence: (assignment
                 left: (annotated_expression
-                    (annotation
+                    annotation: (annotation
                     (user_type
                         (type_identifier)))
-                    (simple_identifier))
+                    expression: (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))
                 alternative: (assignment
                 left: (annotated_expression
-                    (annotation
+                    annotation: (annotation
                     (user_type
                         (type_identifier)))
-                    (simple_identifier))
+                    expression: (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))))
@@ -298,10 +298,10 @@ fun foo() {
                 (boolean_literal)
                 (assignment
                 left: (annotated_expression
-                    (annotation
+                    annotation: (annotation
                     (user_type
                         (type_identifier)))
-                    (simple_identifier))
+                    expression: (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))))
@@ -309,10 +309,10 @@ fun foo() {
             (do_while_statement
                 (assignment
                 left: (annotated_expression
-                    (annotation
+                    annotation: (annotation
                     (user_type
                         (type_identifier)))
-                    (simple_identifier))
+                    expression: (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))
@@ -327,10 +327,10 @@ fun foo() {
                     (integer_literal))
                     (assignment
                     left: (annotated_expression
-                        (annotation
+                        annotation: (annotation
                         (user_type
                             (type_identifier)))
-                        (simple_identifier))
+                        expression: (simple_identifier))
                     right: (call_expression
                         expression: (simple_identifier)
                         args: (value_arguments)))))))
@@ -345,42 +345,43 @@ fun foo() {
                     (statement
                         (assignment
                         left: (annotated_expression
-                            (annotation
+                            annotation: (annotation
                             (user_type
                                 (type_identifier)))
-                            (simple_identifier))
+                            expression: (simple_identifier))
                         right: (call_expression
                             expression: (simple_identifier)
                             args: (value_arguments)))))))))
             (statement
             (annotated_expression
-                (annotation
+                annotation: (annotation
                 (user_type
                     (type_identifier)))
-                (elvis_expression
+                expression: (elvis_expression
+                left: (simple_identifier)
+                right: (infix_expression
                     left: (simple_identifier)
-                    right: (infix_expression
-                        left: (simple_identifier)
-                        operator: (simple_identifier)
-                        right: (additive_expression
-                            left: (simple_identifier)
-                            right: (integer_literal))))))
+                    operator: (simple_identifier)
+                    right: (additive_expression
+                    left: (simple_identifier)
+                    right: (integer_literal))))))
             (statement
             (annotated_expression
-                (annotation
+                annotation: (annotation
                 (user_type
                     (type_identifier)))
-                (return_expression
+                expression: (return_expression
                 (integer_literal))))
             (statement
             (annotated_expression
-                (annotation
+                annotation: (annotation
                 (user_type
                     (type_identifier)))
-                (as_expression
-                (simple_identifier)
-                type: (user_type
-                    (type_identifier))))))))))
+                expression: (as_expression
+                expression: (simple_identifier)
+                type: (type
+                    type: (user_type
+                        (type_identifier)))))))))))
 
 ================================================================================
 Block level expressions no newline
@@ -455,24 +456,24 @@ fun foo() {
             (statement
             (assignment
                 left: (annotated_expression
-                (annotation
+                annotation: (annotation
                     (user_type
                     (type_identifier)))
-                (simple_identifier))
+                expression: (simple_identifier))
                 right: (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments))))
             (statement
             (assignment
                 left: (annotated_expression
-                (annotation
+                annotation: (annotation
                     (user_type
                     (type_identifier)))
-                (annotated_expression
-                    (annotation
+                expression: (annotated_expression
+                    annotation: (annotation
                     (user_type
                         (type_identifier)))
-                    (simple_identifier)))
+                    expression: (simple_identifier)))
                 right: (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments))))
@@ -481,17 +482,17 @@ fun foo() {
                 var_decl: (variable_declaration
                 id: (simple_identifier))
                 expression: (range_expression
-                    left: (integer_literal)
-                    right: (integer_literal))
+                left: (integer_literal)
+                right: (integer_literal))
                 body: (block
                 (statements
                     (statement
                     (assignment
                         left: (annotated_expression
-                        (annotation
+                        annotation: (annotation
                             (user_type
                             (type_identifier)))
-                        (simple_identifier))
+                        expression: (simple_identifier))
                         right: (call_expression
                         expression: (simple_identifier)
                         args: (value_arguments))))))))
@@ -500,51 +501,51 @@ fun foo() {
                 var_decl: (variable_declaration
                 id: (simple_identifier))
                 expression: (range_expression
-                    left: (integer_literal)
-                    right: (integer_literal))
+                left: (integer_literal)
+                right: (integer_literal))
                 body: (assignment
                 left: (annotated_expression
-                    (annotation
+                    annotation: (annotation
                     (user_type
                         (type_identifier)))
-                    (simple_identifier))
+                    expression: (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))))
             (statement
             (if_expression
                 condition: (comparison_expression
-                    left: (integer_literal)
-                    right: (integer_literal))
+                left: (integer_literal)
+                right: (integer_literal))
                 consequence: (assignment
                 left: (annotated_expression
-                    (annotation
+                    annotation: (annotation
                     (user_type
                         (type_identifier)))
-                    (simple_identifier))
+                    expression: (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))))
             (statement
             (if_expression
                 condition: (comparison_expression
-                    left: (integer_literal)
-                    right: (integer_literal))
+                left: (integer_literal)
+                right: (integer_literal))
                 consequence: (assignment
                 left: (annotated_expression
-                    (annotation
+                    annotation: (annotation
                     (user_type
                         (type_identifier)))
-                    (simple_identifier))
+                    expression: (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))
                 alternative: (assignment
                 left: (annotated_expression
-                    (annotation
+                    annotation: (annotation
                     (user_type
                         (type_identifier)))
-                    (simple_identifier))
+                    expression: (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))))
@@ -553,10 +554,10 @@ fun foo() {
                 (boolean_literal)
                 (assignment
                 left: (annotated_expression
-                    (annotation
+                    annotation: (annotation
                     (user_type
                         (type_identifier)))
-                    (simple_identifier))
+                    expression: (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))))
@@ -564,10 +565,10 @@ fun foo() {
             (do_while_statement
                 (assignment
                 left: (annotated_expression
-                    (annotation
+                    annotation: (annotation
                     (user_type
                         (type_identifier)))
-                    (simple_identifier))
+                    expression: (simple_identifier))
                 right: (call_expression
                     expression: (simple_identifier)
                     args: (value_arguments)))
@@ -582,10 +583,10 @@ fun foo() {
                     (integer_literal))
                     (assignment
                     left: (annotated_expression
-                        (annotation
+                        annotation: (annotation
                         (user_type
                             (type_identifier)))
-                        (simple_identifier))
+                        expression: (simple_identifier))
                     right: (call_expression
                         expression: (simple_identifier)
                         args: (value_arguments)))))))
@@ -600,45 +601,46 @@ fun foo() {
                     (statement
                         (assignment
                         left: (annotated_expression
-                            (annotation
+                            annotation: (annotation
                             (user_type
                                 (type_identifier)))
-                            (simple_identifier))
+                            expression: (simple_identifier))
                         right: (call_expression
                             expression: (simple_identifier)
                             args: (value_arguments)))))))))
             (statement
             (annotated_expression
-                (annotation
+                annotation: (annotation
                 (user_type
                     (type_identifier)))
-                (elvis_expression
+                expression: (elvis_expression
+                left: (simple_identifier)
+                right: (infix_expression
                     left: (simple_identifier)
-                    right: (infix_expression
-                        left: (simple_identifier)
-                        operator: (simple_identifier)
-                        right: (additive_expression
-                            left: (simple_identifier)
-                            right: (integer_literal))))))
+                    operator: (simple_identifier)
+                    right: (additive_expression
+                    left: (simple_identifier)
+                    right: (integer_literal))))))
             (statement
             (annotated_expression
-                (annotation
+                annotation: (annotation
                 (user_type
                     (type_identifier)))
-                (return_expression
+                expression: (return_expression
                 (integer_literal))))
             (statement
             (annotated_expression
-                (annotation
+                annotation: (annotation
                 (user_type
                     (type_identifier)))
-                (as_expression
-                (simple_identifier)
-                type: (user_type
-                    (type_identifier))))))))))
+                expression: (as_expression
+                expression: (simple_identifier)
+                type: (type
+                    type: (user_type
+                        (type_identifier)))))))))))
 
 ================================================================================
-Block level expressions no newline
+Enum with annotated members
 ================================================================================
 
 enum class A {
@@ -745,19 +747,18 @@ fun foo() {
         (statements
             (statement
             (annotated_expression
-                (annotation
+                annotation: (annotation
                 (user_type
                     (type_identifier)))
-                (simple_identifier)))
+                expression: (simple_identifier)))
             (statement
             (integer_literal))
             (statement
             (annotated_expression
-                (annotation
+                annotation: (annotation
                 (user_type
                     (type_identifier)))
-                (this_expression))))))))
-
+                expression: (this_expression))))))))
 
 ================================================================================
 Annotations on parenthesized types
@@ -795,180 +796,213 @@ val lambdaParameterNP: (@A C) -> C
         (type_identifier)
         (type_arguments
             (type_projection
-            (parenthesized_type
-                (type_modifiers
-                (annotation
-                    (user_type
-                    (type_identifier))))
-                type: (user_type
-                (type_identifier)))))))
-    name: (simple_identifier)
-    parameters: (function_value_parameters)
-    body: (function_body
-        (block)))
-    (function_declaration
-    name: (simple_identifier)
-    parameters: (function_value_parameters
-        (function_value_parameter
-        parameter: (parameter
-            name: (simple_identifier)
-            type: (parenthesized_type
-            (type_modifiers
-                (annotation
-                (user_type
-                    (type_identifier))))
-            type: (user_type
-                (type_identifier))))))
-    body: (function_body
-        (block)))
-    (function_declaration
-    name: (simple_identifier)
-    parameters: (function_value_parameters
-        (function_value_parameter
-        parameter: (parameter
-            name: (simple_identifier)
-            type: (user_type
-            (type_identifier)
-            (type_arguments
-                (type_projection
-                (parenthesized_type
-                    (type_modifiers
+            type: (type
+                type: (parenthesized_type
+                type: (type
+                    modifiers: (type_modifiers
                     (annotation
                         (user_type
                         (type_identifier))))
                     type: (user_type
                     (type_identifier)))))))))
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+        (block)))
+    (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters
+        (function_value_parameter
+        parameter: (parameter
+            name: (simple_identifier)
+            type: (type
+            type: (parenthesized_type
+                type: (type
+                modifiers: (type_modifiers
+                    (annotation
+                    (user_type
+                        (type_identifier))))
+                type: (user_type
+                    (type_identifier))))))))
+    body: (function_body
+        (block)))
+    (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters
+        (function_value_parameter
+        parameter: (parameter
+            name: (simple_identifier)
+            type: (type
+            type: (user_type
+                (type_identifier)
+                (type_arguments
+                (type_projection
+                    type: (type
+                    type: (parenthesized_type
+                        type: (type
+                        modifiers: (type_modifiers
+                            (annotation
+                            (user_type
+                                (type_identifier))))
+                        type: (user_type
+                            (type_identifier))))))))))))
     body: (function_body
         (block)))
     (function_declaration
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    type: (parenthesized_type
-        (type_modifiers
-        (annotation
-            (user_type
-            (type_identifier))))
-        type: (user_type
-        (type_identifier))))
+    type: (type
+        type: (parenthesized_type
+        type: (type
+            modifiers: (type_modifiers
+            (annotation
+                (user_type
+                (type_identifier))))
+            type: (user_type
+            (type_identifier))))))
     (function_declaration
     (type_parameters
         (type_parameter
         (type_identifier)))
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    type: (parenthesized_type
-        (type_modifiers
-        (annotation
-            (user_type
-            (type_identifier))))
-        type: (user_type
-        (type_identifier))))
+    type: (type
+        type: (parenthesized_type
+        type: (type
+            modifiers: (type_modifiers
+            (annotation
+                (user_type
+                (type_identifier))))
+            type: (user_type
+            (type_identifier))))))
     (function_declaration
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    type: (user_type
+    type: (type
+        type: (user_type
         (type_identifier)
         (type_arguments
-        (type_projection
-            (parenthesized_type
-            (type_modifiers
-                (annotation
-                (user_type
-                    (type_identifier))))
-            type: (user_type
-                (type_identifier)))))))
+            (type_projection
+            type: (type
+                type: (parenthesized_type
+                type: (type
+                    modifiers: (type_modifiers
+                    (annotation
+                        (user_type
+                        (type_identifier))))
+                    type: (user_type
+                    (type_identifier))))))))))
     (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
         id: (simple_identifier)
+        type: (type
         type: (parenthesized_type
-        (type_modifiers
-            (annotation
-            (constructor_invocation
-                type: (user_type
+            type: (type
+            modifiers: (type_modifiers
+                (annotation
+                (constructor_invocation
+                    type: (user_type
                     (type_identifier))
-                args: (value_arguments))))
-        (parenthesized_type
-            (function_type
-            (function_type_parameters)
+                    args: (value_arguments))))
+            type: (parenthesized_type
+                type: (type
+                type: (function_type
+                    (function_type_parameters)
+                    type: (type
+                    type: (user_type
+                        (type_identifier)))))))))))
+    (property_declaration
+    binding_pattern: (binding_pattern_kind)
+    var_decl: (variable_declaration
+        id: (simple_identifier)
+        type: (type
+        type: (function_type
+            (function_type_parameters
+            type: (type
+                type: (parenthesized_type
+                type: (type
+                    modifiers: (type_modifiers
+                    (annotation
+                        (user_type
+                        (type_identifier))))
+                    type: (user_type
+                    (type_identifier))))))
+            type: (type
             type: (user_type
                 (type_identifier)))))))
     (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
         id: (simple_identifier)
+        type: (type
         type: (function_type
-        (function_type_parameters
-            (parenthesized_type
-            (type_modifiers
+            (function_type_parameters
+            type: (type
+                modifiers: (type_modifiers
                 (annotation
-                (user_type
+                    (user_type
                     (type_identifier))))
-            type: (user_type
+                type: (user_type
                 (type_identifier))))
-        type: (user_type
-            (type_identifier)))))
+            type: (type
+            type: (user_type
+                (type_identifier)))))))
     (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
         id: (simple_identifier)
+        type: (type
         type: (function_type
-        (function_type_parameters
-            (type_modifiers
-            (annotation
-                (user_type
-                (type_identifier))))
-            type: (user_type
-            (type_identifier)))
-        type: (user_type
-            (type_identifier)))))
+            (function_type_parameters)
+            type: (type
+            type: (parenthesized_type
+                type: (type
+                modifiers: (type_modifiers
+                    (annotation
+                    (user_type
+                        (type_identifier))))
+                type: (user_type
+                    (type_identifier)))))))))
     (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
         id: (simple_identifier)
+        type: (type
         type: (function_type
-        (function_type_parameters)
-        (parenthesized_type
-            (type_modifiers
-            (annotation
-                (user_type
-                (type_identifier))))
+            (receiver_type
+            type: (parenthesized_type
+                type: (type
+                modifiers: (type_modifiers
+                    (annotation
+                    (user_type
+                        (type_identifier))))
+                type: (user_type
+                    (type_identifier)))))
+            (function_type_parameters)
+            type: (type
             type: (user_type
-            (type_identifier))))))
+                (type_identifier)))))))
     (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
         id: (simple_identifier)
+        type: (type
         type: (function_type
-        (receiver_type
-            (parenthesized_type
-            (type_modifiers
+            (function_type_parameters
+            type: (type
+                modifiers: (type_modifiers
                 (annotation
-                (user_type
+                    (user_type
                     (type_identifier))))
-            type: (user_type
+                type: (user_type
                 (type_identifier))))
-        (function_type_parameters)
-        type: (user_type
-            (type_identifier)))))
-    (property_declaration
-    binding_pattern: (binding_pattern_kind)
-    var_decl: (variable_declaration
-        id: (simple_identifier)
-        type: (function_type
-        (function_type_parameters
-            (type_modifiers
-            (annotation
-                (user_type
-                (type_identifier))))
+            type: (type
             type: (user_type
-            (type_identifier)))
-        type: (user_type
-            (type_identifier))))))
-
+                (type_identifier))))))))
 
 ================================================================================
-Annotations on parenthesized types
+When with annotated subject
 ================================================================================
 
 fun foo() {
@@ -995,16 +1029,17 @@ fun foo() {
                 (when_entry
                     (when_condition
                     (type_test
-                        (type_modifiers
-                        (annotation
+                        type: (type
+                        modifiers: (type_modifiers
+                            (annotation
                             (user_type
-                            (type_identifier))))
+                                (type_identifier))))
                         type: (user_type
-                        (type_identifier))))
+                            (type_identifier)))))
                     (simple_identifier))))))))))
 
 ================================================================================
-Annotations lambdas
+Annotated lambdas
 ================================================================================
 
 fun foo() {
@@ -1160,10 +1195,10 @@ fun foo() {
                 args: (value_arguments
                 (value_argument
                     expression: (annotated_expression
-                    (annotation
+                    annotation: (annotation
                         (user_type
                         (type_identifier)))
-                    (lambda_literal
+                    expression: (lambda_literal
                         parameters: (lambda_parameters
                         (variable_declaration
                             id: (simple_identifier)))
@@ -1174,19 +1209,19 @@ fun foo() {
             (if_expression
                 condition: (boolean_literal)
                 consequence: (annotated_expression
-                (annotation
+                annotation: (annotation
                     (user_type
                     (type_identifier)))
-                (lambda_literal))
+                expression: (lambda_literal))
                 alternative: (annotated_expression
-                (annotation
+                annotation: (annotation
                     (user_type
                     (type_identifier)))
-                (annotated_expression
-                    (annotation
+                expression: (annotated_expression
+                    annotation: (annotation
                     (user_type
                         (type_identifier)))
-                    (lambda_literal))))))))))
+                    expression: (lambda_literal))))))))))
 
 ================================================================================
 Annotated multi variable
@@ -1283,18 +1318,19 @@ fun test() {
                         (type_identifier))
                     args: (value_arguments
                         (value_argument
-                            expression: (integer_literal)))))
+                        expression: (integer_literal)))))
                 (annotation
                     (constructor_invocation
                     type: (user_type
                         (type_identifier)
-                            (type_arguments
+                        (type_arguments
                         (type_projection
-                            type: (user_type
-                            (type_identifier)))))
+                            type: (type
+                                type: (user_type
+                                    (type_identifier))))))
                     args: (value_arguments
                         (value_argument
-                            expression: (integer_literal)))))
+                        expression: (integer_literal)))))
                 (annotation
                     (user_type
                     (type_identifier)))
@@ -1304,8 +1340,8 @@ fun test() {
                 (when_entries
                 (when_entry
                     (when_condition
-                        (integer_literal))
-                        (integer_literal))))))))))
+                    (integer_literal))
+                    (integer_literal))))))))))
 
 ================================================================================
 Properties with function receivers annotations
@@ -1320,151 +1356,179 @@ val <A, B> @[a] (() -> Unit).foo: P
 --------------------------------------------------------------------------------
 
 (source_file
-  (property_declaration
+    (property_declaration
     binding_pattern: (binding_pattern_kind)
     receiver_type: (receiver_type
-      (parenthesized_type
-        (type_modifiers
-          (annotation
-            (user_type
-              (type_identifier))))
-        (function_type
-          (receiver_type
-            type: (user_type
-              (type_identifier)
-              (type_arguments
-                (type_projection
-                  type: (user_type
-                    (type_identifier))))))
-          (function_type_parameters
-            type: (user_type
-              (type_identifier)
-              (type_arguments
-                (type_projection
-                  type: (user_type
-                    (type_identifier))))))
-          type: (user_type
-            (type_identifier)))))
-    var_decl: (variable_declaration
-      id: (simple_identifier)
-      type: (user_type
-        (type_identifier))))
-  (property_declaration
-    binding_pattern: (binding_pattern_kind)
-    receiver_type: (receiver_type
-      (parenthesized_type
-        (type_modifiers
-          (annotation
-            (user_type
-              (type_identifier))))
-        (function_type
-          (receiver_type
-            type: (user_type
-              (type_identifier)
-              (type_arguments
-                (type_projection
-                  type: (user_type
-                    (type_identifier))))))
-          (function_type_parameters
-            type: (user_type
-              (type_identifier)
-              (type_arguments
-                (type_projection
-                  type: (user_type
-                    (type_identifier))))))
-          type: (user_type
-            (type_identifier)
-            (type_arguments
-              (type_projection
+        type: (parenthesized_type
+        type: (type
+            type: (function_type
+            (receiver_type
+                modifiers: (type_modifiers
+                (annotation
+                    (user_type
+                    (type_identifier))))
                 type: (user_type
-                  (type_identifier)))
-              (type_projection
+                (type_identifier)
+                (type_arguments
+                    (type_projection
+                    type: (type
+                        type: (user_type
+                            (type_identifier)))))))
+            (function_type_parameters
+                type: (type
+                    type: (user_type
+                        (type_identifier)
+                        (type_arguments
+                        (type_projection
+                            type: (type
+                                type: (user_type
+                                    (type_identifier))))))))
+            type: (type
                 type: (user_type
-                  (type_identifier))))))))
+                (type_identifier)))))))
     var_decl: (variable_declaration
-      id: (simple_identifier)
-      type: (user_type
-        (type_identifier))))
-  (property_declaration
+        id: (simple_identifier)
+        type: (type
+            type: (user_type
+                (type_identifier)))))
+    (property_declaration
     binding_pattern: (binding_pattern_kind)
     receiver_type: (receiver_type
-      modifiers: (type_modifiers
+        type: (parenthesized_type
+        type: (type
+            type: (function_type
+                (receiver_type
+                    modifiers: (type_modifiers
+                    (annotation
+                        (user_type
+                        (type_identifier))))
+                    type: (user_type
+                    (type_identifier)
+                    (type_arguments
+                        (type_projection
+                        type: (type
+                            type: (user_type
+                                (type_identifier)))))))
+            (function_type_parameters
+                type: (type
+                    type: (user_type
+                        (type_identifier)
+                        (type_arguments
+                        (type_projection
+                            type: (type
+                                type: (user_type
+                                    (type_identifier))))))))
+            type: (type
+                type: (user_type
+                (type_identifier)
+                (type_arguments
+                    (type_projection
+                        type: (type
+                            type: (user_type
+                            (type_identifier))))
+                    (type_projection
+                        type: (type
+                            type: (user_type
+                            (type_identifier)))))))))))
+    var_decl: (variable_declaration
+        id: (simple_identifier)
+        type: (type
+            type: (user_type
+                (type_identifier)))))
+    (property_declaration
+    binding_pattern: (binding_pattern_kind)
+    receiver_type: (receiver_type
+        modifiers: (type_modifiers
         (annotation
-          (user_type
-            (type_identifier))))
-      (parenthesized_type
-        (type_modifiers
-          (annotation
             (user_type
-              (type_identifier))))
-        (function_type
-          (receiver_type
-            type: (user_type
-              (type_identifier)
-              (type_arguments
-                (type_projection
-                  type: (user_type
-                    (type_identifier))))))
-          (function_type_parameters
-            type: (user_type
-              (type_identifier)
-              (type_arguments
-                (type_projection
-                  type: (user_type
-                    (type_identifier))))))
-          type: (user_type
-            (type_identifier)))))
+            (type_identifier))))
+        type: (parenthesized_type
+        type: (type
+            type: (function_type
+            (receiver_type
+                modifiers: (type_modifiers
+                (annotation
+                    (user_type
+                    (type_identifier))))
+                type: (user_type
+                (type_identifier)
+                (type_arguments
+                    (type_projection
+                    type: (type
+                        type: (user_type
+                            (type_identifier)))))))
+            (function_type_parameters
+                type: (type
+                    type: (user_type
+                        (type_identifier)
+                        (type_arguments
+                        (type_projection
+                            type: (type
+                                type: (user_type
+                                    (type_identifier))))))))
+            type: (type
+                type: (user_type
+                (type_identifier)))))))
     var_decl: (variable_declaration
-      id: (simple_identifier)
-      type: (user_type
-        (type_identifier))))
-  (property_declaration
+        id: (simple_identifier)
+        type: (type
+            type: (user_type
+                (type_identifier)))))
+    (property_declaration
     binding_pattern: (binding_pattern_kind)
     type_parameters: (type_parameters
-      (type_parameter
+        (type_parameter
         (type_identifier))
-      (type_parameter
+        (type_parameter
         (type_identifier)))
     receiver_type: (receiver_type
-      modifiers: (type_modifiers
+        modifiers: (type_modifiers
         (annotation
-          (user_type
+            (user_type
             (type_identifier))))
-      (parenthesized_type
-        (function_type
-          (function_type_parameters)
-          type: (user_type
-            (type_identifier)))))
+        type: (parenthesized_type
+        type: (type
+            type: (function_type
+                (function_type_parameters)
+                type: (type
+                    type: (user_type
+                    (type_identifier)))))))
     var_decl: (variable_declaration
-      id: (simple_identifier)
-      type: (user_type
-        (type_identifier))))
-  (property_declaration
+        id: (simple_identifier)
+        type: (type
+            type: (user_type
+                (type_identifier)))))
+    (property_declaration
     modifiers: (modifiers
-      (annotation
+        (annotation
         (user_type
-          (type_identifier))))
+            (type_identifier))))
     binding_pattern: (binding_pattern_kind)
     type_parameters: (type_parameters
-      (type_parameter
+        (type_parameter
         (type_identifier))
-      (type_parameter
+        (type_parameter
         (type_identifier)))
     receiver_type: (receiver_type
-      modifiers: (type_modifiers
+        modifiers: (type_modifiers
         (annotation
-          (user_type
+            (user_type
             (type_identifier))))
-      (parenthesized_type
-        (function_type
-          (function_type_parameters
-            type: (user_type
-              (type_identifier))
-            type: (user_type
-              (type_identifier)))
-          type: (user_type
-            (type_identifier)))))
+        type: (parenthesized_type
+        type: (type
+            type: (function_type
+                (function_type_parameters
+                    type: (type
+                        type: (user_type
+                            (type_identifier)))
+                    type: (type
+                        type: (user_type
+                            (type_identifier))))
+            type: (type
+                type: (user_type
+                    (type_identifier)))))))
     var_decl: (variable_declaration
-      id: (simple_identifier)
-      type: (user_type
-        (type_identifier)))))
+        id: (simple_identifier)
+        type: (type
+            type: (user_type
+                (type_identifier))))))

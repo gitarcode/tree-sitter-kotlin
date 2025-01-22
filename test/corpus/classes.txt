@@ -160,13 +160,15 @@ data class Vector2D(
         (class_parameter
           binding_pattern: (binding_pattern_kind)
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))
+          type: (type
+            type: (user_type
+              (type_identifier))))
         (class_parameter
           binding_pattern: (binding_pattern_kind)
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))))
+          type: (type
+            type: (user_type
+              (type_identifier))))))))
 
 ================================================================================
 Inheritance
@@ -195,8 +197,9 @@ class D : SomeInterface
       (class_parameters
         (class_parameter
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
+          type: (type
+            type: (user_type
+              (type_identifier))))))
     (delegation_specifier
       (constructor_invocation
         type: (user_type
@@ -209,6 +212,7 @@ class D : SomeInterface
     (delegation_specifier
       (user_type
         (type_identifier)))))
+
 
 ================================================================================
 Properties
@@ -231,22 +235,25 @@ class Something {
         binding_pattern: (binding_pattern_kind)
         var_decl: (variable_declaration
           id: (simple_identifier)
-          type: (user_type
-            (type_identifier)))
+          type: (type
+            type: (user_type
+              (type_identifier))))
         initializer: (integer_literal))
       (property_declaration
         binding_pattern: (binding_pattern_kind)
         var_decl: (variable_declaration
           id: (simple_identifier)
-          type: (nullable_type
-            type: (user_type
-              (type_identifier)))))
+          type: (type
+            type: (nullable_type
+              type: (user_type
+                (type_identifier))))))
       (property_declaration
         binding_pattern: (binding_pattern_kind)
         var_decl: (variable_declaration
           id: (simple_identifier)
-          type: (user_type
-            (type_identifier)))
+          type: (type
+            type: (user_type
+              (type_identifier))))
         (getter
           (function_body
             expression: (simple_identifier))))
@@ -275,21 +282,23 @@ class Test(x: Int, y: Int) {
       (class_parameters
         (class_parameter
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))
+          type: (type
+            type: (user_type
+              (type_identifier))))
         (class_parameter
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
+          type: (type
+            type: (user_type
+              (type_identifier))))))
     body: (class_body
-      (secondary_constructor 
+      (secondary_constructor
         parameters: (function_value_parameters)
-          (constructor_delegation_call
-            (value_arguments
-              (value_argument
-                expression: (integer_literal))
-              (value_argument
-                expression: (integer_literal))))))))
+        (constructor_delegation_call
+          (value_arguments
+            (value_argument
+              expression: (integer_literal))
+            (value_argument
+              expression: (integer_literal))))))))
 
 ================================================================================
 Enum classes
@@ -347,8 +356,9 @@ enum class Enum {
         (class_parameter
           binding_pattern: (binding_pattern_kind)
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
+          type: (type
+            type: (user_type
+              (type_identifier))))))
     body: (class_body
       (enum_entry
         name: (simple_identifier)
@@ -408,8 +418,9 @@ enum class Enum {
           (inheritance_modifier))
         name: (simple_identifier)
         parameters: (function_value_parameters)
-        type: (user_type
-          (type_identifier)))))
+        type: (type
+          type: (user_type
+            (type_identifier))))))
   (class_declaration
     modifiers: (modifiers
       (class_modifier))
@@ -429,7 +440,7 @@ enum class Enum {
         name: (simple_identifier)))))
 
 ================================================================================
-Data class with hanging comma
+Data class with dangling comma
 ================================================================================
 
 data class JwtConfiguration(
@@ -449,13 +460,15 @@ data class JwtConfiguration(
         (class_parameter
           binding_pattern: (binding_pattern_kind)
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))
+          type: (type
+            type: (user_type
+              (type_identifier))))
         (class_parameter
           binding_pattern: (binding_pattern_kind)
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))))
+          type: (type
+            type: (user_type
+              (type_identifier))))))))
 
 ================================================================================
 Value class: https://kotlinlang.org/docs/inline-classes.html
@@ -481,8 +494,9 @@ value class Password(private val s: String)
             (visibility_modifier))
           binding_pattern: (binding_pattern_kind)
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))))
+          type: (type
+            type: (user_type
+              (type_identifier))))))))
 
 ================================================================================
 Functional interfaces: https://kotlinlang.org/docs/fun-interfaces.html
@@ -517,17 +531,20 @@ fun interface Authenticator {
           (function_value_parameter
             parameter: (parameter
               name: (simple_identifier)
-              type: (nullable_type
-                type: (user_type
-                  (type_identifier)))))
+              type: (type
+                type: (nullable_type
+                  type: (user_type
+                    (type_identifier))))))
           (function_value_parameter
             parameter: (parameter
               name: (simple_identifier)
-              type: (user_type
-                (type_identifier)))))
-        type: (nullable_type
-          type: (user_type
-            (type_identifier)))))))
+              type: (type
+                type: (user_type
+                  (type_identifier))))))
+        type: (type
+          type: (nullable_type
+            type: (user_type
+              (type_identifier))))))))
 
 ================================================================================
 Companion object without body
@@ -583,8 +600,9 @@ class Foo private constructor(a: Int) {
       (class_parameters
         (class_parameter
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
+          type: (type
+            type: (user_type
+              (type_identifier))))))
     body: (class_body)))
 
 ================================================================================
@@ -610,11 +628,12 @@ expect fun loadAnimatedImage(path: String): AnimatedImage
       (function_value_parameter
         parameter: (parameter
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
-    type: (user_type
-      (type_identifier))))
-
+          type: (type
+            type: (user_type
+              (type_identifier))))))
+    type: (type
+      type: (user_type
+        (type_identifier)))))
 
 ================================================================================
 Class without body followed by class modifiers
@@ -728,8 +747,9 @@ class Derived(b: Base) : Base by b {
       (class_parameters
         (class_parameter
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
+          type: (type
+            type: (user_type
+              (type_identifier))))))
     (delegation_specifier
       (explicit_delegation
         (user_type
@@ -776,8 +796,9 @@ internal abstract class MessageQueue : MutableList<Runnable> by ArrayDeque() {
           (type_identifier)
           (type_arguments
             (type_projection
-              type: (user_type
-                (type_identifier)))))
+              type: (type
+                type: (user_type
+                  (type_identifier))))))
         (call_expression
           expression: (simple_identifier)
           args: (value_arguments))))
@@ -813,24 +834,28 @@ private class SendBroadcast(
         (class_parameter
           binding_pattern: (binding_pattern_kind)
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)
-            (type_arguments
-              (type_projection
-                type: (user_type
-                  (type_identifier))))))))
+          type: (type
+            type: (user_type
+              (type_identifier)
+              (type_arguments
+                (type_projection
+                  type: (type
+                    type: (user_type
+                      (type_identifier))))))))))
     (delegation_specifier
       (explicit_delegation
         (user_type
           (type_identifier))
         (as_expression
-          (simple_identifier)
-          type: (user_type
-            (type_identifier)
-            (type_arguments
-              (type_projection
-                type: (user_type
-                  (type_identifier))))))))))
+          expression: (simple_identifier)
+          type: (type
+            type: (user_type
+              (type_identifier)
+              (type_arguments
+                (type_projection
+                  type: (type
+                    type: (user_type
+                      (type_identifier))))))))))))
 
 ================================================================================
 Class members and semicolon
@@ -918,29 +943,7 @@ private data class Cancelled(val job: TestJob) : Action()
         (class_parameter
           binding_pattern: (binding_pattern_kind)
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
-    (delegation_specifier
-      (constructor_invocation
-        type: (user_type
-          (type_identifier))
-        args: (value_arguments))))
-  (class_declaration
-    modifiers: (modifiers
-      (visibility_modifier)
-      (class_modifier))
-    name: (simple_identifier)
-    primary_constructor: (primary_constructor
-      (class_parameters
-        (class_parameter
-          binding_pattern: (binding_pattern_kind)
-          name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))
-        (class_parameter
-          binding_pattern: (binding_pattern_kind)
-          name: (simple_identifier)
-          type: (nullable_type
+          type: (type
             type: (user_type
               (type_identifier))))))
     (delegation_specifier
@@ -958,8 +961,16 @@ private data class Cancelled(val job: TestJob) : Action()
         (class_parameter
           binding_pattern: (binding_pattern_kind)
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
+          type: (type
+            type: (user_type
+              (type_identifier))))
+        (class_parameter
+          binding_pattern: (binding_pattern_kind)
+          name: (simple_identifier)
+          type: (type
+            type: (nullable_type
+              type: (user_type
+                (type_identifier)))))))
     (delegation_specifier
       (constructor_invocation
         type: (user_type
@@ -975,14 +986,32 @@ private data class Cancelled(val job: TestJob) : Action()
         (class_parameter
           binding_pattern: (binding_pattern_kind)
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
+          type: (type
+            type: (user_type
+              (type_identifier))))))
+    (delegation_specifier
+      (constructor_invocation
+        type: (user_type
+          (type_identifier))
+        args: (value_arguments))))
+  (class_declaration
+    modifiers: (modifiers
+      (visibility_modifier)
+      (class_modifier))
+    name: (simple_identifier)
+    primary_constructor: (primary_constructor
+      (class_parameters
+        (class_parameter
+          binding_pattern: (binding_pattern_kind)
+          name: (simple_identifier)
+          type: (type
+            type: (user_type
+              (type_identifier))))))
     (delegation_specifier
       (constructor_invocation
         type: (user_type
           (type_identifier))
         args: (value_arguments)))))
-
 
 ================================================================================
 Local class in function
@@ -1089,8 +1118,9 @@ abstract class AbstractNativeMacApplicationPackageAppDirTask : AbstractNativeMac
         binding_pattern: (binding_pattern_kind)
         var_decl: (variable_declaration
           id: (simple_identifier)
-          type: (user_type
-            (type_identifier)))
+          type: (type
+            type: (user_type
+              (type_identifier))))
         initializer: (call_expression
           expression: (dot_qualified_expression
             receiver: (simple_identifier)

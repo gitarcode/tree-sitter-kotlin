@@ -23,13 +23,19 @@ class Empty(@field:Test val x: Boolean)
 (source_file
   (class_declaration
     name: (simple_identifier)
-    primary_constructor: (primary_constructor 
-      (class_parameters 
+    primary_constructor: (primary_constructor
+      (class_parameters
         (class_parameter
-          modifiers: (modifiers (annotation (use_site_target) (user_type (type_identifier))))
+          modifiers: (modifiers
+            (annotation
+              (use_site_target)
+              (user_type
+                (type_identifier))))
           binding_pattern: (binding_pattern_kind)
           name: (simple_identifier)
-          type: (user_type (type_identifier)))))))
+          type: (type
+            type: (user_type
+              (type_identifier))))))))
 
 ==================
 Multi-annotations
@@ -41,12 +47,20 @@ var x: Int
 ---
 
 (source_file
-    (property_declaration
-        modifiers: (modifiers (annotation (use_site_target) (user_type (type_identifier)) (user_type (type_identifier))))
-        binding_pattern: (binding_pattern_kind)
-        var_decl: (variable_declaration 
-                    id: (simple_identifier) 
-                    type: (user_type (type_identifier)))))
+  (property_declaration
+    modifiers: (modifiers
+      (annotation
+        (use_site_target)
+        (user_type
+          (type_identifier))
+        (user_type
+          (type_identifier))))
+    binding_pattern: (binding_pattern_kind)
+    var_decl: (variable_declaration
+      id: (simple_identifier)
+      type: (type
+        type: (user_type
+          (type_identifier))))))
 
 ==================
 Multiple annotations on a variable
@@ -65,18 +79,19 @@ class X {
     body: (class_body
       (property_declaration
         modifiers: (modifiers
-          (annotation (user_type (type_identifier)))
-          (annotation (user_type (type_identifier)))
+          (annotation
+            (user_type
+              (type_identifier)))
+          (annotation
+            (user_type
+              (type_identifier)))
           (member_modifier))
         binding_pattern: (binding_pattern_kind)
-        var_decl: (variable_declaration 
-          id: (simple_identifier) 
-          type: (user_type (type_identifier)))
-      )
-    )
-  )
-)
-
+        var_decl: (variable_declaration
+          id: (simple_identifier)
+          type: (type
+            type: (user_type
+              (type_identifier))))))))
 
 ==================
 Multiple annotations on a function
@@ -95,15 +110,17 @@ class X {
     body: (class_body
       (function_declaration
         modifiers: (modifiers
-          (annotation (user_type (type_identifier)))
-          (annotation (user_type (type_identifier))))
+          (annotation
+            (user_type
+              (type_identifier)))
+          (annotation
+            (user_type
+              (type_identifier))))
         name: (simple_identifier)
         parameters: (function_value_parameters)
-        type: (user_type (type_identifier))
-      )
-    )
-  )
-)
+        type: (type
+          type: (user_type
+            (type_identifier)))))))
 
 =====================
 Annotated functions
@@ -253,10 +270,12 @@ fun parse(xml: String): Element {
       (function_value_parameter
         parameter: (parameter
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
-    type: (user_type
-      (type_identifier))
+          type: (type
+            type: (user_type
+              (type_identifier))))))
+    type: (type
+      type: (user_type
+        (type_identifier)))
     body: (function_body
       (block
         (statements
@@ -270,7 +289,7 @@ fun parse(xml: String): Element {
                 args: (value_arguments))))
           (statement
             (annotated_expression
-              (annotation
+              annotation: (annotation
                 (constructor_invocation
                   type: (user_type
                     (type_identifier))
@@ -279,7 +298,7 @@ fun parse(xml: String): Element {
                       expression: (string_literal
                         content: (string_content
                           (line_string_content_part)))))))
-              (call_expression
+              expression: (call_expression
                 expression: (dot_qualified_expression
                   receiver: (simple_identifier)
                   selector: (simple_identifier))
@@ -300,26 +319,31 @@ fun runBenchmark(name: String, frameCount: Int, content: @Composable () -> Unit)
       (function_value_parameter
         parameter: (parameter
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier))))
-      (function_value_parameter
-        parameter: (parameter
-          name: (simple_identifier)
-          type: (user_type
-            (type_identifier))))
-      (function_value_parameter
-        parameter: (parameter
-          name: (simple_identifier)
-          type: (type_modifiers
-            (annotation
-              (user_type
-                (type_identifier))))
-          type: (function_type
-            (function_type_parameters)
+          type: (type
             type: (user_type
-              (type_identifier))))))
+              (type_identifier)))))
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (type
+            type: (user_type
+              (type_identifier)))))
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (type
+            modifiers: (type_modifiers
+              (annotation
+                (user_type
+                  (type_identifier))))
+            type: (function_type
+              (function_type_parameters)
+                type: (type
+                  type: (user_type
+                    (type_identifier))))))))
     body: (function_body
       (block))))
+
 
 ======================
 Annotated return expression
@@ -333,7 +357,7 @@ return a
 (source_file
   (statement
     (annotated_expression
-      (annotation
+      annotation: (annotation
         (constructor_invocation
           type: (user_type
             (type_identifier))
@@ -342,7 +366,7 @@ return a
               expression: (callable_reference
                 receiver: (user_type
                   (type_identifier)))))))
-      (return_expression
+      expression: (return_expression
         (simple_identifier)))))
 
 ======================
@@ -357,7 +381,7 @@ if (it.isCanceled) deferred.cancel() else deferred.complete(it.result as T)
 (source_file
   (statement
     (annotated_expression
-      (annotation
+      annotation: (annotation
         (constructor_invocation
           type: (user_type
             (type_identifier))
@@ -366,7 +390,7 @@ if (it.isCanceled) deferred.cancel() else deferred.complete(it.result as T)
               expression: (string_literal
                 content: (string_content
                   (line_string_content_part)))))))
-      (if_expression
+      expression: (if_expression
         condition: (dot_qualified_expression
           receiver: (simple_identifier)
           selector: (simple_identifier))
@@ -382,11 +406,12 @@ if (it.isCanceled) deferred.cancel() else deferred.complete(it.result as T)
           args: (value_arguments
             (value_argument
               expression: (as_expression
-                (dot_qualified_expression
+                expression: (dot_qualified_expression
                   receiver: (simple_identifier)
                   selector: (simple_identifier))
-                type: (user_type
-                  (type_identifier))))))))))
+                type: (type
+                  type: (user_type
+                    (type_identifier)))))))))))
 
 ======================
 Method with two annotations

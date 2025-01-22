@@ -198,8 +198,9 @@ public data class PluginName(
         (class_parameter
           binding_pattern: (binding_pattern_kind)
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
+          type: (type
+            type: (user_type
+              (type_identifier))))))
     (delegation_specifier
       (constructor_invocation
         type: (user_type
@@ -345,20 +346,22 @@ val x: Int
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
-      type: (type_modifiers
-        (annotation
-          (user_type
-            (type_identifier))))
-      type: (nullable_type
-        type: (user_type
-          (type_identifier)))))
+      type: (type
+        modifiers: (type_modifiers
+          (annotation
+            (user_type
+              (type_identifier))))
+        type: (nullable_type
+          type: (user_type
+            (type_identifier))))))
   (line_comment)
   (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
-      type: (user_type
-        (type_identifier)))))
+      type: (type
+        type: (user_type
+          (type_identifier))))))
 
 ================================================================================
 Comments in when expression
@@ -384,15 +387,17 @@ when (e) {
         (when_entry
           (when_condition
             (type_test
-              type: (user_type
-                (type_identifier))))
+              type: (type
+                type: (user_type
+                  (type_identifier)))))
           (simple_identifier))
         (line_comment)
         (when_entry
           (when_condition
             (type_test
-              type: (user_type
-                (type_identifier))))
+              type: (type
+                type: (user_type
+                  (type_identifier)))))
           (simple_identifier)))
       (line_comment))))
 
@@ -474,8 +479,9 @@ fun f() {
   (function_declaration
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    type: (user_type
-      (type_identifier))
+    type: (type
+      type: (user_type
+        (type_identifier)))
     body: (function_body
       expression: (simple_identifier)))
   (line_comment)
@@ -515,8 +521,9 @@ fun f() // comment
   (function_declaration
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    type: (user_type
-      (type_identifier)))
+    type: (type
+      type: (user_type
+        (type_identifier))))
   (line_comment)
   (multiline_comment)
   (function_declaration

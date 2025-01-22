@@ -69,9 +69,10 @@ class  A {
         binding_pattern: (binding_pattern_kind)
         var_decl: (variable_declaration
           id: (simple_identifier)
-          type: (nullable_type
-            type: (user_type
-              (type_identifier))))
+          type: (type
+            type: (nullable_type
+              type: (user_type
+                (type_identifier)))))
         delegate: (property_delegate
           by: (by)
           (callable_reference

@@ -134,10 +134,11 @@ when (this) {
         (when_entry
           (when_condition
             (type_test
-              type: (user_type
-                (type_identifier)
-                (type_arguments
-                  (type_projection)))))
+              type: (type
+                type: (user_type
+                  (type_identifier)
+                  (type_arguments
+                    (type_projection))))))
           (return_expression
             (null_literal)))))))
 
@@ -157,8 +158,9 @@ val MyDate.s: String get() = "hello"
         (type_identifier)))
     var_decl: (variable_declaration
       id: (simple_identifier)
-      type: (user_type
-        (type_identifier)))
+      type: (type
+        type: (user_type
+          (type_identifier))))
     (getter
       (function_body
         expression: (string_literal
@@ -214,8 +216,9 @@ expect fun randomUUID(): String
       (platform_modifier))
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    type: (user_type
-      (type_identifier))))
+    type: (type
+      type: (user_type
+        (type_identifier)))))
 
 ================================================================================
 Less than for generics
@@ -232,8 +235,9 @@ foo<Int>(1)
       expression: (simple_identifier)
       (type_arguments
         (type_projection
-          type: (user_type
-            (type_identifier))))
+          type: (type
+            type: (user_type
+              (type_identifier)))))
       args: (value_arguments
         (value_argument
           expression: (integer_literal))
@@ -244,8 +248,9 @@ foo<Int>(1)
       expression: (simple_identifier)
       (type_arguments
         (type_projection
-          type: (user_type
-            (type_identifier))))
+          type: (type
+            type: (user_type
+              (type_identifier)))))
       args: (value_arguments
         (value_argument
           expression: (integer_literal))))))
@@ -287,7 +292,7 @@ val a = a<2>(3)
         left: (simple_identifier)
         right: (simple_identifier))
       right: (simple_identifier)))
-  (line_comment)    
+  (line_comment)
   (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
@@ -296,8 +301,9 @@ val a = a<2>(3)
       expression: (simple_identifier)
       (type_arguments
         (type_projection
-          type: (user_type
-            (type_identifier))))
+          type: (type
+            type: (user_type
+              (type_identifier)))))
       args: (value_arguments
         (value_argument
           expression: (simple_identifier)))))
@@ -565,16 +571,18 @@ class Square() : Rectangle(), Polygon {
                 (call_expression
                   expression: (dot_qualified_expression
                     receiver: (super_expression
-                      type: (user_type
-                        (type_identifier)))
+                      type: (type
+                        type: (user_type
+                          (type_identifier))))
                     selector: (simple_identifier))
                   args: (value_arguments)))
               (statement
                 (call_expression
                   expression: (dot_qualified_expression
                     receiver: (super_expression
-                      type: (user_type
-                        (type_identifier))
+                      (type
+                        type: (user_type
+                          (type_identifier)))
                       (type_identifier))
                     selector: (simple_identifier))
                   args: (value_arguments))))))))))
@@ -703,10 +711,12 @@ fun f(a: A): A {
       (function_value_parameter
         parameter: (parameter
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
-    type: (user_type
-      (type_identifier))
+          type: (type
+            type: (user_type
+              (type_identifier))))))
+    type: (type
+      type: (user_type
+        (type_identifier)))
     body: (function_body
       (block
         (statements
@@ -1050,13 +1060,15 @@ fun f(l: MutableList<Int>?) {
       (function_value_parameter
         parameter: (parameter
           name: (simple_identifier)
-          type: (nullable_type
-            type: (user_type
-              (type_identifier)
-              (type_arguments
-                (type_projection
-                  type: (user_type
-                    (type_identifier)))))))))
+          type: (type
+            type: (nullable_type
+              type: (user_type
+                (type_identifier)
+                (type_arguments
+                  (type_projection
+                    type: (type
+                      type: (user_type
+                        (type_identifier)))))))))))
     body: (function_body
       (block
         (statements
@@ -1077,14 +1089,15 @@ BufferedChannel<*>::registerSelectForSend as RegistrationFunction
 (source_file
   (statement
     (as_expression
-      (callable_reference
+      expression: (callable_reference
         receiver: (user_type
           (type_identifier)
           (type_arguments
             (type_projection)))
         name: (simple_identifier))
-      type: (user_type
-        (type_identifier)))))
+      type: (type
+        type: (user_type
+          (type_identifier))))))
 
 ================================================================================
 if with single expression

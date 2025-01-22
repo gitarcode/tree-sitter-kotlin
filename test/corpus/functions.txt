@@ -36,22 +36,26 @@ Generic functions with parameters
 fun <T: Int> bar(foo: Int): T {}
 
 ---
+
 (source_file
   (function_declaration
     (type_parameters
       (type_parameter
         (type_identifier)
-        type: (user_type
-          (type_identifier))))
+        type: (type
+          type: (user_type
+            (type_identifier)))))
     name: (simple_identifier)
     parameters: (function_value_parameters
       (function_value_parameter
         parameter: (parameter
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
-    type: (user_type
-      (type_identifier))
+          type: (type
+            type: (user_type
+              (type_identifier))))))
+    type: (type
+      type: (user_type
+        (type_identifier)))
     body: (function_body
       (block))))
 
@@ -72,10 +76,14 @@ fun sum(a: Int, b: Int) = a + b
       (function_value_parameter
         parameter: (parameter
           name: (simple_identifier)
+          type: (type
             type: (user_type
               (type_identifier)
-              (type_arguments (type_projection 
-                type: (user_type (type_identifier))))))))
+              (type_arguments
+                (type_projection
+                  type: (type
+                    type: (user_type
+                      (type_identifier))))))))))
     body: (function_body
       (block)))
   (function_declaration
@@ -84,11 +92,15 @@ fun sum(a: Int, b: Int) = a + b
       (function_value_parameter
         parameter: (parameter
           name: (simple_identifier)
-          type: (user_type (type_identifier))))
-      (function_value_parameter    
+          type: (type
+            type: (user_type
+              (type_identifier)))))
+      (function_value_parameter
         parameter: (parameter
           name: (simple_identifier)
-          type: (user_type (type_identifier)))))
+          type: (type
+            type: (user_type
+              (type_identifier))))))
     body: (function_body
       expression: (additive_expression
         left: (simple_identifier)
@@ -106,9 +118,10 @@ fun answerToTheUltimateQuestionOfLifeTheUniverseAndEverything(): Int = 42
   (function_declaration
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    type: (user_type 
-      (type_identifier))
-    body: (function_body 
+    type: (type
+      type: (user_type
+        (type_identifier)))
+    body: (function_body
       expression: (integer_literal))))
 
 ==================
@@ -128,10 +141,12 @@ fun foo(p0: Int): Long {
       (function_value_parameter
         parameter: (parameter
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
-    type: (user_type
-      (type_identifier))
+          type: (type
+            type: (user_type
+              (type_identifier))))))
+    type: (type
+      type: (user_type
+        (type_identifier)))
     body: (function_body
       (block
         (statements
@@ -228,19 +243,21 @@ val anon = fun(x: Int)
         (function_value_parameter
           parameter: (parameter
             name: (simple_identifier)
-            type: (user_type
-              (type_identifier)))))))
+            type: (type
+              type: (user_type
+                (type_identifier))))))))
   (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (anonymous_function
-    (function_value_parameters
-      (function_value_parameter
-        parameter: (parameter
-                     name: (simple_identifier)
-                     type: (user_type
-                             (type_identifier))))))))
+      (function_value_parameters
+        (function_value_parameter
+          parameter: (parameter
+            name: (simple_identifier)
+            type: (type
+              type: (user_type
+                (type_identifier)))))))))
 
 ==================
 Anonymous function with return type
@@ -255,16 +272,18 @@ val anon = fun(): Int
   (statement
     (anonymous_function
       (function_value_parameters)
-      type: (user_type
-        (type_identifier))))
+      (type
+        type: (user_type
+          (type_identifier)))))
   (property_declaration
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (anonymous_function
       (function_value_parameters)
-      type: (user_type
-        (type_identifier)))))
+      (type
+        type: (user_type
+          (type_identifier))))))
 
 ==================
 Anonymous function with body
@@ -364,9 +383,10 @@ fun f(x: Int = 1) {
     parameters: (function_value_parameters
       (function_value_parameter
         parameter: (parameter
-                     name: (simple_identifier)
-                     type: (user_type
-                             (type_identifier)))
+          name: (simple_identifier)
+          type: (type
+            type: (user_type
+              (type_identifier))))
         initializer: (integer_literal)))
     body: (function_body
       (block))))
@@ -388,8 +408,9 @@ fun String.myLength(): Int {
         (type_identifier)))
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    type: (user_type
-      (type_identifier))
+    type: (type
+      type: (user_type
+        (type_identifier)))
     body: (function_body
       (block
         (statements
@@ -424,25 +445,30 @@ private fun Route.staticContentRoute(
       (function_value_parameter
         parameter: (parameter
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier))))
-      (function_value_parameter
-        parameter: (parameter
-          name: (simple_identifier)
-          type: (user_type
-            (type_identifier))))
-      (function_value_parameter
-        parameter: (parameter
-          name: (simple_identifier)
-          type: (type_modifiers)
-          type: (function_type
-            (receiver_type
-              (parenthesized_type
-                type: (user_type
-                  (type_identifier))))
-            (function_type_parameters)
+          type: (type
             type: (user_type
-              (type_identifier))))))
+              (type_identifier)))))
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (type
+            type: (user_type
+              (type_identifier)))))
+      (function_value_parameter
+        parameter: (parameter
+          name: (simple_identifier)
+          type: (type
+            modifiers: (type_modifiers)
+            type: (function_type
+              (receiver_type
+                type: (parenthesized_type
+                  type: (type
+                    type: (user_type
+                      (type_identifier)))))
+              (function_type_parameters)
+              type: (type
+                type: (user_type
+                  (type_identifier))))))))
     body: (function_body
       expression: (call_expression
         expression: (simple_identifier)
@@ -508,8 +534,9 @@ fun isAdult(): Boolean { return true; }
   (function_declaration
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    type: (user_type
-      (type_identifier))
+    type: (type
+      type: (user_type
+        (type_identifier)))
     body: (function_body
       (block
         (statements
@@ -577,10 +604,12 @@ class FormatterTags {
           (function_value_parameter
             parameter: (parameter
               name: (simple_identifier)
-              type: (user_type
-                (type_identifier)))))
-        type: (user_type
-          (type_identifier))
+              type: (type
+                type: (user_type
+                  (type_identifier))))))
+        type: (type
+          type: (user_type
+            (type_identifier)))
         body: (function_body
           expression: (if_expression
             condition: (simple_identifier)

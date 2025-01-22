@@ -102,8 +102,9 @@ fun foo():String
   (function_declaration
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    type: (user_type
-      (type_identifier))
+    type: (type
+      type: (user_type
+        (type_identifier)))
     body: (function_body
       (block
         (statements
@@ -175,6 +176,7 @@ fun foo() {
 ================================================================================
 get after newline
 ================================================================================
+
 class Foo {
      val maxMemory: Long
      get() = bar() / 1024
@@ -190,8 +192,9 @@ class Foo {
         binding_pattern: (binding_pattern_kind)
         var_decl: (variable_declaration
           id: (simple_identifier)
-          type: (user_type
-            (type_identifier)))
+          type: (type
+            type: (user_type
+              (type_identifier))))
         (getter
           (function_body
             expression: (multiplicative_expression
@@ -574,8 +577,9 @@ private object Object {
         binding_pattern: (binding_pattern_kind)
         var_decl: (variable_declaration
           id: (simple_identifier)
-          type: (user_type
-            (type_identifier)))
+          type: (type
+            type: (user_type
+              (type_identifier))))
         delegate: (property_delegate
           by: (by)
           (call_expression
@@ -614,37 +618,43 @@ fun <TValue> CSSStyleVariable<TValue>.value(fallback: TValue? = null)
         (type_identifier)
         (type_arguments
           (type_projection
-            type: (user_type
-              (type_identifier))))))
+            type: (type
+              type: (user_type
+                (type_identifier)))))))
     name: (simple_identifier)
     parameters: (function_value_parameters
       (function_value_parameter
         parameter: (parameter
           name: (simple_identifier)
-          type: (nullable_type
-            type: (user_type
-              (type_identifier))))
+          type: (type
+            type: (nullable_type
+              type: (user_type
+                (type_identifier)))))
         initializer: (null_literal)))
     (type_constraints
       (type_constraint
         (type_identifier)
-        type: (user_type
-          (type_identifier)
-          (type_arguments
-            (type_projection
-              type: (user_type
-                (type_identifier))))))
+        type: (type
+          type: (user_type
+            (type_identifier)
+            (type_arguments
+              (type_projection
+                type: (type
+                  type: (user_type
+                    (type_identifier))))))))
       (type_constraint
         (type_identifier)
-        type: (user_type
-          (type_identifier))))
+        type: (type
+          type: (user_type
+            (type_identifier)))))
     body: (function_body
       expression: (call_expression
         expression: (simple_identifier)
         (type_arguments
           (type_projection
-            type: (user_type
-              (type_identifier))))
+            type: (type
+              type: (user_type
+                (type_identifier)))))
         args: (value_arguments
           (value_argument
             expression: (call_expression
@@ -716,8 +726,9 @@ catch (e: UnsupportedOperationException) { null }
               selector: (simple_identifier)))))
       (catch_block
         name: (simple_identifier)
-        type: (user_type
-          (type_identifier))
+        type: (type
+          type: (user_type
+            (type_identifier)))
         body: (block
           (statements
             (statement
@@ -776,9 +787,10 @@ when (val animatedImage = state) {
         (when_entry
           (when_condition
             (type_test
-              type: (user_type
-                (type_identifier)
-                (type_identifier))))
+              type: (type
+                type: (user_type
+                  (type_identifier)
+                  (type_identifier)))))
           (call_expression
             expression: (simple_identifier)
             args: (value_arguments
@@ -797,18 +809,20 @@ when (val animatedImage = state) {
         (when_entry
           (when_condition
             (type_test
-              type: (user_type
-                (type_identifier)
-                (type_identifier))))
+              type: (type
+                type: (user_type
+                  (type_identifier)
+                  (type_identifier)))))
           (call_expression
             expression: (simple_identifier)
             args: (value_arguments)))
         (when_entry
           (when_condition
             (type_test
-              type: (user_type
-                (type_identifier)
-                (type_identifier))))
+              type: (type
+                type: (user_type
+                  (type_identifier)
+                  (type_identifier)))))
           (call_expression
             expression: (simple_identifier)
             args: (value_arguments
@@ -837,8 +851,9 @@ class A {
           (function_value_parameter
             parameter: (parameter
               name: (simple_identifier)
-              type: (user_type
-                (type_identifier)))))
+              type: (type
+                type: (user_type
+                  (type_identifier))))))
         (constructor_delegation_call
           (value_arguments
             (value_argument
@@ -856,6 +871,7 @@ abstract class UserTypeBuilder<
 ) : AbstractUserElementBuilder<TType, TBuilder>(type.mixin)
 
 --------------------------------------------------------------------------------
+
 (source_file
   (class_declaration
     modifiers: (modifiers
@@ -864,39 +880,46 @@ abstract class UserTypeBuilder<
     (type_parameters
       (type_parameter
         (type_identifier)
-        type: (user_type
-          (type_identifier)))
+        type: (type
+          type: (user_type
+            (type_identifier))))
       (type_parameter
         (type_identifier)
-        type: (user_type
-          (type_identifier)
-          (type_identifier)
-          (type_arguments
-            (type_projection
-              type: (user_type
-                (type_identifier)))
-            (type_projection
-              type: (user_type
-                (type_identifier)))))))
+        type: (type
+          type: (user_type
+            (type_identifier)
+            (type_identifier)
+            (type_arguments
+              (type_projection
+                type: (type
+                  type: (user_type
+                    (type_identifier))))
+              (type_projection
+                type: (type
+                  type: (user_type
+                    (type_identifier)))))))))
     primary_constructor: (primary_constructor
       modifiers: (modifiers
         (visibility_modifier))
       (class_parameters
         (class_parameter
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
+          type: (type
+            type: (user_type
+              (type_identifier))))))
     (delegation_specifier
       (constructor_invocation
         type: (user_type
           (type_identifier)
           (type_arguments
             (type_projection
-              type: (user_type
-                (type_identifier)))
+              type: (type
+                type: (user_type
+                  (type_identifier))))
             (type_projection
-              type: (user_type
-                (type_identifier)))))
+              type: (type
+                type: (user_type
+                  (type_identifier))))))
         args: (value_arguments
           (value_argument
             expression: (dot_qualified_expression
@@ -925,30 +948,37 @@ fun f(
       (function_value_parameter
         parameter: (parameter
           name: (simple_identifier)
-          type: (function_type
-            (function_type_parameters
-              (parameter
-                name: (simple_identifier)
+          type: (type
+            type: (function_type
+              (function_type_parameters
+                (parameter
+                  name: (simple_identifier)
+                  type: (type
+                    type: (user_type
+                      (type_identifier)
+                      (type_arguments
+                        (type_projection
+                          type: (type
+                            type: (user_type
+                              (type_identifier))))))))
+                (parameter
+                  name: (simple_identifier)
+                  type: (type
+                    type: (user_type
+                      (type_identifier))))
+                (parameter
+                  name: (simple_identifier)
+                  type: (type
+                    type: (user_type
+                      (type_identifier))))
+                (parameter
+                  name: (simple_identifier)
+                  type: (type
+                    type: (user_type
+                      (type_identifier)))))
+              type: (type
                 type: (user_type
-                  (type_identifier)
-                  (type_arguments
-                    (type_projection
-                      type: (user_type
-                        (type_identifier))))))
-              (parameter
-                name: (simple_identifier)
-                type: (user_type
-                  (type_identifier)))
-              (parameter
-                name: (simple_identifier)
-                type: (user_type
-                  (type_identifier)))
-              (parameter
-                name: (simple_identifier)
-                type: (user_type
-                  (type_identifier))))
-            type: (user_type
-              (type_identifier))))
+                  (type_identifier))))))
         initializer: (lambda_literal
           parameters: (lambda_parameters
             (variable_declaration
@@ -995,28 +1025,33 @@ internal object TransformRequestBodyHook : ClientHook<
         (type_identifier)
         (type_arguments
           (type_projection
-            (type_modifiers)
-            (function_type
-              (receiver_type
-                type: (user_type
-                  (type_identifier)))
-              (function_type_parameters
-                (parameter
-                  name: (simple_identifier)
+            type: (type
+              modifiers: (type_modifiers)
+              type: (function_type
+                (receiver_type
                   type: (user_type
                     (type_identifier)))
-                (parameter
-                  name: (simple_identifier)
-                  type: (user_type
-                    (type_identifier)))
-                (parameter
-                  name: (simple_identifier)
+                (function_type_parameters
+                  (parameter
+                    name: (simple_identifier)
+                    type: (type
+                      type: (user_type
+                        (type_identifier))))
+                  (parameter
+                    name: (simple_identifier)
+                    type: (type
+                      type: (user_type
+                        (type_identifier))))
+                  (parameter
+                    name: (simple_identifier)
+                    type: (type
+                      type: (nullable_type
+                        type: (user_type
+                          (type_identifier))))))
+                type: (type
                   type: (nullable_type
                     type: (user_type
-                      (type_identifier)))))
-              (nullable_type
-                type: (user_type
-                  (type_identifier))))))))
+                      (type_identifier))))))))))
     body: (class_body)))
 
 ================================================================================
@@ -1035,8 +1070,9 @@ private val property: Boolean
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
-      type: (user_type
-        (type_identifier)))
+      type: (type
+        type: (user_type
+          (type_identifier))))
     initializer: (boolean_literal)))
 
 ================================================================================
@@ -1057,8 +1093,9 @@ var stringRepresentation: String
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
-      type: (user_type
-        (type_identifier)))
+      type: (type
+        type: (user_type
+          (type_identifier))))
     (getter
       (function_body
         expression: (call_expression
@@ -1079,7 +1116,6 @@ var stringRepresentation: String
                   (value_argument
                     expression: (simple_identifier))))))
           (line_comment))))))
-
 
 ================================================================================
 When entry with newline before ->
@@ -1113,7 +1149,7 @@ when (
 
 --------------------------------------------------------------------------------
 
-(source_file
+ (source_file
   (statement
     (when_expression
       (when_subject
@@ -1133,12 +1169,12 @@ when (
                 expression: (simple_identifier)
                 (type_arguments
                   (type_projection
-                    type: (user_type
-                      (type_identifier))))
+                    type: (type
+                      type: (user_type
+                        (type_identifier)))))
                 args: (value_arguments)))
             (value_argument
               expression: (simple_identifier))))))))
-
 
 ================================================================================
 Newline before as
@@ -1152,7 +1188,7 @@ Class.forName("leakcanary.internal.activity.LeakActivity")
 (source_file
   (statement
     (as_expression
-      (call_expression
+      expression: (call_expression
         expression: (dot_qualified_expression
           receiver: (simple_identifier)
           selector: (simple_identifier))
@@ -1161,12 +1197,14 @@ Class.forName("leakcanary.internal.activity.LeakActivity")
             expression: (string_literal
               content: (string_content
                 (line_string_content_part))))))
-      type: (user_type
-        (type_identifier)
-        (type_arguments
-          (type_projection
-            type: (user_type
-              (type_identifier))))))))
+      type: (type
+        type: (user_type
+          (type_identifier)
+          (type_arguments
+            (type_projection
+              type: (type
+                type: (user_type
+                  (type_identifier))))))))))
 
 ================================================================================
 Delegation constructor parameters on next line
@@ -1214,25 +1252,32 @@ var a: (
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
-      type: (nullable_type
-        (parenthesized_type
-          (function_type
-            (function_type_parameters
-              (parameter
-                name: (simple_identifier)
-                type: (user_type
-                  (type_identifier)))
-              (parameter
-                name: (simple_identifier)
-                type: (user_type
-                  (type_identifier)))
-              (parameter
-                name: (simple_identifier)
-                type: (user_type
-                  (type_identifier))))
-            type: (user_type
-              (type_identifier))))))
+      type: (type
+        type: (nullable_type
+          type: (parenthesized_type
+            type: (type
+              type: (function_type
+                (function_type_parameters
+                  (parameter
+                    name: (simple_identifier)
+                    type: (type
+                      type: (user_type
+                        (type_identifier))))
+                  (parameter
+                    name: (simple_identifier)
+                    type: (type
+                      type: (user_type
+                        (type_identifier))))
+                  (parameter
+                    name: (simple_identifier)
+                    type: (type
+                      type: (user_type
+                        (type_identifier)))))
+                type: (type
+                  type: (user_type
+                    (type_identifier)))))))))
     initializer: (null_literal)))
+
 
 ================================================================================
 Newline before by in explicit delegation
@@ -1345,9 +1390,10 @@ D>
         (type_identifier)
         (type_arguments
           (type_projection
-            type: (user_type
-              (type_identifier)
-              (type_identifier)))))))
+            type: (type
+              type: (user_type
+                (type_identifier)
+                (type_identifier))))))))
   (class_declaration
     name: (simple_identifier)
     (delegation_specifier
@@ -1355,6 +1401,7 @@ D>
         (type_identifier)
         (type_arguments
           (type_projection
-            type: (user_type
-              (type_identifier)
-              (type_identifier))))))))
+            type: (type
+              type: (user_type
+                (type_identifier)
+                (type_identifier)))))))))

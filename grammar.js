@@ -121,7 +121,7 @@ module.exports = grammar({
     [$.enum_class_body],
     [$.package_header],
     [$.when_entry],
-    [$.receiver_type, $._type],
+    [$.receiver_type, $.type],
     [$.receiver_type],
     [$.statements],
     // There is an inherent ambiguity between annotated expressions and annotated function types:
@@ -300,7 +300,7 @@ module.exports = grammar({
       repeat($._NL),
       "=",
       repeat($._NL),
-      $._type
+      field("type", $.type)
     )),
 
     _declaration: $ => choice(
@@ -366,7 +366,7 @@ module.exports = grammar({
       optional(field("binding_pattern", $.binding_pattern_kind)),
       field("name", $.simple_identifier),
       ":",
-      field("type", $._type),
+      field("type", $.type),
       optional(seq(repeat($._NL), "=", repeat($._NL), field("initializer", $.expression)))
     ),
 
@@ -420,7 +420,7 @@ module.exports = grammar({
       optional($.type_parameter_modifiers),
       repeat($._NL),
       alias($.simple_identifier, $.type_identifier),
-      optional(seq(repeat($._NL), ":", repeat($._NL), $._type))
+      optional(seq(repeat($._NL), ":", repeat($._NL), field("type", $.type)))
     ),
 
     type_constraints: $ => seq(repeat($._NL), "where", repeat($._NL), sep1($.type_constraint, repeat($._NL), ",", repeat($._NL))),
@@ -431,7 +431,7 @@ module.exports = grammar({
       repeat($._NL),
       ":",
       repeat($._NL),
-      $._type
+      field("type", $.type)
     ),
 
     // ==========
@@ -473,11 +473,11 @@ module.exports = grammar({
 
     receiver_type: $ => seq(
       optional(field("modifiers", $.type_modifiers)),
-      choice(
+      field("type", choice(
         $._type_reference,
         $.parenthesized_type,
         $.nullable_type
-      )
+      ))
     ),
 
     function_declaration: $ => seq(
@@ -487,7 +487,7 @@ module.exports = grammar({
       optional(seq(repeat($._NL), field("receiver_type", $.receiver_type), repeat($._NL), optional("."))),
       field("name", $.simple_identifier),
       field("parameters", $.function_value_parameters),
-      optional(seq(repeat($._NL), ":", repeat($._NL), field("type", $._type))),
+      optional(seq(repeat($._NL), ":", repeat($._NL), field("type", $.type))),
       optional(seq(repeat($._NL), $.type_constraints)),
       optional(seq(repeat($._NL), field("body", prec.dynamic(100, $.function_body))))
     ),
@@ -501,7 +501,7 @@ module.exports = grammar({
       repeat($._annotation),
       repeat($._NL),
       field("id", $.simple_identifier),
-      optional(field("type", seq(repeat($._NL), ":", repeat($._NL), $._type)))
+      optional(field("type", seq(repeat($._NL), ":", repeat($._NL), field("type", $.type))))
     ),
 
     property_declaration: $ => prec("property_declaration", seq(
@@ -549,7 +549,7 @@ module.exports = grammar({
         "(",
         repeat($._NL),
         ")",
-        optional(seq(":", $._type)),
+        optional(seq(":", field("type", $.type))),
         $.function_body
       ))
     )),
@@ -562,7 +562,7 @@ module.exports = grammar({
         repeat($._NL),
         $.parameter_with_optional_type,
         ")",
-        optional(seq(":", $._type)),
+        optional(seq(":", field("type", $.type))),
         repeat($._NL),
         $.function_body
       ))
@@ -578,7 +578,7 @@ module.exports = grammar({
     parameter_with_optional_type: $ => seq(
       optional($.parameter_modifiers),
       $.simple_identifier,
-      optional(seq(":", $._type))
+      optional(seq(":", $.type))
     ),
 
     parameter: $ => seq(
@@ -586,7 +586,7 @@ module.exports = grammar({
       repeat($._NL),
       ":", 
       repeat($._NL),
-      field("type", $._type)
+      field("type", $.type)
     ),
 
     object_declaration: $ => prec.right(seq(
@@ -638,20 +638,19 @@ module.exports = grammar({
     // Types
     // ==========
 
-    _type: $ => seq(
-      optional($.type_modifiers),
-      choice(
+    type: $ => seq(
+      optional(field("modifiers", $.type_modifiers)),
+      field("type", choice(
         $.parenthesized_type,
         $.nullable_type,
         $._type_reference,
         $.function_type,
         $.not_nullable_type
-      )
+      ))
     ),
 
-    // Give type reference a higher precedence to resolve conflict with parenthesized expression
     _type_reference: $ => choice(
-      field("type", $.user_type),
+      $.user_type,
       "dynamic"
     ),
 
@@ -664,7 +663,7 @@ module.exports = grammar({
     ),
 
     nullable_type: $ => seq(
-      choice($._type_reference, $.parenthesized_type),
+      field("type", choice($._type_reference, $.parenthesized_type)),
       repeat1("?")
     ),
 
@@ -678,7 +677,7 @@ module.exports = grammar({
     ),
 
     type_projection: $ => choice(
-      seq(optional($.type_projection_modifiers), $._type),
+      seq(optional($.type_projection_modifiers), field("type", $.type)),
       "*"
     ),
 
@@ -692,18 +691,29 @@ module.exports = grammar({
       repeat($._NL),
       "->",
       repeat($._NL),
-      $._type
+      field("type", $.type)
     ),
 
     function_type_parameters: $ => seq(
       "(",
       repeat($._NL),
-      optional(sep1(choice($.parameter, $._type), repeat($._NL), ",", repeat($._NL))),
+      optional(sep1(
+        choice($.parameter, field("type", $.type)), 
+        repeat($._NL), 
+        ",", 
+        repeat($._NL))
+      ),
       repeat($._NL),
       ")"
     ),
 
-    parenthesized_type: $ => seq("(", repeat($._NL), $._type, repeat($._NL), ")"),
+    parenthesized_type: $ => seq(
+      "(", 
+      repeat($._NL), 
+      field("type", $.type), 
+      repeat($._NL), 
+      ")"
+    ),
 
     parenthesized_user_type: $ => seq(
       "(",
@@ -894,7 +904,8 @@ module.exports = grammar({
     close_bracket: $ => "]",
 
     annotated_expression: $ => prec("annotation", seq(
-      $._annotation, $.expression
+      field("annotation", $._annotation), 
+      field("expression", $.expression)
     )),
 
     labeled_expression: $ => prec("label", seq(
@@ -910,7 +921,11 @@ module.exports = grammar({
     ),
 
     as_expression: $ => prec("as", seq(
-      $.expression, repeat($._external_nl), $._as_operator, repeat($._NL), $._type
+      field("expression", $.expression), 
+      repeat($._external_nl), 
+      field("operator", $._as_operator), 
+      repeat($._NL), 
+      field("type", $.type)
     )),
 
     // Binary expressions
@@ -981,7 +996,7 @@ module.exports = grammar({
       repeat($._external_nl), 
       field("operator", $._is_operator), 
       repeat($._NL), 
-      field("right", $._type)
+      field("right", $.type)
     )),
 
     comparison_expression: $ => prec.left("comparison", seq(
@@ -1198,7 +1213,7 @@ module.exports = grammar({
       "fun",
       optional(seq(sep1($._simple_user_type, "."), ".")), // TODO
       $.function_value_parameters,
-      optional(seq(":", $._type)),
+      optional(seq(":", $.type)),
       optional($.function_body)
     )),
 
@@ -1220,7 +1235,7 @@ module.exports = grammar({
 
     super_expression: $ => prec.right(choice(
       "super",
-      seq("super", "<", $._type, ">"),
+      seq("super", "<", field("type", $.type), ">"),
       $._super_at
     )),
 
@@ -1316,7 +1331,10 @@ module.exports = grammar({
 
     range_test: $ => seq($._in_operator, $.expression),
 
-    type_test: $ => seq($._is_operator, $._type),
+    type_test: $ => seq(
+      field("operator", $._is_operator), 
+      field("type", $.type)
+    ),
 
     try_expression: $ => prec.right(seq(
       "try",
@@ -1336,7 +1354,7 @@ module.exports = grammar({
       repeat($._annotation),
       field("name", $.simple_identifier),
       ":",
-      field("type", $._type),
+      field("type", $.type),
       ")",
       repeat($._NL),
       field("body", $.block),
@@ -1593,7 +1611,7 @@ module.exports = grammar({
       ),
       seq(
         "super",
-        "<", $._type, ">",
+        "<", $.type, ">",
         token.immediate("@"),
         alias($._lexical_identifier, $.type_identifier)
       )

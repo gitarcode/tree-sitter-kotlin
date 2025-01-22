@@ -28,18 +28,19 @@ override fun isDisposed(): Boolean { expectUnreached();  return false }
       (member_modifier))
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    type: (user_type
-      (type_identifier))
+    type: (type
+      type: (user_type
+        (type_identifier)))
     body: (function_body
       (block
         (statements
           (statement
             (call_expression
               expression: (simple_identifier)
-                args: (value_arguments)))
-            (statement
-              (return_expression
-                (boolean_literal))))))))
+              args: (value_arguments)))
+          (statement
+            (return_expression
+              (boolean_literal))))))))
 
 ================================================================================
 Getters
@@ -111,7 +112,7 @@ try {
 
 --------------------------------------------------------------------------------
 
- (source_file
+(source_file
   (statement
     (try_expression
       (block
@@ -119,19 +120,20 @@ try {
           (statement
             (call_expression
               expression: (simple_identifier)
-                args: (value_arguments)))))
+              args: (value_arguments)))))
       (catch_block
         name: (simple_identifier)
-        type: (user_type
-          (type_identifier))
+        type: (type
+          type: (user_type
+            (type_identifier)))
         body: (block
           (statements
             (statement
               (call_expression
                 expression: (simple_identifier)
-                  args: (value_arguments
-                    (value_argument
-                      expression: (simple_identifier)))))))))))
+                args: (value_arguments
+                  (value_argument
+                    expression: (simple_identifier)))))))))))
 
 ================================================================================
 Parenthesized expression after function call
@@ -150,14 +152,15 @@ val foo = Foo()
     initializer: (call_expression
       expression: (simple_identifier)
       args: (value_arguments)))
-  (statement    
+  (statement
     (call_expression
       expression: (dot_qualified_expression
         receiver: (parenthesized_expression
           (as_expression
-            (simple_identifier)
-            type: (user_type
-              (type_identifier))))
+            expression: (simple_identifier)
+            type: (type
+              type: (user_type
+                (type_identifier)))))
         selector: (simple_identifier))
       lambda_arg: (annotated_lambda
         lambda_literal: (lambda_literal
@@ -213,8 +216,9 @@ var positionPercentage: Float
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
-      type: (user_type
-        (type_identifier)))
+      type: (type
+        type: (user_type
+          (type_identifier))))
     (getter
       (function_body
         expression: (simple_identifier)))
@@ -254,8 +258,9 @@ var stringRepresentation: String
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
-      type: (user_type
-        (type_identifier)))
+      type: (type
+        type: (user_type
+          (type_identifier))))
     (setter
       (parameter_with_optional_type
         (simple_identifier))
@@ -308,7 +313,7 @@ if (x > 0)
                     expression: (simple_identifier)))))))))))
 
 ================================================================================
-Statements after return
+Statement after return
 ================================================================================
 
 fun f() {
@@ -335,7 +340,7 @@ fun f() {
             (simple_identifier)))))))
 
 ================================================================================
-Statements after return
+Return after return
 ================================================================================
 
 fun f(x: Int) {
@@ -352,8 +357,9 @@ fun f(x: Int) {
       (function_value_parameter
         parameter: (parameter
           name: (simple_identifier)
-          type: (user_type
-            (type_identifier)))))
+          type: (type
+            type: (user_type
+              (type_identifier))))))
     body: (function_body
       (block
         (statements
@@ -362,8 +368,6 @@ fun f(x: Int) {
               (simple_identifier)))
           (statement
             (return_expression)))))))
-
-
 
 ================================================================================
 Property followed by a modifier with internal
@@ -383,8 +387,9 @@ internal val ImageBitmap.isEmptyPlaceholder: Boolean
     binding_pattern: (binding_pattern_kind)
     var_decl: (variable_declaration
       id: (simple_identifier)
-      type: (user_type
-        (type_identifier)))
+      type: (type
+        type: (user_type
+          (type_identifier))))
     delegate: (property_delegate
       by: (by)
       (call_expression
@@ -409,14 +414,14 @@ internal val ImageBitmap.isEmptyPlaceholder: Boolean
         (type_identifier)))
     var_decl: (variable_declaration
       id: (simple_identifier)
-      type: (user_type
-        (type_identifier)))
+      type: (type
+        type: (user_type
+          (type_identifier))))
     (getter
       (function_body
         expression: (equality_expression
           left: (this_expression)
           right: (simple_identifier))))))
-
 
 ================================================================================
 Last top-level statement without newline after
@@ -494,16 +499,18 @@ while (true) when (val frame = input.readFrame(Long.MAX_VALUE, 0)) {
             (when_entry
               (when_condition
                 (type_test
-                  type: (user_type
-                    (type_identifier)
-                    (type_identifier))))
+                  type: (type
+                    type: (user_type
+                      (type_identifier)
+                      (type_identifier)))))
               (continue_expression))
             (when_entry
               (when_condition
                 (type_test
-                  type: (user_type
-                    (type_identifier)
-                    (type_identifier))))
+                  type: (type
+                    type: (user_type
+                      (type_identifier)
+                      (type_identifier)))))
               (block
                 (statements
                   (statement
