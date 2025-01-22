@@ -118,7 +118,7 @@ class X {
               (type_identifier))))
         name: (simple_identifier)
         parameters: (function_value_parameters)
-        type: (type
+        return_type: (type
           type: (user_type
             (type_identifier)))))))
 
@@ -273,7 +273,7 @@ fun parse(xml: String): Element {
           type: (type
             type: (user_type
               (type_identifier))))))
-    type: (type
+    return_type: (type
       type: (user_type
         (type_identifier)))
     body: (function_body

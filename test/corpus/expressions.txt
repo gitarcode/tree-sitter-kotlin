@@ -216,7 +216,7 @@ expect fun randomUUID(): String
       (platform_modifier))
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    type: (type
+    return_type: (type
       type: (user_type
         (type_identifier)))))
 
@@ -714,7 +714,7 @@ fun f(a: A): A {
           type: (type
             type: (user_type
               (type_identifier))))))
-    type: (type
+    return_type: (type
       type: (user_type
         (type_identifier)))
     body: (function_body

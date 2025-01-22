@@ -418,7 +418,7 @@ enum class Enum {
           (inheritance_modifier))
         name: (simple_identifier)
         parameters: (function_value_parameters)
-        type: (type
+        return_type: (type
           type: (user_type
             (type_identifier))))))
   (class_declaration
@@ -541,7 +541,7 @@ fun interface Authenticator {
               type: (type
                 type: (user_type
                   (type_identifier))))))
-        type: (type
+        return_type: (type
           type: (nullable_type
             type: (user_type
               (type_identifier))))))))
@@ -631,7 +631,7 @@ expect fun loadAnimatedImage(path: String): AnimatedImage
           type: (type
             type: (user_type
               (type_identifier))))))
-    type: (type
+    return_type: (type
       type: (user_type
         (type_identifier)))))
 
@@ -916,7 +916,7 @@ class A {
 
 
 ================================================================================
-Consequtive classes without body
+Consecutive classes without body
 ================================================================================
 
 private open class Action

@@ -53,7 +53,7 @@ fun <T: Int> bar(foo: Int): T {}
           type: (type
             type: (user_type
               (type_identifier))))))
-    type: (type
+    return_type: (type
       type: (user_type
         (type_identifier)))
     body: (function_body
@@ -118,7 +118,7 @@ fun answerToTheUltimateQuestionOfLifeTheUniverseAndEverything(): Int = 42
   (function_declaration
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    type: (type
+    return_type: (type
       type: (user_type
         (type_identifier)))
     body: (function_body
@@ -144,7 +144,7 @@ fun foo(p0: Int): Long {
           type: (type
             type: (user_type
               (type_identifier))))))
-    type: (type
+    return_type: (type
       type: (user_type
         (type_identifier)))
     body: (function_body
@@ -408,7 +408,7 @@ fun String.myLength(): Int {
         (type_identifier)))
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    type: (type
+    return_type: (type
       type: (user_type
         (type_identifier)))
     body: (function_body
@@ -534,7 +534,7 @@ fun isAdult(): Boolean { return true; }
   (function_declaration
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    type: (type
+    return_type: (type
       type: (user_type
         (type_identifier)))
     body: (function_body
@@ -607,7 +607,7 @@ class FormatterTags {
               type: (type
                 type: (user_type
                   (type_identifier))))))
-        type: (type
+        return_type: (type
           type: (user_type
             (type_identifier)))
         body: (function_body

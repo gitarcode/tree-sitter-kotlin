@@ -43,7 +43,7 @@ class Foo(){
 Index Assignment
 ================================================================================
 
-fun main(){
+fun main() {
   var listOfPets:Array<String>
   listOfPets[0] = "foo"
 }

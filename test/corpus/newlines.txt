@@ -102,7 +102,7 @@ fun foo():String
   (function_declaration
     name: (simple_identifier)
     parameters: (function_value_parameters)
-    type: (type
+    return_type: (type
       type: (user_type
         (type_identifier)))
     body: (function_body

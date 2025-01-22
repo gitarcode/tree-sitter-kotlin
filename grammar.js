@@ -487,7 +487,7 @@ module.exports = grammar({
       optional(seq(repeat($._NL), field("receiver_type", $.receiver_type), repeat($._NL), optional("."))),
       field("name", $.simple_identifier),
       field("parameters", $.function_value_parameters),
-      optional(seq(repeat($._NL), ":", repeat($._NL), field("type", $.type))),
+      optional(seq(repeat($._NL), ":", repeat($._NL), field("return_type", $.type))),
       optional(seq(repeat($._NL), $.type_constraints)),
       optional(seq(repeat($._NL), field("body", prec.dynamic(100, $.function_body))))
     ),
@@ -501,7 +501,7 @@ module.exports = grammar({
       repeat($._annotation),
       repeat($._NL),
       field("id", $.simple_identifier),
-      optional(field("type", seq(repeat($._NL), ":", repeat($._NL), field("type", $.type))))
+      optional(seq(repeat($._NL), ":", repeat($._NL), field("type", $.type)))
     ),
 
     property_declaration: $ => prec("property_declaration", seq(

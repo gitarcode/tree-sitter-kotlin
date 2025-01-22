@@ -1589,7 +1589,7 @@
           }
         ]
       },
-      "type": {
+      "return_type": {
         "multiple": false,
         "required": false,
         "types": [
@@ -3606,13 +3606,9 @@
         ]
       },
       "type": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": ":",
-            "named": false
-          },
           {
             "type": "type",
             "named": true

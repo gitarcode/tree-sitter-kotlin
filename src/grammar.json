@@ -2038,7 +2038,7 @@
                 },
                 {
                   "type": "FIELD",
-                  "name": "type",
+                  "name": "return_type",
                   "content": {
                     "type": "SYMBOL",
                     "name": "type"
@@ -2175,39 +2175,35 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "FIELD",
-              "name": "type",
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "REPEAT",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_NL"
-                    }
-                  },
-                  {
-                    "type": "STRING",
-                    "value": ":"
-                  },
-                  {
-                    "type": "REPEAT",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "_NL"
-                    }
-                  },
-                  {
-                    "type": "FIELD",
-                    "name": "type",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "type"
-                    }
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
                   }
-                ]
-              }
+                },
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_NL"
+                  }
+                },
+                {
+                  "type": "FIELD",
+                  "name": "type",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "type"
+                  }
+                }
+              ]
             },
             {
               "type": "BLANK"
