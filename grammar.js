@@ -179,6 +179,8 @@ module.exports = grammar({
     [$.variable_declaration, $.annotated_expression, $.modifiers],
     [$._non_call_primary_expression, $.callable_reference],
     [$.delegation_specifier, $.constructor_invocation, $.explicit_delegation],
+
+    [$.import_header]
   ],
 
   precedences: $ => [
@@ -273,15 +275,15 @@ module.exports = grammar({
 
     package_header: $ => seq("package", $.identifier, optional(seq(repeat($._NL), ";"))),
 
-    import_header: $ => prec.left(seq(
+    import_header: $ => seq(
       "import",
       field("name", $.identifier),
       optional(choice(seq(".", $.wildcard_import), $._import_alias)),
-    )),
+    ),
 
     wildcard_import: $ => seq(repeat($._NL), "*"),
 
-    _import_alias: $ => seq("as", field("alias", $.simple_identifier)),
+    _import_alias: $ => seq(repeat($._NL), "as", field("alias", $.simple_identifier)),
 
     _top_level_object: $ => seq($._declaration, repeat($._semi)),
 

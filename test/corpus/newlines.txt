@@ -1405,3 +1405,20 @@ D>
               type: (user_type
                 (type_identifier)
                 (type_identifier)))))))))
+
+================================================================================
+Newline before import alias
+================================================================================
+
+import a.b.c
+as x
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (import_header
+    name: (identifier
+      (simple_identifier)
+      (simple_identifier)
+      (simple_identifier))
+    alias: (simple_identifier)))
