@@ -103,17 +103,17 @@ val y = when(x) {
     var_decl: (variable_declaration
       id: (simple_identifier))
     initializer: (when_expression
-      (when_subject
+      subject: (when_subject
         (simple_identifier))
-      (when_entries
+      entries: (when_entries
         (when_entry
-          (when_condition
+          condition: (when_condition
             (integer_literal))
-          (boolean_literal))
+          body: (boolean_literal))
         (when_entry
-          (when_condition
+          condition: (when_condition
             (integer_literal))
-          (boolean_literal))))))
+          body: (boolean_literal))))))
 
 ================================================================================
 When expression with type arguments
@@ -128,18 +128,18 @@ when (this) {
 (source_file
   (statement
     (when_expression
-      (when_subject
+      subject: (when_subject
         (this_expression))
-      (when_entries
+      entries: (when_entries
         (when_entry
-          (when_condition
+          condition: (when_condition
             (type_test
               type: (type
                 type: (user_type
                   (type_identifier)
                   (type_arguments
                     (type_projection))))))
-          (return_expression
+          body: (return_expression
             (null_literal)))))))
 
 ================================================================================
@@ -408,36 +408,36 @@ when (dir) {
               right: (simple_identifier)))))))
   (statement
     (when_expression
-      (when_subject
+      subject: (when_subject
         (simple_identifier))
-      (when_entries
+      entries: (when_entries
         (when_entry
-          (when_condition
+          condition: (when_condition
             (integer_literal))
-            (block
-              (statements
-                (statement
-                  (property_declaration
-                    binding_pattern: (binding_pattern_kind)
-                    var_decl: (variable_declaration
-                      id: (simple_identifier))
-                    initializer: (dot_qualified_expression
-                      receiver: (simple_identifier)
-                      selector: (simple_identifier))))
-                (statement
-                  (assignment
-                    left: (dot_qualified_expression
-                      receiver: (simple_identifier)
-                      selector: (simple_identifier))
-                    right: (dot_qualified_expression
-                      receiver: (simple_identifier)
-                      selector: (simple_identifier))))
-                (statement
-                  (assignment
-                    left: (dot_qualified_expression
-                      receiver: (simple_identifier)
-                      selector: (simple_identifier))
-                    right: (simple_identifier))))))))))
+          body: (block
+            (statements
+              (statement
+                (property_declaration
+                  binding_pattern: (binding_pattern_kind)
+                  var_decl: (variable_declaration
+                    id: (simple_identifier))
+                  initializer: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))))
+              (statement
+                (assignment
+                  left: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))
+                  right: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))))
+              (statement
+                (assignment
+                  left: (dot_qualified_expression
+                    receiver: (simple_identifier)
+                    selector: (simple_identifier))
+                  right: (simple_identifier))))))))))
 
 ================================================================================
 Comments in Strings
@@ -944,11 +944,11 @@ when (this) {
 (source_file
   (statement
     (when_expression
-      (when_subject
+      subject: (when_subject
         (this_expression))
-      (when_entries
+      entries: (when_entries
         (else_entry
-          (additive_expression
+          body: (additive_expression
             left: (string_literal
               content: (string_content
                 (interpolated_identifier)
@@ -972,13 +972,13 @@ when (x) {
 (source_file
   (statement
     (when_expression
-      (when_subject
+      subject: (when_subject
         (simple_identifier))
-      (when_entries
+      entries: (when_entries
         (when_entry
-          (when_condition
+          condition: (when_condition
             (integer_literal))
-          (call_expression
+          body: (call_expression
             expression: (simple_identifier)
             args: (value_arguments
               (value_argument
@@ -1230,16 +1230,16 @@ when {
 (source_file
   (statement
     (when_expression
-      (when_entries
+      entries: (when_entries
         (when_entry
-          (when_condition
+          condition: (when_condition
             (simple_identifier))
-            (block
-              (statements
-                (statement
-                  (simple_identifier)))))
+          body: (block
+            (statements
+              (statement
+                (simple_identifier)))))
         (else_entry
-          (block
+          body: (block
             (statements
               (statement
                 (simple_identifier)))))))))

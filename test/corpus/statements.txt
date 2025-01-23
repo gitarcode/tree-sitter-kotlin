@@ -481,7 +481,7 @@ while (true) when (val frame = input.readFrame(Long.MAX_VALUE, 0)) {
       expression: (while_statement
         (boolean_literal)
         (when_expression
-          (when_subject
+          subject: (when_subject
             (variable_declaration
               id: (simple_identifier))
             (call_expression
@@ -495,23 +495,23 @@ while (true) when (val frame = input.readFrame(Long.MAX_VALUE, 0)) {
                     selector: (simple_identifier)))
                 (value_argument
                   expression: (integer_literal)))))
-          (when_entries
+          entries: (when_entries
             (when_entry
-              (when_condition
+              condition: (when_condition
                 (type_test
                   type: (type
                     type: (user_type
                       (type_identifier)
                       (type_identifier)))))
-              (continue_expression))
+              body: (continue_expression))
             (when_entry
-              (when_condition
+              condition: (when_condition
                 (type_test
                   type: (type
                     type: (user_type
                       (type_identifier)
                       (type_identifier)))))
-              (block
+              body: (block
                 (statements
                   (statement
                     (call_expression
@@ -538,7 +538,7 @@ while (true) when (val frame = input.readFrame(Long.MAX_VALUE, 0)) {
                   (statement
                     (break_expression)))))
             (else_entry
-              (call_expression
+              body: (call_expression
                 expression: (simple_identifier)
                 args: (value_arguments
                   (value_argument

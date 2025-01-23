@@ -6830,8 +6830,12 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "when_subject"
+              "type": "FIELD",
+              "name": "subject",
+              "content": {
+                "type": "SYMBOL",
+                "name": "when_subject"
+              }
             },
             {
               "type": "BLANK"
@@ -6853,8 +6857,12 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "when_entries"
+              "type": "FIELD",
+              "name": "entries",
+              "content": {
+                "type": "SYMBOL",
+                "name": "when_entries"
+              }
             },
             {
               "type": "BLANK"
@@ -6951,8 +6959,12 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "when_condition"
+              "type": "FIELD",
+              "name": "condition",
+              "content": {
+                "type": "SYMBOL",
+                "name": "when_condition"
+              }
             },
             {
               "type": "REPEAT",
@@ -6978,8 +6990,12 @@
                     }
                   },
                   {
-                    "type": "SYMBOL",
-                    "name": "when_condition"
+                    "type": "FIELD",
+                    "name": "condition",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "when_condition"
+                    }
                   }
                 ]
               }
@@ -7037,8 +7053,12 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "_control_body_structure"
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_control_body_structure"
+          }
         }
       ]
     },
@@ -7068,8 +7088,12 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "_control_body_structure"
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_control_body_structure"
+          }
         }
       ]
     },

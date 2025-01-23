@@ -779,19 +779,19 @@ when (val animatedImage = state) {
 (source_file
   (statement
     (when_expression
-      (when_subject
+      subject: (when_subject
         (variable_declaration
           id: (simple_identifier))
         (simple_identifier))
-      (when_entries
+      entries: (when_entries
         (when_entry
-          (when_condition
+          condition: (when_condition
             (type_test
               type: (type
                 type: (user_type
                   (type_identifier)
                   (type_identifier)))))
-          (call_expression
+          body: (call_expression
             expression: (simple_identifier)
             args: (value_arguments
               (value_argument
@@ -807,23 +807,23 @@ when (val animatedImage = state) {
                 name: (simple_identifier)
                 expression: (null_literal)))))
         (when_entry
-          (when_condition
+          condition: (when_condition
             (type_test
               type: (type
                 type: (user_type
                   (type_identifier)
                   (type_identifier)))))
-          (call_expression
+          body: (call_expression
             expression: (simple_identifier)
             args: (value_arguments)))
         (when_entry
-          (when_condition
+          condition: (when_condition
             (type_test
               type: (type
                 type: (user_type
                   (type_identifier)
                   (type_identifier)))))
-          (call_expression
+          body: (call_expression
             expression: (simple_identifier)
             args: (value_arguments
               (value_argument
@@ -1131,11 +1131,11 @@ when {
 (source_file
   (statement
     (when_expression
-      (when_entries
+      entries: (when_entries
         (when_entry
-          (when_condition
+          condition: (when_condition
             (simple_identifier))
-          (boolean_literal))))))
+          body: (boolean_literal))))))
 
 ================================================================================
 Newline after when subject
@@ -1152,7 +1152,7 @@ when (
  (source_file
   (statement
     (when_expression
-      (when_subject
+      subject: (when_subject
         (variable_declaration
           id: (simple_identifier))
         (call_expression

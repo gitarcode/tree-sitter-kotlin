@@ -1290,10 +1290,10 @@ module.exports = grammar({
     when_expression: $ => seq(
       "when",
       repeat($._NL),
-      optional($.when_subject),
+      optional(field("subject", $.when_subject)),
       "{",
       repeat($._NL),
-      optional($.when_entries),
+      optional(field("entries", $.when_entries)),
       repeat($._NL),
       "}"
     ),
@@ -1309,12 +1309,12 @@ module.exports = grammar({
     ),
 
     when_entry: $ => seq(
-      sep1($.when_condition, repeat($._NL), ",", repeat($._NL)), 
+      sep1(field("condition", $.when_condition), repeat($._NL), ",", repeat($._NL)), 
       optional(seq(repeat($._NL), optional(","))),
       repeat($._NL),
       "->",
       repeat($._NL),
-      $._control_body_structure,
+      field("body", $._control_body_structure),
     ),
 
     else_entry: $ => seq(
@@ -1322,7 +1322,7 @@ module.exports = grammar({
       repeat($._NL),
       "->",
       repeat($._NL),
-      $._control_body_structure,
+      field("body", $._control_body_structure),
     ),
 
     when_condition: $ => choice(

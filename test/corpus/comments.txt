@@ -380,25 +380,25 @@ when (e) {
 (source_file
   (statement
     (when_expression
-      (when_subject
+      subject: (when_subject
         (simple_identifier))
       (line_comment)
-      (when_entries
+      entries: (when_entries
         (when_entry
-          (when_condition
+          condition: (when_condition
             (type_test
               type: (type
                 type: (user_type
                   (type_identifier)))))
-          (simple_identifier))
+          body: (simple_identifier))
         (line_comment)
         (when_entry
-          (when_condition
+          condition: (when_condition
             (type_test
               type: (type
                 type: (user_type
                   (type_identifier)))))
-          (simple_identifier)))
+          body: (simple_identifier)))
       (line_comment))))
 
 ================================================================================
