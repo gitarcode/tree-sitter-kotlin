@@ -237,171 +237,171 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
             }
         }
     }
-    if (valid_symbols[EXTERNAL_NEWLINE] || valid_symbols[ELVIS] || valid_symbols[NOT_IS]) {
-        switch(lexer->lookahead) {
-            case '\n':
-                while (lexer->lookahead == '\n') {
-                    advance(lexer);
-                }
-                lexer->result_symbol = EXTERNAL_NEWLINE;
-                lexer->mark_end(lexer);
-                while (iswspace(lexer->lookahead) || lexer->lookahead == '/') {
-                    while (iswspace(lexer->lookahead)) {
-                        advance(lexer);
-                    }
-                    if (lexer->lookahead == '/') {
-                        advance(lexer);
-                        switch (lexer->lookahead) {
-                            case '/':
-                                if (!line_comment_body(lexer)) {
-                                    return false;
-                                }
-                                break;
-                             case '*':
-                                if (!multiline_comment_body(lexer)) {
-                                    return false;
-                                }
-                                break;
-                            default:
-                                if (is_inside_parentheses(scanner)) {
-                                        return true;
-                                }
+    // elvis operator: `?:`
+    if (valid_symbols[ELVIS]) {
+        if (lexer->lookahead == '?') {
+            advance(lexer);
+            if (lexer->lookahead != ':') {
+                return false;
+            }
+            advance(lexer);
+            // ?:: should be tokenized as ? ::, so we should not emit an elvis operator here
+            if (lexer->lookahead == ':') {
+                return false;
+            }
+            lexer->result_symbol = ELVIS;
+            return true;
+        }
+    }
+    if (valid_symbols[NOT_IS]) {
+        // We should only emit an "!is" token if it's not followed by an alpha character.
+        // !isa should be parsed as a unary expression: `! (isa)`
+        if (lexer->lookahead == '!') {
+            advance(lexer);
+            if (lexer->lookahead != 'i') {
+                return false;
+            }
+            advance(lexer);
+            if (lexer->lookahead != 's') {
+                return false;
+            }
+            advance(lexer);
+            if (is_lookahead_valid_identifier_char(lexer)) {
+                return false;
+            }
+            lexer->result_symbol = NOT_IS;
+            return true;
+        }
+    }
+    if (valid_symbols[EXTERNAL_NEWLINE]) {
+        if (lexer->lookahead != '\n') {
+            return false;
+        }
+        while (lexer->lookahead == '\n') {
+            advance(lexer);
+        }
+        lexer->result_symbol = EXTERNAL_NEWLINE;
+        lexer->mark_end(lexer);
+        while (iswspace(lexer->lookahead) || lexer->lookahead == '/') {
+            while (iswspace(lexer->lookahead)) {
+                advance(lexer);
+            }
+            if (lexer->lookahead == '/') {
+                advance(lexer);
+                switch (lexer->lookahead) {
+                    case '/':
+                        if (!line_comment_body(lexer)) {
+                            return false;
                         }
-                    }
-                }
-                if (lookahead_operator(lexer, "&&", 2)) {
-                    return true;
-                }
-                if (lookahead_operator(lexer, "||", 2)) {
-                    return true;
-                }
-                if (lookahead_operator(lexer, "+", 1)) {
-                    if (is_inside_parentheses(scanner)) {
-                        // Do not match '++' and '+='
-                        if (lexer->lookahead != '+' && lexer->lookahead != '=') {
-                            return true;
+                        break;
+                        case '*':
+                        if (!multiline_comment_body(lexer)) {
+                            return false;
                         }
-                    }
-                }
-                if (lookahead_operator(lexer, "-", 1)) {
-                    if (is_inside_parentheses(scanner)) {
-                        // Do not match '--', '->', and '-='
-                        if (lexer->lookahead != '-' && lexer->lookahead != '>' && lexer->lookahead != '=') {
-                            return true;
-                        }
-                    }
-                }
-                if (lookahead_operator(lexer, "*", 1)) {
-                    if (is_inside_parentheses(scanner)) {
-                        // Do not match '*='
-                        if (lexer->lookahead != '=') {
-                            return true;
-                        }
-                    }
-                }
-                if (lookahead_operator(lexer, "?", 1)) {
-                    if (lexer->lookahead == ':' || lexer->lookahead == '.') {
-                        return true;
-                    }
-                }
-                if (lookahead_operator(lexer, ".", 1)) {
-                    // Do not match '..'
-                    if (lexer->lookahead != '.') {
-                        return true;
-                    } else {
-                        // Range operators: '..' '..<'
+                        break;
+                    default:
                         if (is_inside_parentheses(scanner)) {
-                            return true;
-                        }
-                    }
-                }
-                if (lookahead_operator(lexer, "!", 1)) {
-                    if (is_inside_parentheses(scanner)) {
-                        switch (lexer->lookahead) {
-                            case 'i':
-                                advance(lexer);
-                                // in or is
-                                if (lexer->lookahead == 'n' || lexer->lookahead == 's') {
-                                    return true;
-                                }
-                            // !=
-                            case '=':
                                 return true;
                         }
-                    }
                 }
-                if (lookahead_operator(lexer, "in", 2)) {
-                    if (!is_lookahead_valid_identifier_char(lexer)) {
-                        if (is_inside_parentheses(scanner)) {
+            }
+        }
+        if (lookahead_operator(lexer, "&&", 2)) {
+            return true;
+        }
+        if (lookahead_operator(lexer, "||", 2)) {
+            return true;
+        }
+        if (lookahead_operator(lexer, "+", 1)) {
+            if (is_inside_parentheses(scanner)) {
+                // Do not match '++' and '+='
+                if (lexer->lookahead != '+' && lexer->lookahead != '=') {
+                    return true;
+                }
+            }
+        }
+        if (lookahead_operator(lexer, "-", 1)) {
+            if (is_inside_parentheses(scanner)) {
+                // Do not match '--', '->', and '-='
+                if (lexer->lookahead != '-' && lexer->lookahead != '>' && lexer->lookahead != '=') {
+                    return true;
+                }
+            }
+        }
+        if (lookahead_operator(lexer, "*", 1)) {
+            if (is_inside_parentheses(scanner)) {
+                // Do not match '*='
+                if (lexer->lookahead != '=') {
+                    return true;
+                }
+            }
+        }
+        if (lookahead_operator(lexer, "?", 1)) {
+            if (lexer->lookahead == ':' || lexer->lookahead == '.') {
+                return true;
+            }
+        }
+        if (lookahead_operator(lexer, ".", 1)) {
+            // Do not match '..'
+            if (lexer->lookahead != '.') {
+                return true;
+            } else {
+                // Range operators: '..' '..<'
+                if (is_inside_parentheses(scanner)) {
+                    return true;
+                }
+            }
+        }
+        if (lookahead_operator(lexer, "!", 1)) {
+            if (is_inside_parentheses(scanner)) {
+                switch (lexer->lookahead) {
+                    case 'i':
+                        advance(lexer);
+                        // in or is
+                        if (lexer->lookahead == 'n' || lexer->lookahead == 's') {
                             return true;
                         }
-                    }
-                }
-                if (lookahead_operator(lexer, "as", 2)) {
-                    if (!is_lookahead_valid_identifier_char(lexer)) {
+                    // !=
+                    case '=':
                         return true;
-                    }
                 }
-                if (lookahead_operator(lexer, "<", 1)) {
-                    if (is_inside_parentheses(scanner)) {
-                        return true;
-                    }
+            }
+        }
+        if (lookahead_operator(lexer, "in", 2)) {
+            if (!is_lookahead_valid_identifier_char(lexer)) {
+                if (is_inside_parentheses(scanner)) {
+                    return true;
                 }
-                if (lookahead_operator(lexer, ">", 1)) {
-                    if (is_inside_parentheses(scanner)) {
-                        return true;
-                    }
-                }
-                if (lookahead_operator(lexer, "=", 1)) {
-                    if (lexer->lookahead == '=') {
-                        if (is_inside_parentheses(scanner)) {
-                            return true;
-                        }                        
-                    }
-                }
-                // infix operators, if the next character is either `_` or an alphanumeric, corresponding to
-                // the beginning of an identifier
-                if (is_lookahead_valid_identifier_char(lexer)) {
-                    if (is_inside_parentheses(scanner)) {
-                        return true;
-                    }
-                }
-                break;
-
-            // elvis operator: `?:`    
-            case '?':
-                advance(lexer);
-                if (lexer->lookahead != ':') {
-                    return false;
-                }
-                advance(lexer);
-                // ?:: should be tokenized as ? ::, so we should not emit an elvis operator here
-                if (lexer->lookahead == ':') {
-                    return false;
-                }
-                lexer->result_symbol = ELVIS;
+            }
+        }
+        if (lookahead_operator(lexer, "as", 2)) {
+            if (!is_lookahead_valid_identifier_char(lexer)) {
                 return true;
-
-            // We should only emit an "!is" token if it's not followed by an alpha character.
-            // !isa should be parsed as a unary expression: `! (isa)`
-            case '!':
-                advance(lexer);
-                if (lexer->lookahead != 'i') {
-                    return false;
-                }
-                advance(lexer);
-                if (lexer->lookahead != 's') {
-                    return false;
-                }
-                advance(lexer);
-                if (is_lookahead_valid_identifier_char(lexer)) {
-                    return false;
-                }
-                lexer->result_symbol = NOT_IS;
-                return true;    
-
-            default:
-                return false;    
+            }
+        }
+        if (lookahead_operator(lexer, "<", 1)) {
+            if (is_inside_parentheses(scanner)) {
+                return true;
+            }
+        }
+        if (lookahead_operator(lexer, ">", 1)) {
+            if (is_inside_parentheses(scanner)) {
+                return true;
+            }
+        }
+        if (lookahead_operator(lexer, "=", 1)) {
+            if (lexer->lookahead == '=') {
+                if (is_inside_parentheses(scanner)) {
+                    return true;
+                }                        
+            }
+        }
+        // infix operators, if the next character is either `_` or an alphanumeric, corresponding to
+        // the beginning of an identifier
+        if (is_lookahead_valid_identifier_char(lexer)) {
+            if (is_inside_parentheses(scanner)) {
+                return true;
+            }
         }
     }
     return false;
