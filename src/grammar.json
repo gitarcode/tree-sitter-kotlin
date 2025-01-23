@@ -8180,7 +8180,7 @@
         },
         {
           "type": "STRING",
-          "value": "dyanamic"
+          "value": "dynamic"
         },
         {
           "type": "STRING",
@@ -9346,6 +9346,10 @@
     ],
     [
       "setter",
+      "_soft_keywords"
+    ],
+    [
+      "_type_reference",
       "_soft_keywords"
     ],
     [

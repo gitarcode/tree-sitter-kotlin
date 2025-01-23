@@ -155,6 +155,7 @@ module.exports = grammar({
     [$.anonymous_initializer, $._soft_keywords],
     [$.getter, $._soft_keywords],
     [$.setter, $._soft_keywords],
+    [$._type_reference, $._soft_keywords],
 
     [$.dot_qualified_expression, $.labeled_expression, $.as_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
     [$.dot_qualified_expression, $.prefix_expression, $.as_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
@@ -874,9 +875,9 @@ module.exports = grammar({
     //     override fun printMessage() { print("abc") }
     //   }
     // Here, b {}, can be parsed as both a call expression or a delegation followed by the class body. In this case,
-    // we need the second interpreation. But in funciton calls like `with (s) {}`, we want `{}` to be parsed as part
+    // we need the second interpretation. But in function calls like `with (s) {}`, we want `{}` to be parsed as part
     // of the call. That means that based on the context a call_expression happens in, we either want left or right
-    // associativity for the arguments, which is not posssible to specify with tree-sitter. 
+    // associativity for the arguments, which is not possible to specify with tree-sitter. 
     // Creating a separate nonterminal, is the cleanest way to move forward.
     // A simple_call_expression is the one without the trailing lambda argument.
     simple_call_expression: $=> prec("call", seq(
@@ -1101,7 +1102,7 @@ module.exports = grammar({
       $._non_call_primary_expression
     ),
 
-    // we need to give parenthesized expression a lower dymanic precedence to resolve ambiguities like
+    // we need to give parenthesized expression a lower dynamic precedence to resolve ambiguities like
     // @Annotation() in favor of a single annotation rather than an annotation of a parenthesized expression.
     parenthesized_expression: $ => prec.dynamic(-1, seq("(", repeat($._NL), $.expression, repeat($._NL), ")")),
 
@@ -1549,7 +1550,7 @@ module.exports = grammar({
       "catch",
       "constructor",
       "delegate",
-      "dyanamic",
+      "dynamic",
       "field",
       "file",
       "finally",
