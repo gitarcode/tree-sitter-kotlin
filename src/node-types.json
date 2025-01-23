@@ -2007,12 +2007,8 @@
       },
       "operator": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
-          {
-            "type": "!is",
-            "named": false
-          },
           {
             "type": "is",
             "named": false
@@ -3470,12 +3466,8 @@
     "fields": {
       "operator": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
-          {
-            "type": "!is",
-            "named": false
-          },
           {
             "type": "is",
             "named": false
@@ -3801,10 +3793,6 @@
   },
   {
     "type": "!in",
-    "named": false
-  },
-  {
-    "type": "!is",
     "named": false
   },
   {

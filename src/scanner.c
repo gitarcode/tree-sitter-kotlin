@@ -14,6 +14,7 @@ enum TokenType {
     LSQR,
     RSQR,
     DOLLAR_CURL, // ${
+    NOT_IS, // !is
 };
 
 typedef struct {
@@ -236,7 +237,7 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
             }
         }
     }
-    if (valid_symbols[EXTERNAL_NEWLINE] || valid_symbols[ELVIS]) {
+    if (valid_symbols[EXTERNAL_NEWLINE] || valid_symbols[ELVIS] || valid_symbols[NOT_IS]) {
         switch(lexer->lookahead) {
             case '\n':
                 while (lexer->lookahead == '\n') {
@@ -319,9 +320,11 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                         switch (lexer->lookahead) {
                             case 'i':
                                 advance(lexer);
+                                // in or is
                                 if (lexer->lookahead == 'n' || lexer->lookahead == 's') {
                                     return true;
                                 }
+                            // !=
                             case '=':
                                 return true;
                         }
@@ -364,7 +367,8 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                     }
                 }
                 break;
-                
+
+            // elvis operator: `?:`    
             case '?':
                 advance(lexer);
                 if (lexer->lookahead != ':') {
@@ -377,6 +381,24 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                 }
                 lexer->result_symbol = ELVIS;
                 return true;
+
+            // We should only emit an "!is" token if it's not followed by an alpha character.
+            // !isa should be parsed as a unary expression: `! (isa)`
+            case '!':
+                advance(lexer);
+                if (lexer->lookahead != 'i') {
+                    return false;
+                }
+                advance(lexer);
+                if (lexer->lookahead != 's') {
+                    return false;
+                }
+                advance(lexer);
+                if (is_lookahead_valid_identifier_char(lexer)) {
+                    return false;
+                }
+                lexer->result_symbol = NOT_IS;
+                return true;    
 
             default:
                 return false;    

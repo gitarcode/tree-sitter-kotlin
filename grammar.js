@@ -228,7 +228,8 @@ module.exports = grammar({
     "}",
     "[",
     "]",
-    "${"
+    "${",
+    $._not_is,
   ],
 
   supertypes: $ => [
@@ -1333,7 +1334,7 @@ module.exports = grammar({
 
     range_test: $ => seq($._in_operator, $.expression),
 
-    type_test: $ => seq(
+    type_test: $ =>seq(
       field("operator", $._is_operator), 
       field("type", $.type)
     ),
@@ -1400,7 +1401,7 @@ module.exports = grammar({
 
     _in_operator: $ => choice("in", "!in"),
 
-    _is_operator: $ => choice("is", "!is"),
+    _is_operator: $ => choice("is", $._not_is),
 
     _additive_operator: $ => choice("+", "-"),
 

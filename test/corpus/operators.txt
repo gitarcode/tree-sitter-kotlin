@@ -311,3 +311,51 @@ fun f() {}
     parameters: (function_value_parameters)
     body: (function_body
       (block))))
+
+================================================================================
+!is operator vs unary prefix operator
+================================================================================
+
+when {
+    !isString -> a
+}
+
+when {
+    !is String -> a
+}
+
+when {
+    !isString && a -> a
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (when_expression
+      entries: (when_entries
+        (when_entry
+          condition: (when_condition
+            (prefix_expression
+              expression: (simple_identifier)))
+          body: (simple_identifier)))))
+  (statement
+    (when_expression
+      entries: (when_entries
+        (when_entry
+          condition: (when_condition
+            (type_test
+              type: (type
+                type: (user_type
+                  (type_identifier)))))
+          body: (simple_identifier)))))
+  (statement
+    (when_expression
+      entries: (when_entries
+        (when_entry
+          condition: (when_condition
+            (conjunction_expression
+              left: (prefix_expression
+                expression: (simple_identifier))
+              right: (simple_identifier)))
+          body: (simple_identifier))))))
