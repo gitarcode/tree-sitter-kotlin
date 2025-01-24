@@ -1422,3 +1422,33 @@ as x
       (simple_identifier)
       (simple_identifier))
     alias: (simple_identifier)))
+
+================================================================================
+Newline before arguments in function call
+================================================================================
+
+fun f() {
+  g()
+  (x).f()
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block
+        (statements
+          (statement
+            (call_expression
+              expression: (simple_identifier)
+              args: (value_arguments)))
+          (statement
+            (call_expression
+              expression: (dot_qualified_expression
+                receiver: (parenthesized_expression
+                  (simple_identifier))
+                selector: (simple_identifier))
+              args: (value_arguments))))))))

@@ -890,7 +890,10 @@ module.exports = grammar({
     // Right precedence here to extend the call to the right, i.e., `with (s) { s }`
     // should be parsed as a flat list of arguments. 
     _call_arguments: $ => prec.right(choice(
-      seq(optional(seq(optional($._external_nl), field("args", $.value_arguments))), field("lambda_arg", $.annotated_lambda)),
+      seq(
+        optional(seq(optional($._external_nl), field("args", $.value_arguments))), 
+        field("lambda_arg", $.annotated_lambda)
+      ),
       seq(optional($._external_nl), field("args", $.value_arguments))
     )),
     
