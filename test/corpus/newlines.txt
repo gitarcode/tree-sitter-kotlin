@@ -1452,3 +1452,39 @@ fun f() {
                   (simple_identifier))
                 selector: (simple_identifier))
               args: (value_arguments))))))))
+
+================================================================================
+Newline before arguments in function call in parentheses
+================================================================================
+
+fun f() {
+  foo(
+    g()
+    (x).f())
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block
+        (statements
+          (statement
+            (call_expression
+              expression: (simple_identifier)
+              args: (value_arguments
+                (value_argument
+                  expression: (call_expression
+                    expression: (dot_qualified_expression
+                      receiver: (call_expression
+                        expression: (call_expression
+                          expression: (simple_identifier)
+                          args: (value_arguments))
+                        args: (value_arguments
+                          (value_argument
+                            expression: (simple_identifier))))
+                      selector: (simple_identifier))
+                    args: (value_arguments)))))))))))
