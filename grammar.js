@@ -894,9 +894,7 @@ module.exports = grammar({
     _call_arguments: $ => choice(
       field("args", $.value_arguments), 
       field("lambda_arg", $.annotated_lambda),
-      // Right precedence here to extend the call to the right, i.e., `with (s) { s }`
-      // should be parsed as a flat list of arguments. 
-      prec.right(seq(field("args", $.value_arguments), repeat($._NL), field("lambda_arg", $.annotated_lambda))),
+      seq(field("args", $.value_arguments), repeat($._NL), field("lambda_arg", $.annotated_lambda)),
     ),
     
     index_access_expression: $ => prec("index", seq(

@@ -4433,36 +4433,32 @@
           }
         },
         {
-          "type": "PREC_RIGHT",
-          "value": 0,
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "FIELD",
-                "name": "args",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "value_arguments"
-                }
-              },
-              {
-                "type": "REPEAT",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_NL"
-                }
-              },
-              {
-                "type": "FIELD",
-                "name": "lambda_arg",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "annotated_lambda"
-                }
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "args",
+              "content": {
+                "type": "SYMBOL",
+                "name": "value_arguments"
               }
-            ]
-          }
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_NL"
+              }
+            },
+            {
+              "type": "FIELD",
+              "name": "lambda_arg",
+              "content": {
+                "type": "SYMBOL",
+                "name": "annotated_lambda"
+              }
+            }
+          ]
         }
       ]
     },
