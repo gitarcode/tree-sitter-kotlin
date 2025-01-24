@@ -1488,3 +1488,27 @@ fun f() {
                             expression: (simple_identifier))))
                       selector: (simple_identifier))
                     args: (value_arguments)))))))))))
+
+================================================================================
+Newline before lambda argument
+================================================================================
+
+fun f() {
+  f
+  {}
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block
+        (statements
+          (statement
+            (call_expression
+              expression: (simple_identifier)
+              lambda_arg: (annotated_lambda
+                lambda_literal: (lambda_literal)))))))))

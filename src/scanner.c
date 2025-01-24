@@ -405,10 +405,15 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                 return true;
             }
         }
+        // Call expression argument
         if (lookahead_operator(lexer, "(", 1)) {
             if (is_inside_parentheses(scanner)) {
                 return true;
             }                        
+        }
+        // Lambda argument
+        if (lookahead_operator(lexer, "{", 1)) {
+            return true;
         }
     }
     return false;
