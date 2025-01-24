@@ -411,9 +411,13 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                 return true;
             }                        
         }
-        // Lambda argument
+        // Newline is only allowed before lambda argument without value arguments if it's inside parentheses, e.g.,:
+        // (f
+        //  {})
         if (lookahead_operator(lexer, "{", 1)) {
-            return true;
+            if (is_inside_parentheses(scanner)) {
+                return true;
+            }
         }
     }
     return false;

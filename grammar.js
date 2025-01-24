@@ -157,10 +157,14 @@ module.exports = grammar({
     [$.setter, $._soft_keywords],
     [$._type_reference, $._soft_keywords],
 
+    [$.dot_qualified_expression, $.labeled_expression, $.as_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.prefix_expression, $.as_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.as_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
     [$.dot_qualified_expression, $.call_expression, $.labeled_expression, $.as_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
     [$.dot_qualified_expression, $.call_expression, $.prefix_expression, $.as_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
-    [$.dot_qualified_expression, $.call_expression, $.simple_call_expression, $.as_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
     [$.dot_qualified_expression, $.call_expression, $.as_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
+    [$.dot_qualified_expression, $.call_expression, $.simple_call_expression, $.as_expression, $.multiplicative_expression, $.additive_expression, $.range_expression, $.infix_expression, $.elvis_expression, $.in_expression, $.is_expression, $.comparison_expression, $.equality_expression, $.conjunction_expression, $.disjunction_expression],
+    [$._call_arguments],
     [$.call_expression, $.simple_call_expression],
 
     [$._simple_user_type, $._non_call_primary_expression],
@@ -890,15 +894,13 @@ module.exports = grammar({
       field("args", $.value_arguments)
     )),
 
-    // Right precedence here to extend the call to the right, i.e., `with (s) { s }`
-    // should be parsed as a flat list of arguments. 
-    _call_arguments: $ => prec.right(choice(
-      seq(
-        optional(field("args", $.value_arguments)), 
-        field("lambda_arg", $.annotated_lambda)
-      ),
-      field("args", $.value_arguments)
-    )),
+    _call_arguments: $ => choice(
+      field("args", $.value_arguments), 
+      field("lambda_arg", $.annotated_lambda),
+      // Right precedence here to extend the call to the right, i.e., `with (s) { s }`
+      // should be parsed as a flat list of arguments. 
+      prec.right(seq(field("args", $.value_arguments), repeat($._NL), field("lambda_arg", $.annotated_lambda))),
+    ),
     
     index_access_expression: $ => prec("index", seq(
       field("expression", $.expression), 

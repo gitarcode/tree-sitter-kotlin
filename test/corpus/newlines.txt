@@ -1490,7 +1490,7 @@ fun f() {
                     args: (value_arguments)))))))))))
 
 ================================================================================
-Newline before lambda argument
+Newline before the only lambda argument
 ================================================================================
 
 fun f() {
@@ -1508,7 +1508,87 @@ fun f() {
       (block
         (statements
           (statement
+            (simple_identifier))
+          (statement
+            (lambda_literal)))))))
+
+================================================================================
+Newline before the only lambda argument in parenthesis
+================================================================================
+
+fun f() {
+  (f
+  {})
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block
+        (statements
+          (statement
+            (parenthesized_expression
+              (call_expression
+                expression: (simple_identifier)
+                lambda_arg: (annotated_lambda
+                  lambda_literal: (lambda_literal))))))))))
+
+================================================================================
+Newline before lambda argument with value arguments
+================================================================================
+
+fun f() {
+  f(1)
+  {}
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block
+        (statements
+          (statement
             (call_expression
               expression: (simple_identifier)
+              args: (value_arguments
+                (value_argument
+                  expression: (integer_literal)))
               lambda_arg: (annotated_lambda
                 lambda_literal: (lambda_literal)))))))))
+
+================================================================================
+Newline before lambda argument with value arguments in parentheses
+================================================================================
+
+fun f() {
+  (f(1)
+  {})
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    name: (simple_identifier)
+    parameters: (function_value_parameters)
+    body: (function_body
+      (block
+        (statements
+          (statement
+            (parenthesized_expression
+              (call_expression
+                expression: (call_expression
+                  expression: (simple_identifier)
+                  args: (value_arguments
+                    (value_argument
+                      expression: (integer_literal))))
+                lambda_arg: (annotated_lambda
+                  lambda_literal: (lambda_literal))))))))))

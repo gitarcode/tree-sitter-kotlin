@@ -4414,29 +4414,44 @@
       }
     },
     "_call_arguments": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "args",
+          "content": {
+            "type": "SYMBOL",
+            "name": "value_arguments"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "lambda_arg",
+          "content": {
+            "type": "SYMBOL",
+            "name": "annotated_lambda"
+          }
+        },
+        {
+          "type": "PREC_RIGHT",
+          "value": 0,
+          "content": {
             "type": "SEQ",
             "members": [
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "FIELD",
-                    "name": "args",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "value_arguments"
-                    }
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
+                "type": "FIELD",
+                "name": "args",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "value_arguments"
+                }
+              },
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_NL"
+                }
               },
               {
                 "type": "FIELD",
@@ -4447,17 +4462,9 @@
                 }
               }
             ]
-          },
-          {
-            "type": "FIELD",
-            "name": "args",
-            "content": {
-              "type": "SYMBOL",
-              "name": "value_arguments"
-            }
           }
-        ]
-      }
+        }
+      ]
     },
     "index_access_expression": {
       "type": "PREC",
@@ -9373,6 +9380,53 @@
     ],
     [
       "dot_qualified_expression",
+      "labeled_expression",
+      "as_expression",
+      "multiplicative_expression",
+      "additive_expression",
+      "range_expression",
+      "infix_expression",
+      "elvis_expression",
+      "in_expression",
+      "is_expression",
+      "comparison_expression",
+      "equality_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "prefix_expression",
+      "as_expression",
+      "multiplicative_expression",
+      "additive_expression",
+      "range_expression",
+      "infix_expression",
+      "elvis_expression",
+      "in_expression",
+      "is_expression",
+      "comparison_expression",
+      "equality_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
+      "as_expression",
+      "multiplicative_expression",
+      "additive_expression",
+      "range_expression",
+      "infix_expression",
+      "elvis_expression",
+      "in_expression",
+      "is_expression",
+      "comparison_expression",
+      "equality_expression",
+      "conjunction_expression",
+      "disjunction_expression"
+    ],
+    [
+      "dot_qualified_expression",
       "call_expression",
       "labeled_expression",
       "as_expression",
@@ -9408,7 +9462,6 @@
     [
       "dot_qualified_expression",
       "call_expression",
-      "simple_call_expression",
       "as_expression",
       "multiplicative_expression",
       "additive_expression",
@@ -9425,6 +9478,7 @@
     [
       "dot_qualified_expression",
       "call_expression",
+      "simple_call_expression",
       "as_expression",
       "multiplicative_expression",
       "additive_expression",
@@ -9437,6 +9491,9 @@
       "equality_expression",
       "conjunction_expression",
       "disjunction_expression"
+    ],
+    [
+      "_call_arguments"
     ],
     [
       "call_expression",
