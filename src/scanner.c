@@ -306,9 +306,11 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                 }
             }
         }
+        // newline is always allowed before &&, regardless of surrounding brackets
         if (lookahead_operator(lexer, "&&", 2)) {
             return true;
         }
+        // newline is always allowed before ||, regardless of surrounding brackets
         if (lookahead_operator(lexer, "||", 2)) {
             return true;
         }
@@ -402,6 +404,11 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
             if (is_inside_parentheses(scanner)) {
                 return true;
             }
+        }
+        if (lookahead_operator(lexer, "(", 1)) {
+            if (is_inside_parentheses(scanner)) {
+                return true;
+            }                        
         }
     }
     return false;

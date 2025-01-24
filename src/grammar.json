@@ -4384,6 +4384,18 @@
             ]
           },
           {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_external_nl"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
             "type": "FIELD",
             "name": "args",
             "content": {
@@ -4407,12 +4419,29 @@
                 "type": "CHOICE",
                 "members": [
                   {
-                    "type": "FIELD",
-                    "name": "args",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "value_arguments"
-                    }
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "_external_nl"
+                          },
+                          {
+                            "type": "BLANK"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "FIELD",
+                        "name": "args",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "value_arguments"
+                        }
+                      }
+                    ]
                   },
                   {
                     "type": "BLANK"
@@ -4430,12 +4459,29 @@
             ]
           },
           {
-            "type": "FIELD",
-            "name": "args",
-            "content": {
-              "type": "SYMBOL",
-              "name": "value_arguments"
-            }
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_external_nl"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              },
+              {
+                "type": "FIELD",
+                "name": "args",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "value_arguments"
+                }
+              }
+            ]
           }
         ]
       }
@@ -9354,6 +9400,7 @@
     ],
     [
       "dot_qualified_expression",
+      "call_expression",
       "labeled_expression",
       "as_expression",
       "multiplicative_expression",
@@ -9370,6 +9417,7 @@
     ],
     [
       "dot_qualified_expression",
+      "call_expression",
       "prefix_expression",
       "as_expression",
       "multiplicative_expression",
@@ -9386,6 +9434,7 @@
     ],
     [
       "dot_qualified_expression",
+      "call_expression",
       "as_expression",
       "multiplicative_expression",
       "additive_expression",
