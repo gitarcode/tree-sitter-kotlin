@@ -4,6 +4,7 @@
 #include <wctype.h>
 
 enum TokenType {
+    NL,
     ELVIS,
     EXTERNAL_NEWLINE,
     NL_BEFORE_OPEN_BRACE,
@@ -162,6 +163,15 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
     Scanner *scanner = (Scanner *)payload;
     while (iswspace(lexer->lookahead) && lexer->lookahead != '\n') {
         advance_and_skip(lexer);
+    }
+    if (valid_symbols[NL]) {
+        if (is_inside_parentheses(scanner)) {
+            if (lexer->lookahead == '\n') {
+                advance(lexer);
+                lexer->result_symbol = NL;
+                return  true;
+            }
+        }
     }
     if (valid_symbols[MULTILINE_COMMENT]) {
         if (lexer->lookahead == '/') {

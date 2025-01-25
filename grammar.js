@@ -218,10 +218,12 @@ module.exports = grammar({
   extras: $ => [
     $.line_comment,
     $.multiline_comment,
-    NON_NL_WHITESPACE
+    NON_NL_WHITESPACE,
+    $._newline,
   ],
 
   externals: $ => [
+    $._newline,
     $._ELVIS,
     $._external_nl,
     $._nl_before_open_brace,
