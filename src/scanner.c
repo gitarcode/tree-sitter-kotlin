@@ -6,6 +6,7 @@
 enum TokenType {
     ELVIS,
     EXTERNAL_NEWLINE,
+    NL_BEFORE_OPEN_BRACE,
     MULTILINE_COMMENT,
     LPAR,
     RPAR,
@@ -273,7 +274,7 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
             return true;
         }
     }
-    if (valid_symbols[EXTERNAL_NEWLINE]) {
+    if (valid_symbols[EXTERNAL_NEWLINE] || valid_symbols[NL_BEFORE_OPEN_BRACE]) {
         if (lexer->lookahead != '\n') {
             return false;
         }
@@ -414,7 +415,15 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
         // Newline is only allowed before lambda argument without value arguments if it's inside parentheses, e.g.,:
         // (f
         //  {})
+        // of if there is between the value argument and open brace, e.g.,:
+        // f()
+        // {}
         if (lookahead_operator(lexer, "{", 1)) {
+            if (valid_symbols[NL_BEFORE_OPEN_BRACE]) {
+                // TODO: factor out this newline from here:
+                lexer->result_symbol = NL_BEFORE_OPEN_BRACE;
+                return true;
+            }
             if (is_inside_parentheses(scanner)) {
                 return true;
             }

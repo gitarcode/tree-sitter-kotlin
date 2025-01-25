@@ -1585,10 +1585,9 @@ fun f() {
           (statement
             (parenthesized_expression
               (call_expression
-                expression: (call_expression
-                  expression: (simple_identifier)
-                  args: (value_arguments
-                    (value_argument
-                      expression: (integer_literal))))
+                expression: (simple_identifier)
+                args: (value_arguments
+                  (value_argument
+                    expression: (integer_literal)))
                 lambda_arg: (annotated_lambda
                   lambda_literal: (lambda_literal))))))))))
