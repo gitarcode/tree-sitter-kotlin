@@ -451,3 +451,60 @@ class ExampleTest {
             expression: (simple_identifier)
             lambda_arg: (annotated_lambda
               lambda_literal: (lambda_literal))))))))
+
+
+======================
+Annotated class with a field with call_expression rhs
+======================
+
+@Isolated
+@SdkSuppress(minSdkVersion = 28)
+class StrictModeTest {
+  private val violations = mutableListOf<Violation>()
+
+  @After
+  fun cleanup() {
+  }
+}
+
+---
+
+(source_file
+  (class_declaration
+    modifiers: (modifiers
+      (annotation
+        (user_type
+          (type_identifier)))
+      (annotation
+        (constructor_invocation
+          type: (user_type
+            (type_identifier))
+          args: (value_arguments
+            (value_argument
+              name: (simple_identifier)
+              expression: (integer_literal))))))
+    name: (simple_identifier)
+    body: (class_body
+      (property_declaration
+        modifiers: (modifiers
+          (visibility_modifier))
+        binding_pattern: (binding_pattern_kind)
+        var_decl: (variable_declaration
+          id: (simple_identifier))
+        initializer: (call_expression
+          expression: (simple_identifier)
+          (type_arguments
+            (type_projection
+              type: (type
+                type: (user_type
+                  (type_identifier)))))
+          args: (value_arguments)))
+      (function_declaration
+        modifiers: (modifiers
+          (annotation
+            (user_type
+              (type_identifier))))
+        name: (simple_identifier)
+        parameters: (function_value_parameters)
+        body: (function_body
+          (block))))))
