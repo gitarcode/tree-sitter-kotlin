@@ -508,3 +508,56 @@ class StrictModeTest {
         parameters: (function_value_parameters)
         body: (function_body
           (block))))))
+
+======================
+Multiline multi-annotation definition
+======================
+
+@[
+MyQualifier
+Target(
+    AnnotationTarget.FUNCTION, AnnotationTarget.VALUE_PARAMETER, AnnotationTarget.FIELD,
+    AnnotationTarget.PROPERTY
+)
+Retention(AnnotationRetention.RUNTIME)
+]
+annotation class MyAnnotation
+
+---
+
+(source_file
+  (class_declaration
+    modifiers: (modifiers
+      (annotation
+        (user_type
+          (type_identifier))
+        (constructor_invocation
+          type: (user_type
+            (type_identifier))
+          args: (value_arguments
+            (value_argument
+              expression: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier)))
+            (value_argument
+              expression: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier)))
+            (value_argument
+              expression: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier)))
+            (value_argument
+              expression: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier)))))
+        (constructor_invocation
+          type: (user_type
+            (type_identifier))
+          args: (value_arguments
+            (value_argument
+              expression: (dot_qualified_expression
+                receiver: (simple_identifier)
+                selector: (simple_identifier))))))
+      (class_modifier))
+    name: (simple_identifier)))

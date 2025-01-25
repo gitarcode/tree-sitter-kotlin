@@ -155,6 +155,8 @@ static bool multiline_comment(TSLexer *lexer) {
     return false;
 }
 
+// Returns true if the next character is either `_` or an alphanumeric, corresponding to
+// the beginning of an identifier
 static inline bool is_lookahead_valid_identifier_char(TSLexer *lexer) {
     return lexer->lookahead == '_' || iswalnum(lexer->lookahead);
 }
@@ -299,21 +301,11 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
             }
             if (lexer->lookahead == '/') {
                 advance(lexer);
-                switch (lexer->lookahead) {
-                    case '/':
-                        if (!line_comment_body(lexer)) {
-                            return false;
-                        }
-                        break;
-                        case '*':
-                        if (!multiline_comment_body(lexer)) {
-                            return false;
-                        }
-                        break;
-                    default:
-                        if (is_inside_parentheses(scanner)) {
-                                return true;
-                        }
+                if (lexer->lookahead == '/' && !line_comment_body(lexer)) {
+                    return false;
+                }
+                if (lexer->lookahead == '*' && !multiline_comment_body(lexer)) {
+                    return false;
                 }
             }
         }
@@ -325,30 +317,6 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
         if (lookahead_operator(lexer, "||", 2)) {
             return true;
         }
-        if (lookahead_operator(lexer, "+", 1)) {
-            if (is_inside_parentheses(scanner)) {
-                // Do not match '++' and '+='
-                if (lexer->lookahead != '+' && lexer->lookahead != '=') {
-                    return true;
-                }
-            }
-        }
-        if (lookahead_operator(lexer, "-", 1)) {
-            if (is_inside_parentheses(scanner)) {
-                // Do not match '--', '->', and '-='
-                if (lexer->lookahead != '-' && lexer->lookahead != '>' && lexer->lookahead != '=') {
-                    return true;
-                }
-            }
-        }
-        if (lookahead_operator(lexer, "*", 1)) {
-            if (is_inside_parentheses(scanner)) {
-                // Do not match '*='
-                if (lexer->lookahead != '=') {
-                    return true;
-                }
-            }
-        }
         if (lookahead_operator(lexer, "?", 1)) {
             if (lexer->lookahead == ':' || lexer->lookahead == '.') {
                 return true;
@@ -358,33 +326,6 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
             // Do not match '..'
             if (lexer->lookahead != '.') {
                 return true;
-            } else {
-                // Range operators: '..' '..<'
-                if (is_inside_parentheses(scanner)) {
-                    return true;
-                }
-            }
-        }
-        if (lookahead_operator(lexer, "!", 1)) {
-            if (is_inside_parentheses(scanner)) {
-                switch (lexer->lookahead) {
-                    case 'i':
-                        advance(lexer);
-                        // in or is
-                        if (lexer->lookahead == 'n' || lexer->lookahead == 's') {
-                            return true;
-                        }
-                    // !=
-                    case '=':
-                        return true;
-                }
-            }
-        }
-        if (lookahead_operator(lexer, "in", 2)) {
-            if (!is_lookahead_valid_identifier_char(lexer)) {
-                if (is_inside_parentheses(scanner)) {
-                    return true;
-                }
             }
         }
         if (lookahead_operator(lexer, "as", 2)) {
@@ -392,49 +333,16 @@ bool tree_sitter_kotlin_external_scanner_scan(void *payload, TSLexer *lexer, con
                 return true;
             }
         }
-        if (lookahead_operator(lexer, "<", 1)) {
-            if (is_inside_parentheses(scanner)) {
-                return true;
-            }
-        }
-        if (lookahead_operator(lexer, ">", 1)) {
-            if (is_inside_parentheses(scanner)) {
-                return true;
-            }
-        }
-        if (lookahead_operator(lexer, "=", 1)) {
-            if (lexer->lookahead == '=') {
-                if (is_inside_parentheses(scanner)) {
-                    return true;
-                }                        
-            }
-        }
-        // infix operators, if the next character is either `_` or an alphanumeric, corresponding to
-        // the beginning of an identifier
-        if (is_lookahead_valid_identifier_char(lexer)) {
-            if (is_inside_parentheses(scanner)) {
-                return true;
-            }
-        }
-        // Call expression argument
-        if (lookahead_operator(lexer, "(", 1)) {
-            if (is_inside_parentheses(scanner)) {
-                return true;
-            }                        
-        }
         // Newline is only allowed before lambda argument without value arguments if it's inside parentheses, e.g.,:
         // (f
         //  {})
-        // of if there is between the value argument and open brace, e.g.,:
+        // or if there is between the value argument and open brace, e.g.,:
         // f()
         // {}
         if (lookahead_operator(lexer, "{", 1)) {
             if (valid_symbols[NL_BEFORE_OPEN_BRACE]) {
                 // TODO: factor out this newline from here:
                 lexer->result_symbol = NL_BEFORE_OPEN_BRACE;
-                return true;
-            }
-            if (is_inside_parentheses(scanner)) {
                 return true;
             }
         }
