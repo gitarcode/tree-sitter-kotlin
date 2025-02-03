@@ -245,6 +245,40 @@ module.exports = grammar({
 
   word: $ => $._alpha_identifier,
 
+  reserved: {
+    global: $ => [
+      "as",
+    "break",
+    "class",
+    "continue",
+    "do",
+    "else",
+    "false",
+    "for",
+    "fun",
+    "if",
+    "in",
+    "interface",
+    "is",
+    "null",
+    "object",
+    "package",
+    "return",
+    "super",
+    "this",
+    "throw",
+    "true",
+    "try",
+    "typealias",
+    // This keyword fails parser generation:
+    // "typeof",
+    "val",
+    "var",
+    "when",
+    "while",
+    ],
+  },
+
   rules: {
     // ====================
     // Syntax grammar
