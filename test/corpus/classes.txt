@@ -1179,3 +1179,38 @@ public enum class CodeStyleValue {
     body: (class_body
       (enum_entry
         name: (simple_identifier)))))
+
+================================================================================
+Class with inner class and companion object
+================================================================================
+
+public abstract class AbstractServerSerializationTest {
+
+    @Serializable
+    private class NullValues
+
+    private companion object {
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (class_declaration
+    modifiers: (modifiers
+      (visibility_modifier)
+      (inheritance_modifier))
+    name: (simple_identifier)
+    body: (class_body
+      (class_declaration
+        modifiers: (modifiers
+          (annotation
+            (user_type
+              (type_identifier)))
+          (visibility_modifier))
+        name: (simple_identifier))
+      (companion_object
+        modifiers: (modifiers
+          (visibility_modifier))
+        body: (class_body)))))
+        
