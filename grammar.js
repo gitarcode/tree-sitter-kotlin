@@ -849,14 +849,6 @@ module.exports = grammar({
       field("right", $.expression)
     )),
 
-    // _directly_assignable_expression: $ => choice(
-    //   $.dot_qualified_expression,
-    //   $.index_access_expression,
-    //   $.simple_identifier,
-    //   $.postfix_expression,
-    //   $.this_expression
-    // ),
-
     // ==========
     // Expressions
     // ==========
@@ -1227,7 +1219,7 @@ module.exports = grammar({
 
     _interpolation: $ => choice(
       seq("${", repeat($._NL), alias($.expression, $.interpolated_expression), repeat($._NL), "}"),
-      seq("$", alias($.simple_identifier, $.interpolated_identifier))
+      seq("$", choice(alias("this", $.this_expression), alias($.simple_identifier, $.interpolated_identifier)))
     ),
 
     lambda_literal: $ => prec(-1, seq(

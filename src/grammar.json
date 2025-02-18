@@ -6185,13 +6185,27 @@
               "value": "$"
             },
             {
-              "type": "ALIAS",
-              "content": {
-                "type": "SYMBOL",
-                "name": "simple_identifier"
-              },
-              "named": true,
-              "value": "interpolated_identifier"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "STRING",
+                    "value": "this"
+                  },
+                  "named": true,
+                  "value": "this_expression"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "simple_identifier"
+                  },
+                  "named": true,
+                  "value": "interpolated_identifier"
+                }
+              ]
             }
           ]
         }
