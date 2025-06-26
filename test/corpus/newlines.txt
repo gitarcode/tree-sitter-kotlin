@@ -1591,3 +1591,25 @@ fun f() {
                     expression: (integer_literal)))
                 lambda_arg: (annotated_lambda
                   lambda_literal: (lambda_literal))))))))))
+
+================================================================================
+Call expression in when condition with newline before (
+================================================================================
+
+when {
+  a
+  () -> true
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (statement
+    (when_expression
+      entries: (when_entries
+        (when_entry
+          condition: (when_condition
+            (when_condition_call_expression
+              expression: (simple_identifier)
+              args: (value_arguments)))
+          body: (boolean_literal))))))

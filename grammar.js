@@ -236,11 +236,13 @@ module.exports = grammar({
     "]",
     "${",
     $._not_is,
+    $._external_nl_when_condition,
   ],
 
   supertypes: $ => [
     $.expression,
     $.jump_expression,
+    $.when_condition_expression
   ],
 
   word: $ => $._alpha_identifier,
@@ -836,6 +838,15 @@ module.exports = grammar({
       $._loop_statement
     ),
 
+    when_condition_expression: $ => choice(
+      $._unary_expression,
+      $._binary_expression,
+      $._when_condition_primary_expression,
+      $.jump_expression,
+      $.assignment,
+      $._loop_statement
+    ),
+
     // Unary expressions
 
     _unary_expression: $ => choice(
@@ -872,6 +883,13 @@ module.exports = grammar({
       field("expression", $.expression), 
       optional($.type_arguments),
       repeat($._external_nl),
+      $._call_arguments
+    )),
+
+    when_condition_call_expression: $ => prec("call", seq(
+      field("expression", $.expression), 
+      optional($.type_arguments),
+      repeat($._external_nl_when_condition),
       $._call_arguments
     )),
 
@@ -1110,6 +1128,11 @@ module.exports = grammar({
       $._non_call_primary_expression
     ),
 
+    _when_condition_primary_expression: $ => choice(
+      $.when_condition_call_expression,
+      $._non_call_primary_expression
+    ),
+
     // we need to give parenthesized expression a lower dynamic precedence to resolve ambiguities like
     // @Annotation() in favor of a single annotation rather than an annotation of a parenthesized expression.
     parenthesized_expression: $ => prec.dynamic(-1, seq("(", repeat($._NL), $.expression, repeat($._NL), ")")),
@@ -1336,7 +1359,7 @@ module.exports = grammar({
     ),
 
     when_condition: $ => choice(
-      $.expression,
+      $.when_condition_expression,
       $.range_test,
       $.type_test
     ),
