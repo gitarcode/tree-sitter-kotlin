@@ -1129,7 +1129,7 @@ module.exports = grammar({
     ),
 
     _when_condition_primary_expression: $ => choice(
-      $.when_condition_call_expression,
+      alias($.when_condition_call_expression, $.call_expression),
       $._non_call_primary_expression
     ),
 

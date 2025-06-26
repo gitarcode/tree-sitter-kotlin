@@ -5748,8 +5748,13 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "when_condition_call_expression"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "when_condition_call_expression"
+          },
+          "named": true,
+          "value": "call_expression"
         },
         {
           "type": "SYMBOL",

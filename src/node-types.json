@@ -244,6 +244,10 @@
         "named": true
       },
       {
+        "type": "call_expression",
+        "named": true
+      },
+      {
         "type": "callable_reference",
         "named": true
       },
@@ -385,10 +389,6 @@
       },
       {
         "type": "unsigned_literal",
-        "named": true
-      },
-      {
-        "type": "when_condition_call_expression",
         "named": true
       },
       {
@@ -3838,52 +3838,6 @@
         },
         {
           "type": "when_condition_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "when_condition_call_expression",
-    "named": true,
-    "fields": {
-      "args": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "value_arguments",
-            "named": true
-          }
-        ]
-      },
-      "expression": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "expression",
-            "named": true
-          }
-        ]
-      },
-      "lambda_arg": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "annotated_lambda",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "type_arguments",
           "named": true
         }
       ]

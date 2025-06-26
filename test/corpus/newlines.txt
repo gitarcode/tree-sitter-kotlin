@@ -1609,7 +1609,7 @@ when {
       entries: (when_entries
         (when_entry
           condition: (when_condition
-            (when_condition_call_expression
+            (call_expression
               expression: (simple_identifier)
               args: (value_arguments)))
           body: (boolean_literal))))))
