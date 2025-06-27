@@ -1,7 +1,7 @@
 {
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "kotlin",
-  "word": "_alpha_identifier",
+  "word": "_identifier",
   "rules": {
     "source_file": {
       "type": "SEQ",
@@ -9114,7 +9114,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_alpha_identifier"
+          "name": "_identifier"
         },
         {
           "type": "SYMBOL",
@@ -9122,7 +9122,7 @@
         }
       ]
     },
-    "_alpha_identifier": {
+    "_identifier": {
       "type": "PATTERN",
       "value": "[\\p{L}_][\\p{L}_\\p{Nd}]*"
     },

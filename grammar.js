@@ -245,7 +245,7 @@ module.exports = grammar({
     $.when_condition_expression
   ],
 
-  word: $ => $._alpha_identifier,
+  word: $ => $._identifier,
 
   rules: {
     // ====================
@@ -1706,11 +1706,11 @@ module.exports = grammar({
     // ==========
 
     _lexical_identifier: $ => choice(
-      $._alpha_identifier,
+      $._identifier,
       $._backtick_identifier,
     ),
 
-    _alpha_identifier: $ => /[\p{L}_][\p{L}_\p{Nd}]*/,
+    _identifier: $ => /[\p{L}_][\p{L}_\p{Nd}]*/,
 
     _backtick_identifier: $ => /`[^\r\n`]+`/,
 
