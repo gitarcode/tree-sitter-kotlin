@@ -8,6 +8,7 @@ repository = "https://github.com/fwcd/tree-sitter-kotlin"
 edition = "2018"
 license = "MIT"
 readme = "bindings/rust/README.md"
+links = "tree-sitter-kotlin"
 
 build = "bindings/rust/build.rs"
 include = ["bindings/rust/*", "grammar.js", "queries/*", "src/*"]
