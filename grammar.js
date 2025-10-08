@@ -247,6 +247,41 @@ module.exports = grammar({
 
   word: $ => $._identifier,
 
+  // See: https://kotlinlang.org/docs/keyword-reference.html#hard-keywords
+  reserved: {
+    global: $ => [
+      "as",
+      "break",
+      "class",
+      "continue",
+      "do",
+      "else",
+      "false",
+      "for",
+      "fun",
+      "if",
+      "in",
+      "interface",
+      "is",
+      "null",
+      "object",
+      "package",
+      "return",
+      "super",
+      "this",
+      "throw",
+      "true",
+      "try",
+      "typealias",
+      // This keyword fails parser generation:
+      // "typeof",
+      "val",
+      "var",
+      "when",
+      "while",
+    ],
+  },
+
   rules: {
     // ====================
     // Syntax grammar
@@ -1208,7 +1243,7 @@ module.exports = grammar({
 
     _interpolation: $ => choice(
       seq("${", repeat($._NL), alias($.expression, $.interpolated_expression), repeat($._NL), "}"),
-      seq("$", alias($.simple_identifier, $.interpolated_identifier))
+      seq("$", choice(alias("this", $.this_expression), alias($.simple_identifier, $.interpolated_identifier)))
     ),
 
     lambda_literal: $ => prec(-1, seq(

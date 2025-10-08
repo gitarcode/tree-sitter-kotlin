@@ -3272,6 +3272,10 @@
         {
           "type": "multi_line_string_content_part",
           "named": true
+        },
+        {
+          "type": "this_expression",
+          "named": true
         }
       ]
     }
